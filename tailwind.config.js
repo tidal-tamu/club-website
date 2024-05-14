@@ -13,6 +13,9 @@ export default {
                 semibold: 600,
                 bold: 700,
             },
+            colors: {
+                navy: "#005174",
+            },
         },
     },
     plugins: [],

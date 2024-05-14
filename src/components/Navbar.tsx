@@ -12,14 +12,14 @@ export default function Navbar() {
                 className="min-w-[208px] min-h-[32px] w-[208px] h-[32px]"
                 href="/"
             >
-                <img src="tidal-transparent.png" alt="Logo" />
+                <img src="./logos/tidal-transparent.png" alt="Logo" />
             </a>
             <div className="w-full md:w-auto flex justify-between items-center gap-4 md:gap-12 text-sm md:text-[20px]">
                 {navLinks.map((link) => (
                     <a
                         key={link.title}
                         href={link.path}
-                        className="relative inline-block after:absolute after:w-full after:scale-x-0 after:bg-black after:h-0.5 after:bottom-0 after:left-0 after:origin-bottom-right after:ease-out after:duration-[250ms] hover:after:scale-x-100 hover:after:origin-bottom-left"
+                        className="relative inline-block after:absolute after:w-full after:scale-x-0 after:bg-black after:h-0.5 after:bottom-0 after:left-0 after:origin-bottom-right after:ease-out after:duration-[250ms] hover:after:scale-x-100 hover:after:origin-bottom-left pb-[2px]"
                     >
                         {link.title}
                     </a>

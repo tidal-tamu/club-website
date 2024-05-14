@@ -1,0 +1,14 @@
+.backgroundImage {
+    background-image: url("./waves/hero/wave-1.svg"),
+        url("./waves/hero/wave-2.svg"), url("./waves/hero/wave-3.svg"),
+        url("./waves/hero/filler-2.svg"), url("./waves/hero/filler-3.svg");
+    background-repeat: repeat-x;
+    background-position: 0 bottom, 0 calc(100% - 40px), 0 calc(100% - 80px);
+}
+
+@media (min-width: 1024px) {
+    .backgroundImage {
+        background-position: 0 bottom, 0 calc(100% - 60px), 0 calc(100% - 120px),
+            0 calc(100% + 50px), 0 calc(100% - 20px);
+    }
+}
