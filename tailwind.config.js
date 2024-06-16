@@ -15,6 +15,7 @@ export default {
             },
             colors: {
                 navy: "#005174",
+                lightBlue: "#C5EDFF",
             },
         },
     },
