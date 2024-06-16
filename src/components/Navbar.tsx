@@ -7,14 +7,14 @@ const navLinks = [
 
 export default function Navbar() {
     return (
-        <nav className="min-w-[320px] absolute top-0 left-0 w-full font-mont font-semibold text-nowrap flex flex-col md:flex-row md:justify-between items-center p-6 gap-6 md:px-32 md:py-28 md:gap-20">
+        <nav className="absolute top-0 left-0 w-full font-mont font-semibold text-nowrap flex flex-col lg:flex-row lg:justify-between items-center p-6 gap-6 lg:px-32 lg:py-28 lg:gap-20">
             <a
                 className="min-w-[208px] min-h-[32px] w-[208px] h-[32px]"
                 href="/"
             >
-                <img src="./logos/tidal-transparent.png" alt="Logo" />
+                <img src="./icons/logos/tidal-transparent.png" alt="Logo" />
             </a>
-            <div className="w-full md:w-auto flex justify-between items-center gap-4 md:gap-12 text-sm md:text-[20px]">
+            <div className="w-full lg:w-auto flex justify-between items-center gap-4 lg:gap-12 text-sm lg:text-[20px]">
                 {navLinks.map((link) => (
                     <a
                         key={link.title}
