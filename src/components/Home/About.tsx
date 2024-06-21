@@ -1,6 +1,9 @@
 export default function About() {
     return (
-        <div className="w-full flex flex-col justify-center items-center gap-16 bg-lightBlue font-mont overflow-x-clip">
+        <div
+            className="w-full flex flex-col justify-center items-center gap-16 bg-lightBlue font-mont overflow-x-clip"
+            id="about-us"
+        >
             <h1 className="text-navy text-6xl xl:text-7xl 2xl:text-8xl font-bold text-center my-6 text-nowrap">
                 ABOUT US
             </h1>

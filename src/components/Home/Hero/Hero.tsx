@@ -2,8 +2,8 @@ import "./HeroBackground.css";
 
 export default function Hero() {
     return (
-        <div className="h-[calc(100svh)] w-full flex flex-col justify-center items-center font-mont px-5 gap-8 lg:gap-14 backgroundImage">
-            <h1 className="text-navy font-bold text-6xl xl:text-7xl 2xl:text-8xl text-center">
+        <div className="w-full flex flex-col flex-1 justify-start items-center font-mont px-5 gap-8 lg:gap-14 backgroundImage">
+            <h1 className="text-navy font-bold text-6xl xl:text-7xl 2xl:text-8xl text-center pt-20 lg:pt-40">
                 THE AI WAVE STARTS HERE.
             </h1>
             <div className="flex justify-center items-center gap-5">
