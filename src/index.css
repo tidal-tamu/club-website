@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,7 +14,7 @@ body {
     margin: 0;
     padding: 0;
     color: black;
-    font-family: "Roboto", sans-serif;
+    font-family: "Montserrat";
     background-color: white;
     overflow-x: hidden;
 }
