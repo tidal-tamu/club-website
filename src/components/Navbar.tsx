@@ -7,7 +7,7 @@ const navLinks = [
 
 export default function Navbar() {
     return (
-        <nav className="bg-transparent w-full font-mont font-semibold text-nowrap flex flex-col lg:flex-row lg:justify-between items-center p-6 gap-6 lg:px-32 lg:pt-24 lg:gap-20">
+        <nav className="bg-transparent w-full font-mont font-semibold text-nowrap flex flex-col lg:flex-row lg:justify-between items-center p-6 gap-6 lg:px-32 lg:pt-24 lg:gap-20 transition-[padding] delay-1000">
             <a
                 className="min-w-[208px] min-h-[32px] w-[208px] h-[32px]"
                 href="/"
