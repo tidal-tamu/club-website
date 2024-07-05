@@ -4,7 +4,7 @@ export default function About() {
             className="w-full flex flex-col justify-center items-center gap-16 bg-lightBlue font-mont overflow-x-clip"
             id="about-us"
         >
-            <h1 className="text-navy text-6xl lg:text-7xl xl:text-8xl font-bold text-center my-6 text-nowrap">
+            <h1 className="text-navy text-6xl xl:text-7xl 2xl:text-8xl font-bold text-center my-6 text-nowrap">
                 ABOUT US
             </h1>
             <div className=" md:min-w-[768px] lg:min-w-[1024px] xl:min-w-[1280px] relative flex flex-col md:flex-row-reverse justify-center items-center gap-10 xl:gap-16 bg-white rounded-3xl mx-32 flex-0 px-8 py-10 md:px-12 md:py-20 lg:px-24 lg:py-36 transition-all  ">
