@@ -2,7 +2,7 @@ import "../Home/Hero/HeroBackground.css";
 
 export default function Hero() {
     return (
-        <div className="h-full w-full flex flex-col lg:flex-row justify-center items-center pt-10 transition-[padding] bg-[url('./waves/wave-1.svg')] bg-repeat-x bg-left-bottom pb-10">
+        <div className="h-full w-full flex flex-col lg:flex-row justify-center items-center pt-10 transition-[padding]">
             <img
                 src="./images/hackathon-sheep.png"
                 className="mb-5 md:ml-20 md:mb-0 w-64 md:w-auto"
