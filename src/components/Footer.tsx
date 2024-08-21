@@ -9,7 +9,7 @@ export default function Footer() {
                         className="shrink-0"
                     >
                         <img
-                            className="w-12 lg:w-16 transition-[width]"
+                            className="w-12 transition-[width]"
                             src="./icons/logos/instagram-logo.svg"
                             alt="Instagram"
                         />
@@ -21,7 +21,7 @@ export default function Footer() {
                     >
                         <img
                             src="./icons/logos/discord-logo-white.svg"
-                            className="w-12 lg:w-16 transition-[width]"
+                            className="w-12 transition-[width]"
                             alt="Discord"
                         />
                     </a>
@@ -31,7 +31,7 @@ export default function Footer() {
                         className="shrink-0"
                     >
                         <img
-                            className="w-12 lg:w-16 transition-[width]"
+                            className="w-12 transition-[width]"
                             src="./icons/logos/linkedin-logo.svg"
                             alt="LinkedIn"
                         />
@@ -42,7 +42,7 @@ export default function Footer() {
                         className="shrink-0"
                     >
                         <img
-                            className="w-12 lg:w-16 transition-[width]"
+                            className="w-12 transition-[width]"
                             src="./icons/logos/github-logo.svg"
                             alt="GitHub"
                         />
@@ -53,14 +53,14 @@ export default function Footer() {
                         className="shrink-0"
                     >
                         <img
-                            className="w-12 lg:w-16 transition-[width]"
+                            className="w-12 transition-[width]"
                             src="./icons/logos/email-logo.svg"
                             alt="Email"
                         />
                     </a>
                 </div>
                 <p className="flex justify-center items-center font-semibold text-lg gap-1">
-                    <img src="./icons/logos/tidal-fin-logo.svg" alt="TIDAL" />
+                    <img src="./icons/logos/tidal-fin-logo-white.svg" />
                     tidalTAMU
                 </p>
             </div>

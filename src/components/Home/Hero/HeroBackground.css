@@ -3,13 +3,6 @@
         url("./waves/wave-3.svg"), url("./waves/filler-2.svg"),
         url("./waves/filler-3.svg");
     background-repeat: repeat-x;
-    background-position: 0 calc(100% + 20px), 0 calc(100% - 20px),
-        0 calc(100% - 60px);
-}
-
-@media (min-width: 1280px) {
-    .backgroundImage {
-        background-position: 0 bottom, 0 calc(100% - 60px), 0 calc(100% - 120px),
-            0 calc(100% + 50px), 0 calc(100% - 20px);
-    }
+    background-position: 0 bottom, 0 calc(100% - 60px), 0 calc(100% - 120px),
+        0 calc(100% + 50px), 0 calc(100% - 20px);
 }

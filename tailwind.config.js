@@ -17,6 +17,15 @@ export default {
                 navy: "#005174",
                 lightBlue: "#C5EDFF",
             },
+            keyframes: {
+                float: {
+                    "0%, 100%": { transform: "translateY(0)" },
+                    "50%": { transform: "translateY(-5%)" },
+                },
+            },
+            animation: {
+                float: "float 2s ease-in-out infinite",
+            },
         },
     },
     plugins: [],

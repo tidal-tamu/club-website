@@ -2,17 +2,17 @@ import "../Home/Hero/HeroBackground.css";
 
 export default function Hero() {
     return (
-        <div className="h-full w-full flex flex-col lg:flex-row justify-center items-center pt-10 transition-[padding]">
+        <div className="h-full w-full flex flex-col lg:flex-row gap-7 justify-center items-center transition-[padding]">
             <img
                 src="./images/hackathon-sheep.png"
-                className="mb-5 md:ml-20 md:mb-0 w-64 md:w-auto"
+                className="mb-5 lg:ml-32 2xl:ml-44 md:mb-0 w-64 lg:w-auto animate-float"
             />
-            <div className="flex flex-col grow justify-start items-center lg:items-end font-mont px-5 gap-8 md:gap-14 md:mr-20">
+            <div className="flex flex-col grow justify-start items-center lg:items-end font-mont gap-8 md:gap-14 lg:mr-32 2xl:mr-44">
                 <div className="flex flex-col justify-center items-center lg:items-end gap-5">
-                    <h1 className="text-navy font-bold text-5xl xl:text-8xl 2xl:text-9xl text-center lg:text-end">
-                        TIDALTAMU HACKATHON
+                    <h1 className="text-navy font-bold text-5xl lg:text-7xl 2xl:text-8xl text-center lg:text-end">
+                        TIDALTAMU <br /> HACKATHON
                     </h1>
-                    <p className="text-navy font-semibold text-2xl xl:text-4xl 2xl:text-6xl">
+                    <p className="text-navy font-semibold text-2xl lg:text-4xl 2xl:text-5xl">
                         NOV 11th - NOV 12th
                     </p>
                 </div>
@@ -34,7 +34,7 @@ export default function Hero() {
                     >
                         Apply
                         <img
-                            src="./icons/arrow.svg"
+                            src="./icons/shapes/arrow.svg"
                             alt="->"
                             className="w-[24px] h-[20px] transition-all"
                         />
