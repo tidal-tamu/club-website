@@ -1,26 +1,41 @@
 import { ScheduleItem } from "./Schedule";
 
 interface ScheduleListProps {
-    list: ScheduleItem[]; // Add the 'list' prop here
+    list: ScheduleItem[];
+    day: number;
 }
 
-export default function ScheduleList({ list }: ScheduleListProps) {
+export default function ScheduleList({ list, day }: ScheduleListProps) {
     return (
-        <div className="flex flex-col flex-1">
-            {list.map((item: any, index: number) => (
-                <div
-                    className=" bg-lightBlue bg-opacity-50 border border-navy rounded-md p-4 mb-4"
-                    key={index}
-                >
-                    <div className="font-mont flex justify-between">
-                        <p className="font-medium">{item["time"]}</p>
-                        <p className="font-medium">{item["event"]}</p>
+        <div className="flex flex-col flex-1 min-w-60 relative">
+            <h1 className="text-navy text-4xl font-bold text-center text-nowrap mb-4">
+                Day {day}
+            </h1>
+            <div className="relative">
+                {list.map((item: any, index: number) => (
+                    <div
+                        key={index}
+                        className="flex items-center relative pb-6"
+                    >
+                        <div className="bg-[#E2F6FF] border border-navy rounded-md p-4 flex-1 relative z-10">
+                            <div className="font-mont flex justify-between gap-10">
+                                <p className="text-lg font-medium whitespace-nowrap">
+                                    {item["time"]}
+                                </p>
+                                <p className="text-lg font-medium whitespace-nowrap">
+                                    {item["event"]}
+                                </p>
+                            </div>
+                            <div className="flex justify-end">
+                                <p className="font-light">{item["location"]}</p>
+                            </div>
+                        </div>
+                        {index < list.length - 1 && (
+                            <div className="absolute left-1/2 transform -translate-x-1/2 translate-y-1/2 border-2 h-full border-l-2 border-navy"></div>
+                        )}
                     </div>
-                    <div className="flex justify-end">
-                        <p className="font-light">{item["location"]}</p>
-                    </div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     );
 }

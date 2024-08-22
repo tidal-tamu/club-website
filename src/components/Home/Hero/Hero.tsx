@@ -9,6 +9,7 @@ export default function Hero() {
             <div className="flex justify-center items-center gap-5">
                 <a
                     href="https://discord.gg/eQ8ScamG4H"
+                    target="_blank"
                     className="flex justify-center items-center shrink-0 gap-3 font-bold text-navy bg-[#EDEAE6] px-3 py-1 md:px-6 md:py-2 md:text-xl rounded-lg border-[1px] border-[#C9C9C9] cursor-pointer hover:bg-[#C9C9C9] transition-all"
                 >
                     Discord
