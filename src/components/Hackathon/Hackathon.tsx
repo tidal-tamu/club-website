@@ -3,6 +3,7 @@ import Footer from "../Footer";
 import Hero from "./Hero";
 import About from "./About";
 import Schedule from "./Schedule/Schedule";
+import Prizes from "../Prizes/Prizes";
 
 export default function Hackathon() {
     return (
@@ -13,6 +14,7 @@ export default function Hackathon() {
             </div>
             <About />
             <Schedule />
+            <Prizes />
             <Footer />
         </>
     );

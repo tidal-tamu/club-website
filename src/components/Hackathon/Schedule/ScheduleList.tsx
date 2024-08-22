@@ -2,14 +2,14 @@ import { ScheduleItem } from "./Schedule";
 
 interface ScheduleListProps {
     list: ScheduleItem[];
-    day: number;
+    day: string;
 }
 
 export default function ScheduleList({ list, day }: ScheduleListProps) {
     return (
         <div className="flex flex-col flex-1 min-w-60 relative">
-            <h1 className="text-navy text-4xl font-bold text-center text-nowrap mb-4">
-                Day {day}
+            <h1 className="text-navy text-5xl font-bold text-center text-nowrap mb-4">
+                {day}
             </h1>
             <div className="relative">
                 {list.map((item: any, index: number) => (
@@ -17,7 +17,7 @@ export default function ScheduleList({ list, day }: ScheduleListProps) {
                         key={index}
                         className="flex items-center relative pb-6"
                     >
-                        <div className="bg-[#E2F6FF] border border-navy rounded-md p-4 flex-1 relative z-10">
+                        <div className="bg-[#E2F6FF] hover:bg-navy hover:text-white transition-transform transform hover:scale-110 border border-navy rounded-md p-4 flex-1 relative z-10">
                             <div className="font-mont flex justify-between gap-10">
                                 <p className="text-lg font-medium whitespace-nowrap">
                                     {item["time"]}

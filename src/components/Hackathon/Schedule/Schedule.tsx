@@ -22,10 +22,10 @@ const day2: ScheduleItem[] = [
 
 export default function Schedule() {
     return (
-        <div className="flex flex-col justify-center gap-16">
-            <div className="flex flex-col lg:flex-row justify-center lg:items-center gap-16 mx-8 lg:mx-32">
-                <ScheduleList list={day1} day={1} />
-                <ScheduleList list={day2} day={2} />
+        <div className="flex flex-col justify-center gap-16 select-none">
+            <div className="flex flex-col lg:flex-row justify-center lg:items-center gap-16 mx-8 lg:mx-44 select-none">
+                <ScheduleList list={day1} day={"Saturday"} />
+                <ScheduleList list={day2} day={"Sunday"} />
             </div>
             <a
                 href="https://google.com" // change this link
