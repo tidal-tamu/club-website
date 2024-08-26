@@ -22,7 +22,7 @@ export default function Prizes() {
     return (
         <div className="pt-44 lg:pt-64 bg-[url('./waves/wave-1.svg')] bg-repeat-x bg-right-top transition-[padding]">
             <div className="bg-lightBlue w-full flex flex-col items-center">
-                <h1 className="text-navy text-5xl lg:text-6xl font-bold text-center text-nowrap mb-10">
+                <h1 className="text-navy text-5xl lg:text-6xl font-bold text-center text-nowrap mb-16">
                     Prizes
                 </h1>
                 <div className="flex w-full flex-wrap justify-center gap-4 my-auto px-4">

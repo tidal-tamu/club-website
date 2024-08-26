@@ -5,7 +5,7 @@ export default function About() {
                 <h1 className="text-navy text-5xl lg:text-6xl font-bold text-center text-nowrap">
                     ABOUT
                 </h1>
-                <div className=" md:min-w-[768px] lg:min-w-[1024px] relative flex flex-col md:flex-row-reverse justify-center items-center gap-10  bg-white rounded-3xl mx-32 px-8 py-10 md:px-12 md:py-20 lg:px-24 lg:py-32 transition-all  ">
+                <div className=" lg:min-w-[1024px] relative flex flex-col lg:flex-row-reverse justify-center items-center gap-10  bg-white rounded-3xl mx-32 px-8 py-10 md:px-12 md:py-20 lg:px-24 lg:py-32 transition-all  ">
                     <img
                         src="./icons/shapes/yellow-star.svg"
                         className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-[100px] lg:w-[200px]"
