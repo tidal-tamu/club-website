@@ -30,8 +30,10 @@ export default function Hero() {
                         />
                     </a>
                     <a
-                        href="/hackathon"
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSdNIKh8oVORsjkzpOxAy-AgCURFudlWtAP8hR6eI0gISAky7A/viewform"
                         className="flex justify-center items-center shrink-0 gap-3 font-bold text-white bg-navy px-3 py-1 md:px-6 md:py-2 md:text-xl rounded-lg border-[1px] cursor-pointer border-[#0094D3] hover:bg-[#0094D3] transition-all"
+                        target="_blank" 
+                        rel="noopener noreferrer"
                     >
                         Apply
                         <img
