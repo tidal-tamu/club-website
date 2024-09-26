@@ -4,6 +4,8 @@ import WhatWeDo from "./WhatWeDo";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 
+import "animate.css"
+
 export default function Home() {
     return (
         <>
