@@ -2,19 +2,19 @@ import PrizeList from "./PrizeList";
 
 const firstPlace = {
     place: "1st Place",
-    desc: "$500",
+    desc: "$750 + Product Prizes!",
     icon: "./icons/shapes/yellow-star.svg",
 };
 
 const secondPlace = {
     place: "2nd Place",
-    desc: "$300",
+    desc: "$450 + Product Prizes!",
     icon: "./icons/shapes/yellow-star.svg",
 };
 
 const thirdPlace = {
     place: "3rd Place",
-    desc: "$200",
+    desc: "$300 + Product Prizes!",
     icon: "./icons/shapes/yellow-star.svg",
 };
 
@@ -28,8 +28,6 @@ export default function Prizes() {
                 <div className="flex w-full flex-wrap justify-center gap-4 my-auto px-4">
                     <PrizeList details={firstPlace} />
                     <PrizeList details={secondPlace} />
-                    <PrizeList details={thirdPlace} />
-                    <PrizeList details={thirdPlace} />
                     <PrizeList details={thirdPlace} />
                 </div>
             </div>

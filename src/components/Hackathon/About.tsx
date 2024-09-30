@@ -11,16 +11,13 @@ export default function About() {
                         className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-[100px] lg:w-[200px]"
                     />
                     <img
-                        src="./images/loc-placeholder.png"
+                        src="./images/rec-map.png"
                         className="rounded-3xl w-[19rem] lg:w-[26rem]"
                     />
                     <p className="flex justify-center items-center text-center font-medium px-3 md:text-sm lg:text-xl xl:text-2xl w-[275px] lg:w-[500px]">
-                        The Tethered Informatics and Data Analytics Lab (TIDAL)
-                        is a student-led organization at Texas A&M University
-                        dedicated to providing college and high school students
-                        with essential Data Science and Machine Learning
-                        knowledge. We also provide a great opportunity to
-                        network with others interested in Machine Learning!
+                    Tidal's Fall 2024 Hackathon will be located in REC 243 on October 19-20 from 9AM-5PM on both days. Join us to develop team
+                    projects, solve real world problems using Data Science and Machine Learning, and win prizes up to $1500 in cash & product
+                    prizes from our sponsors! All experience levels and majors are encourage to join! Happy Hacking!
                     </p>
                     <img
                         src="./icons/shapes/red-star.svg"

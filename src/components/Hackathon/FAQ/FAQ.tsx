@@ -36,7 +36,7 @@ const details2 = [
     },
     {
         question: "How do I sign up?",
-        answer: "Visit tidaltamu.com/hackathon/apply. 🤠",
+        answer: "Fill out our google form: https://forms.gle/wRGt7kma1zCvdGB36 🤠",
         id: "7",
     },
     {
