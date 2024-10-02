@@ -22,7 +22,7 @@ export default function ScheduleList({ list, day }: ScheduleListProps) {
                                 <p className="text-lg font-medium whitespace-nowrap">
                                     {item["time"]}
                                 </p>
-                                <p className="text-lg font-medium whitespace-nowrap">
+                                <p className="text-lg font-medium whitespace">
                                     {item["event"]}
                                 </p>
                             </div>

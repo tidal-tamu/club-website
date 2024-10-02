@@ -19,10 +19,8 @@ export default function About() {
                 <p className="flex justify-center items-center text-center font-medium px-3 md:text-sm lg:text-xl xl:text-2xl w-[275px] lg:w-[500px]">
                     The Tethered Informatics and Data Analytics Lab (TIDAL) is a
                     student-led organization at Texas A&M University dedicated
-                    to providing college and high school students with essential
-                    Data Science and Machine Learning knowledge. We also provide
-                    a great opportunity to network with others interested in
-                    Machine Learning!
+                    to providing Aggies with essential Data Science and Machine 
+                    Learning knowledge.
                 </p>
                 <img
                     src="./icons/shapes/red-star.svg"

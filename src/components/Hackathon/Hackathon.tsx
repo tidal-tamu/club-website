@@ -5,6 +5,7 @@ import About from "./About";
 import Schedule from "./Schedule/Schedule";
 import Prizes from "../Prizes/Prizes";
 import FAQ from "./FAQ/FAQ";
+import Sponsors from "./Sponsors";
 
 export default function Hackathon() {
     return (
@@ -17,6 +18,7 @@ export default function Hackathon() {
             <Schedule />
             <Prizes />
             <FAQ />
+            <Sponsors />
             <Footer />
         </>
     );

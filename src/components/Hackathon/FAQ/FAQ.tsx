@@ -48,7 +48,7 @@ const details2 = [
 
 export default function FAQ() {
     return (
-        <div className="w-full h-full">
+        <div className="w-full">
             <h1 className="text-navy text-5xl lg:text-6xl font-bold text-center text-nowrap mb-10">
                 FAQ
             </h1>
