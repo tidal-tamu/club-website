@@ -36,7 +36,7 @@ const details2 = [
     },
     {
         question: "How do I sign up?",
-        answer: "Visit tidaltamu.com/hackathon/apply. 🤠",
+        answer: "Fill out our google form: https://forms.gle/wRGt7kma1zCvdGB36 🤠",
         id: "7",
     },
     {
@@ -48,7 +48,7 @@ const details2 = [
 
 export default function FAQ() {
     return (
-        <div className="w-full h-full">
+        <div className="w-full">
             <h1 className="text-navy text-5xl lg:text-6xl font-bold text-center text-nowrap mb-10">
                 FAQ
             </h1>

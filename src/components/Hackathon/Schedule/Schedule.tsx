@@ -7,17 +7,23 @@ export interface ScheduleItem {
 }
 
 const day1: ScheduleItem[] = [
-    { time: "12:00 PM", event: "Lunch", location: "REC!" },
-    { time: "12:00 PM", event: "Lunch", location: "REC!" },
-    { time: "12:00 PM", event: "Lunch", location: "REC!" },
-    { time: "12:00 PM", event: "Lunch", location: "REC!" },
+    { time: "9:00 AM", event: "Check-in Starts", location: "REC Lobby" },
+    { time: "10:00 AM", event: "Company Chat", location: "REC 243" },
+    { time: "10:30 AM", event: "Opening Ceremony", location: "REC 243" },
+    { time: "11:00 AM", event: "NVIDIA Workshop", location: "REC 243" },
+    { time: "12:30 PM", event: "Lunch & Company Presentations", location: "REC 243" },
+    { time: "2:00 PM", event: "Candy Networking Event", location: "REC 243" },
+    { time: "5:00 PM", event: "Wrap up on day one", location: "Get some rest and come back for day 2!" },
 ];
 
 const day2: ScheduleItem[] = [
-    { time: "12:00 PM", event: "Lunch", location: "REC!" },
-    { time: "12:00 PM", event: "Lunch", location: "REC!" },
-    { time: "12:00 PM", event: "Lunch", location: "REC!" },
-    { time: "12:00 PM", event: "Lunch", location: "REC!" },
+    { time: "9:00 AM", event: "Check-in", location: "REC Lobby" },
+    { time: "11:00 AM", event: "Final Submissions", location: "REC 243" },
+    { time: "11:30 AM", event: "Lunch & Company presentations", location: "REC 243" },
+    { time: "12:30 PM", event: "Judging begins", location: "Judges provided by company partners" },
+    { time: "3:00 PM", event: "Finalist judging", location: "Judges provided by company partners" },
+    { time: "4:00 PM", event: "Closing Ceremony", location: "REC 243" },
+    { time: "5:00 PM", event: "Go home!", location: "(Perhaps with some prizes!)" },
 ];
 
 export default function Schedule() {

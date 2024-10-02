@@ -13,7 +13,7 @@ export default function Hero() {
                         TIDALTAMU <br /> HACKATHON
                     </h1>
                     <p className="text-navy font-semibold text-2xl lg:text-4xl 2xl:text-5xl">
-                        NOV 11th - NOV 12th
+                        OCT 19th - 20th
                     </p>
                 </div>
                 <div className="flex justify-center items-center gap-5">

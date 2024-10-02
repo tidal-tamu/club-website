@@ -31,7 +31,7 @@ export default function PrizeList({ details }: PrizeListProps) {
                     isHovered ? "opacity-100 text-white" : "opacity-0"
                 }`}
             >
-                blah blah blah blah blah blah blah blah blah blah blah blah blah
+                {details.desc}
             </p>
         </div>
     );

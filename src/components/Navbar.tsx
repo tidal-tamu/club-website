@@ -2,7 +2,7 @@ const navLinks = [
     { title: "Home", path: "/" },
     { title: "About Us", path: "/#about-us" },
     { title: "Hackathon", path: "/hackathon" },
-    { title: "Sponsor Us", path: "/sponsor-us" },
+    { title: "Sponsor Us", path: "/hackathon#sponsor-us" },
 ];
 
 export default function Navbar() {
@@ -12,7 +12,8 @@ export default function Navbar() {
                 className="min-w-[208px] min-h-[32px] w-[208px] h-[32px]"
                 href="/"
             >
-                <img src="./icons/logos/tidal-transparent.png" alt="Logo" />
+                <img src="./icons/logos/tidal-blueblack.png" alt="Logo" />
+                
             </a>
             <div className="w-full lg:w-auto flex justify-between items-center gap-4 lg:gap-12 text-sm lg:text-[20px]">
                 {navLinks.map((link) => (
