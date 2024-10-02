@@ -4,6 +4,8 @@ export default {
     theme: {
         extend: {
             spacing: {
+                '30': '7.5rem',
+                '50': '12.5rem',
                 '60': '15rem',  // Adds a spacing value of 60, equivalent to 15rem
                 '70': '17.5rem',
                 '80': '20rem',
@@ -34,6 +36,7 @@ export default {
             },
             animation: {
                 float: "float 2s ease-in-out infinite",
+                bubble: "float 3s ease-in-out infinite",
             },
         },
     },
