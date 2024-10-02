@@ -18,7 +18,7 @@ const details1 = [
     },
     {
         question: "What should I bring?",
-        answer: "Please bring your laptop, charger, and anything that will help you hack within 24 hours. Most importantly, don’t forget your deodorant. You are also allowed to bring blankets and pillows. However, refrain from bringing bulky items or anything unnecessary. 🫡 ",
+        answer: "Please bring your laptop, charger, and anything that will help you hack. Most importantly, don’t forget your deodorant. Remember that you will have to leave the REC after day 1, so refrain from bringing anything unecessary. 🫡 ",
         id: "4",
     },
 ];
