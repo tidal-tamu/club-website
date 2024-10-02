@@ -36,6 +36,7 @@ export default {
             },
             animation: {
                 float: "float 2s ease-in-out infinite",
+                bubble: "float 3s ease-in-out infinite",
             },
         },
     },

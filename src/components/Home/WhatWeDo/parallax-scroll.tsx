@@ -47,7 +47,7 @@ export const Standard = ({
           {firstPart.map((title, idx) => (
             <div
               key={"grid-1" + idx}
-              className="gap-y-25 m-3 p-10 h-96 w-25 rounded-full flex flex-col justify-center items-center animate-float relative"
+              className="gap-y-25 m-3 p-10 h-96 w-25 rounded-full flex flex-col justify-center items-center animate-bubble relative"
               style={{ 
                 animationDelay: `${idx * 0.5}s` ,
                 backgroundImage: `url(${myImage})`,
@@ -65,7 +65,7 @@ export const Standard = ({
           {secondPart.map((title, idx) => (
             <div
               key={"grid-2" + idx}
-              className="gap-y-25 m-3 p-10 h-96 w-25 rounded-full flex flex-col justify-center items-center animate-float relative"
+              className="gap-y-25 m-3 p-10 h-96 w-25 rounded-full flex flex-col justify-center items-center animate-bubble relative"
               style={{ 
                 animationDelay: `${idx * 0.75}s`,
                 backgroundImage: `url(${myImage})`,
@@ -83,7 +83,7 @@ export const Standard = ({
           {thirdPart.map((title, idx) => (
             <div
               key={"grid-3" + idx}
-              className="gap-y-25 m-3 p-10 h-96 w-25 rounded-full flex flex-col justify-center items-center animate-float relative"
+              className="gap-y-25 m-3 p-10 h-96 w-25 rounded-full flex flex-col justify-center items-center animate-bubble relative"
               style={{ 
                 animationDelay: `${idx * 1.0}s`,
                 backgroundImage: `url(${myImage})`,

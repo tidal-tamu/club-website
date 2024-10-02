@@ -9,10 +9,6 @@ export default function WhatWeDo() {
             <div className="w-full h-1/3 bg-[url('./waves/wave-1-180.svg')] bg-repeat-x"></div>
             
             <div>
-                <img
-                    src="../../../public/icons/shapes/red-star.svg"
-                    className="absolute translate-x-3/4 translate-y w-[100px] lg:w-[200px] z-10"
-                />
                 <Standard
                     titles={titles}
                     bodies={bodies}
