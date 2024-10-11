@@ -1,6 +1,6 @@
 export default function About() {
     return (
-        <div className="pt-44 lg:pt-64 bg-[url('./waves/wave-1.svg')] bg-repeat-x bg-right-top transition-[padding]">
+        <div className="pt-44 lg:pt-64 bg-[url('/waves/wave-1.svg')] bg-repeat-x bg-right-top transition-[padding]">
             <div className="w-full flex flex-col justify-center items-center gap-16 bg-lightBlue font-mont overflow-x-clip">
                 <h1 className="text-navy text-5xl lg:text-6xl font-bold text-center text-nowrap">
                     ABOUT
@@ -25,7 +25,7 @@ export default function About() {
                     />
                 </div>
             </div>
-            <div className="w-full h-[260px] bg-[url('./waves/wave-1-180.svg')] bg-repeat-x"></div>
+            <div className="w-full h-[260px] bg-[url('/waves/wave-1-180.svg')] bg-repeat-x"></div>
         </div>
     );
 }

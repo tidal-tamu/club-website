@@ -20,7 +20,7 @@ const thirdPlace = {
 
 export default function Prizes() {
     return (
-        <div className="pt-44 lg:pt-64 bg-[url('./waves/wave-1.svg')] bg-repeat-x bg-right-top transition-[padding]">
+        <div className="pt-44 lg:pt-64 bg-[url('/waves/wave-1.svg')] bg-repeat-x bg-right-top transition-[padding]">
             <div className="bg-lightBlue w-full flex flex-col items-center">
                 <h1 className="text-navy text-5xl lg:text-6xl font-bold text-center text-nowrap mb-16">
                     Prizes
@@ -31,7 +31,7 @@ export default function Prizes() {
                     <PrizeList details={thirdPlace} />
                 </div>
             </div>
-            <div className="w-full h-[260px] bg-[url('./waves/wave-1-180.svg')] bg-repeat-x"></div>
+            <div className="w-full h-[260px] bg-[url('/waves/wave-1-180.svg')] bg-repeat-x"></div>
         </div>
     );
 }

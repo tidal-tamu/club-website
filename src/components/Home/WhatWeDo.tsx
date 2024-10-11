@@ -6,7 +6,7 @@ import { titles, bodies } from "../../../public/data.ts";
 export default function WhatWeDo() {
     return (
         <>
-            <div className="w-full h-1/3 bg-[url('./waves/wave-1-180.svg')] bg-repeat-x"></div>
+            <div className="w-full h-1/3 bg-[url('/waves/wave-1-180.svg')] bg-repeat-x"></div>
             
             <div>
                 <Standard
@@ -15,7 +15,7 @@ export default function WhatWeDo() {
                 />
                 
                 <img
-                    src="../../../public/icons/shapes/yellow-star.svg"
+                    src="/icons/shapes/yellow-star.svg"
                     className="absolute right-0 -translate-x-1/2 -translate-y-1/2 w-[100px] lg:w-[200px]"
                 />  
             </div>

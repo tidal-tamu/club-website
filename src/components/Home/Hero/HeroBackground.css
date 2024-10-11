@@ -1,7 +1,6 @@
 .backgroundImage {
-    background-image: url("./waves/wave-1.svg"), url("./waves/wave-2.svg"),
-        url("./waves/wave-3.svg"), url("./waves/filler-2.svg"),
-        url("./waves/filler-3.svg");
+    background-image: url("/waves/wave-1.svg"), url("/waves/wave-2.svg"),
+        url("/waves/wave-3.svg");
     background-repeat: repeat-x;
     background-position: 0 bottom, 0 calc(100% - 60px), 0 calc(100% - 120px),
         0 calc(100% + 50px), 0 calc(100% - 20px);
