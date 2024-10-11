@@ -1,5 +1,5 @@
 const navLinks = [
-    { title: "Home", path: "/" },
+    { title: "Home", path: "/club-website/" },
     { title: "About Us", path: "/club-website/#about-us" },
     { title: "Hackathon", path: "/club-website/hackathon" },
     { title: "Sponsor Us", path: "/club-website/hackathon#sponsor-us" },
@@ -10,7 +10,7 @@ export default function Navbar() {
         <nav className="bg-transparent w-full font-mont font-semibold text-nowrap flex flex-col lg:flex-row lg:justify-between items-center p-6 gap-6 lg:px-32 lg:pt-24 lg:gap-20 transition-[padding]">
             <a
                 className="min-w-[208px] min-h-[32px] w-[208px] h-[32px]"
-                href="/"
+                href="/club-website/"
             >
                 <img src="./icons/logos/tidal-blueblack.png" alt="Logo" />
                 

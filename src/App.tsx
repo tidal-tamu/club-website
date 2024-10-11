@@ -6,7 +6,7 @@ import Hackathon from "./components/Hackathon/Hackathon";
 export default function App() {
     return (
         <React.StrictMode>
-            <Router>
+            <Router basename={import.meta.env.DEV ? '/' : '/club-website/'}>
                 <Routes>
                     <Route path="/club-website/" element={<Home />} />
                     <Route path="/club-website/hackathon" element={<Hackathon />} />

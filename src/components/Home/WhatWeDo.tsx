@@ -1,5 +1,5 @@
 import { Standard } from "./WhatWeDo/parallax-scroll";
-import { titles, bodies } from "../../../public/data.ts";
+import { titles, bodies } from "./WhatWeDo/data.ts";
 
 // https://chatgpt.com/share/66f0c3d7-c144-8006-a260-ba7a500ce4f6
 

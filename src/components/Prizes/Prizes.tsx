@@ -8,13 +8,13 @@ const firstPlace = {
 
 const secondPlace = {
     place: "2nd Place",
-    desc: "$450 + Product Prizes!",
+    desc: "$500 + Product Prizes!",
     icon: "./icons/shapes/yellow-star.svg",
 };
 
 const thirdPlace = {
     place: "3rd Place",
-    desc: "$300 + Product Prizes!",
+    desc: "$250 + Product Prizes!",
     icon: "./icons/shapes/yellow-star.svg",
 };
 

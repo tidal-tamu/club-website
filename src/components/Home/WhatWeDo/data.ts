@@ -1,4 +1,4 @@
-import myImage from "../public/icons/logos/tidal-transparent.png";
+import myImage from "/icons/logos/tidal-transparent.png";
 
 export const titles = [
     "Hackathons",

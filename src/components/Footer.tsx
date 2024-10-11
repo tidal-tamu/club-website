@@ -61,7 +61,7 @@ export default function Footer() {
                     </a>
                 </div>
                 <a
-                    href="/"
+                    href="/club-website/"
                     className="flex justify-center items-center font-semibold text-lg gap-1 select-none"
                 >
                     <img src="./icons/logos/tidal-fin-logo-white.svg" />
