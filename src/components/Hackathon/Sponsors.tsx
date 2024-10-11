@@ -35,7 +35,7 @@ export default function Sponsors() {
                         className="shrink-0">
                     <img
                         src="./icons/logos/wolfram-logo.png"
-                        className="lg:w-[400px] transition-transform transform hover:scale-110"
+                        className="w-[200px] md:w-[200px] lg:w-[400px] transition-transform transform hover:scale-110"
                     />
                     </a>
                     <a href="https://tamids.tamu.edu/"
@@ -43,7 +43,7 @@ export default function Sponsors() {
                         className="shrink-0">
                     <img
                         src="./icons/logos/tamids-logo.png"
-                        className="lg:w-[400px] transition-transform transform hover:scale-110"
+                        className="w-[200px] md:w-[200px] lg:w-[400px] transition-transform transform hover:scale-110"
                     />
                     </a>
                     <a href="https://parivedasolutions.com/"
@@ -51,15 +51,7 @@ export default function Sponsors() {
                         className="shrink-0">
                     <img
                         src="./icons/logos/pariveda-logo.png"
-                        className="lg:w-[400px] transition-transform transform hover:scale-110"
-                    />
-                    </a>
-                    <a href="https://www.slalom.com/us/en"
-                        target="_blank"
-                        className="shrink-0">
-                    <img
-                        src="./icons/logos/slalom-logo.png"
-                        className="lg:w-[300px] transition-transform transform hover:scale-110"
+                        className="w-[200px] md:w-[200px] lg:w-[400px] transition-transform transform hover:scale-110"
                     />
                     </a>
                 </div>

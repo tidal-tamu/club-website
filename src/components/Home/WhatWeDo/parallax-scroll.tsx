@@ -2,7 +2,7 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { cn } from "../../../../lib/utils";
-import myImage from "../../../../public/icons/shapes/bubble.png";
+import myImage from "/icons/shapes/bubble.png";
 import "./ParallaxScroll.css"
 
 const isImage = (url: string) => {

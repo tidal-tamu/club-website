@@ -3,7 +3,7 @@ import Footer from "../Footer";
 import Hero from "./Hero";
 import About from "./About";
 import Schedule from "./Schedule/Schedule";
-import Prizes from "../Prizes/Prizes";
+import Prizes from "./Prizes/Prizes";
 import FAQ from "./FAQ/FAQ";
 import Sponsors from "./Sponsors";
 

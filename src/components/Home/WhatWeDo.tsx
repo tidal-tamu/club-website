@@ -15,7 +15,7 @@ export default function WhatWeDo() {
                 />
                 
                 <img
-                    src="/icons/shapes/yellow-star.svg"
+                    src="./icons/shapes/yellow-star.svg"
                     className="absolute right-0 -translate-x-1/2 -translate-y-1/2 w-[100px] lg:w-[200px]"
                 />  
             </div>
