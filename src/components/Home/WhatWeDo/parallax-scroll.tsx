@@ -145,7 +145,7 @@ export const ParallaxScroll = ({
   const bodySecondPart = bodies.slice(third, 2 * third + 1);
   const bodyThirdPart = bodies.slice(2 * third);
 
-  const [isInView, setIsInView] = useState(false);
+  // const [isInView, setIsInView] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
 
   const handleScroll = () => {
@@ -155,11 +155,11 @@ export const ParallaxScroll = ({
     console.log("Scroll event triggered, rect:", rect.top);
     // Check if the fullScreenDiv is fully visible in the viewport
     if (Math.abs(rect.top) < 3) {
-      setIsInView(true);
+      // setIsInView(true);
       console.log("full")
       setIsLocked(false);
     } else {
-      setIsInView(false);
+      // setIsInView(false);
       console.log("not full")
       setIsLocked(true);
     }
