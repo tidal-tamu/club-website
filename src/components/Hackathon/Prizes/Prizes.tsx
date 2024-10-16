@@ -2,19 +2,19 @@ import PrizeList from "./PrizeList";
 
 const firstPlace = {
     place: "1st Place",
-    desc: "$750 + Product Prizes!",
+    desc: "$500 + Product Prizes!",
     icon: "./icons/shapes/yellow-star.svg",
 };
 
 const secondPlace = {
     place: "2nd Place",
-    desc: "$500 + Product Prizes!",
+    desc: "$200 + Product Prizes!",
     icon: "./icons/shapes/yellow-star.svg",
 };
 
 const thirdPlace = {
     place: "3rd Place",
-    desc: "$250 + Product Prizes!",
+    desc: "$100 + Product Prizes!",
     icon: "./icons/shapes/yellow-star.svg",
 };
 
