@@ -1,6 +1,10 @@
 export default function Footer() {
     return (
-        <footer className="w-full text-white text-nowrap pt-44 lg:pt-64 bg-[url('/waves/wave-footer.svg')] bg-repeat-x bg-right-top transition-[padding]">
+        <footer className="w-full text-white text-nowrap relative pt-44 lg:pt-64 bg-[url('/waves/wave-footer.svg')] bg-repeat-x bg-right-top transition-[padding]">
+            <img
+                    src="./icons/shapes/red-star.svg"
+                    className="absolute right-0 top-0 -translate-x-0 -translate-y-1/4 w-[150px] lg:w-[250px]"
+                />  
             <div className="bg-navy flex flex-col justify-center items-center gap-8 lg:gap-12 px-20 pb-16">
                 <span className="text-4xl font-semibold"> FOLLOW US! </span>
                 <div className="flex justify-center items-center gap-3 lg:gap-6">
@@ -64,7 +68,6 @@ export default function Footer() {
                     href="/"
                     className="flex justify-center items-center font-semibold text-lg gap-1 select-none"
                 >
-                    <img src="./icons/logos/tidal-fin-logo-white.svg" />
                     @ 2024 TIDALTAMU
                 </a>
             </div>

@@ -21,7 +21,7 @@ export default function Hero() {
                     />
                 </a>
                 <a
-                    href="/club-website/hackathon"
+                    href="/hackathon"
                     className="flex justify-center items-center shrink-0 gap-3 font-bold text-white bg-navy px-3 py-1 md:px-6 md:py-2 md:text-xl rounded-lg border-[1px] cursor-pointer border-[#0094D3] hover:bg-[#0094D3] transition-all"
                 >
                     Hackathon
