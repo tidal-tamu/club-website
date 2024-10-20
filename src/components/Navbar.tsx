@@ -2,7 +2,7 @@ const navLinks = [
     { title: "Home", path: "/" },
     { title: "About Us", path: "/#about-us" },
     { title: "Hackathon", path: "/hackathon" },
-    { title: "Sponsor Us", path: "/hackathon#sponsor-us" },
+    { title: "Sponsor Us", path: "/sponsor-us" },
 ];
 
 export default function Navbar() {

@@ -13,7 +13,7 @@ export default function PrizeList({ details }: PrizeListProps) {
 
     return (
         <div
-            className={`relative flex w-full lg:w-1/4 h-40 justify-center items-center border-navy border-[6px] rounded-3xl transition-all duration-300 p-12 ${
+            className={`relative flex w-full lg:w-2/5 h-40 justify-center items-center border-navy border-[7px] rounded-3xl transition-all duration-300 p-12 ${
                 isHovered ? "bg-navy" : "bg-white text-black"
             }`}
             onMouseEnter={() => setIsHovered(true)}
@@ -32,7 +32,13 @@ export default function PrizeList({ details }: PrizeListProps) {
                 }`}
             >
                 {details.desc}
-            </p>
+            </p> 
+            <img
+                src="./icons/shapes/yellow-star.svg"
+                className={`absolute transition-opacity duration-300 right-0 top-0 -translate-x-1 lg:-translate-x-2 translate-y-2 w-[85px] lg:w-[120px] ${
+                    isHovered ? "opacity-25" : "opacity-100"
+                }`}
+            />
         </div>
     );
 }

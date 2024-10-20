@@ -43,7 +43,7 @@ export const Standard = ({
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start max-w-7xl mx-auto py-30 border-red-500"
         ref={gridRef}
       >
-        <div className="grid gap-y-50 gap-x-10">
+        <div className="grid gap-y-10 lg:gap-y-50 gap-x-10">
           {firstPart.map((title, idx) => (
             <div
               key={"grid-1" + idx}
@@ -56,12 +56,12 @@ export const Standard = ({
                 backgroundPosition: "center",
               }}
             >
-              <h2 className="text-lg font-bold text-center">{title}</h2>
+              <h2 className="text-navy text-xl font-bold text-center mb-1">{title}</h2>
               <p className="text-center">{bodyFirstPart[idx]}</p>
             </div>
           ))}
         </div>
-        <div className="grid pt-70 gap-y-70 gap-x-10">
+        <div className="grid pt-10 lg:pt-70 gap-y-10 lg:gap-y-70 gap-x-10">
           {secondPart.map((title, idx) => (
             <div
               key={"grid-2" + idx}
@@ -74,12 +74,12 @@ export const Standard = ({
                 backgroundPosition: "center",
               }}
             >
-              <h2 className="text-lg font-bold text-center">{title}</h2>
+              <h2 className="text-navy text-xl font-bold text-center mb-1">{title}</h2>
               <p className="text-center">{bodySecondPart[idx]}</p>
             </div>
           ))}
         </div>
-        <div className="grid pt-20 gap-y-70 gap-x-10">
+        <div className="grid pt-20 gap-y-10 lg:gap-y-70 gap-x-10">
           {thirdPart.map((title, idx) => (
             <div
               key={"grid-3" + idx}
@@ -92,7 +92,7 @@ export const Standard = ({
                 backgroundPosition: "center", 
               }}
             >
-              <h2 className="text-lg font-bold text-center">{title}</h2>
+              <h2 className="text-navy text-xl font-bold text-center mb-1">{title}</h2>
               
               {isImage(bodyThirdPart[idx]) ? (
                 <div
