@@ -135,7 +135,7 @@ export default function Officers() {
                 <h1 className="text-navy text-5xl lg:text-6xl font-bold text-center text-nowrap mt-10">
                     OFFICER TEAM
                 </h1>
-                <div className="min-w-[768px] lg:min-w-[1024px] relative flex flex-col lg:place-items-center lg:grid lg:grid-cols-2 gap-10 bg-white rounded-3xl mx-32 lg:mx-36 px-8 py-10 md:px-12 md:py-20 lg:px-20 lg:py-30 transition-all">
+                <div className="min-w-[341px] md:min-w-[768px] lg:min-w-[1024px] relative flex flex-col lg:place-items-center lg:grid lg:grid-cols-2 gap-10 bg-white rounded-3xl mx-32 lg:mx-36 px-8 py-10 md:px-12 md:py-20 lg:px-20 lg:py-30 transition-all">
                         <OfficerList details={officer1} />
                         <OfficerList details={officer2} />
                         <OfficerList details={officer3} />
