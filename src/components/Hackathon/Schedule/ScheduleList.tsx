@@ -17,7 +17,7 @@ export default function ScheduleList({ list, day }: ScheduleListProps) {
                         key={index}
                         className="flex items-center relative pb-6"
                     >
-                        <div className="bg-[#E2F6FF] hover:bg-navy hover:text-white transition-transform transform hover:scale-110 border border-navy rounded-md p-4 flex-1 relative z-10">
+                        <div className="bg-[#E2F6FF] hover:bg-navy hover:text-white transition-transform transform hover:scale-110 border border-navy rounded-md p-4 flex-1 relative z-[1]">
                             <div className="font-mont flex justify-between gap-10 transition-colors">
                                 <p className="text-lg font-medium whitespace-nowrap">
                                     {item["time"]}

@@ -6,12 +6,15 @@ import Schedule from "./Schedule/Schedule";
 import Prizes from "./Prizes/Prizes";
 import FAQ from "./FAQ/FAQ";
 import Sponsors from "./Sponsors";
+import Headroom from "react-headroom";
 
 export default function Hackathon() {
     return (
         <>
-            <div className="flex flex-col h-full">
-                <Navbar />
+            <div className="relative z-10 sm:pt-12 flex flex-col h-full">
+                <Headroom>
+                    <Navbar />
+                </Headroom>
                 <Hero />
             </div>
             <About />

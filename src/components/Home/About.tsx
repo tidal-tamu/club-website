@@ -23,7 +23,7 @@ export default function About() {
                 </p>
                 <img
                     src="./icons/shapes/red-star.svg"
-                    className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-[125px] lg:w-[250px] z-10"
+                    className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-[125px] lg:w-[250px]"
                 />
             </div>
         </div>

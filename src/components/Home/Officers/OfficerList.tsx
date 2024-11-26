@@ -13,7 +13,7 @@ export default function OfficerList({details}: OfficerItem) {
         <div className="lg:flex lg:justify-center lg:w-4/5 gap-1 lg:gap-4">
             <img 
                 src={details.pfp}
-                className="w-[5rem] h-[5rem] lg:w-[9rem] lg:h-[9rem] rounded-full"
+                className="w-[6rem] h-[6rem] md:w-[7rem] md:h-[7rem] lg:w-[9rem] lg:h-[9rem] rounded-full"
             />
             <div className="mb-5 mt-1">
                 <div>

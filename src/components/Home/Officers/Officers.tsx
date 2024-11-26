@@ -1,4 +1,4 @@
-import OfficerList from "./Officers/OfficerList";
+import OfficerList from "./OfficerList";
 
 const officer1 = {
     name: "Roman Parker | Co-President",
