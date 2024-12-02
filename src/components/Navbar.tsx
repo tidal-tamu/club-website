@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 const navLinks = [
     { title: "Home", path: "/" },
     { title: "About Us", path: "/#about-us" },
@@ -46,8 +45,8 @@ export default function Navbar() {
                 </button>
             </div>
 
-            <div className={`sm:flex lg:w-auto sm:flex-row flex-col items-center gap-5 lg:gap-12 text-md lg:text-[20px] ${
-                isOpen ? "bg-white z-50 flex" : "hidden"
+            <div className={`sm:flex lg:w-auto sm:flex-row flex-col items-center gap-5 lg:gap-12 text-md lg:text-[20px] text-nowrap ${
+                isOpen ? "bg-white z-50 flex animate__animated animate__fadeIn" : "hidden"
             }`}
             >
                 {navLinks.map((link) => (

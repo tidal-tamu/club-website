@@ -40,14 +40,14 @@ export const Standard = ({
           WHAT WE DO
       </h1>
       <div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start max-w-7xl mx-auto py-30 border-red-500"
+        className="overflow-hidden grid grid-rows md:grid-cols-2 lg:grid-cols-3 items-start max-w-7xl mx-auto py-30 border-red-500"
         ref={gridRef}
       >
-        <div className="grid gap-y-10 lg:gap-y-50 gap-x-10">
+        <div className="grid gap-y-5 md:gap-y-10 lg:gap-y-50 gap-x-10 justify-center">
           {firstPart.map((title, idx) => (
             <div
               key={"grid-1" + idx}
-              className="gap-y-25 m-3 p-10 h-96 w-25 rounded-full flex flex-col justify-center items-center animate-bubble relative"
+              className="gap-y-25 m-3 p-10 h-80 w-80 md:h-[23rem] md:w-[23rem] lg:h-[25rem] lg:w-[25rem] rounded-full flex flex-col justify-center items-center animate-bubble relative"
               style={{ 
                 animationDelay: `${idx * 0.5}s` ,
                 backgroundImage: `url(${myImage})`,
@@ -57,15 +57,15 @@ export const Standard = ({
               }}
             >
               <h2 className="text-navy text-xl font-bold text-center mb-1">{title}</h2>
-              <p className="text-center">{bodyFirstPart[idx]}</p>
+              <p className="text-center text-sm md:text-base">{bodyFirstPart[idx]}</p>
             </div>
           ))}
         </div>
-        <div className="grid pt-10 lg:pt-70 gap-y-10 lg:gap-y-70 gap-x-10">
+        <div className="grid pt-5 md:pt-10 lg:pt-70 gap-y-5 md:gap-y-10 lg:gap-y-50 gap-x-10 justify-center">
           {secondPart.map((title, idx) => (
             <div
               key={"grid-2" + idx}
-              className="gap-y-25 m-3 p-10 h-96 w-25 rounded-full flex flex-col justify-center items-center animate-bubble relative"
+              className="gap-y-25 m-3 p-10 h-80 w-80 md:h-[23rem] md:w-[23rem] lg:h-[25rem] lg:w-[25rem] rounded-full flex flex-col justify-center items-center animate-bubble relative"
               style={{ 
                 animationDelay: `${idx * 0.75}s`,
                 backgroundImage: `url(${myImage})`,
@@ -75,15 +75,15 @@ export const Standard = ({
               }}
             >
               <h2 className="text-navy text-xl font-bold text-center mb-1">{title}</h2>
-              <p className="text-center">{bodySecondPart[idx]}</p>
+              <p className="text-center text-sm md:text-base">{bodySecondPart[idx]}</p>
             </div>
           ))}
         </div>
-        <div className="grid pt-20 gap-y-10 lg:gap-y-70 gap-x-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-1 pt-5 lg:pt-20 gap-y-5 md:gap-y-10 lg:gap-y-50 gap-x-10 md:gap-x-100 lg:gap-x-10 justify-center">
           {thirdPart.map((title, idx) => (
             <div
               key={"grid-3" + idx}
-              className="gap-y-25 m-3 p-10 h-96 w-25 rounded-full flex flex-col justify-center items-center animate-bubble relative"
+              className="gap-y-25 m-3 p-10 h-80 w-80 md:h-[23rem] md:w-[23rem] lg:h-[25rem] lg:w-[25rem] rounded-full flex flex-col justify-center items-center animate-bubble relative"
               style={{ 
                 animationDelay: `${idx * 1.0}s`,
                 backgroundImage: `url(${myImage})`,
@@ -105,7 +105,7 @@ export const Standard = ({
                 }}
                 />
               ) : (
-                <p className="text-center">{bodyThirdPart[idx]}</p>
+                <p className="text-center text-sm md:text-base">{bodyThirdPart[idx]}</p>
               )}
             </div>
           ))}

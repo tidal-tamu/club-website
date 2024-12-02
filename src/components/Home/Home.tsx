@@ -12,7 +12,7 @@ import "animate.css"
 export default function Home() {
     return (
         <>
-            <div className="sm:pt-12 flex flex-col h-full">
+            <div className="sm:pt-12 flex flex-col min-h-[700px] lg:min-h-[845px] h-full">
                 <Headroom>
                     <Navbar />
                 </Headroom>
