@@ -6,7 +6,7 @@ const navLinks = [
     { title: "Sponsor Us", path: "/sponsor-us" },
 ];
 
-export default function Navbar() {
+export default function Navbar({customStyles = ''}) {
     const [isOpen, setIsOpen] = useState(false);
     const [hasScrolled, setHasScrolled] = useState(false);
 
@@ -23,8 +23,9 @@ export default function Navbar() {
       }, []);
 
     return (
-        <nav className={`relative z-10 bg-white w-full font-mont font-semibold text-nowrap flex sm:flex-row flex-col lg:justify-between items-center p-6 pt-10 px-10 gap-6 lg:px-32 lg:py-9 lg:gap-20 transition-[padding]} ${
+        <nav className={`relative z-10 bg-white w-full h-[11vh] font-mont font-semibold text-nowrap flex sm:flex-row flex-col lg:justify-between items-center p-6 pt-10 px-10 gap-6 lg:px-32 lg:py-9 lg:gap-20 transition-[padding]} ${
             hasScrolled || isOpen ? "border-b-2" : ""
+        } ${customStyles
         }`}
         >
             <div className="w-full flex flex-row justify-between gap-6 ">
@@ -45,7 +46,7 @@ export default function Navbar() {
                 </button>
             </div>
 
-            <div className={`sm:flex lg:w-auto sm:flex-row flex-col items-center gap-5 lg:gap-12 text-md lg:text-[20px] text-nowrap ${
+            <div className={`sm:flex lg:w-auto sm:flex-row flex-col items-center gap-5 lg:gap-12 text-[12px] lg:text-[18px] text-nowrap ${
                 isOpen ? "bg-white z-50 flex animate__animated animate__fadeIn" : "hidden"
             }`}
             >

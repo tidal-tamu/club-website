@@ -11,7 +11,7 @@ import Headroom from "react-headroom";
 export default function Hackathon() {
     return (
         <>
-            <div className="relative z-10 sm:pt-12 flex flex-col h-full">
+            <div className="relative z-10 sm:pt-6 flex flex-col h-full">
                 <Headroom>
                     <Navbar />
                 </Headroom>

@@ -7,7 +7,7 @@ import Headroom from "react-headroom";
 export default function SponsorUs() {
     return (
         <>
-            <div className="sm:pt-12 flex flex-col h-full min-h-[600px]">
+            <div className="sm:pt-6 flex flex-col h-full min-h-[600px]">
                 <Headroom>
                     <Navbar />
                 </Headroom>

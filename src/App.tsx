@@ -3,6 +3,7 @@ import React from "react";
 import Home from "./components/Home/Home";
 import Hackathon from "./components/Hackathon/Hackathon";
 import SponsorUs from "./components/Sponsor-Us/SponsorUs";
+import Register from "./components/Register/Register";
 
 export default function App() {
     return (
@@ -12,6 +13,7 @@ export default function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/hackathon" element={<Hackathon />} />
                     <Route path="/sponsor-us" element={<SponsorUs />} />
+                    <Route path="/register" element={<Register />} />
                 </Routes>
             </Router>
         </React.StrictMode>
