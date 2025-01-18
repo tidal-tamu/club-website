@@ -11,18 +11,18 @@ export default function Hero() {
             />
             <div className="flex flex-col grow justify-start items-center lg:items-end font-mont gap-8 md:gap-14 lg:mr-32 2xl:mr-44">
                 <div className="flex flex-col justify-center items-center lg:items-end gap-4 md:gap-0">
-                    <div>
-                        <h1 className="text-white font-bold text-5xl lg:text-7xl 2xl:text-8xl text-start  animate__animated animate__fadeIn">
+                    <div className="tracking-widest">
+                        <h1 className="text-white blocky-div font-bold text-5xl lg:text-7xl 2xl:text-8xl text-start animate__animated animate__fadeIn">
                             TIDAL
                         </h1>
-                        <h1 className="text-white font-bold text-5xl lg:text-7xl 2xl:text-8xl text-start lg:pl-28 lg:pr-12  animate__animated animate__fadeIn">
+                        <h1 className="text-white blocky-div font-bold text-5xl lg:text-7xl 2xl:text-8xl text-start lg:pl-28 lg:pr-12  animate__animated animate__fadeIn">
                             HACK
                         </h1>
-                        <p className="text-hackRed font-bold text-4xl lg:text-6xl 2xl:text-7xl text-center lg:text-right ml-auto md:-translate-y-2 lg:-translate-y-4">
-                            25
+                        <p className="text-hackRed blocky-div font-bold text-4xl lg:text-6xl 2xl:text-7xl text-center lg:text-right ml-auto pt-2 md:-translate-y-2 lg:-translate-y-4">
+                            2025
                         </p>
-                        <p className="text-hackBeige text-center font-semibold text-xl lg:text-3xl 2xl:text-4xl  md:-translate-y-2 lg:-translate-y-5 lg:pl-10">
-                            March 8th - 9th
+                        <p className="text-hackBeige blocky-div text-center font-semibold text-xl lg:text-3xl 2xl:text-4xl  md:-translate-y-2 lg:-translate-y-5 lg:pl-10">
+                            March 8th-9th
                         </p>
                     </div>
 

@@ -1,16 +1,16 @@
 export default function Sponsors() {
     return(
         <div className="w-full mb-20 mt-20" id="sponsor-us">
-            <h1 className="text-navy text-5xl lg:text-6xl font-bold text-center text-nowrap mb-10 mt-40">
-                PARTNERS
+            <h1 className="text-hackRed text-5xl lg:text-6xl font-bold text-center text-nowrap mb-10 mt-40">
+                THANK YOU TO OUR <br/> <span className="text-hackBeige text-6xl lg:text-7xl"> AMAZING PARTNERS! </span>
             </h1>
             <div className="relative flex justify-center items-center">
                 <div className="w-4/6 relative flex flex-wrap justify-center items-center gap-16 p-10">
-                    <a href="https://www.phillips66.com/"
+                    <a href="https://www.blueorigin.com/"
                         target="_blank"
                         className="shrink-0">
                         <img
-                            src="./icons/logos/phillips66-logo.png"
+                            src="./icons/logos/bo-logo.png"
                             className="w-[100px] md:w-[100px] lg:w-[200px] transition-transform transform hover:scale-110"
                         />
                     </a>
@@ -18,7 +18,7 @@ export default function Sponsors() {
                         target="_blank"
                         className="shrink-0">
                     <img
-                        src="./icons/logos/nvidia-logo.png"
+                        src="./icons/logos/nvidia.png"
                         className="w-[100px] md:w-[100px] lg:w-[200px] transition-transform transform hover:scale-110"
                     />
                     </a>
@@ -30,11 +30,11 @@ export default function Sponsors() {
                         className="w-[100px] md:w-[100px] lg:w-[200px] transition-transform transform hover:scale-110"
                     />
                     </a>
-                    <a href="https://www.wolfram.com/"
+                    <a href="https://about.google/"
                         target="_blank"
                         className="shrink-0">
                     <img
-                        src="./icons/logos/wolfram-logo.png"
+                        src="./icons/logos/google.png"
                         className="w-[200px] md:w-[200px] lg:w-[400px] transition-transform transform hover:scale-110"
                     />
                     </a>
@@ -46,11 +46,19 @@ export default function Sponsors() {
                         className="w-[200px] md:w-[200px] lg:w-[400px] transition-transform transform hover:scale-110"
                     />
                     </a>
-                    <a href="https://parivedasolutions.com/"
+                    <a href="https://www.microsoft.com/en-us/"
                         target="_blank"
                         className="shrink-0">
                     <img
-                        src="./icons/logos/pariveda-logo.png"
+                        src="./icons/logos/microsoft.png"
+                        className="w-[200px] md:w-[200px] lg:w-[400px] transition-transform transform hover:scale-110"
+                    />
+                    </a>
+                    <a href="https://www.pnnl.gov/"
+                        target="_blank"
+                        className="shrink-0">
+                    <img
+                        src="./icons/logos/pnnl.png"
                         className="w-[200px] md:w-[200px] lg:w-[400px] transition-transform transform hover:scale-110"
                     />
                     </a>
