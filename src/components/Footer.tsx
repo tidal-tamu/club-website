@@ -1,11 +1,20 @@
-export default function Footer() {
+interface NavbarProps {
+    dark?: boolean;
+}
+
+export default function Footer({dark = false}: NavbarProps) {
     return (
-        <footer className="w-full text-white text-nowrap relative pt-44 lg:pt-64 bg-[url('/waves/wave-footer.svg')] bg-repeat-x bg-right-top transition-[padding]">
+        <footer className={`w-full text-nowrap relative pt-44 lg:pt-64 bg-repeat-x bg-right-top transition-[padding] ${
+            dark ? "bg-[url('/waves/wave-footer-beige.svg')]" : "bg-[url('/waves/wave-footer.svg')]"
+        }` }>
             <img
                     src="./icons/shapes/red-star.svg"
                     className="absolute right-0 top-0 -translate-x-0 -translate-y-1/4 w-[150px] lg:w-[250px]"
                 />  
-            <div className="bg-navy flex flex-col justify-center items-center gap-8 lg:gap-12 px-20 pb-16">
+            <div className={`flex flex-col justify-center items-center gap-8 lg:gap-12 px-20 pb-16 ${
+                dark ? "bg-hackBeige" : "bg-navy"
+            } ${dark ? "text-black" : "text-white"
+            }`}>
                 <span className="text-4xl font-semibold"> FOLLOW US! </span>
                 <div className="flex justify-center items-center gap-3 lg:gap-6">
                     <a

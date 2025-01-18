@@ -1,4 +1,5 @@
 import { ScheduleItem } from "./Schedule";
+import { Meteors } from "../Meteors";
 
 interface ScheduleListProps {
     list: ScheduleItem[];
@@ -8,6 +9,7 @@ interface ScheduleListProps {
 export default function ScheduleList({ list, day }: ScheduleListProps) {
     return (
         <div className="flex flex-col flex-1 min-w-60 relative">
+            <Meteors number={7}/>
             <h1 className="text-navy text-5xl font-bold text-center text-nowrap mb-4">
                 {day}
             </h1>

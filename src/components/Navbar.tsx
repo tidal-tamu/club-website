@@ -6,7 +6,11 @@ const navLinks = [
     { title: "Sponsor Us", path: "/sponsor-us" },
 ];
 
-export default function Navbar() {
+interface NavbarProps {
+    dark?: boolean;
+}
+
+export default function Navbar({dark = false}: NavbarProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [hasScrolled, setHasScrolled] = useState(false);
 
@@ -23,16 +27,16 @@ export default function Navbar() {
       }, []);
 
     return (
-        <nav className={`relative z-10 bg-white w-full font-mont font-semibold text-nowrap flex sm:flex-row flex-col lg:justify-between items-center p-6 pt-10 px-10 gap-6 lg:px-32 lg:py-9 lg:gap-20 transition-[padding]} ${
-            hasScrolled || isOpen ? "border-b-2" : ""
-        }`}
+        <nav className={`relative z-10 w-full font-mont font-semibold text-nowrap flex sm:flex-row flex-col lg:justify-between items-center p-6 pt-10 px-10 gap-6 lg:px-32 lg:py-9 lg:gap-20 transition-[padding]} ${
+            hasScrolled || isOpen ? "border-b-2" : "bg-[url('/stars.svg')]"
+        } ${dark ? "bg-spaceBlack text-white border-gray-800" : "bg-white text-black"}`}
         >
             <div className="w-full flex flex-row justify-between gap-6 ">
                 <a
                     className="mt-2 sm:mt-0 min-w-[169px] min-h-[26px] w-[169px] h-[26px] lg:w-[208px] lg:h-[32px]"
                     href="/"
                 >
-                    <img src="./icons/logos/tidal-blueblack.png" alt="Logo" />
+                    <img src={dark ? "./icons/logos/tidal-white-transparent.png" : "./icons/logos/tidal-blueblack.png"} alt="Logo" />
                 </a>
 
                 <button className={"inline-flex items-center p-1.5 w-10 h-10 justify-center rounded-lg sm:hidden hover:bg-white-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-white-700 dark:focus:ring-gray-600"}
@@ -46,14 +50,16 @@ export default function Navbar() {
             </div>
 
             <div className={`sm:flex lg:w-auto sm:flex-row flex-col items-center gap-5 lg:gap-12 text-md lg:text-[20px] text-nowrap ${
-                isOpen ? "bg-white z-50 flex animate__animated animate__fadeIn" : "hidden"
+                isOpen ? "z-50 flex animate__animated animate__fadeIn" : "hidden"
             }`}
             >
                 {navLinks.map((link) => (
                     <a
                         key={link.title}
                         href={link.path}
-                        className="relative inline-block after:absolute after:w-full after:scale-x-0 after:bg-black after:h-0.5 after:bottom-0 after:left-0 after:origin-bottom-right after:ease-out after:duration-[250ms] hover:after:scale-x-100 hover:after:origin-bottom-left pb-[2px]"
+                        className={`relative inline-block after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:origin-bottom-right after:ease-out after:duration-[250ms] hover:after:scale-x-100 hover:after:origin-bottom-left pb-[2px] ${
+                            dark ? "after:bg-white" : "after:bg-black"
+                        }`}
                     >
                         {link.title}
                     </a>

@@ -11,18 +11,21 @@ import Headroom from "react-headroom";
 export default function Hackathon() {
     return (
         <>
-            <div className="relative z-10 sm:pt-12 flex flex-col h-full">
+            <div className="bg-spaceBlack bg-[url('/stars.svg')] relative z-10 sm:pt-12 flex flex-col h-full overflow-hidden">
                 <Headroom>
-                    <Navbar />
+                    <Navbar dark />
                 </Headroom>
                 <Hero />
             </div>
-            <About />
-            <Schedule />
-            <Prizes />
-            <FAQ />
-            <Sponsors />
-            <Footer />
+            <div className="bg-spaceBlack bg-[url('/stars.svg')] overflow-hidden">
+                <About />
+                <Schedule />
+                <Prizes />
+                <FAQ />
+                <Sponsors />
+                <Footer dark/>
+            </div>
+
         </>
     );
 }
