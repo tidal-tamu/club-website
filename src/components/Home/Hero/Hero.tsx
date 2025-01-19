@@ -3,7 +3,7 @@ import "animate.css"
 
 export default function Hero() {
     return (
-        <div className="w-full flex flex-col grow justify-start items-center font-mont px-5 gap-12 md:gap-14 backgroundImage">
+        <div className="w-full flex flex-col grow justify-start items-center font-mont px-5 gap-12 md:gap-14 backgroundImage mt-12">
             <h1 className="text-navy font-bold text-[45px]/[50px] md:text-6xl lg:text-7xl text-center pt-28 md:pt-36 transition-[padding] animate__animated animate__zoomInDown animate__duration-2s animate__delay-0.5s">
                 THE AI WAVE <br /> STARTS HERE.
             </h1>

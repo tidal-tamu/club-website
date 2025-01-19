@@ -1,8 +1,8 @@
 export default function About() {
     return (
-        <div className="pt-44 lg:pt-64 bg-[url('/waves/wave-1-beige.svg')] bg-repeat-x bg-right-top transition-[padding]">
-            <div className="w-full flex flex-col justify-center items-center gap-16 bg-hackBeige font-mont overflow-x-clip">
-                <h1 className="text-black text-4xl md:text-5xl lg:text-6xl font-bold text-center">
+        <div className="pt-40 md:pt-50 lg:pt-64 bg-[url('/waves/wave-1-beige.svg')] bg-repeat-x bg-right-top transition-[padding]">
+            <div className="w-full flex flex-col justify-center items-center gap-14 bg-hackBeige font-mont overflow-x-clip">
+                <h1 className="text-black text-5xl md:text-6xl lg:text-7xl font-bold text-center plasma-bold">
                     ABOUT <span className="text-hackRed">TIDALHACK</span> 2025
                 </h1>
                 <div className="flex flex-col justify-center items-center gap-6">

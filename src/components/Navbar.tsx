@@ -17,6 +17,9 @@ export default function Navbar({dark = false}: NavbarProps) {
     useEffect(() => {
         const handleScroll = () => {
           setHasScrolled(window.scrollY > 140); // Draw a border on navbar if the user has scrolled
+        //   if (window.scrollY > 140) {
+        //     setIsOpen(false); // Close the navbar if the user has scrolled
+        //   }
         };
     
         window.addEventListener('scroll', handleScroll);
@@ -28,7 +31,7 @@ export default function Navbar({dark = false}: NavbarProps) {
 
     return (
         <nav className={`relative z-10 w-full font-mont font-semibold text-nowrap flex sm:flex-row flex-col lg:justify-between items-center p-6 pt-10 px-10 gap-6 lg:px-32 lg:py-9 lg:gap-20 transition-[padding]} ${
-            hasScrolled || isOpen ? "border-b-2" : "bg-[url('/stars.svg')]"
+            hasScrolled || isOpen ? "border-b-2" : "bg-transparent sm:mt-12"
         } ${dark ? "bg-spaceBlack text-white border-gray-800" : "bg-white text-black"}`}
         >
             <div className="w-full flex flex-row justify-between gap-6 ">
@@ -49,9 +52,10 @@ export default function Navbar({dark = false}: NavbarProps) {
                 </button>
             </div>
 
-            <div className={`sm:flex lg:w-auto sm:flex-row flex-col items-center gap-5 lg:gap-12 text-md lg:text-[20px] text-nowrap ${
-                isOpen ? "z-50 flex animate__animated animate__fadeIn" : "hidden"
+            <div className={`sm:flex sm:visible sm:relative lg:w-auto sm:flex-row flex-col items-center gap-5 text-md lg:text-[20px] text-nowrap lg:gap-12  ${
+                isOpen ? "z-50 flex animate__animated animate__fadeIn h-screen sm:h-fit gap-[60px] text-2xl underline pt-20 max-h-screen transition-all duration-300 ease-in-out " : " invisible max-h-0 absolute"
             }`}
+            style={{ maxHeight: isOpen ? '100vh' : '0' }}
             >
                 {navLinks.map((link) => (
                     <a
@@ -64,6 +68,21 @@ export default function Navbar({dark = false}: NavbarProps) {
                         {link.title}
                     </a>
                 ))}
+
+                <a
+                    href="https://discord.gg/eQ8ScamG4H"
+                    target="_blank"
+                    className={`flex mt-12 justify-center items-center shrink-0 gap-3 font-bold text-navy bg-[#EDEAE6] px-3 py-1 md:px-6 md:py-2 md:text-xl rounded-lg border-[1px] border-[#C9C9C9] cursor-pointer hover:bg-[#c6c4c4] transition-all ${
+                        isOpen ? "" : "hidden"
+                    }`}
+                >
+                    Discord
+                    <img
+                        src="./icons/logos/discord-logo.svg"
+                        alt="Discord Logo"
+                        className="w-[24px] h-[18px] md:w-[28px] md:h-[21px] transition-all"
+                    />
+                </a>
             </div>
         </nav>
     );

@@ -11,7 +11,7 @@ import Headroom from "react-headroom";
 export default function Hackathon() {
     return (
         <>
-            <div className="bg-spaceBlack bg-[url('/stars.svg')] relative z-10 sm:pt-12 flex flex-col h-full overflow-hidden">
+            <div className="bg-spaceBlack bg-[url('/stars.svg')] relative z-10 flex flex-col h-full min-h-[600px] overflow-hidden">
                 <Headroom>
                     <Navbar dark />
                 </Headroom>

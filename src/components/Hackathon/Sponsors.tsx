@@ -1,8 +1,8 @@
 export default function Sponsors() {
     return(
         <div className="w-full mb-20 mt-20" id="sponsor-us">
-            <h1 className="text-hackRed text-5xl lg:text-6xl font-bold text-center text-nowrap mb-10 mt-40">
-                THANK YOU TO OUR <br/> <span className="text-hackBeige text-6xl lg:text-7xl"> AMAZING PARTNERS! </span>
+            <h1 className="text-hackRed text-[8dvw] sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center text-nowrap mb-10 mt-40 plasma-bold">
+                THANK YOU TO OUR <br/> <span className="text-hackBeige text-[8dvw] sm:text-5xl md:text-6xl lg:text-7xl"> AMAZING PARTNERS </span>
             </h1>
             <div className="relative flex justify-center items-center">
                 <div className="w-4/6 relative flex flex-wrap justify-center items-center gap-16 p-10">

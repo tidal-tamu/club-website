@@ -10,7 +10,7 @@ export default function ScheduleList({ list, day }: ScheduleListProps) {
     return (
         <div className="flex flex-col flex-1 min-w-60 relative">
             <Meteors number={7}/>
-            <h1 className="text-white text-5xl text-center text-nowrap mb-8">
+            <h1 className="text-white font-semibold text-[42px] sm:text-5xl text-center mb-8">
                 {day}
             </h1>
             <div className="relative">

@@ -2,7 +2,7 @@ export default function Prizes() {
     return (
         <div className="pt-44 lg:pt-64 bg-[url('/waves/wave-1-beige.svg')] bg-repeat-x bg-right-top transition-[padding]">
             <div className="bg-hackBeige w-full flex flex-col items-center">
-                <h1 className="text-black text-6xl lg:text-7xl font-bold text-center text-nowrap mb-16">
+                <h1 className="text-black text-6xl lg:text-7xl font-bold text-center mb-16 plasma-bold">
                     OUR <span className="text-hackRed"> PRIZES </span>
                 </h1>
                 <div className="flex w-full lg:w-4/5 xl:w-3/5 py-16 px-4 lg:px-8 mb-16 gap-32 justify-center">

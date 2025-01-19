@@ -21,14 +21,14 @@ const details1 = [
         answer: "Please bring your laptop, charger, and anything that will help you hack. Most importantly, don’t forget your deodorant. Remember that you will have to leave the REC after day 1, so refrain from bringing anything unecessary. 🫡 ",
         id: "4",
     },
+];
+
+const details2 = [
     {
         question: "How do teams work?",
         answer: "Teams are limited to 4 hackers. If you have a team in mind, mention them in your application. If you don’t, no worries! We can match you to a team or you can find a team during the dedicated time after the opening ceremony. 😎",
         id: "5",
-    }
-];
-
-const details2 = [
+    },
     {
         question: "What is the judging criteria?",
         answer: "The judging criteria will be released closer to the event. However, you can expect to be judged on creativity, technical difficulty, and presentation. Emphasis on CREATIVITY! 🧐",
@@ -48,12 +48,12 @@ const details2 = [
 
 export default function FAQ() {
     return (
-        <div className="w-full py-16">
-            <h1 className="text-hackRed text-6xl lg:text-7xl font-bold text-center text-nowrap mb-10">
+        <div className="w-full py-16 min-h-screen xl:min-h-0 xl:h-[75vh]">
+            <h1 className="text-hackRed text-[46px] md:text-6xl lg:text-7xl font-bold text-center mb-10 plasma-bold">
                 ANY QUESTIONS?
             </h1>
             ;
-            <div className="flex flex-col lg:flex-row pt-12 px-24">
+            <div className="flex flex-col lg:flex-row pt-12 w-full md:w-full lg:w-5/6 xl:w-3/4 justify-self-center">
                 <Accordion details={details1} />
                 <Accordion details={details2} />
             </div>

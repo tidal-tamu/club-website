@@ -29,14 +29,14 @@ const day2: ScheduleItem[] = [
 export default function Schedule() {
     return (
         <>
-            <h1 className="text-hackRed text-6xl lg:text-7xl font-bold text-center text-nowrap my-[12vh]">
-                WHAT'S NEXT?
+            <h1 className="text-hackRed text-6xl lg:text-7xl font-bold text-center my-[12vh] plasma-bold">
+                WHATS NEXT?
             </h1>
         
             <div className="flex flex-col justify-center gap-16 select-none">
                 <div className="flex flex-col lg:flex-row justify-center lg:items-center gap-16 mx-8 lg:mx-44 select-none">
-                    <ScheduleList list={day1} day={"Saturday 3/08"} />
-                    <ScheduleList list={day2} day={"Sunday 3/09"} />
+                    <ScheduleList list={day1} day={"SATURDAY 3/08"} />
+                    <ScheduleList list={day2} day={"SUNDAY 3/09"} />
                 </div>
                 <a
                     href="https://calendar.google.com/calendar/u/4?cid=OWFmZGJlYjFjZDk0NWFiZjU5OWMyYjg0YzgzZGZlY2QzOWQxZTk4ZWRlYjVjNmMxZWQ4ZWQ5NGNlMjdkNWE1YUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
