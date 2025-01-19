@@ -1,3 +1,5 @@
+import { Meteors } from "./Meteors";
+
 export default function Sponsors() {
     return(
         <div className="w-full mb-20 mt-20" id="sponsor-us">
@@ -5,6 +7,7 @@ export default function Sponsors() {
                 THANK YOU TO OUR <br/> <span className="text-hackBeige text-[8dvw] sm:text-5xl md:text-6xl lg:text-7xl"> AMAZING PARTNERS </span>
             </h1>
             <div className="relative flex justify-center items-center">
+                <Meteors number={3}/>
                 <div className="w-4/6 relative flex flex-wrap justify-center items-center gap-16 p-10">
                     <a href="https://www.blueorigin.com/"
                         target="_blank"

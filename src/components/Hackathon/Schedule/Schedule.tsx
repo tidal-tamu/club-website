@@ -34,17 +34,17 @@ export default function Schedule() {
             </h1>
         
             <div className="flex flex-col justify-center gap-16 select-none">
-                <div className="flex flex-col lg:flex-row justify-center lg:items-center gap-16 mx-8 lg:mx-44 select-none">
+                <div className="flex flex-col lg:flex-row justify-center lg:items-center gap-16 mx-8 lg:mx-20 xl:mx-44 select-none">
                     <ScheduleList list={day1} day={"SATURDAY 3/08"} />
                     <ScheduleList list={day2} day={"SUNDAY 3/09"} />
                 </div>
                 <a
                     href="https://calendar.google.com/calendar/u/4?cid=OWFmZGJlYjFjZDk0NWFiZjU5OWMyYjg0YzgzZGZlY2QzOWQxZTk4ZWRlYjVjNmMxZWQ4ZWQ5NGNlMjdkNWE1YUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
                     target="_blank"
-                    className="text-gray-500 flex justify-center items-center gap-2 text-center text-sm hover:underline"
+                    className="text-white flex justify-center gap-2 text-center text-sm hover:underline translate-x-1 pb-4 sm:pb-0"
                 >
                     Add to Google Calendar
-                    <img src="./icons/shapes/external-link.svg" className="w-4" />
+                    <img src="./icons/shapes/external-link-white.svg" className="w-4" />
                 </a>
             </div>
         </>

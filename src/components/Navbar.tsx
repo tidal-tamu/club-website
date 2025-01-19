@@ -17,9 +17,6 @@ export default function Navbar({dark = false}: NavbarProps) {
     useEffect(() => {
         const handleScroll = () => {
           setHasScrolled(window.scrollY > 140); // Draw a border on navbar if the user has scrolled
-        //   if (window.scrollY > 140) {
-        //     setIsOpen(false); // Close the navbar if the user has scrolled
-        //   }
         };
     
         window.addEventListener('scroll', handleScroll);
@@ -28,6 +25,14 @@ export default function Navbar({dark = false}: NavbarProps) {
           window.removeEventListener('scroll', handleScroll);
         };
       }, []);
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.classList.add('overflow-hidden');
+        } else {
+            document.body.classList.remove('overflow-hidden');
+        }
+    }, [isOpen]);
 
     return (
         <nav className={`relative z-10 w-full font-mont font-semibold text-nowrap flex sm:flex-row flex-col lg:justify-between items-center p-6 pt-10 px-10 gap-6 lg:px-32 lg:py-9 lg:gap-20 transition-[padding]} ${
@@ -39,16 +44,21 @@ export default function Navbar({dark = false}: NavbarProps) {
                     className="mt-2 sm:mt-0 min-w-[169px] min-h-[26px] w-[169px] h-[26px] lg:w-[208px] lg:h-[32px]"
                     href="/"
                 >
-                    <img src={dark ? "./icons/logos/tidal-white-transparent.png" : "./icons/logos/tidal-blueblack.png"} alt="Logo" />
+                    <img src={dark ? "./icons/logos/tidal-white-transparent.png" : "./icons/logos/tidal-newblue.svg"} alt="Logo"/>
                 </a>
 
                 <button className={"inline-flex items-center p-1.5 w-10 h-10 justify-center rounded-lg sm:hidden hover:bg-white-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-white-700 dark:focus:ring-gray-600"}
                 onClick={() => setIsOpen(!isOpen)}
                 >
-                    <svg className="w-9 h-9" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
-                    </svg>
-                    
+                    {isOpen ? (
+                        <svg className="w-9 h-9" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    ) : (
+                        <svg className="w-9 h-9" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
+                        </svg>
+                    )}
                 </button>
             </div>
 

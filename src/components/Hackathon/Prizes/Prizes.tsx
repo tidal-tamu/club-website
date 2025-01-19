@@ -5,27 +5,27 @@ export default function Prizes() {
                 <h1 className="text-black text-6xl lg:text-7xl font-bold text-center mb-16 plasma-bold">
                     OUR <span className="text-hackRed"> PRIZES </span>
                 </h1>
-                <div className="flex w-full lg:w-4/5 xl:w-3/5 py-16 px-4 lg:px-8 mb-16 gap-32 justify-center">
+                <div className="flex w-full lg:w-4/5 xl:w-3/5 py-16 px-4 lg:px-8 mb-16 gap-20 sm:gap-32 justify-center">
                     <div className="h-[20vh] flex items-center justify-center">
-                        <div className="text-4xl lg:text-5xl font-bold text-center text-nowrap">
-                            2nd Place
+                        <div className="text-4xl lg:text-5xl font-bold text-center text-nowrap zing-base">
+                            2nd <span className="hidden sm:inline">place</span>
                         </div>
                     </div>
 
                     <div className="h-[20vh] flex items-start justify-center">
-                        <div className="text-4xl lg:text-5xl font-bold text-center text-nowrap">
-                            1st Place
+                        <div className="text-4xl lg:text-5xl font-bold text-center text-nowrap zing-base">
+                            1st <span className="hidden sm:inline">place</span>
                         </div>
                     </div>
 
                     <div className="h-[20vh] flex items-end justify-center">
-                        <div className="text-4xl lg:text-5xl font-bold text-center text-nowrap">
-                            3rd Place
+                        <div className="text-4xl lg:text-5xl font-bold text-center text-nowrap zing-base">
+                            3rd <span className="hidden sm:inline">place</span>
                         </div>
                     </div>
                 </div>
 
-                <div className="flex w-full lg:w-4/5 xl:w-3/5 py-16 px-4 lg:px-8 mb-16 gap-72 justify-center">
+                <div className="flex w-full lg:w-4/5 xl:w-3/5 py-16 px-4 lg:px-8 mb-16 gap-20 sm:gap-60 md:gap-72 justify-center">
                     <div className="flex items-center justify-center">
                         <div className="text-xl lg:text-2xl font-bold text-center text-nowrap">
                             TBD

@@ -8,8 +8,10 @@ export default function Footer({dark = false}: NavbarProps) {
             dark ? "bg-[url('/waves/wave-footer-beige.svg')]" : "bg-[url('/waves/wave-footer.svg')]"
         }` }>
             <img
-                    src="./icons/shapes/red-star.svg"
-                    className="absolute right-0 top-0 -translate-x-0 -translate-y-1/4 w-[150px] lg:w-[250px]"
+                    src={dark ? "./images/lander.png" : "./icons/shapes/red-star.svg"}
+                    className={`absolute right-0 top-0 ${
+                        dark ? "-rotate-12 -translate-x-3/4 -translate-y-1/4 w-[120px] lg:w-[220px] " : " w-[150px] lg:w-[250px] -translate-x-0 -translate-y-1/4"
+                    }`}
                 />  
             <div className={`flex flex-col justify-center items-center gap-8 lg:gap-12 px-20 pb-16 ${
                 dark ? "bg-hackBeige" : "bg-navy"

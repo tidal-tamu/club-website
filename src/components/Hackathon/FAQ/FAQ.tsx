@@ -52,7 +52,6 @@ export default function FAQ() {
             <h1 className="text-hackRed text-[46px] md:text-6xl lg:text-7xl font-bold text-center mb-10 plasma-bold">
                 ANY QUESTIONS?
             </h1>
-            ;
             <div className="flex flex-col lg:flex-row pt-12 w-full md:w-full lg:w-5/6 xl:w-3/4 justify-self-center">
                 <Accordion details={details1} />
                 <Accordion details={details2} />
