@@ -15,6 +15,7 @@ export default function Sponsors() {
                         <img
                             src="./icons/logos/bo-logo.png"
                             className="w-[100px] md:w-[100px] lg:w-[200px] transition-transform transform hover:scale-110"
+                            alt="Blue Origin"
                         />
                     </a>
                     <a href="https://www.nvidia.com/en-us/"
@@ -23,6 +24,7 @@ export default function Sponsors() {
                     <img
                         src="./icons/logos/nvidia.png"
                         className="w-[100px] md:w-[100px] lg:w-[200px] transition-transform transform hover:scale-110"
+                        alt="Nvidia"
                     />
                     </a>
                     <a href="https://aws.amazon.com/"
@@ -31,14 +33,16 @@ export default function Sponsors() {
                     <img
                         src="./icons/logos/aws-logo.png"
                         className="w-[100px] md:w-[100px] lg:w-[200px] transition-transform transform hover:scale-110"
+                        alt="Amazon Web Services"
                     />
                     </a>
                     <a href="https://about.google/"
                         target="_blank"
                         className="shrink-0">
                     <img
-                        src="./icons/logos/google.png"
+                        src="./icons/logos/google-color.png"
                         className="w-[200px] md:w-[200px] lg:w-[400px] transition-transform transform hover:scale-110"
+                        alt="Google"
                     />
                     </a>
                     <a href="https://tamids.tamu.edu/"
@@ -47,6 +51,7 @@ export default function Sponsors() {
                     <img
                         src="./icons/logos/tamids-logo.png"
                         className="w-[200px] md:w-[200px] lg:w-[400px] transition-transform transform hover:scale-110"
+                        alt="TAMIDS"
                     />
                     </a>
                     <a href="https://www.microsoft.com/en-us/"
@@ -55,6 +60,7 @@ export default function Sponsors() {
                     <img
                         src="./icons/logos/microsoft.png"
                         className="w-[200px] md:w-[200px] lg:w-[400px] transition-transform transform hover:scale-110"
+                        alt="Microsoft"
                     />
                     </a>
                     <a href="https://www.pnnl.gov/"
@@ -63,6 +69,16 @@ export default function Sponsors() {
                     <img
                         src="./icons/logos/pnnl.png"
                         className="w-[200px] md:w-[200px] lg:w-[400px] transition-transform transform hover:scale-110"
+                        alt="Pacific Northwest National Laboratory"
+                    />
+                    </a>
+                    <a href="https://www.pnnl.gov/"
+                        target="_blank"
+                        className="shrink-0">
+                    <img
+                        src="./icons/logos/jane-street-blue.png"
+                        className="w-[200px] md:w-[200px] lg:w-[400px] transition-transform transform hover:scale-110"
+                        alt="Jane Street"
                     />
                     </a>
                 </div>

@@ -3,11 +3,11 @@ import { Meteors } from "./Meteors";
 
 export default function Hero() {
     return (
-        <div className="h-full w-11/12 flex flex-col md:flex-row gap-7 justify-center justify-self-center items-center transition-[padding] place-self-center px-8 pt-3">
+        <div className="h-full w-full flex flex-col md:flex-row gap-7 justify-center justify-self-center items-center transition-[padding] place-self-center px-8 pt-3">
             <Meteors number={7}/>
             <img
-                src="/icons/shapes/8star.svg"
-                className="mb-5 lg:ml-32 2xl:ml-44 md:mb-0 w-64 lg:w-auto animate-pulse"
+                src="/icons/shapes/8star.png"
+                className="lg:ml-32 2xl:ml-36 md:mb-0 w-64 md:w-1/2 xl:w-1/3 animate-pulse"
             />
             <div className="flex flex-col grow justify-start items-center lg:items-end font-mont gap-8 md:gap-14 lg:mr-32 2xl:mr-44">
                 <div className="flex flex-col justify-center items-center lg:items-end gap-4 md:gap-0">

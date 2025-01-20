@@ -7,8 +7,14 @@ import Prizes from "./Prizes/Prizes";
 import FAQ from "./FAQ/FAQ";
 import Sponsors from "./Sponsors";
 import Headroom from "react-headroom";
+import { useEffect } from "react";
 
 export default function Hackathon() {
+
+    useEffect(() => {
+        document.body.style.backgroundColor = "#121111";
+    }, []);
+
     return (
         <>
             <div className="bg-spaceBlack bg-[url('/stars.svg')] relative z-10 flex flex-col h-full min-h-[600px] overflow-hidden">
