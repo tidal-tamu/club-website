@@ -72,7 +72,7 @@ export default function Sponsors() {
                         alt="Pacific Northwest National Laboratory"
                     />
                     </a>
-                    <a href="https://www.pnnl.gov/"
+                    <a href="https://www.janestreet.com/"
                         target="_blank"
                         className="shrink-0">
                     <img

@@ -22,7 +22,7 @@ export default function Hero() {
                             2025
                         </p>
                         <p className="text-hackBeige zing-base tracking-[10px] text-center font-semibold text-2xl lg:text-4xl 2xl:text-5xl lg:pl-10">
-                            March 8th-9th
+                            March 22nd-23rd
                         </p>
                     </div>
 
