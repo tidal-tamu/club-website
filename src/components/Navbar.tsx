@@ -62,7 +62,7 @@ export default function Navbar({dark = false}: NavbarProps) {
                 </button>
             </div>
 
-            <div className={`sm:flex sm:visible sm:relative lg:w-auto sm:flex-row flex-col items-center gap-5 text-md lg:text-[20px] text-nowrap lg:gap-12  ${
+            <div className={`sm:flex sm:visible sm:relative lg:w-auto sm:flex-row flex-col items-center gap-5 text-[12px] lg:text-[18px] text-nowrap lg:gap-12  ${
                 isOpen ? "z-50 flex animate__animated animate__fadeIn h-screen sm:h-fit gap-[60px] text-2xl underline pt-20 max-h-screen transition-all duration-300 ease-in-out " : " invisible max-h-0 absolute"
             }`}
             style={{ maxHeight: isOpen ? '100vh' : '0' }}

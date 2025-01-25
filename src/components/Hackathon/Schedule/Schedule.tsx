@@ -35,8 +35,8 @@ export default function Schedule() {
         
             <div className="flex flex-col justify-center gap-16 select-none">
                 <div className="flex flex-col lg:flex-row justify-center lg:items-center gap-16 mx-8 lg:mx-20 xl:mx-44 select-none">
-                    <ScheduleList list={day1} day={"SATURDAY 3/08"} />
-                    <ScheduleList list={day2} day={"SUNDAY 3/09"} />
+                    <ScheduleList list={day1} day={"SATURDAY 3/22"} />
+                    <ScheduleList list={day2} day={"SUNDAY 3/23"} />
                 </div>
                 <a
                     href="https://calendar.google.com/calendar/u/4?cid=OWFmZGJlYjFjZDk0NWFiZjU5OWMyYjg0YzgzZGZlY2QzOWQxZTk4ZWRlYjVjNmMxZWQ4ZWQ5NGNlMjdkNWE1YUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"

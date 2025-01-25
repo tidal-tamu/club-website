@@ -18,7 +18,7 @@ export default function Hero() {
                         <h1 className="text-white blocky-div font-bold text-5xl lg:text-7xl 2xl:text-8xl text-center md:text-start md:pl-28 md:pr-12  animate__animated animate__fadeIn">
                             HACK
                         </h1>
-                        <p className="text-hackRed blocky-div font-bold text-4xl lg:text-6xl 2xl:text-7xl text-center md:text-right ml-auto pt-2 -translate-y-2 md:-translate-y-4">
+                        <p className="text-hackRed blocky-div font-bold text-4xl lg:text-6xl 2xl:text-7xl text-center md:text-right ml-auto pt-5 -translate-y-2 md:-translate-y-4">
                             2025
                         </p>
                         <p className="text-hackBeige zing-base tracking-[10px] text-center font-semibold text-2xl lg:text-4xl 2xl:text-5xl lg:pl-10">
@@ -41,7 +41,7 @@ export default function Hero() {
                         />
                     </a>
                     <a
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSdNIKh8oVORsjkzpOxAy-AgCURFudlWtAP8hR6eI0gISAky7A/viewform"
+                        href="/register"
                         className="flex justify-center items-center shrink-0 gap-3 font-bold text-white bg-hackRed px-3 py-2 sm:p1 lg:px-6 md:text-xl rounded-lg border-[1px] cursor-pointer border-[#ba5353] hover:bg-[#9e3b3b] transition-all"
                         target="_blank" 
                         rel="noopener noreferrer"
