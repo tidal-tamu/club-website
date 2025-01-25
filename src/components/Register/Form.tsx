@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Calendar } from 'primereact/calendar';
-import videobg from '../../../dist/assets/bg_footage_tidal.mp4';
+import videobg from '/bg_footage_tidal.mp4';
 import logo from '/icons/logos/tidal-blueblack.png';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';  // Theme CSS
 import 'primereact/resources/primereact.min.css'; // Core PrimeReact CSS

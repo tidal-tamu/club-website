@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 const navLinks = [
-    { title: "Home", path: "/" },
-    { title: "About Us", path: "/#about-us" },
-    { title: "Hackathon", path: "/hackathon" },
+    { title: "Home", path: "/home" },
+    { title: "About Us", path: "/home/#about-us" },
+    { title: "Hackathon", path: "/" },
     { title: "Sponsor Us", path: "/sponsor-us" },
 ];
 

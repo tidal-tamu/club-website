@@ -26,7 +26,7 @@ export default function Footer({dark = false}: NavbarProps) {
                     >
                         <img
                             className="w-12 transition-transform transform hover:scale-125"
-                            src={dark ? "./icons/logos/instagram-logo-black.svg" : "./icons/logos/instagram-logo.svg"}
+                            src={dark ? "/icons/logos/instagram-logo-black.svg" : "/icons/logos/instagram-logo.svg"}
                             alt="Instagram"
                         />
                     </a>
@@ -36,7 +36,7 @@ export default function Footer({dark = false}: NavbarProps) {
                         className="shrink-0"
                     >
                         <img
-                            src={dark ? "./icons/logos/discord-logo-black.svg" : "./icons/logos/discord-logo-white.svg"}
+                            src={dark ? "/icons/logos/discord-logo-black.svg" : "/icons/logos/discord-logo-white.svg"}
                             className="w-12 transition-transform transform hover:scale-125"
                             alt="Discord"
                         />
@@ -48,7 +48,7 @@ export default function Footer({dark = false}: NavbarProps) {
                     >
                         <img
                             className="w-12 transition-transform transform hover:scale-125"
-                            src={dark ? "./icons/logos/linkedin-logo-black.svg" : "./icons/logos/linkedin-logo.svg"}
+                            src={dark ? "/icons/logos/linkedin-logo-black.svg" : "/icons/logos/linkedin-logo.svg"}
                             alt="LinkedIn"
                         />
                     </a>
@@ -59,7 +59,7 @@ export default function Footer({dark = false}: NavbarProps) {
                     >
                         <img
                             className="w-12 transition-transform transform hover:scale-125"
-                            src={dark ? "./icons/logos/github-logo-black.svg" : "./icons/logos/github-logo.svg"}
+                            src={dark ? "/icons/logos/github-logo-black.svg" : "/icons/logos/github-logo.svg"}
                             alt="GitHub"
                         />
                     </a>
@@ -70,7 +70,7 @@ export default function Footer({dark = false}: NavbarProps) {
                     >
                         <img
                             className="w-12 transition-transform transform hover:scale-125"
-                            src={dark ? "./icons/logos/email-logo-black.svg" : "./icons/logos/email-logo.svg"}
+                            src={dark ? "/icons/logos/email-logo-black.svg" : "/icons/logos/email-logo.svg"}
                             alt="Email"
                         />
                     </a>

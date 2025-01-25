@@ -10,8 +10,8 @@ export default function App() {
         <React.StrictMode>
             <Router>
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/hackathon" element={<Hackathon />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/" element={<Hackathon />} />
                     <Route path="/sponsor-us" element={<SponsorUs />} />
                     <Route path="/register" element={<Register />} />
                 </Routes>
