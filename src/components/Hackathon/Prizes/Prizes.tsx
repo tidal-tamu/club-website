@@ -44,7 +44,7 @@ export default function Prizes() {
                         } 
 
                         if (curr != prevCurr) {
-                            console.log("toggle " + toggleRocket)
+                            //console.log("toggle " + toggleRocket)
                             setToggleRocket(curr === 1)
                         }
 
@@ -63,7 +63,7 @@ export default function Prizes() {
                 className="bg-hackBeige w-full flex flex-col items-center animation-container relative overflow-hidden"
                 ref={containerRef}
             >
-                <svg className="w-full h-full pointer-events-none hidden sm:flex">
+                <svg className="w-full h-full pointer-events-none hidden md:flex">
                     <path
                         ref={pathRef}
                         // d="M-100,300 C200,500 400,400 650,600 S850,800 1050,700 C1200,650 1300,700 1450,800 S1800,850 2200,1000"
