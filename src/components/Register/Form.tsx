@@ -18,6 +18,7 @@ export default function Form() {
         setIsSubmitting(true);
 
         const formData = new FormData(formRef.current!);
+
         if (selectedDate) {
             formData.append("Date", selectedDate.toISOString().split('T')[0]);
         }
@@ -36,6 +37,8 @@ export default function Form() {
                 setSuccessMessage("Registration successful!");
                 setErrorMessage("");
                 console.log("Success:", result);
+                formRef.current?.reset();
+                setSelectedDate(null);
             } else {
                 throw new Error("Failed to submit. Please try again.");
             }

@@ -8,7 +8,7 @@ interface ScheduleListProps {
 
 export default function ScheduleList({ list, day }: ScheduleListProps) {
     return (
-        <div className="flex flex-col flex-1 min-w-60 relative">
+        <div className="flex flex-col flex-1 min-w-60 relative" id="schedule">
             <Meteors number={7}/>
             <h1 className="text-white font-semibold text-[42px] sm:text-5xl text-center mb-8 zing-base tracking-wide">
                 {day}

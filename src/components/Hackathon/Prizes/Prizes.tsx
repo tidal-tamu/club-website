@@ -63,7 +63,7 @@ export default function Prizes() {
                 className="bg-hackBeige w-full flex flex-col items-center animation-container relative overflow-hidden"
                 ref={containerRef}
             >
-                <svg className="w-full h-full pointer-events-none">
+                <svg className="w-full h-full pointer-events-none hidden sm:flex">
                     <path
                         ref={pathRef}
                         // d="M-100,300 C200,500 400,400 650,600 S850,800 1050,700 C1200,650 1300,700 1450,800 S1800,850 2200,1000"
@@ -79,7 +79,7 @@ export default function Prizes() {
                     alt="rocket"
                     ref={rocketRef}
                 ></img>
-                <h1 className="text-black text-6xl lg:text-7xl font-bold text-center mb-16 plasma-bold">
+                <h1 className="text-black text-6xl lg:text-7xl font-bold text-center mb-16 plasma-bold" id="prizes">
                     OUR <span className="text-hackRed"> PRIZES</span>
                 </h1>
                 <div className="flex w-full lg:w-4/5 xl:w-3/5 py-16 px-4 lg:px-8 mb-16 gap-20 sm:gap-32 justify-center relative">
