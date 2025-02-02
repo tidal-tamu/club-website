@@ -23,10 +23,13 @@ const initialFormData = {
 
 const schoolOptions = [
     "Texas A&M University",
+    "Blinn College",
     "The University of Texas at Dallas",
     "The University of Texas at Austin",
     "Baylor University",
     "Texas Tech University",
+    "University of North Texas",
+    "University of Houston",
     "Other"
 ];
 
@@ -34,8 +37,10 @@ const majorOptions = [
     "Computer Science",
     "Computer Engineering",
     "Data Engineering / Data Science",
+    "Computing",
     "Electrical Engineering",
     "Mechanical Engineering",
+    "Statistics",
     "Other (Engineering)",
     "Other (Non-Engineering)"
 ];
@@ -78,7 +83,7 @@ export default function Form2({ setCheckingRegistration }: Form2Props) {
             second: '2-digit',
             hour12: false
         });
-    
+
         setFormData({
             ...formData,
             Submission_Time: formattedTime
@@ -124,21 +129,21 @@ export default function Form2({ setCheckingRegistration }: Form2Props) {
     };
 
     return (
-        <div className="bg-black flex flex-col items-center justify-center">
-            <video src="/bg_footage_tidal.mp4" autoPlay loop muted className="fixed top-0 left-0 w-full h-full object-cover z-1 hidden sm:inline"/>
+        <div className="bg-spaceBlack flex flex-col items-center justify-center">
+            <video src="/bg_footage_tidal.mp4" autoPlay loop muted className="fixed top-0 left-0 w-full h-full object-cover z-1 hidden sm:inline" />
 
-            <div className="w-11/12 sm:w-10/12 lg:w-[60vw] px-5 py-16 my-20 bg-white rounded-2xl z-10 relative"> 
+            <div className="w-11/12 sm:w-10/12 lg:w-[60vw] px-5 py-16 my-20 bg-white rounded-2xl z-10 relative">
                 <img src="/icons/logos/tidal-newblue.svg" className="w-64 mx-auto pt-4 pb-5" />
-                
+
                 {/* Form Fields: */}
-                { successMessage ? (
+                {successMessage ? (
                     <div className="justify-center justify-self-center items-center text-center pb-4">
                         <h1 className="text-green-500 text-center text-3xl font-bold pt-4">{successMessage}</h1>
                         <div className="justify-self-center text-center px-[15%]">
                             <h1 className="sm:text-lg pt-8">
-                                Thank you for registering for TIDALHACK! Your registration process is now complete. 
-                                We will email you a confirmation of your registration before the event. If you have any 
-                                questions or would like to edit your registration, please contact us 
+                                Thank you for registering for TIDALHACK! Your registration process is now complete.
+                                We will email you a confirmation of your registration before the event. If you have any
+                                questions or would like to edit your registration, please contact us
                                 at <a href="mailto:tidaltamu@gmail.com" className="underline">tidaltamu@gmail.com</a> or reach out to an officer in our discord.</h1>
                             {/* {<pre>{JSON.stringify(submittedData, null, 2)}</pre>} */}
                             <a href="/">
@@ -146,7 +151,7 @@ export default function Form2({ setCheckingRegistration }: Form2Props) {
                             </a>
                         </div>
                     </div>
-                ) :  (
+                ) : (
                     <form className="flex flex-col space-y-7 px-1 sm:px-[15%]" onSubmit={handleSubmit} ref={formRef}>
                         <h1 className="text-2xl sm:text-3xl font-semibold text-center pb-10 pt-2"> TIDALHACK 2025 Registration </h1>
                         <label className='flex flex-col gap-1'>
@@ -209,24 +214,25 @@ export default function Form2({ setCheckingRegistration }: Form2Props) {
                             <select name="Need_Team" className="p-3 border border-gray-300 rounded" value={formData.Need_Team} onChange={handleChange} required>
                                 <option value="">Select option</option>
                                 <option value="Has a Team">Yes - I already have a team</option>
+                                <option value="Needs more Members">Yes - but would like additional members</option>
                                 <option value="Needs a Team">No - and I would like to be paired</option>
                                 <option value="Working Alone">No - and I would like to work alone</option>
                             </select>
                         </label>
-                        <div className="flex items-center">
+                        <div className="flex items-center text-sm">
                             <input type="checkbox" name="Accepted_COC" className="mr-3 size-4 sm:size-[13px]" checked={formData.Accepted_COC} onChange={handleChange} required />
                             <label htmlFor="Accepted_COC">I have read and agree to the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-500">MLH Code of Conduct</a>. <span className="text-red-500">*</span></label>
                         </div>
 
-                        <div className="flex items-center">
+                        <div className="flex items-center text-sm">
                             <input type="checkbox" name="Share_With_MLH" className="mr-3 size-4 sm:size-[13px]" checked={formData.Share_With_MLH} onChange={handleChange} required />
                             <label htmlFor="Share_With_MLH">I authorize you to share my application/registration information with Major League Hacking for event
-                                    administration, ranking, and MLH administration in-line with the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-500">MLH Privacy Policy </a>.
-                                    I further agree to the terms of both the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-500">MLH Contest Terms and Conditions </a>
-                                    and the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-500">MLH Privacy Policy </a>. <span className="text-red-500">*</span></label>
+                                administration, ranking, and MLH administration in-line with the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-500">MLH Privacy Policy </a>.
+                                I further agree to the terms of both the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-500">MLH Contest Terms and Conditions </a>
+                                and the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-500">MLH Privacy Policy </a>. <span className="text-red-500">*</span></label>
                         </div>
-                        
-                        <div className="flex items-center">
+
+                        <div className="flex items-center text-sm">
                             <input type="checkbox" name="Allow_Emails" className="mr-3 size-4 sm:size-[13px]" checked={formData.Allow_Emails} onChange={handleChange} />
                             <label htmlFor="Allow_Emails">I authorize MLH to send me occasional emails about relevant events, career opportunities, and community announcements.</label>
                         </div>
@@ -245,10 +251,10 @@ export default function Form2({ setCheckingRegistration }: Form2Props) {
                             <p className="text-red-500 text-center mt-4">{errorMessage}</p>
                         )}
 
-                        <p>Already Registered? <a onClick={() => setCheckingRegistration(true)} className="underline cursor-pointer">Check your registration here</a>.</p>
-                </form>
+                        <p className="text-sm sm:text-base">Already Registered? <a onClick={() => setCheckingRegistration(true)} className="underline cursor-pointer">Check your registration here</a>.</p>
+                    </form>
                 )}
-                
+
             </div>
         </div>
     );

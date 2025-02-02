@@ -6,20 +6,20 @@ import CheckRegistration from './CheckRegistration';
 //import ComingSoon from './ComingSoon';
 
 export default function Register() {
-    const [checkingRegistration, setCheckingRegistration] = useState(false); 
+    const [checkingRegistration, setCheckingRegistration] = useState(false);
 
     useEffect(() => {
-            document.body.style.backgroundColor = "#121111";
-        }, []);
+        document.body.style.backgroundColor = "#121111";
+    }, []);
 
     return (
         <>
             <div className="relative z-50 flex flex-col">
                 <Headroom>
-                    <Navbar dark/>
+                    <Navbar dark />
                 </Headroom>
             </div>
-            {checkingRegistration ? <CheckRegistration/> : <Form2 setCheckingRegistration={setCheckingRegistration}/>}
+            {checkingRegistration ? <CheckRegistration /> : <Form2 setCheckingRegistration={setCheckingRegistration} />}
         </>
     );
 };

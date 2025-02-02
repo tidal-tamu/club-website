@@ -43,7 +43,7 @@ export default function Schedule() {
                     <ScheduleList list={day2} day={"SUNDAY 3/23"} />
                 </div>
                 <a
-                    href="https://calendar.google.com/calendar/u/4?cid=OWFmZGJlYjFjZDk0NWFiZjU5OWMyYjg0YzgzZGZlY2QzOWQxZTk4ZWRlYjVjNmMxZWQ4ZWQ5NGNlMjdkNWE1YUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
+                    href="https://calendar.google.com/calendar/u/4?cid=MThhNjQ5OGQ5OWY1Mjk5ZjJkYjVkNWM0ZjE3NWE5ZGM0YjYwYTExNTYxOGNmNTA1MDllNjA4YWU1NjkwNDU1NkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
                     target="_blank"
                     className="text-white flex justify-center gap-2 text-center text-sm hover:underline translate-x-1 pb-4 sm:pb-0"
                 >
