@@ -7,23 +7,27 @@ export interface ScheduleItem {
 }
 
 const day1: ScheduleItem[] = [
-    { time: "9:00 AM", event: "Coming Soon", location: "....." },
-    { time: "10:00 AM", event: "Coming Soon", location: "....." },
-    { time: "10:30 AM", event: "Coming Soon", location: "....." },
-    { time: "11:00 AM", event: "Coming Soon", location: "....." },
-    { time: "12:30 PM", event: "Coming Soon", location: "....." },
-    { time: "2:00 PM", event: "Coming Soon", location: "....." },
-    { time: "5:00 PM", event: "Coming Soon", location: "....." }
+    { time: "8:00 AM", event: "Student Check-in Begins", location: "REC 243" },
+    { time: "9:00 AM", event: "Opening Ceremony", location: "REC 243" },
+    { time: "9:30 AM", event: "Keynote Speakers", location: "REC 243" },
+    { time: "10:30 AM", event: "Networking / Project Work", location: "REC 243" },
+    { time: "11:30 AM", event: "Lunch!", location: "REC 243" },
+    { time: "5:00 PM", event: "Mentors Dismissed", location: "REC 243" },
+    { time: "6:00 PM", event: "Dinner!", location: "REC 243" },
+    { time: "11:00 PM", event: "REC closes, overnight starts", location: "REC 243" },
+    { time: "12:59 PM", event: "End of Day One!", location: "REC 243" },
 ];
 
 const day2: ScheduleItem[] = [
-    { time: "9:00 AM", event: "Coming Soon", location: "....." },
-    { time: "11:00 AM", event: "Coming Soon", location: "....." },
-    { time: "11:30 AM", event: "Coming Soon", location: "....." },
-    { time: "12:30 PM", event: "Coming Soon", location: "....." },
-    { time: "3:00 PM", event: "Coming Soon", location: "....." },
-    { time: "4:00 PM", event: "Coming Soon", location: "....." },
-    { time: "5:00 PM", event: "Coming Soon", location: "....." },
+    { time: "12:00 AM", event: "New Day begins!", location: "REC 243" },
+    { time: "8:00 AM", event: "Breakfast!", location: "REC 243" },
+    { time: "11:30 AM", event: "Project Submission Deadline", location: "REC 243" },
+    { time: "11:30 AM", event: "Lunch!", location: "REC 243" },
+    { time: "12:30 PM", event: "Judging rules announced", location: "REC 243" },
+    { time: "1:00 PM", event: "Round One Judging", location: "REC 243" },
+    { time: "2:00 PM", event: "Finalists are announced", location: "REC 243" },
+    { time: "3:00 PM", event: "Finalists Presentations", location: "REC 243" },
+    { time: "5:00 PM", event: "Closing Ceremony", location: "REC 243" },
 ];
 
 export default function Schedule() {

@@ -18,37 +18,48 @@ const details1 = [
     },
     {
         question: "What should I bring?",
-        answer: "Please bring your laptop, charger, and anything that will help you hack. Most importantly, don’t forget your deodorant. Remember that you will have to leave the REC after day 1, so refrain from bringing anything unecessary. 🫡 ",
+        answer: "Please bring your laptop, charger, and anything that will help you hack. If you plan on staying overnight, make sure to prepare accordingly. A blanket and pillow may come in handy, but try to limit the size of the items you bring. Most importantly, don’t forget your deodorant. 🫡 ",
         id: "4",
+    },
+    {
+        question: "Do I have to be in person?",
+        answer: "Yes, TIDALhack is an in-person event. Hackers must check in and be present throughout the hackathon to participate. 😺",
+        id: "5",
     },
 ];
 
 const details2 = [
     {
         question: "How do teams work?",
-        answer: "Teams are limited to 4 hackers. If you have a team in mind, mention them in your application. If you don’t, no worries! We can match you to a team or you can find a team during the dedicated time after the opening ceremony. 😎",
-        id: "5",
+        answer: "Teams are limited to 4 hackers. Make sure to check on the registration form whether you have a team or are in need of one. During the opening ceremony we will have time for matchmaking, but we encourage you to find a team beforehand (preferably through our discord)!😎",
+        id: "6",
     },
     {
         question: "What is the judging criteria?",
         answer: "The judging criteria will be released closer to the event. However, you can expect to be judged on creativity, technical difficulty, and presentation. Emphasis on CREATIVITY! 🧐",
-        id: "6",
+        id: "7",
     },
     {
         question: "How do I sign up?",
         answer: "Fill out our registration form above! 🤠",
-        id: "7",
+        id: "8",
+    },
+    {
+        question: "Can I stay in REC overnight?",
+        answer: "Yes! TIDALhack is a full 24 hour event this year. Please keep in mind that the REC closes at 11:00 PM on Saturday, meaning you won't be able to re-enter if you leave the building. 😴",
+        id: "9",
     },
     {
         question: "I have more questions!",
         answer: "For any other questions or concerns, please contact us at tidaltamu@gmail.com or ask an officer in the Discord!",
-        id: "8",
+        id: "10",
     },
+
 ];
 
 export default function FAQ() {
     return (
-        <div className="w-full py-16 min-h-screen xl:min-h-0 xl:h-[75vh]" id="faq">
+        <div className="w-full py-16 min-h-screen xl:min-h-0 xl:h-[80vh]" id="faq">
             <h1 className="text-hackRed text-[46px] md:text-6xl lg:text-7xl font-bold text-center mb-10 plasma-bold">
                 ANY QUESTIONS?
             </h1>

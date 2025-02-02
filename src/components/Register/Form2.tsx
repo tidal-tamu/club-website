@@ -1,5 +1,9 @@
 import React, { useState, useRef } from 'react';
 
+interface Form2Props {
+    setCheckingRegistration: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 const initialFormData = {
     First_Name: '',
     Last_Name: '',
@@ -36,7 +40,7 @@ const majorOptions = [
     "Other (Non-Engineering)"
 ];
 
-export default function Form2() {
+export default function Form2({ setCheckingRegistration }: Form2Props) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const formRef = useRef<HTMLFormElement | null>(null);
     const [successMessage, setSuccessMessage] = useState("");
@@ -96,11 +100,16 @@ export default function Form2() {
 
             if (response.ok) {
                 const result = await response.json();
-                setSuccessMessage("Registration successful!");
-                setErrorMessage("");
-                console.log("Success:", result);
-                formRef.current?.reset();
-                //setSubmittedData({ ...formData, Submission_Time: formattedTime });
+                if (result.status === 'success') {
+                    setSuccessMessage("Registration successful!");
+                    setErrorMessage("");
+                    console.log("Success:", result);
+                    formRef.current?.reset();
+                } else {
+                    setErrorMessage(result.message);
+                    setSuccessMessage("");
+                    console.error("Failed to submit:", result.message);
+                }
             } else {
                 console.error("Failed to submit. Please try again.", response);
             }
@@ -235,6 +244,8 @@ export default function Form2() {
                         {errorMessage && (
                             <p className="text-red-500 text-center mt-4">{errorMessage}</p>
                         )}
+
+                        <p>Already Registered? <a onClick={() => setCheckingRegistration(true)} className="underline cursor-pointer">Check your registration here</a>.</p>
                 </form>
                 )}
                 

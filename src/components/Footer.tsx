@@ -79,7 +79,7 @@ export default function Footer({dark = false}: NavbarProps) {
                     href="/"
                     className="flex justify-center items-center font-semibold text-lg gap-1 select-none"
                 >
-                    @ 2024 TIDALTAMU
+                    @ 2025 TIDALTAMU
                 </a>
             </div>
         </footer>

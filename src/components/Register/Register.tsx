@@ -1,10 +1,13 @@
 import Navbar from '../Navbar';
 import Headroom from 'react-headroom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Form2 from './Form2';
+import CheckRegistration from './CheckRegistration';
 //import ComingSoon from './ComingSoon';
 
 export default function Register() {
+    const [checkingRegistration, setCheckingRegistration] = useState(false); 
+
     useEffect(() => {
             document.body.style.backgroundColor = "#121111";
         }, []);
@@ -16,8 +19,7 @@ export default function Register() {
                     <Navbar dark/>
                 </Headroom>
             </div>
-
-            <Form2/>
+            {checkingRegistration ? <CheckRegistration/> : <Form2 setCheckingRegistration={setCheckingRegistration}/>}
         </>
     );
 };
