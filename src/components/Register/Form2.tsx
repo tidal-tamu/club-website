@@ -42,7 +42,7 @@ export default function Form2() {
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [formData, setFormData] = useState(initialFormData);
-    const [submittedData, setSubmittedData] = useState(initialFormData);
+    //const [submittedData, setSubmittedData] = useState(initialFormData);
 
     const handleChange = (e: React.ChangeEvent) => {
         const { name, value, type } = e.target as HTMLInputElement | HTMLSelectElement;
@@ -100,7 +100,7 @@ export default function Form2() {
                 setErrorMessage("");
                 console.log("Success:", result);
                 formRef.current?.reset();
-                setSubmittedData({ ...formData, Submission_Time: formattedTime });
+                //setSubmittedData({ ...formData, Submission_Time: formattedTime });
             } else {
                 console.error("Failed to submit. Please try again.", response);
             }

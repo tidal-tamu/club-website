@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
@@ -12,7 +12,7 @@ export default function Prizes() {
     const lastScrollRef = useRef(0);
     let curr = 0;
     let prevCurr = 0;
-    const [toggleRocket, setToggleRocket] = useState(false);
+    //const [toggleRocket, setToggleRocket] = useState(false);
 
     useEffect(() => {
         if (pathRef.current && rocketRef.current) {
@@ -45,7 +45,7 @@ export default function Prizes() {
 
                         if (curr != prevCurr) {
                             //console.log("toggle " + toggleRocket)
-                            setToggleRocket(curr === 1)
+                            //setToggleRocket(curr === 1)
                         }
 
                         prevCurr = curr
