@@ -19,7 +19,7 @@ export default function PastSponsors() {
                             target="_blank"
                             className="shrink-0">
                         <img
-                            src="./icons/logos/aws-logo.png"
+                            src="./icons/logos/aws-logo-black.png"
                             className="w-[100px] md:w-[100px] lg:w-[200px] transition-transform transform hover:scale-110"
                         />
                         </a>
@@ -35,7 +35,7 @@ export default function PastSponsors() {
                             target="_blank"
                             className="shrink-0">
                         <img
-                            src="./icons/logos/tamids-logo.png"
+                            src="./icons/logos/tamids-logo-red.png"
                             className="w-[200px] md:w-[200px] lg:w-[400px] transition-transform transform hover:scale-110"
                         />
                         </a>

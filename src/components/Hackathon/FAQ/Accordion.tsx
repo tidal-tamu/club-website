@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai"; // Importing the icons
 
 export default function Accordion({
     details,
@@ -16,35 +17,24 @@ export default function Accordion({
             {details.map((detail, index) => (
                 <div
                     key={detail.id}
-                    className="border border-navy rounded-lg mb-4 last:mb-0 overflow-hidden"
+                    className="border border-gray-800 rounded-lg mb-4 last:mb-0 overflow-hidden"
                 >
                     <summary
-                        className="flex items-center cursor-pointer justify-between bg-[#E2F6FF] text-black p-4 duration-300 hover:bg-navy hover:text-white transition-colors"
+                        className="flex items-center cursor-pointer justify-between text-white p-4 duration-300 hover:bg-gray-800 hover:text-white transition-colors"
                         onClick={() => toggleOpen(index)}
                     >
-                        <h5 className="font-semibold text-lg">
-                            {detail.question}
-                        </h5>
-                        <svg
-                            className={`w-6 h-6 transition-transform duration-350 ${
-                                openIndex === index ? "rotate-180" : "rotate-0"
-                            }`}
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M19 9l-7 7-7-7"
-                            />
-                        </svg>
+                        <h5 className="font-semibold text-lg">{detail.question}</h5>
+                        <div className={`w-6 h-6 trasition-transform duration-300 transform ${openIndex === index ? "rotate-180" : "rotate-0"}`}>
+                            {openIndex === index ? (
+                                <AiOutlineMinus className="w-6 h-6 transition-transform duration-350" />
+                            ) : (
+                                <AiOutlinePlus className="w-6 h-6 transition-transform duration-350" />
+                            )}
+                        </div>
                     </summary>
                     {openIndex === index && (
                         <div className="p-6">
-                            <p className="text-gray-600 text-lg font-normal leading-7 mb-0">
+                            <p className="text-white text-lg font-normal leading-7 mb-0">
                                 {detail.answer}
                             </p>
                         </div>

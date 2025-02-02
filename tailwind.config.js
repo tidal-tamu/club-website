@@ -27,16 +27,34 @@ export default {
             colors: {
                 navy: "#005174",
                 lightBlue: "#C5EDFF",
+                spaceBlack: "#121111",
+                hackBeige: "#D9D0B2",
+                hackRed: "#902300",
             },
             keyframes: {
                 float: {
                     "0%, 100%": { transform: "translateY(0)" },
                     "50%": { transform: "translateY(-5%)" },
                 },
+                sheep: {
+                    "0%, 100%": { transform: "translateY(0) rotate(-12deg)" },
+                    "50%": { transform: "translateY(-5%) rotate(-12deg)" },
+                },
+                meteor: {
+                    "0%": { transform: "rotate(215deg) translateX(0)", opacity: 1 },
+                    "70%": { opacity: 1 },
+                    "100%": {
+                      transform: "rotate(215deg) translateX(-500px)",
+                      opacity: 0,
+                    },
+                  },
             },
             animation: {
                 float: "float 2s ease-in-out infinite",
                 bubble: "float 3s ease-in-out infinite",
+                pulse: "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+                sheep: "sheep 3s ease-in-out infinite",
+                meteor: "meteor 5s linear infinite",
             },
         },
     },

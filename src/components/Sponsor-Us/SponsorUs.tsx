@@ -7,11 +7,13 @@ import Headroom from "react-headroom";
 export default function SponsorUs() {
     return (
         <>
-            <div className="sm:pt-12 flex flex-col h-full min-h-[600px]">
+            <div className="flex flex-col h-full min-h-[600px]">
                 <Headroom>
                     <Navbar />
                 </Headroom>
-                <Hero />
+                <div className="mt-12">
+                    <Hero />
+                </div>
             </div>
             <PastSponsors />
             <div className="bg-lightBlue">

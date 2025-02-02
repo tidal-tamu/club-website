@@ -31,12 +31,12 @@ const details2 = [
     },
     {
         question: "What is the judging criteria?",
-        answer: "The judging criteria will be released closer to the event. However, you can expect to be judged on creativity, technical difficulty, and presentation. 🧐",
+        answer: "The judging criteria will be released closer to the event. However, you can expect to be judged on creativity, technical difficulty, and presentation. Emphasis on CREATIVITY! 🧐",
         id: "6",
     },
     {
         question: "How do I sign up?",
-        answer: "Fill out our google form: https://forms.gle/wRGt7kma1zCvdGB36 🤠",
+        answer: "Fill out our registration form above! 🤠",
         id: "7",
     },
     {
@@ -48,12 +48,11 @@ const details2 = [
 
 export default function FAQ() {
     return (
-        <div className="w-full">
-            <h1 className="text-navy text-5xl lg:text-6xl font-bold text-center text-nowrap mb-10">
-                FAQ
+        <div className="w-full py-16 min-h-screen xl:min-h-0 xl:h-[75vh]" id="faq">
+            <h1 className="text-hackRed text-[46px] md:text-6xl lg:text-7xl font-bold text-center mb-10 plasma-bold">
+                ANY QUESTIONS?
             </h1>
-            ;
-            <div className="flex flex-col lg:flex-row">
+            <div className="flex flex-col lg:flex-row pt-12 w-full md:w-full lg:w-5/6 xl:w-3/4 justify-self-center">
                 <Accordion details={details1} />
                 <Accordion details={details2} />
             </div>
