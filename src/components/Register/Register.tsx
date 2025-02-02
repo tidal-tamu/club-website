@@ -1,7 +1,6 @@
 import Navbar from '../Navbar';
 import Headroom from 'react-headroom';
 import { useEffect } from 'react';
-import Form from './Form';
 import Form2 from './Form2';
 //import ComingSoon from './ComingSoon';
 
