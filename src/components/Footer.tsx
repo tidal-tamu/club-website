@@ -2,21 +2,18 @@ interface NavbarProps {
     dark?: boolean;
 }
 
-export default function Footer({dark = false}: NavbarProps) {
+export default function Footer({ dark = false }: NavbarProps) {
     return (
-        <footer className={`w-full text-nowrap relative pt-44 lg:pt-64 bg-repeat-x bg-right-top transition-[padding] ${
-            dark ? "bg-[url('/waves/wave-footer-beige.svg')]" : "bg-[url('/waves/wave-footer.svg')]"
-        }` }>
-            <img
-                    src={dark ? "./images/lander.png" : "./icons/shapes/red-star.svg"}
-                    className={`absolute right-0 top-0 ${
-                        dark ? "-rotate-12 -translate-x-3/4 -translate-y-1/4 w-[120px] lg:w-[220px] " : " w-[150px] lg:w-[250px] -translate-x-0 -translate-y-1/4"
-                    }`}
-                />  
-            <div className={`flex flex-col justify-center items-center gap-8 lg:gap-12 px-20 pb-16 ${
-                dark ? "bg-hackBeige" : "bg-navy"
-            } ${dark ? "text-black" : "text-white"
+        <footer className={`w-full text-nowrap relative pt-44 lg:pt-64 bg-repeat-x bg-right-top transition-[padding] ${dark ? "bg-[url('/waves/wave-footer-beige.svg')]" : "bg-[url('/waves/wave-footer.svg')]"
             }`}>
+            <img
+                src={dark ? "./images/lander.png" : "./icons/shapes/red-star.svg"}
+                className={`absolute right-0 top-0 ${dark ? "-rotate-12 -translate-x-3/4 -translate-y-1/4 w-[120px] lg:w-[220px] " : " w-[150px] lg:w-[250px] -translate-x-0 -translate-y-1/4"
+                    }`}
+            />
+            <div className={`flex flex-col justify-center items-center gap-8 lg:gap-12 px-20 pb-16 ${dark ? "bg-hackBeige" : "bg-navy"
+                } ${dark ? "text-black" : "text-white"
+                }`}>
                 <span className="text-4xl font-semibold"> FOLLOW US! </span>
                 <div className="flex justify-center items-center gap-3 lg:gap-6">
                     <a
@@ -75,12 +72,18 @@ export default function Footer({dark = false}: NavbarProps) {
                         />
                     </a>
                 </div>
-                <a
-                    href="/"
-                    className="flex justify-center items-center font-semibold text-lg gap-1 select-none"
-                >
-                    @ 2025 TIDALTAMU
-                </a>
+                <div className="flex flex-col gap-4 justify-center place-content-center items-center">
+                    <a href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md" className="">
+                        <p className="underline">MLH code of conduct</p>
+                    </a>
+                    <a
+                        href="/"
+                        className="flex justify-center items-center font-semibold text-lg gap-1 select-none"
+                    >
+                        @ 2025 TIDALTAMU
+                    </a>
+                </div>
+
             </div>
         </footer>
     );

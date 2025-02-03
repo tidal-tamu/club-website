@@ -12,6 +12,7 @@ const initialFormData = {
     Phone_Number: '',
     Emergency_Phone_Number: '',
     School: '',
+    Country: '',
     Major: '',
     Grad_Year: '',
     Accepted_COC: false,
@@ -44,6 +45,10 @@ const majorOptions = [
     "Other (Engineering)",
     "Other (Non-Engineering)"
 ];
+
+const countryOptions = [
+    "United States", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua & Deps", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Central African Rep", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Congo {Democratic Rep}", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland {Republic}", "Israel", "Italy", "Ivory Coast", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea North", "Korea South", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar, {Burma}", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russian Federation", "Rwanda", "St Kitts & Nevis", "St Lucia", "Saint Vincent & the Grenadines", "Samoa", "San Marino", "Sao Tome & Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+]
 
 export default function Form2({ setCheckingRegistration }: Form2Props) {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -96,7 +101,7 @@ export default function Form2({ setCheckingRegistration }: Form2Props) {
 
         try {
             const response = await fetch(
-                "https://script.google.com/macros/s/AKfycbw9dRYgi6lfDCikYZyDA87DyP35tQ8TOnTRH3mGCTzeMJh2cJXob51rfQ_BYzx24qZXIA/exec",
+                "https://script.google.com/macros/s/AKfycbzNhPbPmwliyMO59syxbdMglV2cH7lOgpld9MVvvu86PYbmYvo492l9JHo6UxfLvSAkgQ/exec",
                 {
                     method: "POST",
                     body: toSend,
@@ -185,6 +190,16 @@ export default function Form2({ setCheckingRegistration }: Form2Props) {
                         </label>
 
                         <label className='flex flex-col gap-1'>
+                            <p>Country of Residence <span className="text-red-500">*</span></p>
+                            <select name="Country" className="p-3 border border-gray-300 rounded" value={formData.Country} onChange={handleChange} required>
+                                <option value="">Select Country</option>
+                                {countryOptions.map((country, index) => (
+                                    <option key={index} value={country}>{country}</option>
+                                ))}
+                            </select>
+                        </label>
+
+                        <label className='flex flex-col gap-1'>
                             <p>School <span className="text-red-500">*</span></p>
                             <select name="School" className="p-3 border border-gray-300 rounded" value={formData.School} onChange={handleChange} required>
                                 <option value="">Select School</option>
@@ -228,7 +243,7 @@ export default function Form2({ setCheckingRegistration }: Form2Props) {
                             <input type="checkbox" name="Share_With_MLH" className="mr-3 size-4 sm:size-[13px]" checked={formData.Share_With_MLH} onChange={handleChange} required />
                             <label htmlFor="Share_With_MLH">I authorize you to share my application/registration information with Major League Hacking for event
                                 administration, ranking, and MLH administration in-line with the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-500">MLH Privacy Policy </a>.
-                                I further agree to the terms of both the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-500">MLH Contest Terms and Conditions </a>
+                                I further agree to the terms of both the <a href='https://github.com/MLH/mlh-policies/blob/main/contest-terms.md' className="underline text-blue-500">MLH Contest Terms and Conditions </a>
                                 and the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-500">MLH Privacy Policy </a>. <span className="text-red-500">*</span></label>
                         </div>
 
