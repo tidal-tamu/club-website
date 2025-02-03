@@ -15,7 +15,7 @@ const day1: ScheduleItem[] = [
     { time: "5:00 PM", event: "Mentors Dismissed", location: "REC 243" },
     { time: "6:00 PM", event: "Dinner!", location: "REC 243" },
     { time: "11:00 PM", event: "REC closes, overnight starts", location: "REC 243" },
-    { time: "12:59 PM", event: "End of Day One!", location: "REC 243" },
+    { time: "11:59 PM", event: "End of Day One!", location: "REC 243" },
 ];
 
 const day2: ScheduleItem[] = [

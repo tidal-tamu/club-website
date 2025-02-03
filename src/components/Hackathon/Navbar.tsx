@@ -87,18 +87,18 @@ export default function Navbar({dark = false}: NavbarProps) {
                 ))}
 
                 <a
-                    href="https://discord.gg/eQ8ScamG4H"
+                    href="/register"
                     target="_blank"
-                    className={`flex mt-12 justify-center items-center shrink-0 gap-3 font-bold text-navy bg-[#EDEAE6] px-3 py-1 md:px-6 md:py-2 md:text-xl rounded-lg border-[1px] border-[#C9C9C9] cursor-pointer hover:bg-[#c6c4c4] transition-all ${
+                    className={`flex mt-10 justify-center items-center shrink-0 gap-3 font-bold text-white bg-hackRed px-3 py-2 md:px-6 md:py-2 md:text-xl rounded-lg border-[1px] border-[#ba5353] cursor-pointer hover:bg-[#9e3b3b] transition-all ${
                         isOpen ? "" : "hidden"
                     }`}
                 >
-                    Discord
+                    Apply
                     <img
-                        src="./icons/logos/discord-logo.svg"
-                        alt="Discord Logo"
-                        className="w-[24px] h-[18px] md:w-[28px] md:h-[21px] transition-all"
-                    />
+                            src="./icons/shapes/arrow.svg"
+                            alt="->"
+                            className="w-[24px] h-[20px] transition-all"
+                        />
                 </a>
             </div>
         </nav>
