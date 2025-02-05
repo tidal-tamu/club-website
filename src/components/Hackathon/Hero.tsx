@@ -4,7 +4,7 @@ import { Meteors } from "./Meteors";
 export default function Hero() {
     return (
         <div className="h-full w-full flex flex-col md:flex-row gap-7 justify-center justify-self-center items-center transition-[padding] place-self-center px-8 pt-3">
-             {/* <a href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white" className="max-w-[100px] min-w-[60px] absolute right-[80px] sm:right-[50px] top-0 w-[10%] z-30"><img src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-white.svg" alt="Major League Hacking 2025 Hackathon Season"/></a> */}
+             <a href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white" className="max-w-[100px] min-w-[60px] absolute right-[80px] sm:right-[50px] top-0 w-[10%] z-30"><img src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-white.svg" alt="Major League Hacking 2025 Hackathon Season"/></a>
             <Meteors number={7}/>
             <img
                 src="/icons/shapes/8star.png"

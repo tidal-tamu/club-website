@@ -39,7 +39,7 @@ export default function Navbar({dark = false}: NavbarProps) {
     }, [isOpen]);
 
     return (
-        <nav className={`relative z-10 w-full font-mont font-semibold text-nowrap flex sm:flex-row flex-col lg:justify-between items-center p-6 pt-10 px-10 gap-6 xl:pl-32 sm:pr-30 lg:py-9 lg:gap-20 transition-[padding] ${
+        <nav className={`relative z-10 w-full font-mont font-semibold text-nowrap flex sm:flex-row flex-col lg:justify-between items-center p-6 pt-10 px-10 gap-6 xl:pl-32 sm:pr-44 lg:py-9 lg:gap-20 transition-[padding] ${
             hasScrolled || isOpen ? "border-b-2" : "bg-transparent sm:mt-12"
         } ${dark ? "bg-spaceBlack text-white border-gray-800" : "bg-white text-black"}`}
         >
