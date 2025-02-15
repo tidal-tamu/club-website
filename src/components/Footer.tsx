@@ -73,14 +73,15 @@ export default function Footer({ dark = false }: NavbarProps) {
                     </a>
                 </div>
                 <div className="flex flex-col gap-4 justify-center place-content-center items-center">
-                    <a href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md" className="">
-                        <p className="underline">MLH code of conduct</p>
-                    </a>
+                    
                     <a
                         href="/"
                         className="flex justify-center items-center font-semibold text-lg gap-1 select-none"
                     >
                         @ 2025 TIDALTAMU
+                    </a>
+                    <a href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md" className="absolute bottom-4">
+                        <p className="underline text-gray-70000 text-sm">MLH code of conduct</p>
                     </a>
                 </div>
 

@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import Navbar from '../Navbar';
+import Headroom from 'react-headroom';
 import logo from '/icons/logos/tidal-blueblack.png';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';  // Theme CSS
 import 'primereact/resources/primereact.min.css'; // Core PrimeReact CSS
@@ -9,6 +11,10 @@ export default function CheckRegistration() {
     const [searching, setSearching] = useState(false);
     const [emailExists, setEmailExists] = useState<boolean | null>(null);
 
+    useEffect(() => {
+        document.body.style.backgroundColor = "#121111";
+    }, []);
+
     const handleLookupChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setLookupEmail(e.target.value);
     };
@@ -16,7 +22,7 @@ export default function CheckRegistration() {
     const handleEmailLookup = async () => {
         setSearching(true);
         try {
-            const response = await fetch(`https://script.google.com/macros/s/AKfycbw9dRYgi6lfDCikYZyDA87DyP35tQ8TOnTRH3mGCTzeMJh2cJXob51rfQ_BYzx24qZXIA/exec?email=${lookupEmail}`);
+            const response = await fetch(`https://script.google.com/macros/s/AKfycbzNhPbPmwliyMO59syxbdMglV2cH7lOgpld9MVvvu86PYbmYvo492l9JHo6UxfLvSAkgQ/exec?email=${lookupEmail}`);
             const result = await response.json();
             setEmailExists(result.exists);
         } catch (error) {
@@ -27,6 +33,12 @@ export default function CheckRegistration() {
     };
 
     return (
+        <>
+        <div className="relative z-50 flex flex-col">
+                <Headroom>
+                    <Navbar dark />
+                </Headroom>
+            </div>
         <div className="bg-spaceBlack flex flex-col items-center justify-center">
 
             <div className="w-11/12 sm:w-10/12 lg:w-[60vw] px-5 py-16 my-20 bg-white rounded-2xl z-10 relative">
@@ -66,5 +78,6 @@ export default function CheckRegistration() {
 
             </div>
         </div>
+        </>
     );
 }
