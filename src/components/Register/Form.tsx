@@ -1,46 +1,138 @@
-import React, { useRef, useState } from 'react';
-import { Calendar } from 'primereact/calendar';
-import videobg from '/bg_footage_tidal.mp4';
-import logo from '/icons/logos/tidal-blueblack.png';
-import 'primereact/resources/themes/lara-light-indigo/theme.css';  // Theme CSS
-import 'primereact/resources/primereact.min.css'; // Core PrimeReact CSS
-import 'primeicons/primeicons.css'; // Icons
+import React, { useState, useRef } from 'react';
+
+const initialFormData = {
+    First_Name: '',
+    Last_Name: '',
+    Age: '',
+    Email: '',
+    Phone_Number: '',
+    Emergency_Phone_Number: '',
+    School: '',
+    Country: '',
+    Major: '',
+    Grad_Year: '',
+    Accepted_COC: false,
+    Share_With_MLH: false,
+    Allow_Emails: false,
+    Submission_Time: '',
+    Need_Team: '',
+}
+
+const schoolOptions = [
+    "Texas A&M University",
+    "Blinn College",
+    "The University of Texas at Dallas",
+    "The University of Texas at Austin",
+    "Baylor University",
+    "Texas Tech University",
+    "University of North Texas",
+    "University of Houston",
+    "Other"
+];
+
+const majorOptions = [
+    "Computer Science",
+    "Computer Engineering",
+    "Data Engineering / Data Science",
+    "Electrical Engineering",
+    "Mechanical Engineering",
+    "General Engineering",
+    "Computing",
+    "Statistics",
+    "Other (Engineering)",
+    "Other (Non-Engineering)"
+];
+
+const countryOptions = [
+    "United States", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua & Deps", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", 
+    "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia Herzegovina", "Botswana", "Brazil", 
+    "Brunei", "Bulgaria", "Burkina", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Central African Rep", "Chad", "Chile", "China", "Colombia", 
+    "Comoros", "Congo", "Congo {Democratic Rep}", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", 
+    "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", 
+    "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", 
+    "Iraq", "Ireland {Republic}", "Israel", "Italy", "Ivory Coast", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea North", "Korea South", 
+    "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macedonia", 
+    "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", 
+    "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar, {Burma}", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", 
+    "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russian Federation", 
+    "Rwanda", "St Kitts & Nevis", "St Lucia", "Saint Vincent & the Grenadines", "Samoa", "San Marino", "Sao Tome & Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", 
+    "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Swaziland", 
+    "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", 
+    "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+]
 
 export default function Form() {
-    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-    const formRef = useRef<HTMLFormElement | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const formRef = useRef<HTMLFormElement | null>(null);
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [formData, setFormData] = useState(initialFormData);
+    //const [submittedData, setSubmittedData] = useState(initialFormData);
+
+    const handleChange = (e: React.ChangeEvent) => {
+        const { name, value, type } = e.target as HTMLInputElement | HTMLSelectElement;
+        if (type === 'checkbox') {
+            const { checked } = e.target as HTMLInputElement;
+            setFormData({
+                ...formData,
+                [name]: checked
+            });
+        } else {
+            setFormData({
+                ...formData,
+                [name]: value
+            });
+        }
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        const formData = new FormData(formRef.current!);
+        const currentTime = new Date();
+        const formattedTime = currentTime.toLocaleString('en-US', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        });
 
-        if (selectedDate) {
-            formData.append("Date", selectedDate.toISOString().split('T')[0]);
-        }
+        setFormData({
+            ...formData,
+            Submission_Time: formattedTime
+        });
+        console.log('Form Data Submitted:', { ...formData, submissionTime: formattedTime });
+
+        const toSend = new FormData(formRef.current!);
+        toSend.append('Submission_Time', formattedTime);
+        toSend.append('Allow_Emails', formData.Allow_Emails.toString());
 
         try {
             const response = await fetch(
-                "https://script.google.com/macros/s/AKfycbzZssx30TWuJBvIBc17OjlkdXzHF_m_2iFIYXdMj4P0mIhPCbrk6jKat_8Me4a7lsytCA/exec",
+                "https://script.google.com/macros/s/AKfycbzNhPbPmwliyMO59syxbdMglV2cH7lOgpld9MVvvu86PYbmYvo492l9JHo6UxfLvSAkgQ/exec",
                 {
                     method: "POST",
-                    body: formData,
+                    body: toSend,
                 }
             );
 
             if (response.ok) {
                 const result = await response.json();
-                setSuccessMessage("Registration successful!");
-                setErrorMessage("");
-                console.log("Success:", result);
-                formRef.current?.reset();
-                setSelectedDate(null);
+                if (result.status === 'success') {
+                    setSuccessMessage("Registration successful!");
+                    setErrorMessage("");
+                    console.log("Success:", result);
+                    formRef.current?.reset();
+                } else {
+                    setErrorMessage(result.message);
+                    setSuccessMessage("");
+                    console.error("Failed to submit:", result.message);
+                }
             } else {
-                throw new Error("Failed to submit. Please try again.");
+                console.error("Failed to submit. Please try again.", response);
             }
         } catch (error) {
             console.error("Error:", error);
@@ -48,159 +140,149 @@ export default function Form() {
             setSuccessMessage("");
         } finally {
             setIsSubmitting(false);
+            setFormData({ ...initialFormData });
         }
     };
 
     return (
-        <div className="bg-black flex flex-col items-center justify-center">
-            <video src={videobg} autoPlay loop muted className="fixed top-0 left-0 w-full h-full object-cover z-1"/>
+        <div className="bg-spaceBlack flex flex-col items-center justify-center">
+            <video src="/bg_footage_tidal.mp4" autoPlay loop muted className="fixed top-0 left-0 w-full h-full object-cover z-1 hidden sm:inline" />
 
-            <div className="w-[60vw] py-16 my-20 bg-white rounded-lg z-10 relative"> 
-                <img src={logo} className="w-[16vw] mx-auto pt-10 pb-5" />
+            <div className="w-11/12 sm:w-10/12 lg:w-[60vw] px-5 py-16 my-20 bg-white rounded-2xl z-10 relative">
+                <img src="/icons/logos/tidal-newblue.svg" className="w-64 mx-auto pt-4 pb-5" />
 
-                <h1 className="text-3xl font-semibold text-center pb-16"> TIDALHACK 2025 Registration </h1>
-
-                <form ref={formRef} onSubmit={handleSubmit}>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 px-24">
-                        {/* Left Column */}
-                        <div className="flex flex-col gap-5"> 
-                            {[
-                                ['First Name', 'First_Name'],
-                                ['Last Name', 'Last_Name'],
-                                ['Email', 'Email'],
-                                ['Phone Number', 'Phone_Number'],
-                                ['School', 'School'],
-                                ['Major', 'Major'],
-                                ['Year', 'Year'],
-                            ].map((field) => (
-                                <div key={field[0]}>
-                                    <label className="block text-base font-normal">
-                                        {field[0]}
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id={field[0].toLowerCase().replace(/\s/g, '-')}
-                                        name={field[1]}
-                                        className="w-[20vw] border border-gray-300 rounded-md p-2"
-                                    />
-                                </div>
-                            ))}
-
-                            <div>
-                                <label className="block text-sm font-medium">
-                                    Have you participated in TIDALHACK before? (Yes/No)
-                                </label>
-                                <select
-                                    id="question"
-                                    name="Participated"
-                                    className="w-full border border-gray-300 rounded-md p-2"
-                                >
-                                    <option value="yes">Yes</option>
-                                    <option value="no">No</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        {/* Right Column */}
-                        <div className="flex flex-col gap-5">
-                            <div>
-                                <label htmlFor="date" className="block text-base font-normal">
-                                    Date of Registration
-                                </label>
-                                <Calendar
-                                    id="date"
-                                    name='Date'
-                                    value={selectedDate}
-                                    onChange={(e) => setSelectedDate(e.value || null)}
-                                    showIcon
-                                    dateFormat="yy/mm/dd"
-                                    className="w-full border border-gray-300 rounded-md p-2"
-                                    placeholder="Select a date"
-                                    inline
-                                />
-                            </div>
+                {/* Form Fields: */}
+                {successMessage ? (
+                    <div className="justify-center justify-self-center items-center text-center pb-4">
+                        <h1 className="text-green-500 text-center text-3xl font-bold pt-4">{successMessage}</h1>
+                        <div className="justify-self-center text-center px-[15%]">
+                            <h1 className="sm:text-lg pt-8">
+                                Thank you for registering for TIDALHACK! Your registration process is now complete.
+                                We will email you a confirmation of your registration before the event. If you have any
+                                questions or would like to edit your registration, please contact us
+                                at <a href="mailto:tidaltamu@gmail.com" className="underline">tidaltamu@gmail.com</a> or reach out to an officer in our discord.</h1>
+                            {/* {<pre>{JSON.stringify(submittedData, null, 2)}</pre>} */}
+                            <a href="/">
+                                <button className="p-4 rounded-xl bg-spaceBlack text-white mt-10 hover:bg-[#292828]"> return to home</button>
+                            </a>
                         </div>
                     </div>
+                ) : (
+                    <form className="flex flex-col space-y-7 px-1 sm:px-[15%]" onSubmit={handleSubmit} ref={formRef}>
+                        <h1 className="text-2xl sm:text-3xl font-semibold text-center pb-10 pt-2"> TIDALHACK 2025 Registration </h1>
+                        <label className='flex flex-col gap-1'>
+                            <p>First Name <span className="text-red-500">*</span></p>
+                            <input type="text" name="First_Name" placeholder="First Name" className="p-3 border border-gray-300 rounded" value={formData.First_Name} onChange={handleChange} required />
+                        </label>
 
-                    <div className="grid grid-cols-2 gap-10 px-24 py-5">
-                        <div>
-                            {[['Team Member 1', 'TM1_Name'], 
-                                ['Team Member 2', 'TM2_Name'] ,
-                                ['Team Member 3', 'TM3_Name'],
-                                ['Emergency Contact', 'EC_Name']
-                            ].map((field) => (
-                                <div key={field[0]} className="mb-4">
-                                    <label className="block text-base font-normal">
-                                        {field[0]} Name
-                                    </label>
-                                    <input
-                                        name={field[1]}
-                                        type="text"
-                                        className="w-full border border-gray-300 rounded-md p-2"
-                                    />
-                                </div>
-                            ))}
+                        <label className='flex flex-col gap-1'>
+                            <p>Last Name <span className="text-red-500">*</span></p>
+                            <input type="text" name="Last_Name" placeholder="Last Name" className="p-3 border border-gray-300 rounded" value={formData.Last_Name} onChange={handleChange} required />
+                        </label>
+
+                        <label className='flex flex-col gap-1'>
+                            <p>Age <span className="text-gray-500 text-sm pl-1">( You Must be 18 or older )</span> <span className="text-red-500">*</span></p>
+                            <input type="Age" name="Age" placeholder="Age" className="p-3 border border-gray-300 rounded" value={formData.Age} onChange={handleChange} required />
+                        </label>
+
+                        <label className='flex flex-col gap-1'>
+                            <p>Email <span className="text-red-500">*</span></p>
+                            <input name="Email" placeholder="Email" className="p-3 border border-gray-300 rounded" value={formData.Email} onChange={handleChange} required />
+                        </label>
+
+                        <label className='flex flex-col gap-1'>
+                            <p>Phone Number <span className="text-red-500">*</span></p>
+                            <input name="Phone_Number" placeholder="Phone Number" className="p-3 border border-gray-300 rounded" value={formData.Phone_Number} onChange={handleChange} required />
+                        </label>
+
+                        <label className='flex flex-col gap-1'>
+                            <p>Emergency Contact Phone Number <span className="text-red-500">*</span></p>
+                            <input name="Emergency_Phone_Number" placeholder="Phone Number" className="p-3 border border-gray-300 rounded" value={formData.Emergency_Phone_Number} onChange={handleChange} required />
+                        </label>
+
+                        <label className='flex flex-col gap-1'>
+                            <p>Country of Residence <span className="text-red-500">*</span></p>
+                            <select name="Country" className="p-3 border border-gray-300 rounded" value={formData.Country} onChange={handleChange} required>
+                                <option value="">Select Country</option>
+                                {countryOptions.map((country, index) => (
+                                    <option key={index} value={country}>{country}</option>
+                                ))}
+                            </select>
+                        </label>
+
+                        <label className='flex flex-col gap-1'>
+                            <p>School <span className="text-red-500">*</span></p>
+                            <select name="School" className="p-3 border border-gray-300 rounded" value={formData.School} onChange={handleChange} required>
+                                <option value="">Select School</option>
+                                {schoolOptions.map((school, index) => (
+                                    <option key={index} value={school}>{school}</option>
+                                ))}
+                            </select>
+                        </label>
+
+                        <label className='flex flex-col gap-1'>
+                            <p>Major <span className="text-red-500">*</span></p>
+                            <select name="Major" className="p-3 border border-gray-300 rounded" value={formData.Major} onChange={handleChange} required>
+                                <option value="">Select Major</option>
+                                {majorOptions.map((major, index) => (
+                                    <option key={index} value={major}>{major}</option>
+                                ))}
+                            </select>
+                        </label>
+
+                        <label className='flex flex-col gap-1'>
+                            <p>Graduation Year <span className="text-red-500">*</span></p>
+                            <input type="text" name="Grad_Year" placeholder="Graduation Year" className="p-3 border border-gray-300 rounded" value={formData.Grad_Year} onChange={handleChange} required />
+                        </label>
+
+                        <label className='flex flex-col gap-1'>
+                            <p>Do you already have a team? <span className="text-red-500">*</span></p>
+                            <select name="Need_Team" className="p-3 border border-gray-300 rounded" value={formData.Need_Team} onChange={handleChange} required>
+                                <option value="">Select option</option>
+                                <option value="Has a Team">Yes - I already have a team</option>
+                                <option value="Needs more Members">Yes - but would like additional members</option>
+                                <option value="Needs a Team">No - and I would like to be paired</option>
+                                <option value="Working Alone">No - and I would like to work alone</option>
+                            </select>
+                        </label>
+                        <div className="flex items-center text-sm">
+                            <input type="checkbox" name="Accepted_COC" className="mr-3 size-4 sm:size-[13px]" checked={formData.Accepted_COC} onChange={handleChange} required />
+                            <label htmlFor="Accepted_COC">I have read and agree to the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-500">MLH Code of Conduct</a>. <span className="text-red-500">*</span></label>
                         </div>
 
-                        <div>
-                            {[['Team Member 1', 'TM1_Grade'], 
-                                ['Team Member 2', 'TM1_Grade'], 
-                                ['Team Member 3', 'TM1_Grade'],
-                                ['Emergency Contact', 'EC_Number'],
-                            ].map((field) => (
-                                <div key={field[0]} className="mb-4">
-                                    <label className="block text-base font-normal">
-                                        {field[0]} Phone Number
-                                    </label>
-                                    <input
-                                        name={field[1]}
-                                        type="text"
-                                        className="w-full border border-gray-300 rounded-md p-2"
-                                    />
-                                </div>
-                            ))}
+                        <div className="flex items-center text-sm">
+                            <input type="checkbox" name="Share_With_MLH" className="mr-3 size-4 sm:size-[13px]" checked={formData.Share_With_MLH} onChange={handleChange} required />
+                            <label htmlFor="Share_With_MLH">I authorize you to share my application/registration information with Major League Hacking for event
+                                administration, ranking, and MLH administration in-line with the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-500">MLH Privacy Policy </a>.
+                                I further agree to the terms of both the <a href='https://github.com/MLH/mlh-policies/blob/main/contest-terms.md' className="underline text-blue-500">MLH Contest Terms and Conditions </a>
+                                and the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-500">MLH Privacy Policy </a>. <span className="text-red-500">*</span></label>
                         </div>
-                    </div>
 
-                    <div className="px-24 py-5 space-y-8">
-                        {['I Agree to the TIDALHACK Code of Conduct', 
-                        'I will show up on March 8th and 9th', 
-                        'Please confirm that you are 18 years of age'].map((field, index) => (
-                            <div key={index} className="flex items-center gap-2">
-                                <input
-                                    required
-                                    type="checkbox"
-                                    id={`checkbox-${index}`}
-                                    className="border border-gray-300 rounded-md w-[20px] h-[20px]"
-                                />
-                                <label htmlFor={`checkbox-${index}`} className="text-base font-normal">
-                                    {field}
-                                </label>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-10 px-24">
-                        <div></div>
-
-                        <div className="flex justify-end">
-                            <button
-                                type="submit"
-                                className="w-full px-8 py-3 bg-gray-950 text-white rounded-lg shadow-md hover:bg-gray-800 transition duration-300"
-                                disabled={isSubmitting}
-                            >
-                                {isSubmitting ? "Submitting..." : "Register"}
-                            </button>
+                        <div className="flex items-center text-sm">
+                            <input type="checkbox" name="Allow_Emails" className="mr-3 size-4 sm:size-[13px]" checked={formData.Allow_Emails} onChange={handleChange} />
+                            <label htmlFor="Allow_Emails">I authorize MLH to send me occasional emails about relevant events, career opportunities, and community announcements.</label>
                         </div>
-                    </div>
-                    {successMessage && (
-                        <p className="text-green-500 text-center mt-4">{successMessage}</p>
-                    )}
-                    {errorMessage && (
-                        <p className="text-red-500 text-center mt-4">{errorMessage}</p>
-                    )}
-                </form>
+
+                        <button
+                            type="submit"
+                            className="w-full px-8 py-3 bg-gray-950 text-white rounded-lg shadow-md hover:bg-gray-800 transition duration-300"
+                            disabled={isSubmitting}
+                        >
+                            {isSubmitting ? "Submitting..." : "Register"}
+                        </button>
+                        {successMessage && (
+                            <p className="text-green-500 text-center mt-4">{successMessage}</p>
+                        )}
+                        {errorMessage && (
+                            <p className="text-red-500 text-center mt-4">{errorMessage}</p>
+                        )}
+
+                        <p className="text-sm sm:text-base">Already Registered? <a href="/check-registration" className="underline cursor-pointer">Check your registration here</a>.</p>
+                    </form>
+                )}
+
             </div>
         </div>
     );
 }
+
