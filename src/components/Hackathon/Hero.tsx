@@ -30,7 +30,7 @@ export default function Hero() {
                 </div>
                 <div className="flex justify-center items-center gap-5">
                     <a
-                        href="https://discord.gg/eQ8ScamG4H"
+                        href="https://discord.gg/QCHKPUUxRB"
                         target="_blank"
                         className="flex justify-center items-center shrink-0 gap-3 font-bold text-navy bg-[#EDEAE6] px-3 py-2 sm:p1 lg:px-6 md:text-xl rounded-lg border-[1px] border-[#C9C9C9] cursor-pointer hover:bg-[#c6c4c4] transition-all"
                     >
