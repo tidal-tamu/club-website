@@ -10,27 +10,27 @@ export default function Footer({ dark = false }: NavbarProps) {
                 src={dark ? "./images/lander.png" : "./icons/shapes/red-star.svg"}
                 className={`absolute right-0 top-0 ${dark ? "-rotate-12 -translate-x-3/4 -translate-y-1/4 w-[120px] lg:w-[220px] " : " w-[150px] lg:w-[250px] -translate-x-0 -translate-y-1/4"}`}
             />
-            <div className={`mx-auto px-[18vw] pb-28 grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12 ${dark ? "bg-hackBeige" : "bg-navy"
+            <div className={`mx-auto px-[10vw] pb-28 lg:px-[16vw] grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12 ${dark ? "bg-hackBeige" : "bg-navy"
                 } ${dark ? "text-black" : "text-white"
                 }`}>
                 <div className="flex flex-col items-start">
                     <img src={dark ? "./icons/logos/tidal-transparent.png" : "./icons/logos/tidal-white-transparent.png"} alt="TIDAL TAMU Logo" className="w-36" />
                     <br />
                     <p className="mt-2 font-bold text-xl">TIDALTAMU</p>
-                    <p className="text-lg">The AI Wave Starts Here</p>
+                    <p className="text-sm lg:text-base xl:text-lg">The AI Wave Starts Here</p>
                 </div>
                 
-                    <div>
-                    <h3 className="font-semibold text-xl">Sponsor Us</h3>
-                    <br />
-                    <button
-                        onClick={() => {
-                            navigator.clipboard.writeText("tidaltamu@gmail.com");
-                            alert("Email copied to clipboard!");
-                        }}
-                        className="text-lg hover:underline cursor-pointer"
-                    >
-            tidaltamu@gmail.com
+                <div>
+                <h3 className="font-semibold text-xl">Sponsor Us</h3>
+                <br />
+                <button
+                    onClick={() => {
+                        navigator.clipboard.writeText("tidaltamu@gmail.com");
+                        alert("Email copied to clipboard!");
+                    }}
+                    className="text-sm lg:text-base hover:underline cursor-pointer"
+                >
+                tidaltamu@gmail.com
         </button>
                 </div>
                 

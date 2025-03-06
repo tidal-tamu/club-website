@@ -33,7 +33,7 @@ export default function Hero() {
     }
 
     return (
-        <div className="h-full w-full flex flex-col md:flex-row gap-7 justify-center justify-self-center items-center transition-[padding] place-self-center px-8 pt-3">
+        <div className="h-full w-full relative flex flex-col md:flex-row gap-7 justify-center justify-self-center items-center transition-[padding] place-self-center px-8 pt-3">
              <a href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white" className="max-w-[100px] min-w-[60px] absolute right-[80px] sm:right-[50px] top-0 w-[10%] z-30"><img src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-white.svg" alt="Major League Hacking 2025 Hackathon Season"/></a>
              
             {meteors}
@@ -43,11 +43,11 @@ export default function Hero() {
                 className="lg:ml-32 2xl:ml-36 md:mb-0 w-64 md:w-1/2 xl:w-1/3 animate-pulse"
             />
 
-            <div className="relative zing-base right-64 top-52 text-white font-bold text-6xl px-4 py-2 rounded-lg hidden md:block w-[500px]">
-                <p className="text-left w-full">
+            <div className="absolute zing-base left-[25vw] top-[55vh] text-white font-bold px-4 py-2 rounded-lg hidden md:block w-[25vw] lg:w-[25vw] xl:w-[20vw] 2xl:w-[15vw]">
+                <p className="text-left w-full  text-4xl lg:text-5xl 2xl:text-6xl font-light">
                     {formatNumber(timeLeft.days)}:{formatNumber(timeLeft.hours)}:{formatNumber(timeLeft.minutes)}:{formatNumber(timeLeft.seconds)}
                     <br />
-                    <p className="text-3xl text-right font-light w-full">till hacking starts!</p>
+                    <p className="text-xl lg:text-2xl 2xl:text-3xl text-right font-light w-full" >till hacking starts!</p>
                 </p>
             </div>
 
