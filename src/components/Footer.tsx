@@ -17,7 +17,7 @@ export default function Footer({ dark = false }: NavbarProps) {
                     <img src={dark ? "./icons/logos/tidal-transparent.png" : "./icons/logos/tidal-white-transparent.png"} alt="TIDAL TAMU Logo" className="w-36" />
                     <br />
                     <p className="mt-2 font-bold text-xl">TIDALTAMU</p>
-                    <p className="text-sm lg:text-base xl:text-lg">The AI Wave Starts Here</p>
+                    <p className="text-xs lg:text-sm xl:text-base">The AI Wave Starts Here</p>
                 </div>
                 
                 <div>
@@ -31,7 +31,7 @@ export default function Footer({ dark = false }: NavbarProps) {
                     className="text-sm lg:text-base hover:underline cursor-pointer"
                 >
                 tidaltamu@gmail.com
-        </button>
+                </button>
                 </div>
                 
                 <div>
