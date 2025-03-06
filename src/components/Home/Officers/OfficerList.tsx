@@ -10,7 +10,7 @@ export interface OfficerItem {
 
 export default function OfficerList({details}: OfficerItem) {
     return (
-        <div className="sm:flex justify-start lg:w-full gap-2 md:gap-4">
+        <div id="officers" className="sm:flex justify-start lg:w-full gap-2 md:gap-4">
             <img 
                 src={details.pfp}
                 className="w-[6rem] h-[6rem] md:w-[7rem] md:h-[7rem] lg:w-[9rem] lg:h-[9rem] rounded-full"
