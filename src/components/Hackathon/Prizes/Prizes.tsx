@@ -79,53 +79,36 @@ export default function Prizes() {
                     alt="rocket"
                     ref={rocketRef}
                 ></img>
-                <h1 className="text-black text-6xl lg:text-7xl font-bold text-center mb-16 plasma-bold" id="prizes">
-                    OUR <span className="text-hackRed"> PRIZES</span>
+                <h1 className="text-black text-6xl lg:text-7xl font-bold text-center mb-48 plasma-bold" id="prizes">
+                    Event <span className="text-hackRed"> PRIZES</span>
                 </h1>
-                <div className="flex w-full lg:w-4/5 xl:w-3/5 py-16 px-4 lg:px-8 mb-16 gap-20 sm:gap-32 justify-center relative">
-                    <div className="h-[20vh] flex items-center justify-center">
-                        <div className="text-5xl lg:text-6xl font-bold text-center text-nowrap zing-base">
-                            2nd <span className="hidden sm:inline">place</span>
-                        </div>
+
+                <div className="flex w-full lg:w-4/5 xl:w-3/5 py-16 px-4 lg:px-8 mb-8 gap-12 sm:gap-16 md:gap-24 justify-center relative zing-base">
+                    {/* 2nd Place */}
+                    <div className="flex flex-col items-center text-center relative bottom-8 sm:bottom-12 md:bottom-16 lg:bottom-20">
+                        <div className="text-4xl sm:text-5xl lg:text-6xl font-boldz">2nd <span className="hidden sm:inline">place</span></div>
+                        <div className="text-3xl sm:text-4xl lg:text-5xl mt-2">$500 <span className="hidden sm:inline">in prizes!</span></div>
                     </div>
-                    <div className="h-[20vh] flex items-start justify-center">
-                        <div className="text-5xl lg:text-6xl font-bold text-center text-nowrap zing-base">
-                            1st <span className="hidden sm:inline">place</span>
-                        </div>
+
+                    {/* 1st Place - Tallest */}
+                    <div className="flex flex-col items-center text-center relative bottom-12 sm:bottom-16 md:bottom-24 lg:bottom-32">
+                        <div className="text-4xl sm:text-5xl lg:text-6xl font-bold zing-base">1st <span className="hidden sm:inline">place</span></div>
+                        <div className="text-3xl sm:text-4xl lg:text-5xl mt-2">$750 <span className="hidden sm:inline">in prizes!</span></div>
                     </div>
-                    <div className="h-[20vh] flex items-end justify-center">
-                        <div className="text-5xl lg:text-6xl font-bold text-center text-nowrap zing-base">
-                            3rd <span className="hidden sm:inline">place</span>
-                        </div>
+
+                    {/* 3rd Place */}
+                    <div className="flex flex-col items-center text-center relative bottom-4 sm:bottom-6 md:bottom-8 lg:bottom-10">
+                        <div className="text-4xl sm:text-5xl lg:text-6xl font-bold zing-base">3rd <span className="hidden sm:inline">place</span></div>
+                        <div className="text-3xl sm:text-4xl lg:text-5xl mt-2">$250 <span className="hidden sm:inline">in prizes!</span></div>
                     </div>
                 </div>
 
-                <div className="hidden lg:block transform -translate-y-1/4 pointer-events-none w-[60vw] mb-3">
+                <div className="hiddenlg:block transform -translate-y-1/4 pointer-events-none w-[60vw]">
                     <img
                         src="/images/prizes_bg.png"
                         alt="Prizes Background"
                         className="mx-auto opacity-90"
                     />
-                </div>
-
-                <div className="flex w-full lg:w-4/5 xl:w-3/5 pb-4 px-4 mt-[-10vh] lg:px-8 mb-16 gap-20 sm:gap-60 md:gap-72 justify-center">
-                    <div className="flex items-center justify-center">
-                        <div className="text-2xl lg:text-3xl font-bold text-center text-nowrap">
-                            TBD
-                        </div>
-                    </div>
-
-                    <div className="flex items-start justify-center">
-                        <div className="text-2xl lg:text-3xl font-bold text-center text-nowrap">
-                            TBD
-                        </div>
-                    </div>
-
-                    <div className="flex items-end justify-center">
-                        <div className="text-2xl lg:text-3xl font-bold text-center text-nowrap">
-                            TBD
-                        </div>
-                    </div>
                 </div>
             </div>
             <div className="w-full h-[260px] bg-[url('/waves/wave-1-180-beige.svg')] bg-repeat-x"></div>
