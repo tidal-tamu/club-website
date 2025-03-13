@@ -80,7 +80,7 @@ export default function Prizes() {
                     ref={rocketRef}
                 ></img>
                 <h1 className="text-black text-6xl lg:text-7xl font-bold text-center mb-48 plasma-bold" id="prizes">
-                    Event <span className="text-hackRed"> PRIZES</span>
+                    EVENT <span className="text-hackRed"> PRIZES</span>
                 </h1>
 
                 <div className="flex w-full lg:w-4/5 xl:w-3/5 py-16 px-4 lg:px-8 mb-8 gap-12 sm:gap-16 md:gap-24 justify-center relative zing-base">
