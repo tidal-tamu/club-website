@@ -5,6 +5,7 @@ import Hackathon from "./components/Hackathon/Hackathon";
 import SponsorUs from "./components/Sponsor-Us/SponsorUs";
 import Register from "./components/Register/Register";
 import CheckRegistration from "./components/Register/CheckRegistration";
+import LiveSchedule from "./components/Hackathon/Schedule/LiveSchedule";
 
 export default function App() {
     return (
@@ -15,7 +16,11 @@ export default function App() {
                     <Route path="/" element={<Hackathon />} />
                     <Route path="/sponsor-us" element={<SponsorUs />} />
                     <Route path="/register" element={<Register />} />
-                    <Route path="/check-registration" element={<CheckRegistration />} />
+                    <Route
+                        path="/check-registration"
+                        element={<CheckRegistration />}
+                    />
+                    <Route path="/live-schedule" element={<LiveSchedule />} />
                 </Routes>
             </Router>
         </React.StrictMode>
