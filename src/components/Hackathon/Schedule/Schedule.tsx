@@ -1,7 +1,9 @@
 import ScheduleList from "./ScheduleList";
 
 export interface ScheduleItem {
+    day?: string,
     time: string;
+    end_time?: string,
     event: string;
     location: string;
 }
