@@ -55,6 +55,13 @@ const sched: ScheduleItem[] = [
     },
     {
         day: "3/22",
+        time: "3:00 PM",
+        end_time: "3:45 PM",
+        event: "MLH Github Copilot Workshop",
+        location: "REC 243",
+    },
+    {
+        day: "3/22",
         time: "6:00 PM",
         end_time: "6:30 PM",
         event: "Dinner!",
