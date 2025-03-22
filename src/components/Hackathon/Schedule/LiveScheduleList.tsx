@@ -43,7 +43,7 @@ export default function LiveScheduleList({ list, now }: LiveScheduleListProps) {
                                     className="flex items-center relative pb-6"
                                 >
                                     <div
-                                        className="flex flex-col font-mont bg-transparent border-4 border-gray-300 rounded-xl p-4 z-[1] text-2xl gap-3 w-[650px]"
+                                        className="flex flex-col font-mont bg-transparent border-4 border-gray-300 rounded-xl p-4 z-[1] text-4xl gap-8 w-[900px]"
                                         style={{
                                             transform: `scale(${scaleValue})`,
                                             opacity: opacityValue,

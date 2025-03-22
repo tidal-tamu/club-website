@@ -148,7 +148,7 @@ export default function LiveSchedule() {
     return (
         <div className="block relative w-full h-full overflow-hidden select-none">
             <div className="-z-10">{meteors}</div>
-            <div className="w-full h-full flex justify-center items-center bg-spaceBlack bg-[url('/stars.svg')] text-white z-10 gap-14">
+            <div className="w-full h-full flex justify-center items-center bg-spaceBlack bg-[url('/stars.svg')] text-white z-10 gap-24">
                 <img
                     src="/icons/shapes/8star.png"
                     className="w-[500px] animate-pulse"
@@ -160,7 +160,7 @@ export default function LiveSchedule() {
                         className="w-[700px] mb-36"
                     />
 
-                    <div className="relative h-[500px] w-[700px] overflow-ellipsis flex justify-center">
+                    <div className="relative h-[500px] w-[900px] overflow-ellipsis flex justify-center">
                         <LiveScheduleList list={sched} now={date} />
                     </div>
                 </div>
