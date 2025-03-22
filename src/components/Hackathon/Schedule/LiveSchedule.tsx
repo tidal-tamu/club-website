@@ -55,8 +55,8 @@ const sched: ScheduleItem[] = [
     },
     {
         day: "3/22",
-        time: "3:00 PM",
-        end_time: "4:00 PM",
+        time: "5:00 PM",
+        end_time: "6:00 PM",
         event: "Microsoft Presentation",
         location: "REC 243",
     },
