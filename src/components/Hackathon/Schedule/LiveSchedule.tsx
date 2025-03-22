@@ -21,7 +21,7 @@ const sched: ScheduleItem[] = [
     {
         day: "3/22",
         time: "9:00 AM",
-        end_time: "10:00 AM",
+        end_time: "9:30 AM",
         event: "Opening Ceremony",
         location: "REC 243",
     },
@@ -48,9 +48,16 @@ const sched: ScheduleItem[] = [
     },
     {
         day: "3/22",
+        time: "12:00 PM",
+        end_time: "12:30 PM",
+        event: "Google Cloud Workshop",
+        location: "REC 243",
+    },
+    {
+        day: "3/22",
         time: "3:00 PM",
         end_time: "4:00 PM",
-        event: "we dont know yet",
+        event: "Microsoft Presentation",
         location: "REC 243",
     },
     {
@@ -64,7 +71,21 @@ const sched: ScheduleItem[] = [
         day: "3/22",
         time: "7:00 PM",
         end_time: "8:00 PM",
-        event: "Roblox Shrimp Game Tournament",
+        event: "ROBLOX Shrimp Game Tournament",
+        location: "REC 243",
+    },
+    {
+        day: "3/22",
+        time: "8:00 PM",
+        end_time: "9:00 PM",
+        event: "GeoGuessr Tournament",
+        location: "REC 243",
+    },
+    {
+        day: "3/22",
+        time: "9:00 PM",
+        end_time: "10:00 PM",
+        event: "Connect4 Tournament",
         location: "REC 243",
     },
     {
