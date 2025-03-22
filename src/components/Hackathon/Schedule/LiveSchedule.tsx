@@ -146,9 +146,9 @@ export default function LiveSchedule() {
     }, []);
 
     return (
-        <div className="block relative w-full h-full overflow-hidden">
+        <div className="block relative w-full h-full overflow-hidden select-none">
             <div className="-z-10">{meteors}</div>
-            <div className="w-full h-full flex justify-center items-center bg-spaceBlack bg-[url('stars.svg')] text-white z-10 gap-14">
+            <div className="w-full h-full flex justify-center items-center bg-spaceBlack bg-[url('/stars.svg')] text-white z-10 gap-14">
                 <img
                     src="/icons/shapes/8star.png"
                     className="w-[500px] animate-pulse"
