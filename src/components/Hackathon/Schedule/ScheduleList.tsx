@@ -1,15 +1,15 @@
 import { ScheduleItem } from "./Schedule";
 import { Meteors } from "../Meteors";
 
-interface ScheduleListProps {
+export interface ScheduleListProps {
     list: ScheduleItem[];
-    day: string;
+    day?: string;
 }
 
 export default function ScheduleList({ list, day }: ScheduleListProps) {
     return (
         <div className="flex flex-col flex-1 min-w-60 relative" id="schedule">
-            <Meteors number={7}/>
+            <Meteors number={7} />
             <h1 className="text-white font-semibold text-[42px] sm:text-5xl text-center mb-8 zing-base tracking-wide">
                 {day}
             </h1>
@@ -43,7 +43,9 @@ export default function ScheduleList({ list, day }: ScheduleListProps) {
                             </div>
 
                             <div className="flex justify-end">
-                                <p className="font-light text-sm sm:text-base md:text-lg ">{item["location"]}</p>
+                                <p className="font-light text-sm sm:text-base md:text-lg ">
+                                    {item["location"]}
+                                </p>
                             </div>
                         </div>
                         {index < list.length - 1 && (
