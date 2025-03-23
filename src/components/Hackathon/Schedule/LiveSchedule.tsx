@@ -111,23 +111,16 @@ const sched: ScheduleItem[] = [
     },
     {
         day: "3/23",
-        time: "1:00 PM",
-        end_time: "2:00 PM",
-        event: "Round One Judging",
+        time: "12:00 PM",
+        end_time: "1:00 PM",
+        event: "Presentation Worktime + Relax",
         location: "REC 243",
     },
     {
         day: "3/23",
-        time: "2:00 PM",
-        end_time: "2:00 PM",
+        time: "2:15 PM",
+        end_time: "2:45 PM",
         event: "Finalists Announcement",
-        location: "REC 243",
-    },
-    {
-        day: "3/23",
-        time: "3:00 PM",
-        end_time: "5:00 PM",
-        event: "Finalists Presentations",
         location: "REC 243",
     },
     {
