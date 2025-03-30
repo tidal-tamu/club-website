@@ -42,7 +42,7 @@ const officers = [
         position: "Vice President",
         major: "Computer Science '27",
         desc: "Zavier is the External Vice President of TIDAL and joined in the fall of 2023. Zavier is an incoming SWE intern at Hewlett Packard Enterprise.",
-        pfp: "/images/officer-pictures/zavier.jpg",
+        pfp: "/images/officer-pictures/zavier.JPG",
         link: "https://www.linkedin.com/in/zvegayu/",
         email: "zavayu@tamu.edu",
     },
