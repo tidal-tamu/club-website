@@ -13,7 +13,7 @@ export default function Sponsors() {
                         target="_blank"
                         className="shrink-0">
                         <img
-                            src="./icons/logos/aws-logo.png"
+                            src="./icons/logos/companies/aws-logo.png"
                             className="w-[100px] md:w-[100px] lg:w-[180px] transition-transform transform hover:scale-110"
                             alt="Amazon Web Services"
                         />
@@ -22,7 +22,7 @@ export default function Sponsors() {
                         target="_blank"
                         className="shrink-0">
                         <img
-                            src="./icons/logos/bo-logo.png"
+                            src="./icons/logos/companies/bo-logo.png"
                             className="w-[100px] md:w-[100px] lg:w-[200px] transition-transform transform hover:scale-110"
                             alt="Blue Origin"
                         />
@@ -31,7 +31,7 @@ export default function Sponsors() {
                         target="_blank"
                         className="shrink-0">
                         <img
-                            src="./icons/logos/nvidia-white.png"
+                            src="./icons/logos/companies/nvidia-white.png"
                             className="w-[200px] md:w-[200px] lg:w-[350px] transition-transform transform hover:scale-110"
                             alt="Nvidia"
                         />
@@ -40,7 +40,7 @@ export default function Sponsors() {
                         target="_blank"
                         className="shrink-0">
                         <img
-                            src="./icons/logos/google-color.png"
+                            src="./icons/logos/companies/google-color.png"
                             className="w-[200px] md:w-[200px] lg:w-[350px] transition-transform transform hover:scale-110"
                             alt="Google"
                         />
@@ -49,7 +49,7 @@ export default function Sponsors() {
                         target="_blank"
                         className="shrink-0">
                         <img
-                            src="./icons/logos/tamids-logo-white.png"
+                            src="./icons/logos/companies/tamids-logo-white.png"
                             className="w-[200px] md:w-[200px] lg:w-[400px] transition-transform transform hover:scale-110"
                             alt="TAMIDS"
                         />
@@ -58,7 +58,7 @@ export default function Sponsors() {
                         target="_blank"
                         className="shrink-0">
                         <img
-                            src="./icons/logos/microsoft.png"
+                            src="./icons/logos/companies/microsoft.png"
                             className="w-[200px] md:w-[200px] lg:w-[400px] transition-transform transform hover:scale-110"
                             alt="Microsoft"
                         />
@@ -67,7 +67,7 @@ export default function Sponsors() {
                         target="_blank"
                         className="shrink-0">
                         <img
-                            src="./icons/logos/pnnl.png"
+                            src="./icons/logos/companies/pnnl.png"
                             className="w-[200px] md:w-[200px] lg:w-[400px] transition-transform transform hover:scale-110"
                             alt="Pacific Northwest National Laboratory"
                         />
@@ -76,7 +76,7 @@ export default function Sponsors() {
                         target="_blank"
                         className="shrink-0">
                         <img
-                            src="./icons/logos/jane-street-blue.png"
+                            src="./icons/logos/companies/jane-street-blue.png"
                             className="w-[200px] md:w-[200px] lg:w-[350px] transition-transform transform hover:scale-110"
                             alt="Jane Street"
                         />
@@ -85,7 +85,7 @@ export default function Sponsors() {
                         target="_blank"
                         className="shrink-0">
                         <img
-                            src="./icons/logos/wolfram-logo-white.png"
+                            src="./icons/logos/companies/wolfram-logo-white.png"
                             className="w-[200px] md:w-[200px] lg:w-[400px] transition-transform transform hover:scale-110"
                             alt="Wolfram"
                         />

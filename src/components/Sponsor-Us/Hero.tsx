@@ -1,3 +1,5 @@
+import { Link } from "react-scroll"
+
 export default function Hero() {
     return (
         <div className="justify-center items-center">
@@ -20,8 +22,10 @@ export default function Hero() {
                         className="w-[24px] h-[18px] md:w-[28px] md:h-[21px] transition-all"
                     />
                 </a>
-                <a
-                    href="/sponsor-us#past-sponsors"
+                <Link
+                    to="past-sponsors"
+                    smooth={true}
+                    duration={500}
                     className="flex justify-center items-center shrink-0 gap-3 font-bold text-white bg-navy px-3 py-1 md:px-6 md:py-2 md:text-xl rounded-lg border-[1px] cursor-pointer border-[#0094D3] hover:bg-[#0094D3] transition-all"
                 >
                     Past Sponsors
@@ -30,9 +34,9 @@ export default function Hero() {
                         alt="->"
                         className="w-[24px] h-[20px] transition-all"
                     />
-                </a>
+                </Link>
             </div>
-            
+
         </div>
     )
 };

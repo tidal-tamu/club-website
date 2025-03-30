@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { Link } from 'react-scroll';
+
 const navLinks = [
-    { title: "Home", path: "/home" },
-    { title: "About Us", path: "/home/#about-us" },
-    { title: "Hackathon", path: "/" },
+    { title: "Home", path: "/" },
+    { title: "About Us", path: "about-us" },
+    { title: "Hackathon", path: "/hackathon" },
     { title: "Sponsor Us", path: "/sponsor-us" },
 ];
 
@@ -66,14 +68,39 @@ export default function Navbar({ dark = false }: NavbarProps) {
                 style={{ maxHeight: isOpen ? '100vh' : '0' }}
             >
                 {navLinks.map((link) => (
-                    <a
-                        key={link.title}
-                        href={link.path}
-                        className={`relative inline-block after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:origin-bottom-right after:ease-out after:duration-[250ms] hover:after:scale-x-100 hover:after:origin-bottom-left pb-[2px] ${dark ? "after:bg-white" : "after:bg-black"
-                            }`}
-                    >
-                        {link.title}
-                    </a>
+                    link.title === "About Us" ? (
+                        location.pathname === "/" ? (
+                            <Link
+                                key={link.title}
+                                to={link.path}
+                                smooth={true}
+                                duration={500}
+                                onClick={()=> setIsOpen(false)}
+                                className={`relative inline-block cursor-pointer after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:origin-bottom-right after:ease-out after:duration-[250ms] hover:after:scale-x-100 hover:after:origin-bottom-left pb-[2px] ${dark ? "after:bg-white" : "after:bg-black"
+                                    }`}
+                            >
+                                {link.title}
+                            </Link>
+                        ) : (
+                            <a
+                                key={link.title}
+                                href={`/#${link.path}`}
+                                className={`relative inline-block cursor-pointer after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:origin-bottom-right after:ease-out after:duration-[250ms] hover:after:scale-x-100 hover:after:origin-bottom-left pb-[2px] ${dark ? "after:bg-white" : "after:bg-black"
+                                    }`}
+                            >
+                                {link.title}
+                            </a>
+                        )
+                    ) : (
+                        <a
+                            key={link.title}
+                            href={link.path}
+                            className={`relative inline-block cursor-pointer after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:origin-bottom-right after:ease-out after:duration-[250ms] hover:after:scale-x-100 hover:after:origin-bottom-left pb-[2px] ${dark ? "after:bg-white" : "after:bg-black"
+                                }`}
+                        >
+                            {link.title}
+                        </a>
+                    )
                 ))}
 
                 <a

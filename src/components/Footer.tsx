@@ -38,9 +38,9 @@ export default function Footer({ dark = false }: NavbarProps) {
                     <h3 className="font-semibold text-xl">Quick Links</h3>
                     <br />
                     <ul className="text-lg space-y-2">
-                        <li><a href="/home/#about-us" className="hover:underline">About</a></li>
-                        <li><a href="/home" className="hover:underline">Events</a></li>
-                        <li><a href="/home/#officers" className="hover:underline">Team</a></li>
+                        <li><a href="/#about-us" className="hover:underline">About</a></li>
+                        <li><a href="/" className="hover:underline">Events</a></li>
+                        <li><a href="/#officers" className="hover:underline">Team</a></li>
                     </ul>
                 </div>
                 

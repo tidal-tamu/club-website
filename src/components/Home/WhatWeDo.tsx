@@ -1,4 +1,4 @@
-import { Standard } from "./WhatWeDo/parallax-scroll";
+import { Standard } from "./WhatWeDo/WhatWeDoBubbles.tsx";
 import { titles, bodies } from "./WhatWeDo/data.ts";
 
 export default function WhatWeDo() {
