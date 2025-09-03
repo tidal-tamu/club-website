@@ -21,7 +21,7 @@ export default function Home() {
             <About />
             <WhatWeDo />
             <Officers/>
-            {/* <PhotoGallery/> */}
+            <PhotoGallery/>
             <Footer />
         </>
     );
