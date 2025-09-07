@@ -29,7 +29,7 @@ export default function Hackathon() {
                 <Prizes />
                 <FAQ />
                 <Sponsors />
-                <Footer dark/>
+                <Footer variant="hackathon-spring-25"/>
             </div>
 
         </>

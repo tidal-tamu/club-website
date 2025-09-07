@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from 'react-scroll';
+import { motion } from "framer-motion";
 
 const navLinks = [
     { title: "Home", path: "/" },
     { title: "About Us", path: "about-us" },
     { title: "Hackathon", path: "/hackathon" },
-    { title: "Sponsor Us", path: "/sponsor-us" },
 ];
 
 interface NavbarProps {
@@ -14,19 +14,6 @@ interface NavbarProps {
 
 export default function Navbar({ dark = false }: NavbarProps) {
     const [isOpen, setIsOpen] = useState(false);
-    const [hasScrolled, setHasScrolled] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setHasScrolled(window.scrollY > 140); // Draw a border on navbar if the user has scrolled
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
 
     useEffect(() => {
         if (isOpen) {
@@ -37,86 +24,160 @@ export default function Navbar({ dark = false }: NavbarProps) {
     }, [isOpen]);
 
     return (
-        <nav className={`relative z-10 w-full font-mont font-semibold text-nowrap flex sm:flex-row flex-col lg:justify-between items-center p-6 pt-10 px-10 gap-6 lg:px-32 lg:py-9 lg:gap-20 transition-[padding]} ${hasScrolled || isOpen ? "border-b-2" : "bg-transparent sm:mt-12"
-            } ${dark ? "bg-spaceBlack text-white border-gray-800" : "bg-white text-black"}`}
+        <motion.nav
+            className={`fixed top-0 w-full font-mont font-semibold z-50 transition-all duration-300 ${
+                dark 
+                    ? "bg-spaceBlack/80 backdrop-blur-xl border-b border-gray-800 text-white" 
+                    : "bg-white/80 backdrop-blur-xl border-b border-gray-100 text-black"
+            }`}
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.6 }}
         >
-            <div className="w-full flex flex-row justify-between gap-6 ">
-                <a
-                    className="mt-2 sm:mt-0 min-w-[169px] min-h-[26px] w-[169px] h-[26px] lg:w-[208px] lg:h-[32px]"
-                    href="/"
-                >
-                    <img src={dark ? "./icons/logos/tidal-white-transparent.png" : "./icons/logos/tidal-newblue.svg"} alt="Logo" />
+            <div className="container mx-auto px-6 lg:px-12 py-6 flex items-center justify-between">
+                <a href="/" className="flex items-center">
+                    <img 
+                        src={dark ? "./icons/logos/tidal-white-transparent.png" : "./icons/logos/tidal-newblue.svg"} 
+                        alt="TIDAL Logo" 
+                        className="h-6 w-auto"
+                    />
                 </a>
 
-                <button className={"inline-flex items-center p-1.5 w-10 h-10 justify-center rounded-lg sm:hidden hover:bg-white-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-white-700 dark:focus:ring-gray-600"}
+                <div className="hidden md:flex items-center space-x-8">
+                    {navLinks.map((link) => (
+                        link.title === "About Us" ? (
+                            location.pathname === "/" ? (
+                                <Link
+                                    key={link.title}
+                                    to={link.path}
+                                    smooth={true}
+                                    duration={500}
+                                    className="text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium"
+                                >
+                                    About
+                                </Link>
+                            ) : (
+                                <a
+                                    key={link.title}
+                                    href={`/#${link.path}`}
+                                    className="text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium"
+                                >
+                                    About
+                                </a>
+                            )
+                        ) : link.title === "Hackathon" ? (
+                            <a
+                                key={link.title}
+                                href={link.path}
+                                className="text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium"
+                            >
+                                Hackathon
+                            </a>
+                        ) : link.title === "Sponsor Us" ? (
+                            <a
+                                key={link.title}
+                                href={link.path}
+                                className="text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium"
+                            >
+                                Sponsor
+                            </a>
+                        ) : (
+                            <a
+                                key={link.title}
+                                href={link.path}
+                                className="text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium"
+                            >
+                                {link.title}
+                            </a>
+                        )
+                    ))}
+                    <a
+                        href="https://discord.gg/eQ8ScamG4H"
+                        target="_blank"
+                        className="bg-[#336699] hover:bg-[#336699]/90 text-white px-6 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-medium"
+                    >
+                        Join Us
+                    </a>
+                </div>
+
+                <button 
+                    className="md:hidden inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     {isOpen ? (
-                        <svg className="w-9 h-9" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     ) : (
-                        <svg className="w-9 h-9" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
                         </svg>
                     )}
                 </button>
             </div>
 
-            <div className={`sm:flex sm:visible sm:relative lg:w-auto sm:flex-row flex-col items-center gap-5 [12px] lg:text-[20px] text-nowrap lg:gap-12  ${isOpen ? "z-50 flex animate__animated animate__fadeIn h-screen sm:h-fit gap-[60px] text-2xl underline pt-20 max-h-screen transition-all duration-300 ease-in-out " : " invisible max-h-0 absolute"
-                }`}
-                style={{ maxHeight: isOpen ? '100vh' : '0' }}
-            >
-                {navLinks.map((link) => (
-                    link.title === "About Us" ? (
-                        location.pathname === "/" ? (
-                            <Link
+            {/* Mobile Menu */}
+            <div className={`md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-lg transition-all duration-300 ${
+                isOpen ? "opacity-100 visible" : "opacity-0 invisible"
+            }`}>
+                <div className="px-6 py-4 space-y-4">
+                    {navLinks.map((link) => (
+                        link.title === "About Us" ? (
+                            location.pathname === "/" ? (
+                                <Link
+                                    key={link.title}
+                                    to={link.path}
+                                    smooth={true}
+                                    duration={500}
+                                    onClick={() => setIsOpen(false)}
+                                    className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
+                                >
+                                    About
+                                </Link>
+                            ) : (
+                                <a
+                                    key={link.title}
+                                    href={`/#${link.path}`}
+                                    className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
+                                >
+                                    About
+                                </a>
+                            )
+                        ) : link.title === "Hackathon" ? (
+                            <a
                                 key={link.title}
-                                to={link.path}
-                                smooth={true}
-                                duration={500}
-                                onClick={()=> setIsOpen(false)}
-                                className={`relative inline-block cursor-pointer after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:origin-bottom-right after:ease-out after:duration-[250ms] hover:after:scale-x-100 hover:after:origin-bottom-left pb-[2px] ${dark ? "after:bg-white" : "after:bg-black"
-                                    }`}
+                                href={link.path}
+                                className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
                             >
-                                {link.title}
-                            </Link>
+                                Events
+                            </a>
+                        ) : link.title === "Sponsor Us" ? (
+                            <a
+                                key={link.title}
+                                href={link.path}
+                                className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
+                            >
+                                Sponsor
+                            </a>
                         ) : (
                             <a
                                 key={link.title}
-                                href={`/#${link.path}`}
-                                className={`relative inline-block cursor-pointer after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:origin-bottom-right after:ease-out after:duration-[250ms] hover:after:scale-x-100 hover:after:origin-bottom-left pb-[2px] ${dark ? "after:bg-white" : "after:bg-black"
-                                    }`}
+                                href={link.path}
+                                className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
                             >
                                 {link.title}
                             </a>
                         )
-                    ) : (
-                        <a
-                            key={link.title}
-                            href={link.path}
-                            className={`relative inline-block cursor-pointer after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:origin-bottom-right after:ease-out after:duration-[250ms] hover:after:scale-x-100 hover:after:origin-bottom-left pb-[2px] ${dark ? "after:bg-white" : "after:bg-black"
-                                }`}
-                        >
-                            {link.title}
-                        </a>
-                    )
-                ))}
-
-                <a
-                    href="https://discord.gg/eQ8ScamG4H"
-                    target="_blank"
-                    className={`flex mt-12 justify-center items-center shrink-0 gap-3 font-bold text-navy bg-[#EDEAE6] px-3 py-1 md:px-6 md:py-2 md:text-xl rounded-lg border-[1px] border-[#C9C9C9] cursor-pointer hover:bg-[#c6c4c4] transition-all ${isOpen ? "" : "hidden"
-                        }`}
-                >
-                    Discord
-                    <img
-                        src="./icons/logos/discord-logo.svg"
-                        alt="Discord Logo"
-                        className="w-[24px] h-[18px] md:w-[28px] md:h-[21px] transition-all"
-                    />
-                </a>
+                    ))}
+                    <a
+                        href="https://discord.gg/eQ8ScamG4H"
+                        target="_blank"
+                        className="block bg-[#336699] hover:bg-[#336699]/90 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-medium text-center mt-4"
+                    >
+                        Join Us
+                    </a>
+                </div>
             </div>
-        </nav>
+        </motion.nav>
     );
 }

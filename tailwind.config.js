@@ -30,6 +30,9 @@ export default {
                 spaceBlack: "#121111",
                 hackBeige: "#D9D0B2",
                 hackRed: "#902300",
+                // New modern color scheme
+                primary: "#336699",
+                secondary: "#706993",
             },
             keyframes: {
                 float: {

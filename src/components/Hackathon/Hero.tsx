@@ -13,7 +13,7 @@ export default function Hero() {
             setTimeLeft(calculateTimeLeft(targetDate));
         }, 1000);
 
-        return () => clearInterval(interval); // Clean up interval on component unmount
+        return () => clearInterval(interval);
     }, [targetDate]);
 
     function calculateTimeLeft(targetDate: number) {
@@ -21,7 +21,7 @@ export default function Hero() {
         const distance = targetDate - now;
 
         if (distance < 0) {
-            return { days: 0, hours: 0, minutes: 0, seconds: 0 }; // If the target date has passed
+            return { days: 0, hours: 0, minutes: 0, seconds: 0 };
         }
 
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -33,7 +33,7 @@ export default function Hero() {
     }
 
     return (
-        <div className="h-full w-full flex flex-col md:flex-row gap-7 justify-center justify-self-center items-center transition-[padding] place-self-center px-8 pt-3">
+        <div className="h-full w-full flex flex-col md:flex-row gap-7 justify-center justify-self-center items-center transition-[padding] place-self-center px-8 pt-8">
              <a href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white" className="max-w-[100px] min-w-[60px] absolute top-0 right-[80px] sm:right-[50px] w-[10%] z-30"><img src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-white.svg" alt="Major League Hacking 2025 Hackathon Season"/></a>
              
             {meteors}

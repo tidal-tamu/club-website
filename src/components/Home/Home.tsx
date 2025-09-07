@@ -1,9 +1,8 @@
 import Hero from "./Hero/Hero";
 import About from "./About";
-import WhatWeDo from "./WhatWeDo";
 import Officers from "./Officers/Officers";
+import Sponsor from "./Sponsor";
 import Navbar from "../Navbar";
-import PhotoGallery from "./PhotoGallery";
 import Footer from "../Footer";
 import Headroom from "react-headroom";
 
@@ -19,10 +18,10 @@ export default function Home() {
                 <Hero />
             </div>
             <About />
-            <WhatWeDo />
+            {/* <WhatWeDo /> */}
             <Officers/>
-            <PhotoGallery/>
-            <Footer />
+            <Sponsor />
+            <Footer variant="home"/>
         </>
     );
 }
