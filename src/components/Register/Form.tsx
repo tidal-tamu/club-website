@@ -112,7 +112,7 @@ export default function Form() {
 
         try {
             const response = await fetch(
-                "https://script.google.com/macros/s/AKfycbywmpjjzI0Ml2npIhwf3yETAxk9DBZcUS0fIBmkjiiF2OPcthNLQvWgit_J-P4YuqcN/exec",
+                "https://script.google.com/macros/s/AKfycbxQ5UhB2rNSqE9xvIWxmyvmqiMEeQouqRYxe5hEvi9MSlswNLYPs49wy8uZF3kKpIMk/exec",
                 {
                     method: "POST",
                     body: toSend,
@@ -155,8 +155,8 @@ export default function Form() {
                         <div className="justify-self-center text-center px-[15%]">
                             <h1 className="sm:text-lg pt-8 text-white">
                                 Thank you for registering for TIDALHACK! Your registration process is now complete.
-                                We will email you a confirmation of your registration before the event. If you have any
-                                questions or would like to edit your registration, please contact us
+                                A confirmation email has been sent to your registered email address with all the details.
+                                If you have any questions or would like to edit your registration, please contact us
                                 at <a href="mailto:tidaltamu@gmail.com" className="underline">tidaltamu@gmail.com</a> or reach out to an officer in our discord.</h1>
                             {/* {<pre>{JSON.stringify(submittedData, null, 2)}</pre>} */}
                             <a href="/">

@@ -5,7 +5,7 @@ import tidalHeroText from "/s25/hero.png";
 const Hero = () => {
 
     return (
-        <div className="relative min-h-screen flex items-center justify-center px-6 md:px-12 overflow-hidden pt-32">
+        <div className="relative min-h-screen flex items-center justify-center px-6 md:px-12 overflow-hidden pt-20">
             
             {/* MLH Banner
             <a 
@@ -20,7 +20,7 @@ const Hero = () => {
 
             <FloatingParticles count={12} />
 
-            <div className="absolute top-28 md:top-40 left-1/2 transform -translate-x-1/2 flex flex-wrap justify-center gap-3 md:gap-4 z-20">
+            <div className="absolute top-36 md:top-48 left-1/2 transform -translate-x-1/2 flex flex-wrap justify-center gap-3 md:gap-4 z-20">
                 <div className="bg-gray-800/80 backdrop-blur-sm border border-yellow-400/30 px-3 py-2 md:px-4 md:py-2 rounded-xl">
                     <span className="text-white font-medium text-sm md:text-base">MSC Bethancourt</span>
                 </div>
