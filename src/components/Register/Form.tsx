@@ -112,7 +112,7 @@ export default function Form() {
 
         try {
             const response = await fetch(
-                "https://script.google.com/macros/s/AKfycbzNhPbPmwliyMO59syxbdMglV2cH7lOgpld9MVvvu86PYbmYvo492l9JHo6UxfLvSAkgQ/exec",
+                "https://script.google.com/macros/s/AKfycbywmpjjzI0Ml2npIhwf3yETAxk9DBZcUS0fIBmkjiiF2OPcthNLQvWgit_J-P4YuqcN/exec",
                 {
                     method: "POST",
                     body: toSend,
@@ -145,63 +145,60 @@ export default function Form() {
     };
 
     return (
-        <div className="bg-spaceBlack flex flex-col items-center justify-center">
-            <video src="/bg_footage_tidal.mp4" autoPlay loop muted className="fixed top-0 left-0 w-full h-full object-cover z-1 hidden sm:inline" />
+        <div className="flex flex-col items-center justify-center min-h-screen py-20">
+            <div className="w-11/12 sm:w-10/12 lg:w-[60vw] px-5 py-16 bg-black/20 backdrop-blur-sm rounded-2xl z-10 relative border border-white/20">
+                <img src="/icons/logos/tidal-white-transparent.png" className="w-64 mx-auto pt-4 pb-5" />
 
-            <div className="w-11/12 sm:w-10/12 lg:w-[60vw] px-5 py-16 my-20 bg-white rounded-2xl z-10 relative">
-                <img src="/icons/logos/tidal-newblue.svg" className="w-64 mx-auto pt-4 pb-5" />
-
-                {/* Form Fields: */}
                 {successMessage ? (
                     <div className="justify-center justify-self-center items-center text-center pb-4">
-                        <h1 className="text-green-500 text-center text-3xl font-bold pt-4">{successMessage}</h1>
+                        <h1 className="text-green-400 text-center text-3xl font-bold pt-4">{successMessage}</h1>
                         <div className="justify-self-center text-center px-[15%]">
-                            <h1 className="sm:text-lg pt-8">
+                            <h1 className="sm:text-lg pt-8 text-white">
                                 Thank you for registering for TIDALHACK! Your registration process is now complete.
                                 We will email you a confirmation of your registration before the event. If you have any
                                 questions or would like to edit your registration, please contact us
                                 at <a href="mailto:tidaltamu@gmail.com" className="underline">tidaltamu@gmail.com</a> or reach out to an officer in our discord.</h1>
                             {/* {<pre>{JSON.stringify(submittedData, null, 2)}</pre>} */}
                             <a href="/">
-                                <button className="p-4 rounded-xl bg-spaceBlack text-white mt-10 hover:bg-[#292828]"> return to home</button>
+                                <button className="p-4 rounded-xl bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-bold mt-10 transition-all duration-300"> return to home</button>
                             </a>
                         </div>
                     </div>
                 ) : (
                     <form className="flex flex-col space-y-7 px-1 sm:px-[15%]" onSubmit={handleSubmit} ref={formRef}>
-                        <h1 className="text-2xl sm:text-3xl font-semibold text-center pb-10 pt-2"> TIDALHACK 2025 Registration </h1>
+                        <h1 className="text-2xl sm:text-3xl font-semibold text-center pb-10 pt-2 text-white"> TIDALHACK 2025 Registration </h1>
                         <label className='flex flex-col gap-1'>
-                            <p>First Name <span className="text-red-500">*</span></p>
+                            <p className="text-white">First Name <span className="text-red-500">*</span></p>
                             <input type="text" name="First_Name" placeholder="First Name" className="p-3 border border-gray-300 rounded" value={formData.First_Name} onChange={handleChange} required />
                         </label>
 
                         <label className='flex flex-col gap-1'>
-                            <p>Last Name <span className="text-red-500">*</span></p>
+                            <p className="text-white">Last Name <span className="text-red-500">*</span></p>
                             <input type="text" name="Last_Name" placeholder="Last Name" className="p-3 border border-gray-300 rounded" value={formData.Last_Name} onChange={handleChange} required />
                         </label>
 
                         <label className='flex flex-col gap-1'>
-                            <p>Age <span className="text-gray-500 text-sm pl-1">( You Must be 18 or older )</span> <span className="text-red-500">*</span></p>
+                            <p className="text-white">Age <span className="text-gray-400 text-sm pl-1">( You Must be 18 or older )</span> <span className="text-red-500">*</span></p>
                             <input type="Age" name="Age" placeholder="Age" className="p-3 border border-gray-300 rounded" value={formData.Age} onChange={handleChange} required />
                         </label>
 
                         <label className='flex flex-col gap-1'>
-                            <p>Email <span className="text-red-500">*</span></p>
+                            <p className="text-white">Email <span className="text-red-500">*</span></p>
                             <input name="Email" placeholder="Email" className="p-3 border border-gray-300 rounded" value={formData.Email} onChange={handleChange} required />
                         </label>
 
                         <label className='flex flex-col gap-1'>
-                            <p>Phone Number <span className="text-red-500">*</span></p>
+                            <p className="text-white">Phone Number <span className="text-red-500">*</span></p>
                             <input name="Phone_Number" placeholder="Phone Number" className="p-3 border border-gray-300 rounded" value={formData.Phone_Number} onChange={handleChange} required />
                         </label>
 
                         <label className='flex flex-col gap-1'>
-                            <p>Emergency Contact Phone Number <span className="text-red-500">*</span></p>
+                            <p className="text-white">Emergency Contact Phone Number <span className="text-red-500">*</span></p>
                             <input name="Emergency_Phone_Number" placeholder="Phone Number" className="p-3 border border-gray-300 rounded" value={formData.Emergency_Phone_Number} onChange={handleChange} required />
                         </label>
 
                         <label className='flex flex-col gap-1'>
-                            <p>Country of Residence <span className="text-red-500">*</span></p>
+                            <p className="text-white">Country of Residence <span className="text-red-500">*</span></p>
                             <select name="Country" className="p-3 border border-gray-300 rounded" value={formData.Country} onChange={handleChange} required>
                                 <option value="">Select Country</option>
                                 {countryOptions.map((country, index) => (
@@ -211,7 +208,7 @@ export default function Form() {
                         </label>
 
                         <label className='flex flex-col gap-1'>
-                            <p>School <span className="text-red-500">*</span></p>
+                            <p className="text-white">School <span className="text-red-500">*</span></p>
                             <select name="School" className="p-3 border border-gray-300 rounded" value={formData.School} onChange={handleChange} required>
                                 <option value="">Select School</option>
                                 {schoolOptions.map((school, index) => (
@@ -221,7 +218,7 @@ export default function Form() {
                         </label>
 
                         <label className='flex flex-col gap-1'>
-                            <p>Major <span className="text-red-500">*</span></p>
+                            <p className="text-white">Major <span className="text-red-500">*</span></p>
                             <select name="Major" className="p-3 border border-gray-300 rounded" value={formData.Major} onChange={handleChange} required>
                                 <option value="">Select Major</option>
                                 {majorOptions.map((major, index) => (
@@ -231,12 +228,12 @@ export default function Form() {
                         </label>
 
                         <label className='flex flex-col gap-1'>
-                            <p>Graduation Year <span className="text-red-500">*</span></p>
+                            <p className="text-white">Graduation Year <span className="text-red-500">*</span></p>
                             <input type="text" name="Grad_Year" placeholder="Graduation Year" className="p-3 border border-gray-300 rounded" value={formData.Grad_Year} onChange={handleChange} required />
                         </label>
 
                         <label className='flex flex-col gap-1'>
-                            <p>Do you already have a team? <span className="text-red-500">*</span></p>
+                            <p className="text-white">Do you already have a team? <span className="text-red-500">*</span></p>
                             <select name="Need_Team" className="p-3 border border-gray-300 rounded" value={formData.Need_Team} onChange={handleChange} required>
                                 <option value="">Select option</option>
                                 <option value="Has a Team">Yes - I already have a team</option>
@@ -246,26 +243,26 @@ export default function Form() {
                             </select>
                         </label>
                         <div className="flex items-center text-sm">
-                            <input type="checkbox" name="Accepted_COC" className="mr-3 size-4 sm:size-[13px]" checked={formData.Accepted_COC} onChange={handleChange} required />
-                            <label htmlFor="Accepted_COC">I have read and agree to the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-500">MLH Code of Conduct</a>. <span className="text-red-500">*</span></label>
+                            <input type="checkbox" id="Accepted_COC" name="Accepted_COC" className="mr-3 size-4 sm:size-[13px]" checked={formData.Accepted_COC} onChange={handleChange} required />
+                            <label htmlFor="Accepted_COC" className="text-white">I have read and agree to the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-400">MLH Code of Conduct</a>. <span className="text-red-500">*</span></label>
                         </div>
 
                         <div className="flex items-center text-sm">
-                            <input type="checkbox" name="Share_With_MLH" className="mr-3 size-4 sm:size-[13px]" checked={formData.Share_With_MLH} onChange={handleChange} required />
-                            <label htmlFor="Share_With_MLH">I authorize you to share my application/registration information with Major League Hacking for event
-                                administration, ranking, and MLH administration in-line with the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-500">MLH Privacy Policy </a>.
-                                I further agree to the terms of both the <a href='https://github.com/MLH/mlh-policies/blob/main/contest-terms.md' className="underline text-blue-500">MLH Contest Terms and Conditions </a>
-                                and the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-500">MLH Privacy Policy </a>. <span className="text-red-500">*</span></label>
+                            <input type="checkbox" id="Share_With_MLH" name="Share_With_MLH" className="mr-3 size-4 sm:size-[13px]" checked={formData.Share_With_MLH} onChange={handleChange} required />
+                            <label htmlFor="Share_With_MLH" className="text-white">I authorize you to share my application/registration information with Major League Hacking for event
+                                administration, ranking, and MLH administration in-line with the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-400">MLH Privacy Policy </a>.
+                                I further agree to the terms of both the <a href='https://github.com/MLH/mlh-policies/blob/main/contest-terms.md' className="underline text-blue-400">MLH Contest Terms and Conditions </a>
+                                and the <a href='https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md' className="underline text-blue-400">MLH Privacy Policy </a>. <span className="text-red-500">*</span></label>
                         </div>
 
                         <div className="flex items-center text-sm">
-                            <input type="checkbox" name="Allow_Emails" className="mr-3 size-4 sm:size-[13px]" checked={formData.Allow_Emails} onChange={handleChange} />
-                            <label htmlFor="Allow_Emails">I authorize MLH to send me occasional emails about relevant events, career opportunities, and community announcements.</label>
+                            <input type="checkbox" id="Allow_Emails" name="Allow_Emails" className="mr-3 size-4 sm:size-[13px]" checked={formData.Allow_Emails} onChange={handleChange} />
+                            <label htmlFor="Allow_Emails" className="text-white">I authorize MLH to send me occasional emails about relevant events, career opportunities, and community announcements.</label>
                         </div>
 
                         <button
                             type="submit"
-                            className="w-full px-8 py-3 bg-gray-950 text-white rounded-lg shadow-md hover:bg-gray-800 transition duration-300"
+                            className="w-full px-8 py-3 bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                             disabled={isSubmitting}
                         >
                             {isSubmitting ? "Submitting..." : "Register"}
@@ -277,7 +274,7 @@ export default function Form() {
                             <p className="text-red-500 text-center mt-4">{errorMessage}</p>
                         )}
 
-                        <p className="text-sm sm:text-base">Already Registered? <a href="/check-registration" className="underline cursor-pointer">Check your registration here</a>.</p>
+                        <p className="text-sm sm:text-base text-white">Already Registered? <a href="/check-registration" className="underline cursor-pointer text-blue-400">Check your registration here</a>.</p>
                     </form>
                 )}
 

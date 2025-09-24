@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const navLinks = [
     { title: "Home", path: "/" },
     { title: "About Us", path: "about-us" },
-    { title: "Hackathon", path: "/hackathon" },
+    { title: "Hackathon", path: "/HackathonF25" },
 ];
 
 interface NavbarProps {
