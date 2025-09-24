@@ -1,7 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import React from "react";
 import Home from "./components/Home/Home";
-import Hackathon from "./components/Hackathon/Hackathon";
+import Hackathon from "./components/HackathonS25/Hackathon";
 import SponsorUs from "./components/Sponsor-Us/SponsorUs";
 import CheckRegistration from "./components/Register/CheckRegistration";
 import RegistrationClosed from "./components/Register/RegistrationClosed";
