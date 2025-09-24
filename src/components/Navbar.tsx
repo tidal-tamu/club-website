@@ -30,13 +30,10 @@ export default function Navbar({ dark = false }: NavbarProps) {
             const currentScrollY = window.scrollY;
             
             if (currentScrollY < 10) {
-                // Always show navbar at the top
                 setIsVisible(true);
             } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                // Scrolling down and past 100px - hide navbar
                 setIsVisible(false);
             } else if (currentScrollY < lastScrollY) {
-                // Scrolling up - show navbar
                 setIsVisible(true);
             }
             
