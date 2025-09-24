@@ -1,38 +1,22 @@
-import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaInstagram, FaExternalLinkAlt } from "react-icons/fa";
-import confetti from "canvas-confetti";
 
 interface FooterProps {
     variant?: 'home' | 'hackathon-spring-25' | 'hackathon-fall-25';
 }
 
 export default function Footer({ variant = 'home' }: FooterProps) {
-    const handleEmailClick = () => {
-        navigator.clipboard.writeText("sponsorship@tidaltamu.org");
-        
-        confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 },
-            colors: ['#336699', '#706993', '#ffffff']
-        });
-        
-        alert("Email copied to clipboard! 🎉");
-    };
-
-    // Determine styling based on variant
     const isHackathon = variant.includes('hackathon');
-    const isSpring = variant === 'hackathon-spring-25';
-    const isFall = variant === 'hackathon-fall-25';
+    const isSpring25 = variant === 'hackathon-spring-25';
+    // const isFall25 = variant === 'hackathon-fall-25';
 
     return (
-        <footer className={`${isHackathon ? 'bg-gray-900' : 'bg-gray-900'} text-white py-16`}>
+        <footer className={`${isSpring25 ? 'bg-gray' : 'bg-gray-900'} text-white py-16`}>
             <div className="container mx-auto px-6 lg:px-12">
                 <div className="grid md:grid-cols-4 gap-8 mb-12">
                     <div>
                         <div className="flex items-center space-x-3 mb-6">
                             <img 
-                                src={isHackathon ? "./icons/logos/tidal-transparent.png" : "./icons/logos/tidal-white-transparent.png"} 
+                                src={isSpring25 ? "./icons/logos/tidal-white-transparent.png" : isHackathon ? "./icons/logos/tidal-transparent.png" : "./icons/logos/tidal-white-transparent.png"} 
                                 alt="TIDAL Logo" 
                                 className="h-8 w-auto"
                             />

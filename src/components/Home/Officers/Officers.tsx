@@ -190,7 +190,7 @@ export default function Officers() {
     const { coPresidents, vicePresidents, officers: regularOfficers } = organizeOfficers(officers);
 
     return (
-        <div className="pt-44 lg:pt-64 bg-repeat-x bg-right-top transition-[padding]">
+        <div className="pt-20 lg:pt-32 bg-repeat-x bg-right-top transition-[padding]">
             <div className="w-full bg-lightBlue font-mont overflow-x-clip">
                 <section id="officers" className="py-16 sm:py-20 lg:py-24 bg-white">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-12">

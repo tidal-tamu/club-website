@@ -40,15 +40,70 @@ export default function Hero() {
                         delay: 2,
                     }}
                 />
+                
+                {/* Mathematical and ML Symbols - Hidden on screens below laptop */}
+                <motion.div
+                    className="hidden lg:block absolute top-32 left-1/3 text-6xl sm:text-8xl opacity-10 text-[#336699] font-mono"
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 30, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                >
+                    ∑
+                </motion.div>
+                
+                <motion.div
+                    className="hidden lg:block absolute top-1/4 right-1/4 text-5xl sm:text-7xl opacity-8 text-[#706993] font-mono"
+                    animate={{ 
+                        scale: [1, 1.2, 1],
+                        x: [0, 20, 0]
+                    }}
+                    transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                >
+                    ∇
+                </motion.div>
+                
+                <motion.div
+                    className="hidden lg:block absolute bottom-1/3 left-1/4 text-4xl sm:text-6xl opacity-12 text-[#336699] font-mono"
+                    animate={{ y: [0, -20, 0] }}
+                    transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                >
+                    π
+                </motion.div>
+                
+                <motion.div
+                    className="hidden lg:block absolute bottom-1/4 right-1/4 text-5xl sm:text-7xl opacity-10 text-[#706993] font-mono"
+                    animate={{ rotate: [0, -180, 0] }}
+                    transition={{ duration: 15, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                >
+                    ∞
+                </motion.div>
+                
+                <motion.div
+                    className="hidden lg:block absolute top-1/2 left-1/4 text-3xl sm:text-5xl opacity-15 text-[#336699] font-mono"
+                    animate={{ x: [0, 30, 0] }}
+                    transition={{ duration: 12, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                >
+                    ∫
+                </motion.div>
+                
+                <motion.div
+                    className="hidden lg:block absolute top-3/4 right-1/3 text-4xl sm:text-6xl opacity-8 text-[#706993] font-mono"
+                    animate={{ 
+                        scale: [1, 0.8, 1],
+                        x: [0, -15, 0]
+                    }}
+                    transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                >
+                    ∂
+                </motion.div>
             </div>
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-                <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                <div className="flex flex-col items-center justify-center text-center">
                     <motion.div
-                        initial={{ opacity: 0, x: -100 }}
-                        animate={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-center lg:text-left"
+                        className="max-w-4xl"
                     >
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -60,18 +115,18 @@ export default function Hero() {
                             Texas A&M's Premier AI/ML Organization
                         </motion.div>
 
-                        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-gray-900 mb-6 leading-none">
-                            <span className="text-gray-900">TIDAL</span><span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-[#336699] ml-2">TAMU</span>
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 leading-none bg-gradient-to-r from-[#336699] via-[#706993] to-[#336699] bg-clip-text text-transparent">
+                            TIDALTAMU
                         </h1>
 
                         <div className="mb-8">
-                            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#336699] mb-2">November 15-17, 2025</p>
-                            <p className="text-base sm:text-lg text-gray-600 max-w-lg mx-auto lg:mx-0">
+                            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#336699] mb-2">October 25th, 2025 | 9AM-6PM</p>
+                            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
                                 Join us for Texas A&M's most innovative AI/ML hackathon. Build the future, one algorithm at a time.
                             </p>
                         </div>
 
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <motion.a
                                 href="https://discord.gg/QCHKPUUxRB"
                                 target="_blank"
@@ -92,19 +147,6 @@ export default function Hero() {
                                 Learn More
                             </motion.a>
                         </div>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, x: 100 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                        className="relative mt-8 lg:mt-0"
-                    >
-                        <div className="w-full h-64 sm:h-80 md:h-96 lg:h-[500px] bg-gradient-to-br from-[#336699]/10 to-[#706993]/10 rounded-3xl flex items-center justify-center border border-gray-200">
-                            <p className="text-gray-500 text-lg text-center px-4"> design here</p>
-                        </div>
-                        <div className="absolute -top-3 -right-3 sm:-top-6 sm:-right-6 w-16 h-16 sm:w-24 sm:h-24 bg-gradient-to-br from-[#336699] to-[#706993] rounded-2xl opacity-20 rotate-12"></div>
-                        <div className="absolute -bottom-3 -left-3 sm:-bottom-6 sm:-left-6 w-12 h-12 sm:w-16 sm:h-16 bg-[#706993] rounded-xl opacity-30 -rotate-12"></div>
                     </motion.div>
                 </div>
             </div>

@@ -17,6 +17,8 @@ interface NavbarProps {
 
 export default function Navbar({ dark = false }: NavbarProps) {
     const [isOpen, setIsOpen] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
 
     useEffect(() => {
         if (isOpen) {
@@ -26,6 +28,25 @@ export default function Navbar({ dark = false }: NavbarProps) {
         }
     }, [isOpen]);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY < 10) {
+                setIsVisible(true);
+            } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                setIsVisible(false);
+            } else if (currentScrollY < lastScrollY) {
+                setIsVisible(true);
+            }
+            
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [lastScrollY]);
+
     return (
         <motion.nav
             className={`fixed top-0 w-full font-mont font-semibold z-50 transition-all duration-300 ${
@@ -34,8 +55,8 @@ export default function Navbar({ dark = false }: NavbarProps) {
                     : "bg-white/80 backdrop-blur-xl border-b border-gray-100 text-black"
             }`}
             initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.6 }}
+            animate={{ y: isVisible ? 0 : -100 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
         >
             <div className="container mx-auto px-6 lg:px-12 py-6 flex items-center justify-between">
                 <a href="/" className="flex items-center">
@@ -58,13 +79,13 @@ export default function Navbar({ dark = false }: NavbarProps) {
                             {link.title}
                         </Link>
                     ))}
-                    <a
+                    {/* <a
                         href="/register"
                         target="_blank"
                         className="bg-hackRed text-white px-6 py-2 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 font-medium"
                     >
                         Apply
-                    </a>
+                    </a> */}
                 </div>
 
                 <button 

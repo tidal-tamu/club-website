@@ -83,12 +83,11 @@ export default function Hero() {
                         />
                     </a>
                     <a
-                        href="/register"
                         className="flex justify-center items-center shrink-0 gap-3 font-bold text-white bg-hackRed px-3 py-2 sm:p1 lg:px-6 md:text-xl rounded-lg border-[1px] cursor-pointer border-[#ba5353] hover:bg-[#9e3b3b] transition-all"
                         target="_blank" 
                         rel="noopener noreferrer"
                     >
-                        Apply
+                        Applications Closed!
                         <img
                             src="./icons/shapes/arrow.svg"
                             alt="->"

@@ -4,7 +4,7 @@ import confetti from "canvas-confetti";
 
 export default function Sponsor() {
     const handleEmailClick = () => {
-        navigator.clipboard.writeText("sponsorship@tidaltamu.org");
+        navigator.clipboard.writeText("tidaltamu@gmail.com");
         
         confetti({
             particleCount: 100,
@@ -24,7 +24,7 @@ export default function Sponsor() {
                     viewport={{ once: true }}
                     className="text-center mb-12 sm:mb-16"
                 >
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">Our Sponsors</h2>
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">Previous Sponsors</h2>
                     <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                         Thank you to our amazing partners who make our events and programs possible.
                     </p>
@@ -90,7 +90,7 @@ export default function Sponsor() {
                         className="inline-flex items-center gap-3 bg-gradient-to-r from-[#336699] to-[#706993] hover:from-[#336699]/90 hover:to-[#706993]/90 text-white px-8 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 font-semibold text-lg"
                     >
                         <FaEnvelope className="w-5 h-5" />
-                        sponsorship@tidaltamu.org
+                        tidaltamu@gmail.com
                     </motion.button>
                     <p className="text-sm text-gray-500 mt-4">We would love to hear from you!</p>
                 </motion.div>

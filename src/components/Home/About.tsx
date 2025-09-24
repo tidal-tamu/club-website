@@ -6,7 +6,7 @@ export default function About() {
         <div className="w-full font-mont overflow-x-clip" id="about-us">
             <section className="py-16 sm:py-20 lg:py-24 bg-gray-900 text-white relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#336699]/20 to-[#706993]/20"></div>
-                <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-0">
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -21,8 +21,8 @@ export default function About() {
                     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                         {[
                             { icon: FaUsers, number: "150+", label: "Active Members", color: "from-[#336699] to-[#706993]" },
-                            { icon: FaCalendarAlt, number: "10+", label: "Competitions Held", color: "from-[#706993] to-[#336699]" },
-                            { icon: FaCode, number: "25+", label: "Workshops Held", color: "from-[#336699] to-[#706993]" },
+                            { icon: FaCalendarAlt, number: "5+", label: "Competitions Held", color: "from-[#706993] to-[#336699]" },
+                            { icon: FaCode, number: "20+", label: "Workshops Held", color: "from-[#336699] to-[#706993]" },
                             { icon: FaTrophy, number: "1000+", label: "Hackathon Participants", color: "from-[#706993] to-[#336699]" },
                         ].map((stat, index) => (
                             <motion.div
@@ -70,7 +70,7 @@ export default function About() {
                             <div className="bg-gradient-to-r from-[#336699] to-[#706993] p-6 rounded-2xl text-white">
                                 <div className="flex items-center mb-2">
                                     <FaTrophy className="w-6 h-6 mr-3" />
-                                    <span className="font-bold text-lg">Adair Student Organization of the Year Winner</span>
+                                    <span className="font-bold text-lg">Adair Student Organization of the Year 2025</span>
                                 </div>
                                 <p className="text-white/90">Recognized for excellence in student leadership and community impact</p>
                             </div>
@@ -110,7 +110,7 @@ export default function About() {
                 </div>
 
                 {/* Floating shapes */}
-                <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute inset-0 pointer-events-none -z-10">
                     <motion.div
                         className="absolute top-20 left-10 w-12 h-12 bg-[#336699]/10 rounded-full"
                         animate={{ y: [0, -8, 0], rotate: [0, 180, 360] }}

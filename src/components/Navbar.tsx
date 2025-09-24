@@ -14,6 +14,8 @@ interface NavbarProps {
 
 export default function Navbar({ dark = false }: NavbarProps) {
     const [isOpen, setIsOpen] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
 
     useEffect(() => {
         if (isOpen) {
@@ -23,6 +25,28 @@ export default function Navbar({ dark = false }: NavbarProps) {
         }
     }, [isOpen]);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY < 10) {
+                // Always show navbar at the top
+                setIsVisible(true);
+            } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                // Scrolling down and past 100px - hide navbar
+                setIsVisible(false);
+            } else if (currentScrollY < lastScrollY) {
+                // Scrolling up - show navbar
+                setIsVisible(true);
+            }
+            
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [lastScrollY]);
+
     return (
         <motion.nav
             className={`fixed top-0 w-full font-mont font-semibold z-50 transition-all duration-300 ${
@@ -31,8 +55,8 @@ export default function Navbar({ dark = false }: NavbarProps) {
                     : "bg-white/80 backdrop-blur-xl border-b border-gray-100 text-black"
             }`}
             initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.6 }}
+            animate={{ y: isVisible ? 0 : -100 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
         >
             <div className="container mx-auto px-6 lg:px-12 py-6 flex items-center justify-between">
                 <a href="/" className="flex items-center">
@@ -65,7 +89,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
                                     About
                                 </a>
                             )
-                        ) : link.title === "Hackathon" ? (
+                        ) : link.title === "HackathonF25" ? (
                             <a
                                 key={link.title}
                                 href={link.path}
@@ -149,7 +173,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
                                 href={link.path}
                                 className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
                             >
-                                Events
+                                Hackathon
                             </a>
                         ) : link.title === "Sponsor Us" ? (
                             <a
