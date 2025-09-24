@@ -122,7 +122,7 @@ export default function Hero() {
                         <div className="mb-8">
                             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#336699] mb-2">October 25th, 2025 | 9AM-6PM</p>
                             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-                                Join us for Texas A&M's most innovative AI/ML hackathon. Build the future, one algorithm at a time.
+                                Join us for Texas A&M's most innovative AI/ML hackathon!
                             </p>
                         </div>
 
