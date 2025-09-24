@@ -2,8 +2,18 @@ import Navbar from "../HackathonF25/Navbar";
 import Hero from "../HackathonF25/Hero";
 import tidalBackground from "/s25/tidal-background.png";
 import "./tidal-effects.css";
+import { useEffect } from "react";
 
 const HackathonF25 = () => {
+
+    useEffect(() => {
+        document.body.style.overflow = "hidden";
+        
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, []);
+
     return (
         <div
             className="min-h-screen hero-gradient relative overflow-hidden"
