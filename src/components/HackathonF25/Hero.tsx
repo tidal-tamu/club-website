@@ -16,32 +16,34 @@ const Hero = () => {
             }}
         >
             
-            {/* MLH Banner
+            {/* MLH Banner - only show on laptops and up */}
             <a 
                 href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white" 
-                className="max-w-[100px] min-w-[60px] absolute top-0 right-[80px] sm:right-[50px] w-[10%] z-30"
+                className="hidden lg:block max-w-[100px] min-w-[60px] absolute top-0 right-[80px] w-[10%] z-30 hover:scale-105 transition-transform duration-200"
+                target="_blank"
+                rel="noopener noreferrer"
             >
                 <img 
                     src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-white.svg" 
                     alt="Major League Hacking 2025 Hackathon Season"
                 />
-            </a> */}
+            </a>
 
             <FloatingParticles count={12} />
 
-            <div className="absolute top-36 md:top-48 left-1/2 transform -translate-x-1/2 flex flex-wrap justify-center gap-3 md:gap-4 z-20">
-                <div className="bg-gray-800/80 backdrop-blur-sm border border-yellow-400/30 px-3 py-2 md:px-4 md:py-2 rounded-xl">
-                    <span className="text-white font-medium text-sm md:text-base">MSC Bethancourt</span>
+            <div className="absolute top-36 md:top-48 left-1/2 transform -translate-x-1/2 flex flex-wrap md:flex-nowrap justify-center gap-2 sm:gap-3 md:gap-4 z-20">
+                <div className="bg-gray-800/80 backdrop-blur-sm border border-yellow-400/30 px-2 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-2 rounded-xl whitespace-nowrap">
+                    <span className="text-white font-medium text-xs sm:text-sm md:text-base">MSC Bethancourt</span>
                 </div>
-                <div className="bg-gray-800/80 backdrop-blur-sm border border-yellow-400/30 px-3 py-2 md:px-4 md:py-2 rounded-xl">
-                    <span className="text-white font-medium text-sm md:text-base">9 AM - 6 PM</span>
+                <div className="bg-gray-800/80 backdrop-blur-sm border border-yellow-400/30 px-2 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-2 rounded-xl whitespace-nowrap">
+                    <span className="text-white font-medium text-xs sm:text-sm md:text-base">9 AM - 6 PM</span>
                 </div>
-                <div className="bg-gray-800/80 backdrop-blur-sm border border-yellow-400/30 px-3 py-2 md:px-4 md:py-2 rounded-xl">
-                    <span className="text-white font-medium text-sm md:text-base">Oct 25</span>
+                <div className="bg-gray-800/80 backdrop-blur-sm border border-yellow-400/30 px-2 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-2 rounded-xl whitespace-nowrap">
+                    <span className="text-white font-medium text-xs sm:text-sm md:text-base">Oct 25</span>
                 </div>
             </div>
 
-            <div className="text-center z-20 max-w-4xl mx-auto">
+            <div className="text-center z-20 max-w-4xl mx-auto mt-8 md:mt-12">
                 <div className="mb-6 md:mb-8 relative">
                     <img
                         src={tidalHeroText}

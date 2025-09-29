@@ -88,7 +88,10 @@ export default function Navbar({ dark = false }: NavbarProps) {
                 </div>
 
                 <button
-                    className="md:hidden inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    className={`md:hidden inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg focus:outline-none focus:ring-2 ${dark 
+                        ? "hover:bg-white/10 focus:ring-white/20" 
+                        : "hover:bg-gray-100 focus:ring-gray-200"
+                    }`}
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     {isOpen ? (
@@ -104,8 +107,10 @@ export default function Navbar({ dark = false }: NavbarProps) {
             </div>
 
             {/* Mobile Menu */}
-            <div className={`md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-lg transition-all duration-300 ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"
-                }`}>
+            <div className={`md:hidden absolute top-full left-0 w-full backdrop-blur-xl border-b shadow-lg transition-all duration-300 ${dark 
+                ? "bg-black/30 border-gray-600" 
+                : "bg-white/95 border-gray-100"
+            } ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}>
                 <div className="px-6 py-4 space-y-4">
                     {navLinks.map((link) => (
                         <Link
@@ -114,7 +119,10 @@ export default function Navbar({ dark = false }: NavbarProps) {
                             smooth={true}
                             duration={500}
                             onClick={() => setIsOpen(false)}
-                            className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
+                            className={`block transition-all duration-300 font-medium py-2 ${dark 
+                                ? "text-gray-300 hover:text-white" 
+                                : "text-gray-600 hover:text-[#336699]"
+                            }`}
                         >
                             {link.title}
                         </Link>
