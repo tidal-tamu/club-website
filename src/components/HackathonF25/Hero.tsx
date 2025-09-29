@@ -1,11 +1,20 @@
 import { FaPlay } from "react-icons/fa";
 import FloatingParticles from "./ui/FloatingParticles";
 import tidalHeroText from "/s25/hero.png";
+import tidalBackground from "/s25/tidal-background.png";
 
 const Hero = () => {
 
     return (
-        <div className="relative min-h-screen flex items-center justify-center px-6 md:px-12 overflow-hidden pt-20">
+        <div 
+            className="relative min-h-screen flex items-center justify-center px-6 md:px-12 overflow-hidden pt-20"
+            style={{
+                backgroundImage: `url(${tidalBackground})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'top',
+                backgroundRepeat: 'no-repeat'
+            }}
+        >
             
             {/* MLH Banner
             <a 

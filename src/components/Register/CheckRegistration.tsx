@@ -22,7 +22,7 @@ export default function CheckRegistration() {
     const handleEmailLookup = async () => {
         setSearching(true);
         try {
-            const response = await fetch(`https://script.google.com/macros/s/AKfycbzNhPbPmwliyMO59syxbdMglV2cH7lOgpld9MVvvu86PYbmYvo492l9JHo6UxfLvSAkgQ/exec?email=${lookupEmail}`);
+            const response = await fetch(`https://script.google.com/macros/s/AKfycbxMhXYrzcLgptsOpJlow7CPzrtgT_Zii-MiyCwHrHxI_RJ6_rB6cOgYwAnwUY5UYs5G/exec?email=${lookupEmail}`);
             const result = await response.json();
             setEmailExists(result.exists);
         } catch (error) {
@@ -38,14 +38,12 @@ export default function CheckRegistration() {
             style={{
                 backgroundImage: `url(${tidalBackground})`,
                 backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                backgroundPosition: 'top',
                 backgroundRepeat: 'no-repeat'
             }}
         >
-            {/* Background overlay for better text contrast */}
             <div className="absolute inset-0 bg-tidal-deep/70 backdrop-blur-[1px]" />
             
-            {/* Navigation */}
             <div className="relative z-30">
                 <Navbar dark />
             </div>

@@ -16,7 +16,7 @@ export default function Register() {
             style={{
                 backgroundImage: `url(${tidalBackground})`,
                 backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                backgroundPosition: 'top',
                 backgroundRepeat: 'no-repeat'
             }}
         >
