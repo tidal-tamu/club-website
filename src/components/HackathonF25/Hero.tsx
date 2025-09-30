@@ -63,7 +63,6 @@ const Hero = () => {
                     </div>
                     <a
                         href="/register"
-                        target="_blank"
                         className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-bold text-lg md:text-xl px-6 md:px-8 py-3 md:py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3"
                     >
                         <FaPlay className="h-4 w-4 md:h-5 md:w-5" />

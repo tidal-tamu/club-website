@@ -83,7 +83,6 @@ export default function Navbar({ dark = false }: NavbarProps) {
                     ))}
                     <a
                         href="/register"
-                        target="_blank"
                         className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-medium"
                     >
                         Apply
