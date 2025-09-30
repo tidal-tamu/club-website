@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const initialFormData = {
     First_Name: "",
@@ -360,12 +361,12 @@ export default function Form() {
                                 or reach out to an officer in our discord.
                             </h1>
                             {/* {<pre>{JSON.stringify(submittedData, null, 2)}</pre>} */}
-                            <a href="/HackathonF25">
+                            <Link to="/hackathon">
                                 <button className="p-4 rounded-xl bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-bold mt-10 transition-all duration-300">
                                     {" "}
                                     Return To Home
                                 </button>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 ) : (
