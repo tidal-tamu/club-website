@@ -87,7 +87,7 @@ export default function Footer({ variant = "home" }: FooterProps) {
                         <ul className="space-y-3 text-gray-400">
                             <li>
                                 <a
-                                    href="/events/tidalhack-fall-2025"
+                                    href="/hackathon"
                                     className="hover:text-white transition-colors"
                                 >
                                     TIDALHACK Fall 2025
@@ -95,7 +95,7 @@ export default function Footer({ variant = "home" }: FooterProps) {
                             </li>
                             <li>
                                 <a
-                                    href="/events/ai-workshop-series"
+                                    href="/#about-us"
                                     className="hover:text-white transition-colors"
                                 >
                                     AI Workshops
@@ -103,7 +103,7 @@ export default function Footer({ variant = "home" }: FooterProps) {
                             </li>
                             <li>
                                 <a
-                                    href="/events/industry-panel"
+                                    href="/#about-us"
                                     className="hover:text-white transition-colors"
                                 >
                                     Industry Panels

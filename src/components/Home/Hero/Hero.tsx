@@ -5,7 +5,7 @@ import { FaArrowRight, FaDiscord } from "react-icons/fa";
 
 export default function Hero() {
     return (
-        <section className="relative min-h-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-white pb-4">
+        <section className="relative min-h-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-white pb-24 sm:pb-4">
             <div className="backgroundImage absolute inset-0">
                 <motion.div
                     className="absolute top-20 left-4 sm:left-10 w-64 h-64 sm:w-96 sm:h-96 rounded-full opacity-5"

@@ -1,6 +1,6 @@
 import Navbar from "../HackathonF25/Navbar";
 import Hero from "../HackathonF25/Hero";
-import tidalBackground from "/s25/tidal-background.png";
+import tidalBackground from "/f25/tidal-background.png";
 import "./tidal-effects.css";
 import { useEffect } from "react";
 

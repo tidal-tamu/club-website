@@ -1,7 +1,7 @@
 import { FaPlay } from "react-icons/fa";
 import FloatingParticles from "./ui/FloatingParticles";
-import tidalHeroText from "/s25/hero.png";
-import tidalBackground from "/s25/tidal-background.png";
+import tidalHeroText from "/f25/hero.png";
+import tidalBackground from "/f25/tidal-background.png";
 
 const Hero = () => {
     return (
