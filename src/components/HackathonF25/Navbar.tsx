@@ -3,7 +3,7 @@ import { Link } from "react-scroll";
 import { motion } from "framer-motion";
 
 // TODO: Add links when sections are ready
-const navLinks = [
+const navLinks: { title: string; path: string }[] = [
     // { title: "About", path: "about" },
     // { title: "Schedule", path: "schedule" },
     // { title: "Prizes", path: "prizes" },
