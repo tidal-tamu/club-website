@@ -27,11 +27,26 @@ const HackathonF25 = () => {
         let minimumTimeElapsed = false;
         const minimumLoadTime = 3000; // 3 seconds after browser finishes loading
 
+        const checkCanFinish = () => {
+            if (browserLoaded && imagesLoaded && minimumTimeElapsed) {
+                setLoadingProgress(100);
+                // Short delay to show 100% before hiding
+                setTimeout(() => setIsLoading(false), 500);
+            }
+        };
+
         // Wait for browser to finish loading (Safari loading bar completion)
         const handleWindowLoad = () => {
             browserLoaded = true;
             setLoadingProgress(50); // Browser loaded, show 50% progress
-            startMinimumTimer();
+            
+            // Start minimum timer only after browser loads
+            setTimeout(() => {
+                minimumTimeElapsed = true;
+                setLoadingProgress(prev => Math.max(prev, 90)); // Minimum time elapsed
+                checkCanFinish();
+            }, minimumLoadTime);
+            
             checkCanFinish();
         };
 
@@ -65,28 +80,15 @@ const HackathonF25 = () => {
             img.src = src;
         });
 
-        // Start minimum timer only after browser loads
-        const startMinimumTimer = () => {
-            setTimeout(() => {
-                minimumTimeElapsed = true;
-                setLoadingProgress(prev => Math.max(prev, 90)); // Minimum time elapsed
-                checkCanFinish();
-            }, minimumLoadTime);
-        };
-
-        const checkCanFinish = () => {
-            if (browserLoaded && imagesLoaded && minimumTimeElapsed) {
-                setLoadingProgress(100);
-                // Short delay to show 100% before hiding
-                setTimeout(() => setIsLoading(false), 500);
-            }
-        };
-
-        // Safety timeout - force finish after 10 seconds total
+        // Safety timeout - force finish after 8 seconds total
         const safetyTimeout = setTimeout(() => {
+            console.log('Safety timeout triggered - forcing load completion');
+            browserLoaded = true;
+            imagesLoaded = true;
+            minimumTimeElapsed = true;
             setLoadingProgress(100);
             setTimeout(() => setIsLoading(false), 500);
-        }, 10000);
+        }, 8000);
         
         return () => {
             document.body.style.overflow = "unset";
