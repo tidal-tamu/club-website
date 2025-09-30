@@ -1,7 +1,45 @@
 .backgroundImage {
-    background-image: url("/waves/wave-1.svg"), url("/waves/wave-2.svg"),
-        url("/waves/wave-3.svg");
+    position: relative;
+    background-image: url("/waves/v2-base-wave.svg");
     background-repeat: repeat-x;
-    background-position: 0 bottom, 0 calc(100% - 60px), 0 calc(100% - 120px),
-        0 calc(100% + 50px), 0 calc(100% - 20px);
+    background-position: 0 bottom;
+}
+
+.backgroundImage::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("/waves/v2-base-wave.svg");
+    background-repeat: repeat-x;
+    background-position: 0 calc(100% - 60px);
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.backgroundImage::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("/waves/v2-base-wave.svg");
+    background-repeat: repeat-x;
+    background-position: 0 calc(100% - 120px);
+    opacity: 0.25;
+    pointer-events: none;
+}
+
+.backgroundImage .wave-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 120px;
+    background-color: #20283c;
+    opacity: 0.25;
 }
