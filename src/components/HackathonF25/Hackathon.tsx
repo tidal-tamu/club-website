@@ -15,6 +15,7 @@ const HackathonF25 = () => {
 
     useEffect(() => {
         document.body.style.overflow = "hidden";
+        document.body.style.backgroundColor = "#121111";
         
         const handleMouseMove = (e: MouseEvent) => {
             setCursorPosition({ x: e.clientX, y: e.clientY });
@@ -92,6 +93,7 @@ const HackathonF25 = () => {
         
         return () => {
             document.body.style.overflow = "unset";
+            document.body.style.backgroundColor = "";
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('load', handleWindowLoad);
             clearTimeout(safetyTimeout);
