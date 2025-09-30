@@ -1,11 +1,10 @@
 import { motion } from "framer-motion";
 
 interface LoadingScreenProps {
-    onLoadComplete: () => void;
     progress?: number;
 }
 
-const LoadingScreen = ({ onLoadComplete, progress = 0 }: LoadingScreenProps) => {
+const LoadingScreen = ({ progress = 0 }: LoadingScreenProps) => {
 
     return (
         <motion.div

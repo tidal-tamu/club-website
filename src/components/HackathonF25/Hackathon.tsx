@@ -102,7 +102,6 @@ const HackathonF25 = () => {
                 {isLoading && (
                     <LoadingScreen 
                         key="loading" 
-                        onLoadComplete={() => setIsLoading(false)} 
                         progress={loadingProgress}
                     />
                 )}
