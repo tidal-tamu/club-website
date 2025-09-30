@@ -47,7 +47,7 @@ const Hero = () => {
                 />
             </div>
 
-            <div className="text-center z-20 max-w-4xl mx-auto -mt-4 md:mt-12">
+            <div className="text-center z-20 max-w-4xl mx-auto -mt-12 sm:-mt-8 md:mt-12">
                 {/* Pills - positioned independently */}
                 <div className="flex flex-wrap md:flex-nowrap justify-center gap-2 sm:gap-3 md:gap-4 z-20 mb-4">
                     <div className="bg-[rgba(47,115,94,0.39)] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap">
