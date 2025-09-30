@@ -2,6 +2,7 @@ import { FaPlay } from "react-icons/fa";
 import FloatingParticles from "./ui/FloatingParticles";
 import tidalHeroText from "/f25/hero.png";
 import tidalBackground from "/f25/tidal-background.png";
+import lightImage from "/f25/Light.png";
 
 const Hero = () => {
     return (
@@ -29,44 +30,68 @@ const Hero = () => {
 
             <FloatingParticles count={12} />
 
-            <div className="text-center z-20 max-w-4xl mx-auto mt-8 md:mt-12">
+            {/* Light.png overlay - top left with pass-through blend */}
+            <div 
+                className="absolute top-0 left-0 w-auto h-full pointer-events-none z-5"
+                style={{
+                    mixBlendMode: "screen" as any,
+                }}
+            >
+                <img
+                    src={lightImage}
+                    alt=""
+                    className="h-full w-auto object-cover"
+                    style={{
+                        opacity: 0.8,
+                    }}
+                />
+            </div>
+
+            <div className="text-center z-20 max-w-4xl mx-auto mt-2 md:mt-12">
+                {/* Pills - positioned independently */}
+                <div className="flex flex-wrap md:flex-nowrap justify-center gap-2 sm:gap-3 md:gap-4 z-20 mb-4">
+                    <div className="bg-[rgba(47,115,94,0.39)] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap">
+                        <span className="text-white font-medium text-xs sm:text-sm md:text-base">
+                            MSC Bethancourt
+                        </span>
+                    </div>
+                    <div className="bg-[rgba(47,115,94,0.39)] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap">
+                        <span className="text-white font-medium text-xs sm:text-sm md:text-base">
+                            9 AM - 6 PM
+                        </span>
+                    </div>
+                    <div className="bg-[rgba(47,115,94,0.39)] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap">
+                        <span className="text-white font-medium text-xs sm:text-sm md:text-base">
+                            Oct 25
+                        </span>
+                    </div>
+                </div>
+
                 <div className="mb-6 md:mb-8 relative">
                     <img
                         src={tidalHeroText}
                         alt="TIDAL HACK25"
                         className="w-full max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl mx-auto drop-shadow-2xl animate-float-subtle"
                         style={{
-                            filter: "drop-shadow(0 0 30px hsl(var(--tidal-bright) / 0.3))",
+                            filter: "drop-shadow(0 0 40px rgba(255, 200, 50, 0.08))",
                         }}
                     />
 
-                    <div className="absolute inset-0 bg-gradient-radial from-tidal-bright/20 to-transparent blur-3xl scale-150 -z-10" />
+                    <div className="absolute inset-0 bg-gradient-radial from-yellow-400/5 to-transparent blur-2xl scale-125 -z-10" />
                 </div>
 
                 <div className="flex flex-col items-center gap-8">
-                    <div className="flex flex-wrap md:flex-nowrap justify-center gap-2 sm:gap-3 md:gap-4 z-20">
-                        <div className="bg-gray-800/80 backdrop-blur-sm border border-yellow-400/30 px-2 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-2 rounded-xl whitespace-nowrap">
-                            <span className="text-white font-medium text-xs sm:text-sm md:text-base">
-                                MSC Bethancourt
-                            </span>
-                        </div>
-                        <div className="bg-gray-800/80 backdrop-blur-sm border border-yellow-400/30 px-2 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-2 rounded-xl whitespace-nowrap">
-                            <span className="text-white font-medium text-xs sm:text-sm md:text-base">
-                                9 AM - 6 PM
-                            </span>
-                        </div>
-                        <div className="bg-gray-800/80 backdrop-blur-sm border border-yellow-400/30 px-2 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-2 rounded-xl whitespace-nowrap">
-                            <span className="text-white font-medium text-xs sm:text-sm md:text-base">
-                                Oct 25
-                            </span>
-                        </div>
-                    </div>
+                    
                     <a
                         href="/register"
-                        className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-bold text-lg md:text-xl px-6 md:px-8 py-3 md:py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3"
+                        className="bg-[#FFAC29] hover:bg-[#FFAC29] text-black font-bold text-lg md:text-xl px-4 md:px-6 py-1.5 md:py-2.5 rounded-xl transition-all duration-300 flex items-center gap-3 -mt-6"
+                        style={{
+                            filter: "drop-shadow(0 8px 0 #CC8A21) drop-shadow(0 12px 16px rgba(0, 0, 0, 0.3))",
+                            boxShadow: "inset 0 0 0 1.8px rgba(255, 255, 255, 0.10)",
+                        }}
                     >
-                        <FaPlay className="h-4 w-4 md:h-5 md:w-5" />
                         APPLY NOW
+                        <FaPlay className="h-4 w-4 md:h-5 md:w-5 text-black" />
                     </a>
 
                     <p className="text-gray-300 text-sm md:text-base font-medium">

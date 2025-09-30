@@ -20,9 +20,25 @@
     background: radial-gradient(circle, var(--tw-gradient-stops));
 }
 
-/* Custom cursor */
+/* Hide default cursor */
 * {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="%23FFD700" stroke="%23FFA500" stroke-width="2" opacity="0.8"/><circle cx="10" cy="10" r="4" fill="%23FFA500" opacity="0.6"/></svg>') 10,10, auto;
+    cursor: none !important;
+}
+
+/* Custom firefly cursor */
+.firefly-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,240,0.95) 0%, rgba(255,240,150,0.8) 25%, rgba(255,220,100,0.4) 50%, transparent 100%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px rgba(255,220,100,0.9), 0 0 40px rgba(255,200,50,0.6);
+    transition: transform 0.05s linear;
+    z-index: 9999;
 }
 
 .animate-float-subtle {

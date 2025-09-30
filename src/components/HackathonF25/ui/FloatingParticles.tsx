@@ -1,30 +1,94 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 interface Particle {
     id: number;
     x: number;
     y: number;
     size: number;
-    delay: number;
-    duration: number;
+    vx: number;
+    vy: number;
+    opacity: number;
+    opacityDirection: number;
 }
 
 const FloatingParticles = ({ count = 8 }: { count?: number }) => {
     const [particles, setParticles] = useState<Particle[]>([]);
+    const animationRef = useRef<number>();
 
     useEffect(() => {
+        // Initialize particles with smaller sizes
         const newParticles: Particle[] = [];
         for (let i = 0; i < count; i++) {
             newParticles.push({
                 id: i,
                 x: Math.random() * 100,
                 y: Math.random() * 100,
-                size: Math.random() * 6 + 3,
-                delay: Math.random() * 3,
-                duration: Math.random() * 8 + 6,
+                size: Math.random() * 2.5 + 2.5, // Particles: 2.5-5px
+                vx: (Math.random() - 0.5) * 0.2, // Slower random x velocity
+                vy: (Math.random() - 0.5) * 0.2, // Slower random y velocity
+                opacity: Math.random() * 0.5 + 0.3, // Start with random opacity 0.3-0.8
+                opacityDirection: Math.random() > 0.5 ? 1 : -1, // Random fade direction
             });
         }
         setParticles(newParticles);
+
+        // Continuous random motion animation
+        const animate = () => {
+            setParticles((prev) =>
+                prev.map((p) => {
+                    let newX = p.x + p.vx;
+                    let newY = p.y + p.vy;
+                    let newVx = p.vx;
+                    let newVy = p.vy;
+
+                    // Wrap around edges instead of bouncing
+                    if (newX < 0) newX = 100;
+                    if (newX > 100) newX = 0;
+                    if (newY < 0) newY = 100;
+                    if (newY > 100) newY = 0;
+
+                    // Add subtle random drift
+                    newVx += (Math.random() - 0.5) * 0.01;
+                    newVy += (Math.random() - 0.5) * 0.01;
+
+                    // Clamp velocity to keep it slow
+                    newVx = Math.max(-0.3, Math.min(0.3, newVx));
+                    newVy = Math.max(-0.3, Math.min(0.3, newVy));
+
+                    // Update opacity for pulsing effect
+                    let newOpacity = p.opacity + (p.opacityDirection * 0.003);
+                    let newOpacityDirection = p.opacityDirection;
+
+                    // Reverse direction at opacity limits
+                    if (newOpacity >= 0.9) {
+                        newOpacity = 0.9;
+                        newOpacityDirection = -1;
+                    } else if (newOpacity <= 0.2) {
+                        newOpacity = 0.2;
+                        newOpacityDirection = 1;
+                    }
+
+                    return {
+                        ...p,
+                        x: newX,
+                        y: newY,
+                        vx: newVx,
+                        vy: newVy,
+                        opacity: newOpacity,
+                        opacityDirection: newOpacityDirection,
+                    };
+                })
+            );
+            animationRef.current = requestAnimationFrame(animate);
+        };
+
+        animationRef.current = requestAnimationFrame(animate);
+
+        return () => {
+            if (animationRef.current) {
+                cancelAnimationFrame(animationRef.current);
+            }
+        };
     }, [count]);
 
     return (
@@ -32,26 +96,19 @@ const FloatingParticles = ({ count = 8 }: { count?: number }) => {
             {particles.map((particle) => (
                 <div
                     key={particle.id}
-                    className="absolute rounded-full opacity-80 animate-firefly-dance"
+                    className="absolute rounded-full"
                     style={{
                         left: `${particle.x}%`,
                         top: `${particle.y}%`,
                         width: `${particle.size}px`,
                         height: `${particle.size}px`,
-                        backgroundColor: 'hsl(48 100% 70%)',
-                        animationDelay: `${particle.delay}s`,
-                        animationDuration: `${particle.duration}s`,
-                        boxShadow: `0 0 ${particle.size * 3}px hsl(48 100% 70%), 0 0 ${particle.size * 6}px hsl(48 100% 50%)`,
+                        backgroundColor: `rgba(255, 230, 100, ${particle.opacity})`,
+                        boxShadow: `0 0 ${particle.size * 5}px rgba(255, 230, 100, ${particle.opacity * 0.8}), 0 0 ${particle.size * 10}px rgba(255, 200, 50, ${particle.opacity * 0.5})`,
+                        transform: 'translate(-50%, -50%)',
+                        opacity: particle.opacity,
                     }}
                 />
             ))}
-
-            {/* Additional floating elements */}
-            <div className="absolute top-1/4 left-1/4 w-3 h-3 rounded-full animate-firefly-dance opacity-70" style={{ backgroundColor: 'hsl(48 100% 70%)', boxShadow: '0 0 10px hsl(48 100% 70%)' }} />
-            <div className="absolute top-3/4 right-1/4 w-2 h-2 rounded-full animate-firefly-dance opacity-80" style={{ backgroundColor: 'hsl(48 100% 70%)', boxShadow: '0 0 8px hsl(48 100% 70%)' }} />
-            <div className="absolute top-1/2 left-3/4 w-4 h-4 rounded-full animate-firefly-dance opacity-60" style={{ backgroundColor: 'hsl(48 100% 70%)', boxShadow: '0 0 12px hsl(48 100% 70%)' }} />
-            <div className="absolute top-1/3 right-1/3 w-2 h-2 rounded-full animate-firefly-dance opacity-70" style={{ backgroundColor: 'hsl(48 100% 70%)', animationDelay: '2s', boxShadow: '0 0 8px hsl(48 100% 70%)' }} />
-            <div className="absolute bottom-1/4 left-1/2 w-3 h-3 rounded-full animate-firefly-dance opacity-60" style={{ backgroundColor: 'hsl(48 100% 70%)', animationDelay: '1s', boxShadow: '0 0 10px hsl(48 100% 70%)' }} />
         </div>
     );
 };
