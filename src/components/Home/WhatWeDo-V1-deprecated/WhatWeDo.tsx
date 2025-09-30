@@ -1,5 +1,5 @@
-import { Standard } from "./WhatWeDo-V1-deprecated/WhatWeDoBubbles.tsx";
-import { titles, bodies } from "./WhatWeDo-V1-deprecated/data.ts";
+import { Standard } from "./WhatWeDoBubbles";
+import { titles, bodies } from "./data";
 
 export default function WhatWeDo_Dep() {
     return (

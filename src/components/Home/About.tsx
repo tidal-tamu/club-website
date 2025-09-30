@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FaUsers, FaCode, FaTrophy, FaAward, FaBolt } from "react-icons/fa";
+import { FaTrophy, FaAward } from "react-icons/fa";
 
 export default function About() {
     return (
