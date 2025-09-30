@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../HackathonF25/Navbar';
-import tidalBackground from "/s25/tidal-background.png";
+import tidalBackground from "/f25/tidal-background.png";
 import "./tidal-effects.css";
 import 'primereact/resources/themes/lara-light-indigo/theme.css';  // Theme CSS
 import 'primereact/resources/primereact.min.css'; // Core PrimeReact CSS
