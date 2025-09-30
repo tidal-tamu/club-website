@@ -20,12 +20,14 @@
     background: radial-gradient(circle, var(--tw-gradient-stops));
 }
 
-/* Hide default cursor */
-* {
-    cursor: none !important;
+/* Hide default cursor only in HackathonF25 on desktop */
+@media (min-width: 768px) {
+    .hackathon-f25-container * {
+        cursor: none !important;
+    }
 }
 
-/* Custom firefly cursor */
+/* Custom firefly cursor - only visible on desktop */
 .firefly-cursor {
     position: fixed;
     top: 0;
@@ -39,6 +41,13 @@
     box-shadow: 0 0 20px rgba(255,220,100,0.9), 0 0 40px rgba(255,200,50,0.6);
     transition: transform 0.05s linear;
     z-index: 9999;
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .firefly-cursor {
+        display: block;
+    }
 }
 
 .animate-float-subtle {

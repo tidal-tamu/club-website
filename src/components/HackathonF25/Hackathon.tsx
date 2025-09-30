@@ -82,7 +82,7 @@ const HackathonF25 = () => {
 
             {!isLoading && (
                 <div
-                    className="min-h-screen hero-gradient relative overflow-hidden"
+                    className="hackathon-f25-container min-h-screen hero-gradient relative overflow-hidden"
                     style={{
                         backgroundImage: `url(${tidalBackground})`,
                         backgroundSize: 'cover',
