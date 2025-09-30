@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import { motion } from "framer-motion";
+import {
+    FaGithub,
+    FaLinkedin,
+    FaInstagram,
+    FaExternalLinkAlt,
+} from "react-icons/fa";
 
 // TODO: Add links when sections are ready
-const navLinks: { title: string; path: string }[] = [
+const navLinks: { title: string; path: string; isExternal?: boolean }[] = [
+    { title: "Home", path: "/", isExternal: true },
     // { title: "About", path: "about" },
     // { title: "Schedule", path: "schedule" },
     // { title: "Prizes", path: "prizes" },
@@ -22,9 +29,23 @@ export default function Navbar({ dark = false }: NavbarProps) {
 
     useEffect(() => {
         if (isOpen) {
-            document.body.classList.add("overflow-hidden");
+            // Prevent scrolling on both body and html elements
+            document.body.style.overflow = "hidden";
+            document.documentElement.style.overflow = "hidden";
+            document.body.style.position = "fixed";
+            document.body.style.top = `-${window.scrollY}px`;
+            document.body.style.width = "100%";
         } else {
-            document.body.classList.remove("overflow-hidden");
+            // Restore scrolling
+            const scrollY = document.body.style.top;
+            document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
+            document.body.style.position = "";
+            document.body.style.top = "";
+            document.body.style.width = "";
+            if (scrollY) {
+                window.scrollTo(0, parseInt(scrollY || "0") * -1);
+            }
         }
     }, [isOpen]);
 
@@ -70,17 +91,19 @@ export default function Navbar({ dark = false }: NavbarProps) {
                 </a>
 
                 <div className="hidden md:flex items-center space-x-8">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.title}
-                            to={link.path}
-                            smooth={true}
-                            duration={500}
-                            className="text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium"
-                        >
-                            {link.title}
-                        </Link>
-                    ))}
+                    {navLinks
+                        .filter((link) => !link.isExternal) // Hide external links (Home) on desktop
+                        .map((link) => (
+                            <Link
+                                key={link.title}
+                                to={link.path}
+                                smooth={true}
+                                duration={500}
+                                className="text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium"
+                            >
+                                {link.title}
+                            </Link>
+                        ))}
                     <a
                         href="/register"
                         className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-medium"
@@ -90,7 +113,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
                 </div>
 
                 <button
-                    className={`md:hidden inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg focus:outline-none focus:ring-2 ${
+                    className={`md:hidden inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg focus:outline-none focus:ring-2 z-50 relative ${
                         dark
                             ? "hover:bg-white/10 focus:ring-white/20"
                             : "hover:bg-gray-100 focus:ring-gray-200"
@@ -132,39 +155,132 @@ export default function Navbar({ dark = false }: NavbarProps) {
             </div>
 
             {/* Mobile Menu */}
-            <div
-                className={`md:hidden absolute top-full left-0 w-full backdrop-blur-xl border-b shadow-lg transition-all duration-300 ${
-                    dark
-                        ? "bg-black/30 border-gray-600"
-                        : "bg-white/95 border-gray-100"
-                } ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
+            <motion.div
+                className={`md:hidden fixed inset-0 top-0 left-0 w-full h-screen backdrop-blur-xl ${
+                    dark 
+                        ? "bg-black/20 text-white" 
+                        : "bg-white/20 text-black"
+                } z-40`}
+                initial={{ x: "100%", opacity: 0 }}
+                animate={{ 
+                    x: isOpen ? "0%" : "100%", 
+                    opacity: isOpen ? 1 : 0 
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                style={{ 
+                    display: isOpen ? "block" : "none",
+                    pointerEvents: isOpen ? "auto" : "none"
+                }}
             >
-                <div className="px-6 py-4 space-y-4">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.title}
-                            to={link.path}
-                            smooth={true}
-                            duration={500}
-                            onClick={() => setIsOpen(false)}
-                            className={`block transition-all duration-300 font-medium py-2 ${
-                                dark
-                                    ? "text-gray-300 hover:text-white"
-                                    : "text-gray-600 hover:text-[#336699]"
-                            }`}
+                <div className="flex flex-col h-full px-6 py-12">
+                    {/* Navigation Links - Center Section */}
+                    <div className="flex-1 flex flex-col items-center justify-center space-y-12">
+                        {navLinks.map((link) =>
+                            link.isExternal ? (
+                                <a
+                                    key={link.title}
+                                    href={link.path}
+                                    className={`text-2xl transition-all duration-300 font-medium text-center ${
+                                        dark
+                                            ? "text-gray-300 hover:text-white"
+                                            : "text-gray-600 hover:text-[#336699]"
+                                    }`}
+                                >
+                                    {link.title}
+                                </a>
+                            ) : (
+                                <Link
+                                    key={link.title}
+                                    to={link.path}
+                                    smooth={true}
+                                    duration={500}
+                                    onClick={() => setIsOpen(false)}
+                                    className={`text-2xl transition-all duration-300 font-medium text-center ${
+                                        dark
+                                            ? "text-gray-300 hover:text-white"
+                                            : "text-gray-600 hover:text-[#336699]"
+                                    }`}
+                                >
+                                    {link.title}
+                                </Link>
+                            )
+                        )}
+                        <a
+                            href="/register"
+                            target="_blank"
+                            className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black px-14 py-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold text-xl mt-8"
                         >
-                            {link.title}
-                        </Link>
-                    ))}
-                    <a
-                        href="/register"
-                        target="_blank"
-                        className="block bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-medium text-center mt-4"
-                    >
-                        Apply
-                    </a>
+                            Apply
+                        </a>
+                    </div>
+                    
+                    {/* Contact Links - Bottom Section */}
+                    <div className="flex flex-col items-center pb-16">
+                        <div className="flex space-x-5">
+                            <a
+                                href="https://github.com/tidal-tamu/"
+                                target="_blank"
+                                className={`w-12 h-12 ${
+                                    dark 
+                                        ? "bg-gray-800 hover:bg-[#336699]" 
+                                        : "bg-gray-200 hover:bg-[#336699]"
+                                } rounded-xl flex items-center justify-center transition-all duration-300 group`}
+                            >
+                                <FaGithub className={`w-5 h-5 ${
+                                    dark 
+                                        ? "text-gray-400 group-hover:text-white" 
+                                        : "text-gray-600 group-hover:text-white"
+                                }`} />
+                            </a>
+                            <a
+                                href="https://www.linkedin.com/company/tidaltamu"
+                                target="_blank"
+                                className={`w-12 h-12 ${
+                                    dark 
+                                        ? "bg-gray-800 hover:bg-[#336699]" 
+                                        : "bg-gray-200 hover:bg-[#336699]"
+                                } rounded-xl flex items-center justify-center transition-all duration-300 group`}
+                            >
+                                <FaLinkedin className={`w-5 h-5 ${
+                                    dark 
+                                        ? "text-gray-400 group-hover:text-white" 
+                                        : "text-gray-600 group-hover:text-white"
+                                }`} />
+                            </a>
+                            <a
+                                href="https://www.instagram.com/tidaltamu/"
+                                target="_blank"
+                                className={`w-12 h-12 ${
+                                    dark 
+                                        ? "bg-gray-800 hover:bg-[#336699]" 
+                                        : "bg-gray-200 hover:bg-[#336699]"
+                                } rounded-xl flex items-center justify-center transition-all duration-300 group`}
+                            >
+                                <FaInstagram className={`w-5 h-5 ${
+                                    dark 
+                                        ? "text-gray-400 group-hover:text-white" 
+                                        : "text-gray-600 group-hover:text-white"
+                                }`} />
+                            </a>
+                            <a
+                                href="https://discord.gg/eQ8ScamG4H"
+                                target="_blank"
+                                className={`w-12 h-12 ${
+                                    dark 
+                                        ? "bg-gray-800 hover:bg-[#336699]" 
+                                        : "bg-gray-200 hover:bg-[#336699]"
+                                } rounded-xl flex items-center justify-center transition-all duration-300 group`}
+                            >
+                                <FaExternalLinkAlt className={`w-5 h-5 ${
+                                    dark 
+                                        ? "text-gray-400 group-hover:text-white" 
+                                        : "text-gray-600 group-hover:text-white"
+                                }`} />
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </motion.div>
         </motion.nav>
     );
 }
