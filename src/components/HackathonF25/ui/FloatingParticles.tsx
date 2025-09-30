@@ -13,17 +13,35 @@ interface Particle {
 
 const FloatingParticles = ({ count = 8 }: { count?: number }) => {
     const [particles, setParticles] = useState<Particle[]>([]);
+    const [isDesktop, setIsDesktop] = useState(false);
     const animationRef = useRef<number>();
 
     useEffect(() => {
-        // Initialize particles with smaller sizes
+        // Check if desktop (screen width >= 1024px)
+        const checkDesktop = () => {
+            setIsDesktop(window.innerWidth >= 1024);
+        };
+        
+        checkDesktop();
+        window.addEventListener('resize', checkDesktop);
+        
+        return () => window.removeEventListener('resize', checkDesktop);
+    }, []);
+
+    useEffect(() => {
+        // Initialize particles with responsive sizes
+        // Desktop: 5.5-11px, Mobile: 2.5-5px
+        const sizeMultiplier = isDesktop ? 2.2 : 1;
+        const baseSize = 2.5;
+        const sizeRange = 2.5;
+        
         const newParticles: Particle[] = [];
         for (let i = 0; i < count; i++) {
             newParticles.push({
                 id: i,
                 x: Math.random() * 100,
                 y: Math.random() * 100,
-                size: Math.random() * 2.5 + 2.5, // Particles: 2.5-5px
+                size: (Math.random() * sizeRange + baseSize) * sizeMultiplier,
                 vx: (Math.random() - 0.5) * 0.2, // Slower random x velocity
                 vy: (Math.random() - 0.5) * 0.2, // Slower random y velocity
                 opacity: Math.random() * 0.5 + 0.3, // Start with random opacity 0.3-0.8
@@ -89,7 +107,7 @@ const FloatingParticles = ({ count = 8 }: { count?: number }) => {
                 cancelAnimationFrame(animationRef.current);
             }
         };
-    }, [count]);
+    }, [count, isDesktop]);
 
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none">

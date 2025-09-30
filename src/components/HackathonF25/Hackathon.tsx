@@ -3,6 +3,7 @@ import Hero from "../HackathonF25/Hero";
 import LoadingScreen from "./LoadingScreen";
 import tidalBackground from "/f25/tidal-background.png";
 import tidalHeroText from "/f25/hero.png";
+import lightImage from "/f25/Light.png";
 import "./tidal-effects.css";
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
@@ -10,6 +11,7 @@ import { AnimatePresence } from "framer-motion";
 const HackathonF25 = () => {
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
     const [isLoading, setIsLoading] = useState(true);
+    const [loadingProgress, setLoadingProgress] = useState(0);
 
     useEffect(() => {
         document.body.style.overflow = "hidden";
@@ -20,55 +22,77 @@ const HackathonF25 = () => {
 
         window.addEventListener('mousemove', handleMouseMove);
 
-        // Track both image loading and minimum time
-        const startTime = Date.now();
-        const minimumLoadTime = 3000; // 3 seconds
-        
-        // Preload images
-        const imagesToLoad = [tidalBackground, tidalHeroText];
-        let loadedCount = 0;
+        let browserLoaded = false;
         let imagesLoaded = false;
+        let minimumTimeElapsed = false;
+        const minimumLoadTime = 3000; // 3 seconds after browser finishes loading
 
-        const checkAllLoaded = () => {
-            loadedCount++;
-            if (loadedCount === imagesToLoad.length) {
-                imagesLoaded = true;
-                checkCanFinish();
-            }
+        // Wait for browser to finish loading (Safari loading bar completion)
+        const handleWindowLoad = () => {
+            browserLoaded = true;
+            setLoadingProgress(50); // Browser loaded, show 50% progress
+            startMinimumTimer();
+            checkCanFinish();
         };
 
-        const checkCanFinish = () => {
-            const elapsedTime = Date.now() - startTime;
-            const remainingTime = minimumLoadTime - elapsedTime;
+        // Check if browser already loaded (in case this runs after load event)
+        if (document.readyState === 'complete') {
+            handleWindowLoad();
+        } else {
+            window.addEventListener('load', handleWindowLoad);
+        }
 
-            if (imagesLoaded) {
-                if (remainingTime > 0) {
-                    // Wait for remaining time
-                    setTimeout(() => setIsLoading(false), remainingTime);
-                } else {
-                    // Minimum time already passed
-                    setIsLoading(false);
-                }
+        // Preload critical images
+        const imagesToLoad = [tidalBackground, tidalHeroText, lightImage];
+        let loadedCount = 0;
+
+        const checkImageLoaded = () => {
+            loadedCount++;
+            const imageProgress = (loadedCount / imagesToLoad.length) * 40; // Images contribute up to 40% progress
+            setLoadingProgress(prev => Math.max(prev, imageProgress));
+            
+            if (loadedCount === imagesToLoad.length) {
+                imagesLoaded = true;
+                setLoadingProgress(prev => Math.max(prev, 80)); // Images loaded
+                checkCanFinish();
             }
         };
 
         imagesToLoad.forEach((src) => {
             const img = new Image();
-            img.onload = checkAllLoaded;
-            img.onerror = checkAllLoaded; // Still proceed even if image fails
+            img.onload = checkImageLoaded;
+            img.onerror = checkImageLoaded; // Still proceed even if image fails
             img.src = src;
         });
 
-        // Also set a maximum timeout in case images never load
-        setTimeout(() => {
-            if (!imagesLoaded) {
-                setIsLoading(false);
+        // Start minimum timer only after browser loads
+        const startMinimumTimer = () => {
+            setTimeout(() => {
+                minimumTimeElapsed = true;
+                setLoadingProgress(prev => Math.max(prev, 90)); // Minimum time elapsed
+                checkCanFinish();
+            }, minimumLoadTime);
+        };
+
+        const checkCanFinish = () => {
+            if (browserLoaded && imagesLoaded && minimumTimeElapsed) {
+                setLoadingProgress(100);
+                // Short delay to show 100% before hiding
+                setTimeout(() => setIsLoading(false), 500);
             }
-        }, minimumLoadTime + 2000);
+        };
+
+        // Safety timeout - force finish after 10 seconds total
+        const safetyTimeout = setTimeout(() => {
+            setLoadingProgress(100);
+            setTimeout(() => setIsLoading(false), 500);
+        }, 10000);
         
         return () => {
             document.body.style.overflow = "unset";
             window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('load', handleWindowLoad);
+            clearTimeout(safetyTimeout);
         };
     }, []);
 
@@ -76,7 +100,11 @@ const HackathonF25 = () => {
         <>
             <AnimatePresence mode="wait">
                 {isLoading && (
-                    <LoadingScreen key="loading" onLoadComplete={() => setIsLoading(false)} />
+                    <LoadingScreen 
+                        key="loading" 
+                        onLoadComplete={() => setIsLoading(false)} 
+                        progress={loadingProgress}
+                    />
                 )}
             </AnimatePresence>
 

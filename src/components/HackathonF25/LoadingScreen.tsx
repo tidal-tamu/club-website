@@ -1,28 +1,11 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 
 interface LoadingScreenProps {
     onLoadComplete: () => void;
+    progress?: number;
 }
 
-const LoadingScreen = ({ onLoadComplete }: LoadingScreenProps) => {
-    const [progress, setProgress] = useState(0);
-
-    useEffect(() => {
-        // Simulate loading progress
-        const interval = setInterval(() => {
-            setProgress((prev) => {
-                if (prev >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => onLoadComplete(), 500);
-                    return 100;
-                }
-                return prev + 10;
-            });
-        }, 150);
-
-        return () => clearInterval(interval);
-    }, [onLoadComplete]);
+const LoadingScreen = ({ onLoadComplete, progress = 0 }: LoadingScreenProps) => {
 
     return (
         <motion.div
@@ -96,7 +79,7 @@ const LoadingScreen = ({ onLoadComplete }: LoadingScreenProps) => {
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.5 }}
                     >
-                        {progress}%
+                        {Math.round(progress)}%
                     </motion.p>
                 </motion.div>
 
