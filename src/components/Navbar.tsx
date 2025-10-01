@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-scroll";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 
 const navLinks = [
     { title: "Home", path: "/" },
@@ -56,7 +57,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
             transition={{ duration: 0.3, ease: "easeInOut" }}
         >
             <div className="container mx-auto px-6 lg:px-12 py-6 flex items-center justify-between">
-                <a href="/" className="flex items-center">
+                <Link to="/" className="flex items-center">
                     <img
                         src={
                             dark
@@ -66,13 +67,13 @@ export default function Navbar({ dark = false }: NavbarProps) {
                         alt="TIDAL Logo"
                         className="h-6 w-auto"
                     />
-                </a>
+                </Link>
 
                 <div className="hidden md:flex items-center space-x-8">
                     {navLinks.map((link) =>
                         link.title === "About Us" ? (
                             location.pathname === "/" ? (
-                                <Link
+                                <ScrollLink
                                     key={link.title}
                                     to={link.path}
                                     smooth={true}
@@ -80,7 +81,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
                                     className="text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium"
                                 >
                                     About
-                                </Link>
+                                </ScrollLink>
                             ) : (
                                 <a
                                     key={link.title}
@@ -173,7 +174,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
                     {navLinks.map((link) =>
                         link.title === "About Us" ? (
                             location.pathname === "/" ? (
-                                <Link
+                                <ScrollLink
                                     key={link.title}
                                     to={link.path}
                                     smooth={true}
@@ -182,7 +183,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
                                     className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
                                 >
                                     About
-                                </Link>
+                                </ScrollLink>
                             ) : (
                                 <a
                                     key={link.title}
@@ -193,13 +194,13 @@ export default function Navbar({ dark = false }: NavbarProps) {
                                 </a>
                             )
                         ) : link.title === "Hackathon" ? (
-                            <a
+                            <Link
                                 key={link.title}
-                                href={link.path}
+                                to={link.path}
                                 className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
                             >
                                 Hackathon
-                            </a>
+                            </Link>
                         ) : link.title === "Sponsor Us" ? (
                             <a
                                 key={link.title}
