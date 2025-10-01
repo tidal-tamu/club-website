@@ -298,6 +298,40 @@ export default function Form() {
         toSend.append("Allow_Emails", formData.Allow_Emails.toString());
 
         try {
+            if (formData.Age && parseInt(formData.Age) < 18) {
+                setErrorMessage("You must be 18 or older to register.");
+                setSuccessMessage("");
+                setIsSubmitting(false);
+                return;
+            }
+
+            if (!formData.Email.includes("@")) {
+                setErrorMessage("Please enter a valid email address.");
+                setSuccessMessage("");
+                setIsSubmitting(false);
+                return;
+            }
+            if (!/^\+?[0-9\s\-()]{7,}$/.test(formData.Phone_Number)) {
+                setErrorMessage("Please enter a valid phone number.");
+                setSuccessMessage("");
+                setIsSubmitting(false);
+                return;
+            }
+            if (!/^\+?[0-9\s\-()]{7,}$/.test(formData.Emergency_Phone_Number)) {
+                setErrorMessage(
+                    "Please enter a valid emergency contact phone number."
+                );
+                setSuccessMessage("");
+                setIsSubmitting(false);
+                return;
+            }
+            if (formData.Grad_Year && !/^\d{4}$/.test(formData.Grad_Year)) {
+                setErrorMessage("Please enter a valid graduation year.");
+                setSuccessMessage("");
+                setIsSubmitting(false);
+                return;
+            }
+
             const response = await fetch(
                 "https://script.google.com/macros/s/AKfycbzURLu3w8-Yh8a9tA_FG8fr84dawUTIpkA6kWdVWVxX6qibuc3tBItgyp2rffUI21WE/exec",
                 {
@@ -313,6 +347,7 @@ export default function Form() {
                     setErrorMessage("");
                     console.log("Success:", result);
                     formRef.current?.reset();
+                    setFormData({ ...initialFormData });
                 } else {
                     setErrorMessage(result.message);
                     setSuccessMessage("");
@@ -320,6 +355,8 @@ export default function Form() {
                 }
             } else {
                 console.error("Failed to submit. Please try again.", response);
+                setErrorMessage("Submission failed. Please try again.");
+                setSuccessMessage("");
             }
         } catch (error) {
             console.error("Error:", error);
@@ -327,7 +364,6 @@ export default function Form() {
             setSuccessMessage("");
         } finally {
             setIsSubmitting(false);
-            setFormData({ ...initialFormData });
         }
     };
 

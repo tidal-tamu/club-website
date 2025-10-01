@@ -3,6 +3,7 @@ import FloatingParticles from "./ui/FloatingParticles";
 import tidalHeroText from "/f25/hero.png";
 import tidalBackground from "/f25/tidal-background.png";
 import lightImage from "/f25/Light.png";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
     return (
@@ -81,30 +82,18 @@ const Hero = () => {
                 </div>
 
                 <div className="flex flex-col items-center gap-8">
-                    <a
-                        href="/register"
-                        className="bg-[#FFAC29] hover:bg-[#FFAC29] text-black font-bold text-lg md:text-xl px-4 md:px-6 py-1.5 md:py-2.5 rounded-xl transition-all duration-150 flex items-center gap-3 -mt-6 hover:transform hover:translate-y-2 hover:scale-y-[0.85]"
+                    <Link
+                        to="/register"
+                        className="bg-[#FFAC29] hover:bg-[#FFAC29] text-black font-bold text-lg md:text-xl px-4 md:px-6 py-1.5 md:py-2.5 rounded-xl transition-all duration-150 flex items-center gap-3 -mt-6"
                         style={{
                             filter: "drop-shadow(0 8px 0 #CC8A21) drop-shadow(0 12px 16px rgba(0, 0, 0, 0.3))",
                             boxShadow:
                                 "inset 0 0 0 1.8px rgba(255, 255, 255, 0.10)",
                         }}
-                        onMouseEnter={(e) => {
-                            e.currentTarget.style.filter =
-                                "drop-shadow(0 1px 0 #CC8A21) drop-shadow(0 3px 8px rgba(0, 0, 0, 0.2))";
-                            e.currentTarget.style.transformOrigin =
-                                "bottom center";
-                        }}
-                        onMouseLeave={(e) => {
-                            e.currentTarget.style.filter =
-                                "drop-shadow(0 8px 0 #CC8A21) drop-shadow(0 12px 16px rgba(0, 0, 0, 0.3))";
-                            e.currentTarget.style.transformOrigin =
-                                "center center";
-                        }}
                     >
                         APPLY NOW
                         <FaPlay className="h-4 w-4 md:h-5 md:w-5 text-black" />
-                    </a>
+                    </Link>
 
                     <p className="text-gray-300 text-sm md:text-base font-medium">
                         More Details Coming Soon!
