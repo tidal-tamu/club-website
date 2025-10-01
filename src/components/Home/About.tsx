@@ -3,12 +3,17 @@ import { FaTrophy, FaAward } from "react-icons/fa";
 
 export default function About() {
     return (
-        <div className="w-full font-mont overflow-x-clip" id="about-us">
+        <div className="w-full font-mont overflow-x-clip -mt-1" id="about-us">
             <section
                 id="about-us"
                 className="py-16 sm:py-20 lg:py-24 bg-gray-900 text-white relative overflow-hidden"
             >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#336699]/20 to-[#706993]/20"></div>
+                <div
+                    className="absolute inset-0 bg-gradient-to-r from-[#336699]/20 to-[#706993]/20"
+                    style={{
+                        clipPath: "polygon(0 4px, 100% 4px, 100% 100%, 0 100%)",
+                    }}
+                ></div>
                 <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-0">
                     <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                         <motion.div

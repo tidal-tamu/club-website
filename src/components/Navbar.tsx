@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import { motion } from "framer-motion";
-import {
-    FaGithub,
-    FaLinkedin,
-    FaInstagram,
-    FaExternalLinkAlt,
-} from "react-icons/fa";
 
 const navLinks = [
     { title: "Home", path: "/" },
@@ -25,23 +19,9 @@ export default function Navbar({ dark = false }: NavbarProps) {
 
     useEffect(() => {
         if (isOpen) {
-            // Prevent scrolling on both body and html elements
-            document.body.style.overflow = "hidden";
-            document.documentElement.style.overflow = "hidden";
-            document.body.style.position = "fixed";
-            document.body.style.top = `-${window.scrollY}px`;
-            document.body.style.width = "100%";
+            document.body.classList.add("overflow-hidden");
         } else {
-            // Restore scrolling
-            const scrollY = document.body.style.top;
-            document.body.style.overflow = "";
-            document.documentElement.style.overflow = "";
-            document.body.style.position = "";
-            document.body.style.top = "";
-            document.body.style.width = "";
-            if (scrollY) {
-                window.scrollTo(0, parseInt(scrollY || "0") * -1);
-            }
+            document.body.classList.remove("overflow-hidden");
         }
     }, [isOpen]);
 
@@ -75,7 +55,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
             animate={{ y: isVisible ? 0 : -100 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-            <div className="container mx-auto px-6 lg:px-12 py-6 flex items-center justify-between z-50">
+            <div className="container mx-auto px-6 lg:px-12 py-6 flex items-center justify-between">
                 <a href="/" className="flex items-center">
                     <img
                         src={
@@ -146,7 +126,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
                 </div>
 
                 <button
-                    className="md:hidden inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 z-50 relative"
+                    className="md:hidden inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     {isOpen ? (
@@ -184,150 +164,69 @@ export default function Navbar({ dark = false }: NavbarProps) {
             </div>
 
             {/* Mobile Menu */}
-            <motion.div
-                className={`md:hidden fixed inset-0 top-0 left-0 w-full h-screen ${
-                    dark 
-                        ? "bg-spaceBlack text-white" 
-                        : "bg-gradient-to-br from-gray-50 to-white text-black"
-                } z-40`}
-                initial={{ x: "100%", opacity: 0 }}
-                animate={{ 
-                    x: isOpen ? "0%" : "100%", 
-                    opacity: isOpen ? 1 : 0 
-                }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                style={{ 
-                    display: isOpen ? "block" : "none",
-                    pointerEvents: isOpen ? "auto" : "none"
-                }}
+            <div
+                className={`md:hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 shadow-lg transition-all duration-300 ${
+                    isOpen ? "opacity-100 visible" : "opacity-0 invisible"
+                }`}
             >
-                <div className="flex flex-col h-full px-6 py-12">
-                    {/* Navigation Links - Center Section */}
-                    <div className="flex-1 flex flex-col items-center justify-center space-y-12">
-                        {navLinks.map((link) =>
-                            link.title === "About Us" ? (
-                                location.pathname === "/" ? (
-                                    <Link
-                                        key={link.title}
-                                        to={link.path}
-                                        smooth={true}
-                                        duration={500}
-                                        onClick={() => setIsOpen(false)}
-                                        className="text-2xl text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium text-center"
-                                    >
-                                        About
-                                    </Link>
-                                ) : (
-                                    <a
-                                        key={link.title}
-                                        href={`/#${link.path}`}
-                                        className="text-2xl text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium text-center"
-                                    >
-                                        About
-                                    </a>
-                                )
-                            ) : link.title === "Hackathon" ? (
-                                <a
+                <div className="px-6 py-4 space-y-4">
+                    {navLinks.map((link) =>
+                        link.title === "About Us" ? (
+                            location.pathname === "/" ? (
+                                <Link
                                     key={link.title}
-                                    href={link.path}
-                                    className="text-2xl text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium text-center"
+                                    to={link.path}
+                                    smooth={true}
+                                    duration={500}
+                                    onClick={() => setIsOpen(false)}
+                                    className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
                                 >
-                                    Hackathon
-                                </a>
-                            ) : link.title === "Sponsor Us" ? (
-                                <a
-                                    key={link.title}
-                                    href={link.path}
-                                    className="text-2xl text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium text-center"
-                                >
-                                    Sponsor
-                                </a>
+                                    About
+                                </Link>
                             ) : (
                                 <a
                                     key={link.title}
-                                    href={link.path}
-                                    className="text-2xl text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium text-center"
+                                    href={`/#${link.path}`}
+                                    className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
                                 >
-                                    {link.title}
+                                    About
                                 </a>
                             )
-                        )}
-                        <a
-                            href="https://discord.gg/eQ8ScamG4H"
-                            target="_blank"
-                            className="bg-[#336699] hover:bg-[#336699]/90 text-white px-14 py-5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-semibold text-xl mt-8"
-                        >
-                            Join Us
-                        </a>
-                    </div>
-                    
-                    {/* Contact Links - Bottom Section */}
-                    <div className="flex flex-col items-center pb-16">
-                        <div className="flex space-x-5">
+                        ) : link.title === "Hackathon" ? (
                             <a
-                                href="https://github.com/tidal-tamu/"
-                                target="_blank"
-                                className={`w-12 h-12 ${
-                                    dark 
-                                        ? "bg-gray-800 hover:bg-[#336699]" 
-                                        : "bg-gray-200 hover:bg-[#336699]"
-                                } rounded-xl flex items-center justify-center transition-all duration-300 group`}
+                                key={link.title}
+                                href={link.path}
+                                className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
                             >
-                                <FaGithub className={`w-5 h-5 ${
-                                    dark 
-                                        ? "text-gray-400 group-hover:text-white" 
-                                        : "text-gray-600 group-hover:text-white"
-                                }`} />
+                                Hackathon
                             </a>
+                        ) : link.title === "Sponsor Us" ? (
                             <a
-                                href="https://www.linkedin.com/company/tidaltamu"
-                                target="_blank"
-                                className={`w-12 h-12 ${
-                                    dark 
-                                        ? "bg-gray-800 hover:bg-[#336699]" 
-                                        : "bg-gray-200 hover:bg-[#336699]"
-                                } rounded-xl flex items-center justify-center transition-all duration-300 group`}
+                                key={link.title}
+                                href={link.path}
+                                className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
                             >
-                                <FaLinkedin className={`w-5 h-5 ${
-                                    dark 
-                                        ? "text-gray-400 group-hover:text-white" 
-                                        : "text-gray-600 group-hover:text-white"
-                                }`} />
+                                Sponsor
                             </a>
+                        ) : (
                             <a
-                                href="https://www.instagram.com/tidaltamu/"
-                                target="_blank"
-                                className={`w-12 h-12 ${
-                                    dark 
-                                        ? "bg-gray-800 hover:bg-[#336699]" 
-                                        : "bg-gray-200 hover:bg-[#336699]"
-                                } rounded-xl flex items-center justify-center transition-all duration-300 group`}
+                                key={link.title}
+                                href={link.path}
+                                className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
                             >
-                                <FaInstagram className={`w-5 h-5 ${
-                                    dark 
-                                        ? "text-gray-400 group-hover:text-white" 
-                                        : "text-gray-600 group-hover:text-white"
-                                }`} />
+                                {link.title}
                             </a>
-                            <a
-                                href="https://discord.gg/eQ8ScamG4H"
-                                target="_blank"
-                                className={`w-12 h-12 ${
-                                    dark 
-                                        ? "bg-gray-800 hover:bg-[#336699]" 
-                                        : "bg-gray-200 hover:bg-[#336699]"
-                                } rounded-xl flex items-center justify-center transition-all duration-300 group`}
-                            >
-                                <FaExternalLinkAlt className={`w-5 h-5 ${
-                                    dark 
-                                        ? "text-gray-400 group-hover:text-white" 
-                                        : "text-gray-600 group-hover:text-white"
-                                }`} />
-                            </a>
-                        </div>
-                    </div>
+                        )
+                    )}
+                    <a
+                        href="https://discord.gg/eQ8ScamG4H"
+                        target="_blank"
+                        className="block bg-[#336699] hover:bg-[#336699]/90 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-medium text-center mt-4"
+                    >
+                        Join Us
+                    </a>
                 </div>
-            </motion.div>
+            </div>
         </motion.nav>
     );
 }

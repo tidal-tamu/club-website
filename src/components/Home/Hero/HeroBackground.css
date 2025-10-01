@@ -3,6 +3,7 @@
     background-image: url("/waves/v2-base-wave.svg");
     background-repeat: repeat-x;
     background-position: 0 bottom;
+    margin-top: -100px;
 }
 
 .backgroundImage::before {
@@ -40,6 +41,31 @@
     right: 0;
     width: 100%;
     height: 120px;
-    background-color: #20283c;
+    background-color: #111827;
     opacity: 0.25;
+}
+
+.backgroundImage .gradient-overlay {
+    position: absolute;
+    bottom: -100px;
+    left: 0;
+    right: 0;
+    height: 450px;
+    background: linear-gradient(
+        to right,
+        rgba(51, 102, 153, 0.2) 0%,
+        rgba(112, 105, 147, 0.2) 100%
+    );
+    -webkit-mask: url("/waves/v2-base-wave.svg") repeat-x,
+        url("/waves/v2-base-wave.svg") repeat-x,
+        url("/waves/v2-base-wave.svg") repeat-x;
+    mask: url("/waves/v2-base-wave.svg") repeat-x,
+        url("/waves/v2-base-wave.svg") repeat-x,
+        url("/waves/v2-base-wave.svg") repeat-x;
+    -webkit-mask-position: 0 bottom, 0 calc(100% - 60px), 0 calc(100% - 120px);
+    mask-position: 0 bottom, 0 calc(100% - 60px), 0 calc(100% - 120px);
+    -webkit-mask-size: auto 230px;
+    mask-size: auto 230px;
+    pointer-events: none;
+    z-index: 3;
 }

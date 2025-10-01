@@ -7,6 +7,7 @@ import {
     FaBolt,
     FaAward,
 } from "react-icons/fa";
+import "./WhatWeDo/WhatWeDo.css";
 
 function WhatWeDo() {
     return (
@@ -359,7 +360,9 @@ function WhatWeDo() {
                     />
                 </div>
             </section>
-            <div className="pt-64 bg-[url('/waves/v2-base-wave-180.svg')] bg-repeat-x bg-right-top transition-[padding]"></div>
+            <div className="what-we-do-wave  pt-64 transition-[padding]">
+                <div className="gradient-overlay"></div>
+            </div>
         </div>
     );
 }

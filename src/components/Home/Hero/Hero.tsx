@@ -122,6 +122,7 @@ export default function Hero() {
                     ∂
                 </motion.div>
                 <div className="wave-box"></div>
+                <div className="gradient-overlay"></div>
             </div>
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative">
