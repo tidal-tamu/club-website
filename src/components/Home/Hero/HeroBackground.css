@@ -53,6 +53,7 @@
     bottom: 0px;
     left: 0;
     right: 0;
+    width: 100%;
     height: 350px;
     background: linear-gradient(
         to right,
@@ -61,10 +62,13 @@
     );
     -webkit-mask: url("/waves/v2-base-wave.svg") repeat-x;
     mask: url("/waves/v2-base-wave.svg") repeat-x;
-    -webkit-mask-position: 0 calc(100% - 0px);
-    mask-position: 0 calc(100% - 0px);
-    -webkit-mask-size: 3040px 230px;
-    mask-size: 3040px 230px;
+    -webkit-mask-position: 0 bottom;
+    mask-position: 0 bottom;
+    -webkit-mask-size: auto 230px;
+    mask-size: auto 230px;
+    -webkit-mask-repeat: repeat-x;
+    mask-repeat: repeat-x;
     pointer-events: none;
-    z-index: 3;
+    z-index: 10;
+    overflow: hidden;
 }
