@@ -3,7 +3,8 @@
     background-image: url("/waves/v2-base-wave.svg");
     background-repeat: repeat-x;
     background-position: 0 bottom;
-    margin-top: -100px;
+    background-size: 3040px 230px;
+    margin-top: -4px;
 }
 
 .backgroundImage::before {
@@ -16,6 +17,7 @@
     background-image: url("/waves/v2-base-wave.svg");
     background-repeat: repeat-x;
     background-position: 0 calc(100% - 60px);
+    background-size: 3040px 230px;
     opacity: 0.5;
     pointer-events: none;
 }
@@ -30,6 +32,7 @@
     background-image: url("/waves/v2-base-wave.svg");
     background-repeat: repeat-x;
     background-position: 0 calc(100% - 120px);
+    background-size: 3040px 230px;
     opacity: 0.25;
     pointer-events: none;
 }
@@ -47,25 +50,21 @@
 
 .backgroundImage .gradient-overlay {
     position: absolute;
-    bottom: -100px;
+    bottom: 0px;
     left: 0;
     right: 0;
-    height: 450px;
+    height: 350px;
     background: linear-gradient(
         to right,
         rgba(51, 102, 153, 0.2) 0%,
         rgba(112, 105, 147, 0.2) 100%
     );
-    -webkit-mask: url("/waves/v2-base-wave.svg") repeat-x,
-        url("/waves/v2-base-wave.svg") repeat-x,
-        url("/waves/v2-base-wave.svg") repeat-x;
-    mask: url("/waves/v2-base-wave.svg") repeat-x,
-        url("/waves/v2-base-wave.svg") repeat-x,
-        url("/waves/v2-base-wave.svg") repeat-x;
-    -webkit-mask-position: 0 bottom, 0 calc(100% - 60px), 0 calc(100% - 120px);
-    mask-position: 0 bottom, 0 calc(100% - 60px), 0 calc(100% - 120px);
-    -webkit-mask-size: auto 230px;
-    mask-size: auto 230px;
+    -webkit-mask: url("/waves/v2-base-wave.svg") repeat-x;
+    mask: url("/waves/v2-base-wave.svg") repeat-x;
+    -webkit-mask-position: 0 calc(100% - 0px);
+    mask-position: 0 calc(100% - 0px);
+    -webkit-mask-size: 3040px 230px;
+    mask-size: 3040px 230px;
     pointer-events: none;
     z-index: 3;
 }
