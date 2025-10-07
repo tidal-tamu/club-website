@@ -333,7 +333,7 @@ export default function Form() {
             }
 
             const response = await fetch(
-                "https://script.google.com/macros/s/AKfycbzURLu3w8-Yh8a9tA_FG8fr84dawUTIpkA6kWdVWVxX6qibuc3tBItgyp2rffUI21WE/exec",
+                "https://script.google.com/macros/s/AKfycbzCRaNfy99mmrjcJwwy694zcmgDK5ZqaWv5RvRgzHMfVfBlbK-PVCnansrKcUC5cV42/exec",
                 {
                     method: "POST",
                     body: toSend,
