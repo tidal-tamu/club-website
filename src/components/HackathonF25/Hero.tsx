@@ -17,13 +17,13 @@ const Hero = () => {
         >
             {/* MLH Banner - only show on laptops and up */}
             <a
-                href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=white"
+                href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white"
                 className="hidden lg:block max-w-[100px] min-w-[60px] absolute top-0 right-[20px] w-[10%] z-30 hover:scale-105 transition-transform duration-200"
                 target="_blank"
                 rel="noopener noreferrer"
             >
                 <img
-                    src="https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-white.svg"
+                    src="https://s3.amazonaws.com/logged-assets/trust-badge/2026/mlh-trust-badge-2026-white.svg"
                     alt="Major League Hacking 2025 Hackathon Season"
                 />
             </a>
@@ -47,7 +47,7 @@ const Hero = () => {
                 />
             </div>
 
-            <div className="text-center z-20 max-w-4xl mx-auto -mt-4 md:mt-12">
+            <div className="text-center z-20 max-w-4xl mx-auto mt-6 md:mt-4">
                 {/* Pills - positioned independently */}
                 <div className="flex flex-wrap md:flex-nowrap justify-center gap-2 sm:gap-3 md:gap-4 z-20 mb-4">
                     <div className="bg-[rgba(47,115,94,0.39)] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap">
