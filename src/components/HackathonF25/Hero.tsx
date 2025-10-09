@@ -3,6 +3,7 @@ import FloatingParticles from "./ui/FloatingParticles";
 import tidalHeroText from "/f25/hero.png";
 import tidalBackground from "/f25/tidal-background.png";
 import lightImage from "/f25/Light.png";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
     return (
@@ -31,7 +32,7 @@ const Hero = () => {
             <FloatingParticles count={12} />
 
             {/* Light.png overlay - top left with pass-through blend */}
-            <div 
+            <div
                 className="absolute top-0 left-0 w-auto h-full pointer-events-none z-5"
                 style={{
                     mixBlendMode: "screen" as any,
@@ -50,17 +51,17 @@ const Hero = () => {
             <div className="text-center z-20 max-w-4xl mx-auto mt-6 md:mt-4">
                 {/* Pills - positioned independently */}
                 <div className="flex flex-wrap md:flex-nowrap justify-center gap-2 sm:gap-3 md:gap-4 z-20 mb-4">
-                    <div className="bg-[rgba(47,115,94,0.39)] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap">
+                    <div className="bg-[rgba(47,115,94,0.39)] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap hover:bg-[rgba(47,115,94,0.6)] hover:border-[rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-200 cursor-pointer">
                         <span className="text-white font-medium text-xs sm:text-sm md:text-base">
                             MSC Bethancourt
                         </span>
                     </div>
-                    <div className="bg-[rgba(47,115,94,0.39)] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap">
+                    <div className="bg-[rgba(47,115,94,0.39)] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap hover:bg-[rgba(47,115,94,0.6)] hover:border-[rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-200 cursor-pointer">
                         <span className="text-white font-medium text-xs sm:text-sm md:text-base">
                             9 AM - 6 PM
                         </span>
                     </div>
-                    <div className="bg-[rgba(47,115,94,0.39)] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap">
+                    <div className="bg-[rgba(47,115,94,0.39)] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap hover:bg-[rgba(47,115,94,0.6)] hover:border-[rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-200 cursor-pointer">
                         <span className="text-white font-medium text-xs sm:text-sm md:text-base">
                             Oct 25
                         </span>
@@ -81,18 +82,18 @@ const Hero = () => {
                 </div>
 
                 <div className="flex flex-col items-center gap-8">
-                    
-                    <a
-                        href="/register"
-                        className="bg-[#FFAC29] hover:bg-[#FFAC29] text-black font-bold text-lg md:text-xl px-4 md:px-6 py-1.5 md:py-2.5 rounded-xl transition-all duration-300 flex items-center gap-3 -mt-6"
+                    <Link
+                        to="/register"
+                        className="bg-[#FFAC29] hover:bg-[#FFAC29] text-black font-bold text-lg md:text-xl px-4 md:px-6 py-1.5 md:py-2.5 rounded-xl transition-all duration-150 flex items-center gap-3 -mt-6"
                         style={{
                             filter: "drop-shadow(0 8px 0 #CC8A21) drop-shadow(0 12px 16px rgba(0, 0, 0, 0.3))",
-                            boxShadow: "inset 0 0 0 1.8px rgba(255, 255, 255, 0.10)",
+                            boxShadow:
+                                "inset 0 0 0 1.8px rgba(255, 255, 255, 0.10)",
                         }}
                     >
                         APPLY NOW
                         <FaPlay className="h-4 w-4 md:h-5 md:w-5 text-black" />
-                    </a>
+                    </Link>
 
                     <p className="text-gray-300 text-sm md:text-base font-medium">
                         More Details Coming Soon!
