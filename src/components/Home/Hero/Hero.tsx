@@ -5,7 +5,7 @@ import { FaArrowRight, FaDiscord, FaBolt } from "react-icons/fa";
 
 export default function Hero() {
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-white">
+        <section className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-white">
             <div className="absolute inset-0">
                 <motion.div
                     className="absolute top-20 left-4 sm:left-10 w-64 h-64 sm:w-96 sm:h-96 rounded-full opacity-5"
@@ -41,7 +41,6 @@ export default function Hero() {
                     }}
                 />
                 
-                {/* Mathematical and ML Symbols - Hidden on screens below laptop */}
                 <motion.div
                     className="hidden lg:block absolute top-32 left-1/3 text-6xl sm:text-8xl opacity-10 text-[#336699] font-mono"
                     animate={{ rotate: [0, 360] }}
@@ -122,7 +121,7 @@ export default function Hero() {
                         <div className="mb-8">
                             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#336699] mb-2">October 25th, 2025 | 9AM-6PM</p>
                             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-                                Join us for Texas A&M's most innovative AI/ML hackathon!
+                                Join us for Texas A&M's most innovative AI/ML hackathon.
                             </p>
                         </div>
 

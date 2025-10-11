@@ -1,8 +1,7 @@
 import Navbar from '../HackathonF25/Navbar';
 import { useEffect} from 'react';
 import Form from './Form';
-import tidalBackground from "/s25/tidal-background.png";
-import "./tidal-effects.css";
+import tidalBackground from "/f25/tidal-background.png";
 
 export default function Register() {
 

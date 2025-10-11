@@ -3,6 +3,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Safe area insets for iPhone notch */
+html, body {
+  margin: 0;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
 @font-face {
   font-family: 'main';
   src: url('/fonts/THEOVD__.TTF') format('truetype');

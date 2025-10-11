@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from 'react-scroll';
+import { Link } from "react-scroll";
 import { motion } from "framer-motion";
+import {
+    FaGithub,
+    FaLinkedin,
+    FaInstagram,
+    FaExternalLinkAlt,
+} from "react-icons/fa";
 
 const navLinks = [
     { title: "Home", path: "/" },
@@ -19,16 +25,30 @@ export default function Navbar({ dark = false }: NavbarProps) {
 
     useEffect(() => {
         if (isOpen) {
-            document.body.classList.add('overflow-hidden');
+            // Prevent scrolling on both body and html elements
+            document.body.style.overflow = "hidden";
+            document.documentElement.style.overflow = "hidden";
+            document.body.style.position = "fixed";
+            document.body.style.top = `-${window.scrollY}px`;
+            document.body.style.width = "100%";
         } else {
-            document.body.classList.remove('overflow-hidden');
+            // Restore scrolling
+            const scrollY = document.body.style.top;
+            document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
+            document.body.style.position = "";
+            document.body.style.top = "";
+            document.body.style.width = "";
+            if (scrollY) {
+                window.scrollTo(0, parseInt(scrollY || "0") * -1);
+            }
         }
     }, [isOpen]);
 
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
-            
+
             if (currentScrollY < 10) {
                 setIsVisible(true);
             } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
@@ -36,36 +56,40 @@ export default function Navbar({ dark = false }: NavbarProps) {
             } else if (currentScrollY < lastScrollY) {
                 setIsVisible(true);
             }
-            
+
             setLastScrollY(currentScrollY);
         };
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
     }, [lastScrollY]);
 
     return (
         <motion.nav
-            className={`fixed top-0 w-full font-mont font-semibold z-50 transition-all duration-300 ${
-                dark 
-                    ? "bg-spaceBlack/80 backdrop-blur-xl border-b border-gray-800 text-white" 
-                    : "bg-white/80 backdrop-blur-xl border-b border-gray-100 text-black"
+            className={`fixed top-0 w-full font-mont font-semibold transition-all duration-300 ${
+                dark
+                    ? "bg-spaceBlack border-b border-gray-800 text-white"
+                    : "bg-gradient-to-br from-gray-50 to-white border-b border-gray-100 text-black"
             }`}
             initial={{ y: -100 }}
             animate={{ y: isVisible ? 0 : -100 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-            <div className="container mx-auto px-6 lg:px-12 py-6 flex items-center justify-between">
+            <div className="container mx-auto px-6 lg:px-12 py-6 flex items-center justify-between z-50">
                 <a href="/" className="flex items-center">
-                    <img 
-                        src={dark ? "./icons/logos/tidal-white-transparent.png" : "./icons/logos/tidal-newblue.svg"} 
-                        alt="TIDAL Logo" 
+                    <img
+                        src={
+                            dark
+                                ? "./icons/logos/tidal-white-transparent.png"
+                                : "./icons/logos/tidal-newblue.svg"
+                        }
+                        alt="TIDAL Logo"
                         className="h-6 w-auto"
                     />
                 </a>
 
                 <div className="hidden md:flex items-center space-x-8">
-                    {navLinks.map((link) => (
+                    {navLinks.map((link) =>
                         link.title === "About Us" ? (
                             location.pathname === "/" ? (
                                 <Link
@@ -86,14 +110,14 @@ export default function Navbar({ dark = false }: NavbarProps) {
                                     About
                                 </a>
                             )
-                        ) : link.title === "HackathonF25" ? (
-                            <a
+                        ) : link.title === "hackathon" ? (
+                            <Link
                                 key={link.title}
-                                href={link.path}
+                                to={link.path}
                                 className="text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium"
                             >
                                 Hackathon
-                            </a>
+                            </Link>
                         ) : link.title === "Sponsor Us" ? (
                             <a
                                 key={link.title}
@@ -111,7 +135,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
                                 {link.title}
                             </a>
                         )
-                    ))}
+                    )}
                     <a
                         href="https://discord.gg/eQ8ScamG4H"
                         target="_blank"
@@ -121,84 +145,197 @@ export default function Navbar({ dark = false }: NavbarProps) {
                     </a>
                 </div>
 
-                <button 
-                    className="md:hidden inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                <button
+                    className="md:hidden inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 z-50 relative"
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     {isOpen ? (
-                        <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                        <svg
+                            className="w-6 h-6"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M6 18L18 6M6 6l12 12"
+                            />
                         </svg>
                     ) : (
-                        <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
+                        <svg
+                            className="w-6 h-6"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 17 14"
+                        >
+                            <path
+                                stroke="currentColor"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M1 1h15M1 7h15M1 13h15"
+                            />
                         </svg>
                     )}
                 </button>
             </div>
 
             {/* Mobile Menu */}
-            <div className={`md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-lg transition-all duration-300 ${
-                isOpen ? "opacity-100 visible" : "opacity-0 invisible"
-            }`}>
-                <div className="px-6 py-4 space-y-4">
-                    {navLinks.map((link) => (
-                        link.title === "About Us" ? (
-                            location.pathname === "/" ? (
-                                <Link
+            <motion.div
+                className={`md:hidden fixed inset-0 top-0 left-0 w-full h-screen ${
+                    dark
+                        ? "bg-spaceBlack text-white"
+                        : "bg-gradient-to-br from-gray-50 to-white text-black"
+                } z-40`}
+                initial={{ x: "100%", opacity: 0 }}
+                animate={{
+                    x: isOpen ? "0%" : "100%",
+                    opacity: isOpen ? 1 : 0,
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                style={{
+                    display: isOpen ? "block" : "none",
+                    pointerEvents: isOpen ? "auto" : "none",
+                }}
+            >
+                <div className="flex flex-col h-full px-6 py-12">
+                    {/* Navigation Links - Center Section */}
+                    <div className="flex-1 flex flex-col items-center justify-center space-y-12">
+                        {navLinks.map((link) =>
+                            link.title === "About Us" ? (
+                                location.pathname === "/" ? (
+                                    <Link
+                                        key={link.title}
+                                        to={link.path}
+                                        smooth={true}
+                                        duration={500}
+                                        onClick={() => setIsOpen(false)}
+                                        className="text-2xl text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium text-center"
+                                    >
+                                        About
+                                    </Link>
+                                ) : (
+                                    <a
+                                        key={link.title}
+                                        href={`/#${link.path}`}
+                                        className="text-2xl text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium text-center"
+                                    >
+                                        About
+                                    </a>
+                                )
+                            ) : link.title === "Hackathon" ? (
+                                <a
                                     key={link.title}
-                                    to={link.path}
-                                    smooth={true}
-                                    duration={500}
-                                    onClick={() => setIsOpen(false)}
-                                    className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
+                                    href={link.path}
+                                    className="text-2xl text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium text-center"
                                 >
-                                    About
-                                </Link>
+                                    Hackathon
+                                </a>
+                            ) : link.title === "Sponsor Us" ? (
+                                <a
+                                    key={link.title}
+                                    href={link.path}
+                                    className="text-2xl text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium text-center"
+                                >
+                                    Sponsor
+                                </a>
                             ) : (
                                 <a
                                     key={link.title}
-                                    href={`/#${link.path}`}
-                                    className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
+                                    href={link.path}
+                                    className="text-2xl text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium text-center"
                                 >
-                                    About
+                                    {link.title}
                                 </a>
                             )
-                        ) : link.title === "Hackathon" ? (
+                        )}
+                        <a
+                            href="https://discord.gg/eQ8ScamG4H"
+                            target="_blank"
+                            className="bg-[#336699] hover:bg-[#336699]/90 text-white px-14 py-5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-semibold text-xl mt-8"
+                        >
+                            Join Us
+                        </a>
+                    </div>
+
+                    {/* Contact Links - Bottom Section */}
+                    <div className="flex flex-col items-center pb-16">
+                        <div className="flex space-x-5">
                             <a
-                                key={link.title}
-                                href={link.path}
-                                className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
+                                href="https://github.com/tidal-tamu/"
+                                target="_blank"
+                                className={`w-12 h-12 ${
+                                    dark
+                                        ? "bg-gray-800 hover:bg-[#336699]"
+                                        : "bg-gray-200 hover:bg-[#336699]"
+                                } rounded-xl flex items-center justify-center transition-all duration-300 group`}
                             >
-                                Hackathon
+                                <FaGithub
+                                    className={`w-5 h-5 ${
+                                        dark
+                                            ? "text-gray-400 group-hover:text-white"
+                                            : "text-gray-600 group-hover:text-white"
+                                    }`}
+                                />
                             </a>
-                        ) : link.title === "Sponsor Us" ? (
                             <a
-                                key={link.title}
-                                href={link.path}
-                                className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
+                                href="https://www.linkedin.com/company/tidaltamu"
+                                target="_blank"
+                                className={`w-12 h-12 ${
+                                    dark
+                                        ? "bg-gray-800 hover:bg-[#336699]"
+                                        : "bg-gray-200 hover:bg-[#336699]"
+                                } rounded-xl flex items-center justify-center transition-all duration-300 group`}
                             >
-                                Sponsor
+                                <FaLinkedin
+                                    className={`w-5 h-5 ${
+                                        dark
+                                            ? "text-gray-400 group-hover:text-white"
+                                            : "text-gray-600 group-hover:text-white"
+                                    }`}
+                                />
                             </a>
-                        ) : (
                             <a
-                                key={link.title}
-                                href={link.path}
-                                className="block text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium py-2"
+                                href="https://www.instagram.com/tidaltamu/"
+                                target="_blank"
+                                className={`w-12 h-12 ${
+                                    dark
+                                        ? "bg-gray-800 hover:bg-[#336699]"
+                                        : "bg-gray-200 hover:bg-[#336699]"
+                                } rounded-xl flex items-center justify-center transition-all duration-300 group`}
                             >
-                                {link.title}
+                                <FaInstagram
+                                    className={`w-5 h-5 ${
+                                        dark
+                                            ? "text-gray-400 group-hover:text-white"
+                                            : "text-gray-600 group-hover:text-white"
+                                    }`}
+                                />
                             </a>
-                        )
-                    ))}
-                    <a
-                        href="https://discord.gg/eQ8ScamG4H"
-                        target="_blank"
-                        className="block bg-[#336699] hover:bg-[#336699]/90 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-medium text-center mt-4"
-                    >
-                        Join Us
-                    </a>
+                            <a
+                                href="https://discord.gg/eQ8ScamG4H"
+                                target="_blank"
+                                className={`w-12 h-12 ${
+                                    dark
+                                        ? "bg-gray-800 hover:bg-[#336699]"
+                                        : "bg-gray-200 hover:bg-[#336699]"
+                                } rounded-xl flex items-center justify-center transition-all duration-300 group`}
+                            >
+                                <FaExternalLinkAlt
+                                    className={`w-5 h-5 ${
+                                        dark
+                                            ? "text-gray-400 group-hover:text-white"
+                                            : "text-gray-600 group-hover:text-white"
+                                    }`}
+                                />
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </motion.div>
         </motion.nav>
     );
 }

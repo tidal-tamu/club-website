@@ -14,12 +14,15 @@ export default function App() {
             <Router>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/hackathon" element={<HackathonS25 />} />
+                    <Route path="/hackathon" element={<HackathonF25 />} />
                     <Route path="/HackathonS25" element={<HackathonS25 />} />
                     <Route path="/HackathonF25" element={<HackathonF25 />} />
                     <Route path="/sponsor-us" element={<SponsorUs />} />
                     <Route path="/register" element={<Register />} />
-                    <Route path="/check-registration" element={<CheckRegistration />} />
+                    <Route
+                        path="/check-registration"
+                        element={<CheckRegistration />}
+                    />
                 </Routes>
             </Router>
         </React.StrictMode>

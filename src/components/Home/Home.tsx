@@ -5,8 +5,9 @@ import Sponsor from "./Sponsor";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import Headroom from "react-headroom";
+import WhatWeDo from "./WhatWeDo";
 
-import "animate.css"
+import "animate.css";
 
 export default function Home() {
     return (
@@ -18,10 +19,10 @@ export default function Home() {
                 <Hero />
             </div>
             <About />
-            {/* <WhatWeDo /> */}
-            <Officers/>
+            <WhatWeDo />
+            <Officers />
             <Sponsor />
-            <Footer variant="home"/>
+            <Footer variant="home" />
         </>
     );
 }
