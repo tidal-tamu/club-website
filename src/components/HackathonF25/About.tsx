@@ -3,7 +3,7 @@ const About = () => {
   return (
     <div className="relative px-6 md:px-16 pt-20">
       <div className="flex flex-col md:flex-row justify-around">
-        <div className="flex flex-col items-center w-1/3">
+        <div className="flex flex-col items-center md:w-1/3">
           <span className="text-white font-bungee text-3xl md:text-6xl mb-4">
             ABOUT TIDALHACK
           </span>
@@ -13,8 +13,8 @@ const About = () => {
             <br />
             We will provide  the resources, mentors, and freedom to create a resume-worthy product, practice new skills or just have fun hacking with friends. We'll also provide  free food and opportunities to network and learn with our sponsors through events and mentorship. Join us on <span className="font-bold">October 25th</span> for a day of learning, collaboration, and fun!  </p>
         </div>
-        <div className="flex flex-col items-start w-1/3">
-          <span className="text-white font-bungee text-3xl md:text-6xl mb-4">
+        <div className="flex flex-col items-start md:w-1/3">
+          <span className="text-white font-bungee text-3xl md:text-6xl mb-4 mt-6 md:mt-0">
             EVENT INFORMATION
           </span>
           <span className="text-[#FFA722] font-bungee text-xl md:text-2xl">
