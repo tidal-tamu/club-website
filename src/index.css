@@ -15,6 +15,21 @@ body {
 }
 
 @font-face {
+  font-family: 'inter';
+  src: url('/fonts/Inter-VariableFont_opsz,wght.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'bungee';
+  src: url('/fonts/Bungee-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'main';
   src: url('/fonts/THEOVD__.TTF') format('truetype');
   font-weight: normal;
@@ -35,6 +50,17 @@ body {
   font-style: normal;
 }
 
+.faq-gradient {
+  background: linear-gradient(to right, rgba(2, 87, 81, 0.67), rgba(12, 131, 122, 0.67));
+}
+
+.font-bungee {
+  font-family: 'bungee';   
+}
+
+.font-inter {
+  font-family: 'inter';   
+}
 .blocky-div {
   font-family: 'main', sans-serif;
   letter-spacing: 15px;
