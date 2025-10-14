@@ -8,14 +8,13 @@ import {
     FaExternalLinkAlt,
 } from "react-icons/fa";
 
-// TODO: Add links when sections are ready
 const navLinks: { title: string; path: string; isExternal?: boolean }[] = [
     { title: "Home", path: "/", isExternal: true },
-    // { title: "About", path: "about" },
-    // { title: "Schedule", path: "schedule" },
-    // { title: "Prizes", path: "prizes" },
-    // { title: "FAQ", path: "faq" },
-    // { title: "Sponsors", path: "sponsors" },
+    { title: "About", path: "about" },
+    { title: "Schedule", path: "schedule" },
+    { title: "Prizes", path: "prizes" },
+    { title: "FAQ", path: "faq" },
+    { title: "Sponsors", path: "sponsors" },
 ];
 
 interface NavbarProps {
@@ -26,6 +25,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
         if (isOpen) {
@@ -53,6 +53,9 @@ export default function Navbar({ dark = false }: NavbarProps) {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
 
+            // Update backdrop state
+            setIsScrolled(currentScrollY > 50);
+
             if (currentScrollY < 10) {
                 setIsVisible(true);
             } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
@@ -71,8 +74,10 @@ export default function Navbar({ dark = false }: NavbarProps) {
     return (
         <motion.nav
             className={`fixed top-0 w-full font-mont font-semibold z-50 transition-all duration-300 ${
-                dark ? "bg-transparent text-white" : "bg-transparent text-black"
-            }`}
+                isScrolled
+                    ? "bg-black/20 border-b border-white/10 backdrop-blur-md"
+                    : "bg-transparent border-b border-transparent"
+            } ${dark ? "text-white" : "text-black"}`}
             initial={{ y: -100 }}
             animate={{ y: isVisible ? 0 : -100 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -99,7 +104,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
                                 to={link.path}
                                 smooth={true}
                                 duration={500}
-                                className="text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium"
+                                className="text-white hover:text-[#336699] transition-all duration-300 font-medium"
                             >
                                 {link.title}
                             </Link>
