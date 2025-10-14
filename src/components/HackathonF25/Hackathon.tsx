@@ -15,148 +15,154 @@ import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
 const HackathonF25 = () => {
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-  const [isLoading, setIsLoading] = useState(true);
-  const [loadingProgress, setLoadingProgress] = useState(0);
+    const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+    const [isLoading, setIsLoading] = useState(true);
+    const [loadingProgress, setLoadingProgress] = useState(0);
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    document.body.style.backgroundColor = "#121111";
+    useEffect(() => {
+        // Store original values
+        const originalOverflow = document.body.style.overflow;
+        const originalBackgroundColor = document.body.style.backgroundColor;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      setCursorPosition({ x: e.clientX, y: e.clientY });
-    };
+        document.body.style.overflow = "hidden";
+        document.body.style.backgroundColor = "#121111";
 
-    window.addEventListener('mousemove', handleMouseMove);
+        const handleMouseMove = (e: MouseEvent) => {
+            setCursorPosition({ x: e.clientX, y: e.clientY });
+        };
 
-    let browserLoaded = false;
-    let imagesLoaded = false;
-    let minimumTimeElapsed = false;
-    let progressInterval: NodeJS.Timeout;
-    let currentProgress = 0;
-    const minimumLoadTime = 3000;
-    const totalLoadTime = 4000;
+        window.addEventListener("mousemove", handleMouseMove);
 
-    const smoothProgressUpdate = () => {
-      if (currentProgress < 100) {
-        const increment = Math.random() * 3 + 1;
-        currentProgress = Math.min(currentProgress + increment, 100);
-        setLoadingProgress(Math.floor(currentProgress));
-      }
-    };
+        let browserLoaded = false;
+        let imagesLoaded = false;
+        let minimumTimeElapsed = false;
+        let progressInterval: NodeJS.Timeout;
+        let currentProgress = 0;
+        const minimumLoadTime = 3000;
+        const totalLoadTime = 4000;
 
-    const checkCanFinish = () => {
-      if (browserLoaded && imagesLoaded && minimumTimeElapsed && currentProgress >= 100) {
-        clearInterval(progressInterval);
-        setTimeout(() => setIsLoading(false), 500);
-      }
-    };
+        const smoothProgressUpdate = () => {
+            if (currentProgress < 100) {
+                const increment = Math.random() * 3 + 1;
+                currentProgress = Math.min(currentProgress + increment, 100);
+                setLoadingProgress(Math.floor(currentProgress));
+            }
+        };
 
-    const handleWindowLoad = () => {
-      browserLoaded = true;
-      setTimeout(() => {
-        minimumTimeElapsed = true;
-        checkCanFinish();
-      }, minimumLoadTime);
-    };
+        const checkCanFinish = () => {
+            if (
+                browserLoaded &&
+                imagesLoaded &&
+                minimumTimeElapsed &&
+                currentProgress >= 100
+            ) {
+                clearInterval(progressInterval);
+                setTimeout(() => setIsLoading(false), 500);
+            }
+        };
 
-    if (document.readyState === 'complete') {
-      handleWindowLoad();
-    } else {
-      window.addEventListener('load', handleWindowLoad);
-    }
+        const handleWindowLoad = () => {
+            browserLoaded = true;
+            setTimeout(() => {
+                minimumTimeElapsed = true;
+                checkCanFinish();
+            }, minimumLoadTime);
+        };
 
-    const imagesToLoad = [tidalBackground, tidalHeroText, lightImage];
-    let loadedCount = 0;
+        if (document.readyState === "complete") {
+            handleWindowLoad();
+        } else {
+            window.addEventListener("load", handleWindowLoad);
+        }
 
-    const checkImageLoaded = () => {
-      loadedCount++;
-      if (loadedCount === imagesToLoad.length) {
-        imagesLoaded = true;
-        checkCanFinish();
-      }
-    };
+        const imagesToLoad = [tidalBackground, tidalHeroText, lightImage];
+        let loadedCount = 0;
 
-    imagesToLoad.forEach((src) => {
-      const img = new Image();
-      img.onload = checkImageLoaded;
-      img.onerror = checkImageLoaded;
-      img.src = src;
-    });
+        const checkImageLoaded = () => {
+            loadedCount++;
+            if (loadedCount === imagesToLoad.length) {
+                imagesLoaded = true;
+                checkCanFinish();
+            }
+        };
 
-    progressInterval = setInterval(smoothProgressUpdate, 50);
+        imagesToLoad.forEach((src) => {
+            const img = new Image();
+            img.onload = checkImageLoaded;
+            img.onerror = checkImageLoaded;
+            img.src = src;
+        });
 
-    const safetyTimeout = setTimeout(() => {
-      browserLoaded = true;
-      imagesLoaded = true;
-      minimumTimeElapsed = true;
-      clearInterval(progressInterval);
-      setLoadingProgress(100);
-      setTimeout(() => setIsLoading(false), 500);
-    }, 8000);
+        progressInterval = setInterval(smoothProgressUpdate, 50);
 
-    return () => {
-      document.body.style.overflow = "unset";
-      document.body.style.backgroundColor = "";
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('load', handleWindowLoad);
-      clearInterval(progressInterval);
-      clearTimeout(safetyTimeout);
-    };
-  }, []);
+        const safetyTimeout = setTimeout(() => {
+            browserLoaded = true;
+            imagesLoaded = true;
+            minimumTimeElapsed = true;
+            clearInterval(progressInterval);
+            setLoadingProgress(100);
+            setTimeout(() => setIsLoading(false), 500);
+        }, 8000);
 
-  return (
-    <>
-      <AnimatePresence mode="wait">
-        {isLoading && (
-          <LoadingScreen
-            key="loading"
-            progress={loadingProgress}
-          />
-        )}
-      </AnimatePresence>
+        return () => {
+            // Restore original values
+            document.body.style.overflow = originalOverflow;
+            document.body.style.backgroundColor = originalBackgroundColor;
+            window.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("load", handleWindowLoad);
+            clearInterval(progressInterval);
+            clearTimeout(safetyTimeout);
+        };
+    }, []);
 
-      {!isLoading && (
-        <div
-          className="hackathon-f25-container min-h-screen hero-gradient relative overflow-hidden"
-          style={{
-            backgroundImage: `url(${tidalBackground})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'top',
-            backgroundRepeat: 'no-repeat'
-          }}
-        >
-          <div
-            className="firefly-cursor"
-            style={{
-              left: `${cursorPosition.x}px`,
-              top: `${cursorPosition.y}px`
-            }}
-          />
+    return (
+        <>
+            <AnimatePresence mode="wait">
+                {isLoading && (
+                    <LoadingScreen key="loading" progress={loadingProgress} />
+                )}
+            </AnimatePresence>
 
-          <div className="absolute inset-0 bg-tidal-deep/70 backdrop-blur-[1px]" />
+            {!isLoading && (
+                <div
+                    className="hackathon-f25-container min-h-screen hero-gradient relative overflow-hidden"
+                    style={{
+                        backgroundImage: `url(${tidalBackground})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "top center",
+                        backgroundRepeat: "no-repeat",
+                    }}
+                >
+                    <div
+                        className="firefly-cursor"
+                        style={{
+                            left: `${cursorPosition.x}px`,
+                            top: `${cursorPosition.y}px`,
+                        }}
+                    />
 
-          <div className="relative z-30">
-            <Navbar dark />
-          </div>
+                    <div className="absolute inset-0 bg-tidal-deep/70 backdrop-blur-[1px]" />
 
-          <div className="relative z-20">
-            <Hero />
-            <About />
-            <Schedule />
-            <Prizes />
-            <FAQs />  
-            <Sponsors />
-          </div>
+                    <div className="relative z-30">
+                        <Navbar dark />
+                    </div>
 
-          <div className="relative z-20">
-            <Footer variant="hackathon-fall-25" />
-          </div>
+                    <div className="relative z-20">
+                        <Hero />
+                        <About />
+                        <Schedule />
+                        <Prizes />
+                        <FAQs />
+                        <Sponsors />
+                    </div>
 
-        </div>
-      )}
-    </>
-  );
+                    <div className="relative z-20">
+                        <Footer variant="hackathon-fall-25" />
+                    </div>
+                </div>
+            )}
+        </>
+    );
 };
 
 export default HackathonF25;

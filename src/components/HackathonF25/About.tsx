@@ -3,7 +3,10 @@ import FloatingParticles from "./ui/FloatingParticles";
 
 const About = () => {
     return (
-        <div className="relative px-4 md:px-8 pt-16" id="about">
+        <div
+            className="relative px-6 lg:px-12 xl:px-24 pt-16 max-w-7xl mx-auto"
+            id="about"
+        >
             <FloatingParticles count={8} />
             {/* Section 1: About TIDALHack - Text Left, Image Right */}
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-20">
@@ -47,13 +50,15 @@ const About = () => {
                     className="order-1 lg:order-2"
                 >
                     <div className="relative group">
-                        <div className="absolute -inset-4 bg-gradient-radial from-[#FFA722]/25 via-[#FFA722]/15 to-transparent blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-                        <div className="absolute -inset-8 bg-gradient-radial from-[#FFA722]/20 to-transparent blur-3xl group-hover:blur-[40px] transition-all duration-500"></div>
-                        <div className="relative w-120 mx-auto">
+                        <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto">
+                            {/* Radial light effect */}
+                            <div className="absolute inset-0 -z-10 scale-110">
+                                <div className="absolute inset-0 bg-gradient-radial from-[#FFAC29]/20 via-[#FFAC29]/10 to-transparent blur-2xl" />
+                            </div>
                             <img
                                 src="/f25/about_picture.jpg"
                                 alt="TIDALHack Event"
-                                className=" h-auto object-contain group-hover:scale-[1.02] transition-transform duration-500 rounded-md"
+                                className="relative w-full h-auto object-contain group-hover:scale-[1.02] transition-all duration-300 rounded-lg shadow-2xl"
                             />
                         </div>
                     </div>
@@ -70,13 +75,15 @@ const About = () => {
                     className="order-1 lg:order-1"
                 >
                     <div className="relative group">
-                        <div className="absolute -inset-4 bg-gradient-radial from-[#FFA722]/25 via-[#FFA722]/15 to-transparent blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-                        <div className="absolute -inset-8 bg-gradient-radial from-[#FFA722]/20 to-transparent blur-3xl group-hover:blur-[40px] transition-all duration-500"></div>
-                        <div className="relative w-120 mx-auto">
+                        <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto">
+                            {/* Radial light effect */}
+                            <div className="absolute inset-0 -z-10 scale-110">
+                                <div className="absolute inset-0 bg-gradient-radial from-[#FFAC29]/20 via-[#FFAC29]/10 to-transparent blur-2xl" />
+                            </div>
                             <img
                                 src="/f25/msc_map.png"
-                                alt="TIDALHack Event"
-                                className=" h-auto object-contain group-hover:scale-[1.02] transition-transform duration-500 rounded-md"
+                                alt="Event Location"
+                                className="relative w-full h-auto object-contain group-hover:scale-[1.02] transition-all duration-300 rounded-lg shadow-2xl"
                             />
                         </div>
                     </div>

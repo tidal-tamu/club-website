@@ -1,3 +1,6 @@
+import { motion } from "framer-motion";
+import FloatingParticles from "./ui/FloatingParticles";
+
 const sponsors = [
     {
         id: 1,
@@ -34,28 +37,49 @@ const sponsors = [
 const Sponsors = () => {
     return (
         <section className="py-20 px-6 lg:px-12" id="sponsors">
+            <FloatingParticles count={4} />
             <div className="max-w-7xl mx-auto justify-center items-center">
-                <div className="text-center mb-16">
+                <motion.div
+                    className="text-center mb-16"
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true }}
+                >
                     <span className="text-white font-bungee text-3xl md:text-6xl">
                         Our Amazing Sponsors
                     </span>
-                </div>
-                <div className="flex flex-wrap justify-center items-center gap-24 max-w-4xl mx-auto">
-                    {sponsors.map((sponsor) => (
-                        <div
+                </motion.div>
+                <motion.div
+                    className="flex flex-wrap justify-center items-center gap-16 lg:gap-24 max-w-4xl mx-auto"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    viewport={{ once: true }}
+                >
+                    {sponsors.map((sponsor, index) => (
+                        <motion.div
                             key={sponsor.id}
                             className={`flex items-center justify-center ${
                                 sponsor.size === "default" ? "w-40" : "w-52"
                             }`}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{
+                                duration: 0.5,
+                                delay: 0.4 + index * 0.1,
+                            }}
+                            viewport={{ once: true }}
+                            whileHover={{ scale: 1.1 }}
                         >
                             <img
                                 src={sponsor.logo}
                                 alt={sponsor.name}
                                 className="max-w-full h-auto object-contain"
                             />
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

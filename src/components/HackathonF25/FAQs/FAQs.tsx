@@ -2,6 +2,8 @@ import { FaPlus } from "react-icons/fa";
 import { useState } from "react";
 import Accordion from "./Accordion";
 
+const discord_link = "https://tinyurl.com/tidaltamudiscord";
+
 const details1 = [
     {
         question: "What is TIDALhack?",
@@ -33,7 +35,24 @@ const details1 = [
 const details2 = [
     {
         question: "How do teams work?",
-        answer: "Teams are limited to 4 hackers. Make sure to check on the registration form whether you have a team or are in need of one. During the opening ceremony we will have time for matchmaking, but we encourage you to find a team beforehand (preferably through our discord)! 😎",
+        answer: (
+            <>
+                Teams are limited to 4 hackers. Make sure to check on the
+                registration form whether you have a team or are in need of one.
+                During the opening ceremony we will have time for matchmaking,
+                but we encourage you to find a team beforehand (preferably
+                through our{" "}
+                <a
+                    href={discord_link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#FFAC29] hover:text-[#FFA722] underline transition-colors duration-200"
+                >
+                    discord
+                </a>
+                )! 😎
+            </>
+        ),
         id: "6",
     },
     {
@@ -43,17 +62,48 @@ const details2 = [
     },
     {
         question: "How do I sign up?",
-        answer: "Fill out our registration form above! 🤠",
+        answer: (
+            <>
+                Fill out our{" "}
+                <a
+                    href="/register"
+                    className="text-[#FFAC29] hover:text-[#FFA722] underline transition-colors duration-200"
+                >
+                    registration form
+                </a>{" "}
+                above! 🤠
+            </>
+        ),
         id: "8",
     },
     {
         question: "What's the deadline to register?",
-        answer: "TODO TODO TODO TODO",
+        answer: "October 20th at 11:59 PM CST. Don't miss out! ⏰",
         id: "9",
     },
     {
         question: "I have more questions!",
-        answer: "For any other questions or concerns, please contact us at tidaltamu@gmail.com or ask an officer in the Discord!",
+        answer: (
+            <>
+                For any other questions or concerns, please contact us at{" "}
+                <a
+                    href="mailto:tidaltamu@gmail.com"
+                    className="text-[#FFAC29] hover:text-[#FFA722] underline transition-colors duration-200"
+                >
+                    tidaltamu@gmail.com
+                </a>{" "}
+                or ask an officer in the{" "}
+                <a
+                    href={discord_link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#FFAC29] hover:text-[#FFA722] underline transition-colors duration-200"
+                >
+                    Discord
+                </a>
+                !
+            </>
+        ),
         id: "10",
     },
 ];
