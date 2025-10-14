@@ -43,12 +43,12 @@ const Hero = () => {
           />
         </div>
 
-        <div className="text-center z-20 max-w-4xl mx-auto mt-6 md:mt-4">
+        <div className="text-center z-20 max-w-4xl mx-auto mt-6 md:mt-[-60px]">
           {/* Pills - positioned independently */}
           <div className="flex flex-wrap md:flex-nowrap justify-center gap-2 sm:gap-3 md:gap-4 z-20 mb-4">
             <div className="bg-[rgba(47,115,94,0.39)] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap hover:bg-[rgba(47,115,94,0.6)] hover:border-[rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-200 cursor-pointer">
               <span className="text-white font-medium text-xs sm:text-sm md:text-base">
-                MSC Bethancourt
+                MSC Bethancourt (2300)
               </span>
             </div>
             <div className="bg-[rgba(47,115,94,0.39)] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap hover:bg-[rgba(47,115,94,0.6)] hover:border-[rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-200 cursor-pointer">

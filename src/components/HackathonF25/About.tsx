@@ -27,7 +27,7 @@ const About = () => {
             PARKING
           </span>
           <p className="text-white font-inter font-light text-base md:text-lg mb-3">
-            MATTTTTTHHHHHHHHEEEEWWWWWW
+          Parking will be available in University Center Garage (UCG) or Central Parking Garage (CPG) for the duration of the event. Keep in mind that you cannot park in reserved, timed, business, or service vehicle spaces. We hope to see you there!
           </p>
         </div>
       </div>

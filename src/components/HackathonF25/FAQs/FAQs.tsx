@@ -62,15 +62,14 @@ const details2 = [
 
 export default function FAQs() {
   return (
-
-    <div className="relative px-6 md:px-48 pt-20 flex flex-col justify-center items-center gap-6">
-      <span className="text-white font-bungee text-3xl md:text-6xl mb-8">
+    <div className="relative px-6 lg:px-12 xl:px-24 pt-20 flex flex-col justify-center items-center gap-6 max-w-7xl mx-auto">
+      <span className="text-white font-bungee text-3xl md:text-5xl lg:text-6xl mb-8 text-center">
         FAQs
       </span>
-      <div className="grid grid-cols-2 gap-x-40 w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 w-full">
         <Accordion details={details1} />
         <Accordion details={details2} />
       </div>
-    </div >
+    </div>
   );
 }

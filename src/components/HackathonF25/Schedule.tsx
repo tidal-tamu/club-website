@@ -9,25 +9,26 @@ const schedule = [
 ]
 export default function Schedule() {
   return (
-    <div className="relative px-6 md:px-16 pt-20 flex flex-row justify-center">
-      <div className="flex flex-col justify-center items-center md:w-1/2 gap-6 mb-20">
-        <span className="text-white font-bungee text-3xl md:text-6xl mb-4">
+    <div className="relative px-6 lg:px-12 xl:px-24 pt-20 flex flex-row justify-center max-w-7xl mx-auto">
+      <div className="flex flex-col justify-center items-center w-full gap-6 mb-20">
+        <span className="text-white font-bungee text-3xl md:text-5xl lg:text-6xl mb-8 text-center">
           SCHEDULE
         </span>
-        {schedule
-          .map((info, index) => {
+        <div className="w-full max-w-4xl">
+          {schedule.map((info, index) => {
             return (
-              <div key={index} className="flex flex-col md:flex-row justify-between w-full md:gap-5">
-                <span className="font-inter text-[#FFA722] font-bold text-3xl">
+              <div key={index} className="flex flex-col sm:flex-row sm:justify-between sm:items-center w-full gap-2 sm:gap-4 mb-6 last:mb-0">
+                <span className="font-inter text-[#FFA722] font-bold text-xl sm:text-2xl lg:text-3xl text-left sm:text-right">
                   {info[0]}
                 </span>
-                <p className="text-white font-inter font-light text-3xl">
+                <p className="text-white font-inter font-light text-lg sm:text-xl lg:text-2xl xl:text-3xl text-left sm:text-left">
                   {info[1]}
                 </p>
               </div>
             );
           })}
+        </div>
       </div>
-    </div >
+    </div>
   );
 }
