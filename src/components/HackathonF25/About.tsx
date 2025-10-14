@@ -51,14 +51,31 @@ const About = () => {
                 >
                     <div className="relative group">
                         <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto">
-                            {/* Radial light effect */}
-                            <div className="absolute inset-0 -z-10 scale-110">
-                                <div className="absolute inset-0 bg-gradient-radial from-[#FFAC29]/20 via-[#FFAC29]/10 to-transparent blur-2xl" />
+                            {/* Radial light effect - optimized for performance */}
+                            <div
+                                className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                                style={{
+                                    transform: "translateZ(0)",
+                                    willChange: "transform",
+                                }}
+                            >
+                                <div
+                                    className="absolute w-[120%] h-[120%] bg-gradient-radial from-[#FFAC29]/40 via-[#FFAC29]/20 to-transparent blur-3xl"
+                                    style={{
+                                        transform: "translateZ(0)",
+                                        backfaceVisibility: "hidden",
+                                    }}
+                                />
                             </div>
                             <img
                                 src="/f25/about_picture.jpg"
                                 alt="TIDALHack Event"
-                                className="relative w-full h-auto object-contain group-hover:scale-[1.02] transition-all duration-300 rounded-lg shadow-2xl"
+                                className="relative w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-300 rounded-lg shadow-2xl"
+                                style={{
+                                    filter: "drop-shadow(0 0 40px rgba(255, 172, 41, 0.3))",
+                                    transform: "translateZ(0)",
+                                    willChange: "transform",
+                                }}
                             />
                         </div>
                     </div>
@@ -76,14 +93,31 @@ const About = () => {
                 >
                     <div className="relative group">
                         <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto">
-                            {/* Radial light effect */}
-                            <div className="absolute inset-0 -z-10 scale-110">
-                                <div className="absolute inset-0 bg-gradient-radial from-[#FFAC29]/20 via-[#FFAC29]/10 to-transparent blur-2xl" />
+                            {/* Radial light effect - optimized for performance */}
+                            <div
+                                className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                                style={{
+                                    transform: "translateZ(0)",
+                                    willChange: "transform",
+                                }}
+                            >
+                                <div
+                                    className="absolute w-[120%] h-[120%] bg-gradient-radial from-[#FFAC29]/40 via-[#FFAC29]/20 to-transparent blur-3xl"
+                                    style={{
+                                        transform: "translateZ(0)",
+                                        backfaceVisibility: "hidden",
+                                    }}
+                                />
                             </div>
                             <img
                                 src="/f25/msc_map.png"
                                 alt="Event Location"
-                                className="relative w-full h-auto object-contain group-hover:scale-[1.02] transition-all duration-300 rounded-lg shadow-2xl"
+                                className="relative w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-300 rounded-lg shadow-2xl"
+                                style={{
+                                    filter: "drop-shadow(0 0 40px rgba(255, 172, 41, 0.3))",
+                                    transform: "translateZ(0)",
+                                    willChange: "transform",
+                                }}
                             />
                         </div>
                     </div>
