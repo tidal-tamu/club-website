@@ -39,7 +39,6 @@ const HackathonF25 = () => {
         let progressInterval: NodeJS.Timeout;
         let currentProgress = 0;
         const minimumLoadTime = 3000;
-        const totalLoadTime = 4000;
 
         const smoothProgressUpdate = () => {
             if (currentProgress < 100) {

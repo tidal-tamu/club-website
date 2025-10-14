@@ -1,5 +1,3 @@
-import { FaPlus } from "react-icons/fa";
-import { useState } from "react";
 import Accordion from "./Accordion";
 
 const discord_link = "https://tinyurl.com/tidaltamudiscord";
