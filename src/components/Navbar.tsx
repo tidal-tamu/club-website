@@ -11,7 +11,7 @@ import {
 const navLinks = [
     { title: "Home", path: "/" },
     { title: "About Us", path: "about-us" },
-    { title: "Hackathon", path: "/HackathonF25" },
+    { title: "Hackathon", path: "/hackathon" },
 ];
 
 interface NavbarProps {

@@ -1,3 +1,36 @@
+const sponsors = [
+    {
+        id: 1,
+        name: "Google",
+        logo: "/f25/sponsors/sponsor_google.png",
+        size: "default",
+    },
+    {
+        id: 2,
+        name: "AWS",
+        logo: "/f25/sponsors/sponsor_aws.png",
+        size: "default",
+    },
+    {
+        id: 3,
+        name: "Wolfram",
+        logo: "/f25/sponsors/sponsor_wolfram.png",
+        size: "medium",
+    },
+    {
+        id: 4,
+        name: "Jane Street",
+        logo: "/f25/sponsors/sponsor_jane_street.png",
+        size: "medium",
+    },
+    {
+        id: 5,
+        name: "Figma",
+        logo: "/f25/sponsors/sponsor_figma.png",
+        size: "default",
+    },
+];
+
 const Sponsors = () => {
     return (
         <section className="py-20 px-6 lg:px-12" id="sponsors">
@@ -7,37 +40,21 @@ const Sponsors = () => {
                         Our Amazing Sponsors
                     </span>
                 </div>
-
-                <div className="flex flex-wrap gap-12 lg:gap-16 items-center justify-items-center mx-50">
-                    <img
-                        src="/icons/logos/companies/google-color.png"
-                        alt="Google"
-                        className="h-20 lg:h-24 w-auto object-contain"
-                    />
-
-                    <img
-                        src="/icons/logos/companies/aws-logo.png"
-                        alt="AWS"
-                        className="h-24 lg:h-32 w-auto object-contain"
-                    />
-
-                    <img
-                        src="/icons/logos/companies/wolfram-logo-white.png"
-                        alt="Wolfram"
-                        className="h-24 lg:h-32 w-auto object-contain"
-                    />
-
-                    <img
-                        src="/icons/logos/companies/jane-street-blue.png"
-                        alt="Jane Street"
-                        className="h-24 lg:h-32 w-auto object-contain"
-                    />
-
-                    <img
-                        src="/icons/logos/companies/figma.png"
-                        alt="Figma"
-                        className="h-24 lg:h-32 object-contain"
-                    />
+                <div className="flex flex-wrap justify-center items-center gap-24 max-w-4xl mx-auto">
+                    {sponsors.map((sponsor) => (
+                        <div
+                            key={sponsor.id}
+                            className={`flex items-center justify-center ${
+                                sponsor.size === "default" ? "w-40" : "w-52"
+                            }`}
+                        >
+                            <img
+                                src={sponsor.logo}
+                                alt={sponsor.name}
+                                className="max-w-full h-auto object-contain"
+                            />
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>
