@@ -31,7 +31,7 @@ export default function Prizes() {
                             1st
                         </span>
                         <p className="text-white font-inter text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-center break-words">
-                            Samsung "24 Monitor
+                            Samsung Odyssey G3 Monitor
                         </p>
                     </div>
                 </motion.div>
@@ -56,7 +56,7 @@ export default function Prizes() {
                             3rd
                         </span>
                         <p className="text-white font-inter text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center break-words">
-                            Mini Projector
+                            Fujifilm Instax Camera
                         </p>
                     </div>
                 </motion.div>
@@ -103,7 +103,7 @@ export default function Prizes() {
                                 </span>
                             </div>
                             <p className="text-white font-inter text-sm sm:text-base md:text-lg lg:text-xl text-center">
-                                Chrysanthemum Legos
+                                LEGO Botanicals Set
                             </p>
                         </div>
 
