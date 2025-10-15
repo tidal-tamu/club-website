@@ -4,18 +4,19 @@ export default {
     theme: {
         extend: {
             spacing: {
-                '30': '7.5rem',
-                '50': '12.5rem',
-                '60': '15rem',  // Adds a spacing value of 60, equivalent to 15rem
-                '70': '17.5rem',
-                '80': '20rem',
-                '90': '22.5rem',
-                '100': '25rem',
-                '110': '27.5rem',
-                '120': '30rem',
+                30: "7.5rem",
+                50: "12.5rem",
+                60: "15rem", // Adds a spacing value of 60, equivalent to 15rem
+                70: "17.5rem",
+                80: "20rem",
+                90: "22.5rem",
+                100: "25rem",
+                110: "27.5rem",
+                120: "30rem",
             },
             fontFamily: {
                 mont: ["Montserrat", "sans-serif"],
+                chelsea: ["Chelsea Market", "sans-serif"],
             },
             fontWeight: {
                 light: 300,
@@ -44,13 +45,16 @@ export default {
                     "50%": { transform: "translateY(-5%) rotate(-12deg)" },
                 },
                 meteor: {
-                    "0%": { transform: "rotate(215deg) translateX(0)", opacity: 1 },
+                    "0%": {
+                        transform: "rotate(215deg) translateX(0)",
+                        opacity: 1,
+                    },
                     "70%": { opacity: 1 },
                     "100%": {
-                      transform: "rotate(215deg) translateX(-500px)",
-                      opacity: 0,
+                        transform: "rotate(215deg) translateX(-500px)",
+                        opacity: 0,
                     },
-                  },
+                },
             },
             animation: {
                 float: "float 2s ease-in-out infinite",

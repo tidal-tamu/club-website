@@ -19,7 +19,7 @@ export default function Schedule() {
             <FloatingParticles count={4} />
             <div className="flex flex-col justify-center items-center w-full gap-6 mb-20">
                 <motion.span
-                    className="text-white font-bungee text-3xl md:text-5xl lg:text-6xl mb-8 text-center"
+                    className="text-white font-chelsea text-3xl md:text-5xl lg:text-6xl mb-8 text-center"
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}

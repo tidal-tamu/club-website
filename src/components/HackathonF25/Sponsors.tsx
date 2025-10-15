@@ -46,7 +46,7 @@ const Sponsors = () => {
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
                 >
-                    <span className="text-white font-bungee text-3xl md:text-6xl">
+                    <span className="text-white font-chelsea text-2xl sm:text-3xl md:text-5xl lg:text-6xl">
                         Our Amazing Sponsors
                     </span>
                 </motion.div>

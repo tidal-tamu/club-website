@@ -112,8 +112,8 @@ export default function FAQs() {
             className="relative px-6 lg:px-12 xl:px-24 pt-20 flex flex-col justify-center items-center gap-6 max-w-7xl mx-auto"
             id="faq"
         >
-            <span className="text-white font-bungee text-3xl md:text-5xl lg:text-6xl mb-8 text-center">
-                FAQs
+            <span className="text-white font-chelsea text-3xl md:text-5xl lg:text-6xl mb-8 text-center">
+                FAQ
             </span>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 w-full">
                 <Accordion details={details1} />

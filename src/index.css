@@ -1,77 +1,89 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Safe area insets for iPhone notch */
-html, body {
-  margin: 0;
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+html,
+body {
+    margin: 0;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right)
+        env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 body {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
 }
 
 @font-face {
-  font-family: 'inter';
-  src: url('/fonts/Inter-VariableFont_opsz,wght.woff2') format('woff2');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
+    font-family: "inter";
+    src: url("/fonts/Inter-VariableFont_opsz,wght.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: 'bungee';
-  src: url('/fonts/Bungee-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: "bungee";
+    src: url("/fonts/Bungee-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'main';
-  src: url('/fonts/THEOVD__.TTF') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: "main";
+    src: url("/fonts/THEOVD__.TTF") format("truetype");
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'zing';
-  src: url('/fonts/ZingRust-Base.otf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: "zing";
+    src: url("/fonts/ZingRust-Base.otf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'plasma';
-  src: url('/fonts/Fontspring-plasma.otf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: "plasma";
+    src: url("/fonts/Fontspring-plasma.otf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
 }
 
 .faq-gradient {
-  background: linear-gradient(to right, rgba(2, 87, 81, 0.67), rgba(12, 131, 122, 0.67));
+    background: linear-gradient(
+        to right,
+        rgba(2, 87, 81, 0.67),
+        rgba(12, 131, 122, 0.67)
+    );
 }
 
 .font-bungee {
-  font-family: 'bungee';   
+    font-family: "bungee";
+}
+
+.font-chelsea {
+    font-family: "Chelsea Market", cursive;
 }
 
 .font-inter {
-  font-family: 'inter';   
+    font-family: "inter";
 }
 .blocky-div {
-  font-family: 'main', sans-serif;
-  letter-spacing: 15px;
+    font-family: "main", sans-serif;
+    letter-spacing: 15px;
 }
 
 .zing-base {
-  font-family: 'zing', sans-serif;
+    font-family: "zing", sans-serif;
 }
 
 .plasma-bold {
-  font-family: 'plasma', sans-serif;
+    font-family: "plasma", sans-serif;
 }
 
 html {
@@ -97,13 +109,13 @@ body {
 
 .scrollbar-hidden::-webkit-scrollbar {
     display: none;
-  }
-  
-  .scrollbar-hidden {
+}
+
+.scrollbar-hidden {
     scrollbar-width: none;
-  }
-  
-  .scrollbar-hidden {
+}
+
+.scrollbar-hidden {
     overflow: -moz-scrollbars-none;
     overflow: auto;
-  }
+}
