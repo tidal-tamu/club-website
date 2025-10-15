@@ -43,7 +43,6 @@ export default function Hero() {
                     }}
                 />
 
-                {/* Mathematical and ML Symbols - Hidden on screens below laptop */}
                 <motion.div
                     className="hidden lg:block absolute top-32 left-1/3 text-6xl sm:text-8xl opacity-10 text-[#336699] font-mono"
                     animate={{ rotate: [0, 360] }}

@@ -2,7 +2,8 @@ import {
     FaGithub,
     FaLinkedin,
     FaInstagram,
-    FaExternalLinkAlt,
+    FaDiscord,
+    FaEnvelope,
 } from "react-icons/fa";
 
 interface FooterProps {
@@ -12,7 +13,122 @@ interface FooterProps {
 export default function Footer({ variant = "home" }: FooterProps) {
     const isHackathon = variant.includes("hackathon");
     const isSpring25 = variant === "hackathon-spring-25";
-    // const isFall25 = variant === 'hackathon-fall-25';
+    const isFall25 = variant === 'hackathon-fall-25';
+
+    if (isFall25) {
+        return (
+            <footer className="text-white bg-transparent px-6 lg:px-12 py-16 relative z-10">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid md:grid-cols-4 gap-8 mb-12">
+                        <div>
+                            <div className="flex items-center space-x-3 mb-4">
+                                <img
+                                    src="./icons/logos/tidal-white-transparent.png"
+                                    alt="TIDAL Logo"
+                                    className="h-8 w-auto object-contain"
+                                />
+                            </div>
+                            <div className="text-white text-lg font-bold mb-2">
+                                TIDALTAMU
+                            </div>
+                            <p className="text-gray-400 text-sm">
+                                The AI Wave Starts Here
+                            </p>
+                        </div>
+
+                        <div>
+                            <h4 className="text-lg font-bold mb-6">Sponsor Us</h4>
+                            <a
+                                href="mailto:tidaltamu@gmail.com"
+                                className="text-gray-400 hover:text-white transition-colors"
+                            >
+                                tidaltamu@gmail.com
+                            </a>
+                        </div>
+
+                        <div>
+                            <h4 className="text-lg font-bold mb-6">Quick Links</h4>
+                            <ul className="space-y-3 text-gray-400">
+                                <li>
+                                    <a
+                                        href="/"
+                                        className="hover:text-white transition-colors"
+                                    >
+                                        About
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="/hackathon"
+                                        className="hover:text-white transition-colors"
+                                    >
+                                        Events
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="/"
+                                        className="hover:text-white transition-colors"
+                                    >
+                                        Team
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <div className="flex space-x-4 mb-6">
+                                <a
+                                    href="https://www.instagram.com/tidaltamu/"
+                                    target="_blank"
+                                    className="w-8 h-8 flex items-center justify-center text-white hover:text-gray-300 transition-colors"
+                                >
+                                    <FaInstagram className="w-5 h-5" />
+                                </a>
+                                <a
+                                    href="https://discord.gg/eQ8ScamG4H"
+                                    target="_blank"
+                                    className="w-8 h-8 flex items-center justify-center text-white hover:text-gray-300 transition-colors"
+                                >
+                                    <FaDiscord className="w-5 h-5" />
+                                </a>
+                                <a
+                                    href="https://www.linkedin.com/company/tidaltamu"
+                                    target="_blank"
+                                    className="w-8 h-8 flex items-center justify-center text-white hover:text-gray-300 transition-colors"
+                                >
+                                    <FaLinkedin className="w-5 h-5" />
+                                </a>
+                                <a
+                                    href="https://github.com/tidal-tamu/"
+                                    target="_blank"
+                                    className="w-8 h-8 flex items-center justify-center text-white hover:text-gray-300 transition-colors"
+                                >
+                                    <FaGithub className="w-5 h-5" />
+                                </a>
+                                <a
+                                    href="mailto:tidaltamu@gmail.com"
+                                    className="w-8 h-8 flex items-center justify-center text-white hover:text-gray-300 transition-colors"
+                                >
+                                    <FaEnvelope className="w-5 h-5" />
+                                </a>
+                            </div>
+                            <div className="text-gray-400 text-sm">
+                                <p className="mb-2">  © 2025 TIDALTAMU </p>
+                                <a
+                                    href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
+                                    target="_blank"
+                                    className="hover:text-white transition-colors"
+                                >
+                                    MLH Code of Conduct
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        );
+    }
 
     return (
         <footer
@@ -141,7 +257,7 @@ export default function Footer({ variant = "home" }: FooterProps) {
                                 target="_blank"
                                 className="w-12 h-12 bg-gray-800 hover:bg-gradient-to-br hover:from-[#336699] hover:to-[#706993] rounded-xl flex items-center justify-center transition-all duration-300 group"
                             >
-                                <FaExternalLinkAlt className="w-5 h-5 text-gray-400 group-hover:text-white" />
+                                <FaDiscord className="w-5 h-5 text-gray-400 group-hover:text-white" />
                             </a>
                         </div>
                     </div>

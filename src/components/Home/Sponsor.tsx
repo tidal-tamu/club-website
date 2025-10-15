@@ -15,7 +15,7 @@ export default function Sponsor() {
     };
 
     return (
-        <section className="py-16 sm:py-20 lg:py-24 bg-white relative overflow-hidden">
+        <section className="py-16 sm:py-20 lg:py-24 bg-white relative overflow-hidden" id="sponsors">
             <div className="container mx-auto px-4 sm:px-6 lg:px-12">
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
