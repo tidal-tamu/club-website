@@ -3,7 +3,7 @@ import FloatingParticles from "./ui/FloatingParticles";
 
 const schedule = [
     ["7:00AM", "Student Check In Begins"],
-    ["7:30AM", "Open Ceremony"],
+    ["7:30AM", "Opening Ceremony"],
     ["8:30AM", "Start Hacking!"],
     ["12:00PM", "Lunch"],
     ["5:00PM", "Judging"],

@@ -32,6 +32,12 @@ const sponsors = [
         logo: "/f25/sponsors/sponsor_figma.png",
         size: "default",
     },
+    {
+        id: 6,
+        name: "XPerf",
+        logo: "/icons/logos/companies/xperf-white.png",
+        size: "default",
+    },
 ];
 
 const Sponsors = () => {
