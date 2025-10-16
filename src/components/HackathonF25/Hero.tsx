@@ -1,7 +1,6 @@
 import { FaPlay } from "react-icons/fa";
 import FloatingParticles from "./ui/FloatingParticles";
 import tidalHeroText from "/f25/hero.png";
-import lightImage from "/f25/Light.png";
 import { Link } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import { FaChevronDown } from "react-icons/fa";
