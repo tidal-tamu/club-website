@@ -32,14 +32,14 @@ const Hero = () => {
                         mixBlendMode: "screen" as any,
                     }}
                 >
-                    <img
+                    {/* <img
                         src={lightImage}
                         alt=""
                         className="h-full w-auto object-cover"
                         style={{
                             opacity: 0.8,
                         }}
-                    />
+                    /> */}
                 </div>
 
                 <div className="text-center z-20 max-w-4xl mx-auto -mt-36 lg:mt-6 space-y-10 md:space-y-12">
@@ -108,10 +108,10 @@ const Hero = () => {
                         smooth={true}
                         duration={500}
                         aria-label="Scroll down for more content"
-                        className="flex flex-col items-center justify-center animate-bounce text-3xl text-white hover:scale-125 hover:text-[#FFA722] focus:outline-none"
+                        className="flex flex-col items-center justify-center animate-bounce text-xl text-white hover:scale-125 hover:text-[#FFA722] focus:outline-none"
                         type="button"
                     >
-                        <FaChevronDown size={50} />
+                        <FaChevronDown size={30} strokeWidth={0.5} />
                     </ScrollLink>
                 </div>
             </div>
