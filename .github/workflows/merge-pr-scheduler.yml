@@ -1,0 +1,16 @@
+# use /schedule YYYY-MM-DD <military time> in your PR to set a merge time
+
+name: Merge Scheduled PRs
+
+on:
+    schedule:
+        # Runs every hour to catch the exact scheduled time
+        - cron: "0 * * * *"
+
+jobs:
+    merge_schedule:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: gr2m/merge-schedule-action@v1.x
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
