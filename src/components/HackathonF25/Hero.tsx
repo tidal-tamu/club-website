@@ -1,7 +1,6 @@
 import { FaPlay } from "react-icons/fa";
 import FloatingParticles from "./ui/FloatingParticles";
 import tidalHeroText from "/f25/hero.png";
-import { Link } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import { FaChevronDown } from "react-icons/fa";
 
@@ -75,18 +74,18 @@ const Hero = () => {
                     </div>
 
                     <div className="flex flex-col items-center gap-8">
-                        <Link
-                            to="/register"
-                            className="bg-[#FFAC29] hover:bg-[#FFAC29] text-black font-bold text-lg md:text-xl px-4 md:px-6 py-1.5 md:py-2.5 rounded-xl transition-all duration-150 flex items-center gap-3"
+                        <button
+                            disabled
+                            className="bg-gray-500 text-gray-300 font-bold text-lg md:text-xl px-4 md:px-6 py-1.5 md:py-2.5 rounded-xl flex items-center gap-3 cursor-not-allowed opacity-60"
                             style={{
-                                filter: "drop-shadow(0 8px 0 #CC8A21) drop-shadow(0 12px 16px rgba(0, 0, 0, 0.3))",
+                                filter: "drop-shadow(0 8px 0 #4a4a4a) drop-shadow(0 12px 16px rgba(0, 0, 0, 0.3))",
                                 boxShadow:
                                     "inset 0 0 0 1.8px rgba(255, 255, 255, 0.10)",
                             }}
                         >
-                            APPLY NOW
-                            <FaPlay className="h-4 w-4 md:h-5 md:w-5 text-black" />
-                        </Link>
+                            REGISTRATION CLOSED
+                            <FaPlay className="h-4 w-4 md:h-5 md:w-5 text-gray-300" />
+                        </button>
                     </div>
 
                     <div className="absolute top-1/4 left-10 w-20 h-20 bg-yellow-400/10 rounded-full blur-xl animate-pulse" />
