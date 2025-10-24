@@ -9,14 +9,10 @@ on:
     schedule:
         - cron: "0 * * * *"
 
-permissions:
-    contents: write
-    pull-requests: write
-    repository-projects: write
 jobs:
     merge_schedule:
         runs-on: ubuntu-latest
         steps:
             - uses: gr2m/merge-schedule-action@v1.x
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.MERGE_TOKEN }}
