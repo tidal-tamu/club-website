@@ -9,12 +9,9 @@ on:
     schedule:
         - cron: "0 * * * *"
 
-permissions:
-    contents: write
-    pull-requests: write
-    repository-projects: write
 jobs:
     merge_schedule:
+        permissions: write-all
         runs-on: ubuntu-latest
         steps:
             - uses: gr2m/merge-schedule-action@v1.x
