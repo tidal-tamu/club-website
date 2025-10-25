@@ -58,8 +58,15 @@ const sched: ScheduleItem[] = [
     {
         day: "10/25",
         time: "4:00 PM",
+        end_time: "4:29 PM",
+        event: "30 Minutes Remaining!",
+        location: "MSC 2300",
+    },
+    {
+        day: "10/25",
+        time: "4:30 PM",
         end_time: "4:30 PM",
-        event: "Project Submission Deadline at 4:30 PM",
+        event: "Project Submission Deadline",
         location: "MSC 2300",
     },
     {
