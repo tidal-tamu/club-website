@@ -22,8 +22,8 @@ const sched: ScheduleItem[] = [
     },
     {
         day: "10/25",
-        time: "8:00 AM",
-        end_time: "8:30 AM",
+        time: "8:30 AM",
+        end_time: "9:00 AM",
         event: "Opening Ceremony",
         location: "MSC 2300",
     },
