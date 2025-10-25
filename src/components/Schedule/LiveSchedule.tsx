@@ -29,8 +29,8 @@ const sched: ScheduleItem[] = [
     },
     {
         day: "10/25",
-        time: "8:45 AM",
-        end_time: "9:15 AM",
+        time: "9:30 AM",
+        end_time: "10:00 AM",
         event: "Team Matchmaking Mixer!",
         location: "MSC 2401",
     },
