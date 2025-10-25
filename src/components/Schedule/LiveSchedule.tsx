@@ -38,14 +38,14 @@ const sched: ScheduleItem[] = [
         day: "10/25",
         time: "10:00 AM",
         end_time: "11:00 AM",
-        event: "Google Cloud Workshop #1",
+        event: "Google Cloud and Security Workshop",
         location: "MSC 2401",
     },
     {
         day: "10/25",
         time: "11:00 AM",
         end_time: "12:00 PM",
-        event: "Google Cloud Workshop #2",
+        event: "How to get hired at Google Cloud Workshop",
         location: "MSC 2401",
     },
     {
