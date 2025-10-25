@@ -22,15 +22,15 @@ const sched: ScheduleItem[] = [
     },
     {
         day: "10/25",
-        time: "8:30 AM",
-        end_time: "9:00 AM",
+        time: "8:00 AM",
+        end_time: "8:30 AM",
         event: "Opening Ceremony",
         location: "MSC 2300",
     },
     {
         day: "10/25",
-        time: "9:00 AM",
-        end_time: "9:30 AM",
+        time: "8:45 AM",
+        end_time: "9:15 AM",
         event: "Team Matchmaking Mixer!",
         location: "MSC 2401",
     },
@@ -45,7 +45,7 @@ const sched: ScheduleItem[] = [
         day: "10/25",
         time: "11:00 AM",
         end_time: "12:00 PM",
-        event: "How to get hired at Google Cloud Workshop",
+        event: "Getting Hired at Google Workshop",
         location: "MSC 2401",
     },
     {
@@ -64,7 +64,7 @@ const sched: ScheduleItem[] = [
     },
     {
         day: "10/25",
-        time: "5:30 PM",
+        time: "5:00 PM",
         end_time: "6:30 PM",
         event: "Judging Begins",
         location: "MSC 2300",

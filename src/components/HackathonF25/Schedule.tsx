@@ -3,10 +3,10 @@ import FloatingParticles from "./ui/FloatingParticles";
 
 const schedule = [
     ["7:30AM", "Check In + Breakfast"],
-    ["8:30AM", "Opening Ceremony"],
-    ["9:00AM", "Team Matchmaking Mixer!"],
-    ["10:00AM", "Google Cloud Workshop #1"],
-    ["11:00AM", "Google Cloud Workshop #2"],
+    ["8:00AM", "Opening Ceremony"],
+    ["8:45AM", "Team Matchmaking Mixer!"],
+    ["10:00AM", "Google Cloud and Security Workshop"],
+    ["11:00AM", "Getting Hired at Google Workshop"],
     ["1:00PM", "Lunch"],
     ["4:30PM", "Project Submission Deadline"],
     ["5:30PM", "Judging Begins"],
