@@ -109,12 +109,12 @@ export default function Navbar({ dark = false }: NavbarProps) {
                                 {link.title}
                             </Link>
                         ))}
-                    <a
-                        href="/register"
-                        className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-medium"
+                    <button
+                        disabled
+                        className="bg-gray-500 text-gray-300 px-6 py-2 rounded-xl shadow-lg cursor-not-allowed opacity-60 font-medium"
                     >
                         Apply
-                    </a>
+                    </button>
                 </div>
 
                 <button
@@ -208,13 +208,12 @@ export default function Navbar({ dark = false }: NavbarProps) {
                                 </Link>
                             )
                         )}
-                        <a
-                            href="/register"
-                            target="_blank"
-                            className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black px-14 py-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold text-xl mt-8"
+                        <button
+                            disabled
+                            className="bg-gray-500 text-gray-300 px-14 py-5 rounded-xl shadow-lg cursor-not-allowed opacity-60 font-semibold text-xl mt-8"
                         >
                             Apply
-                        </a>
+                        </button>
                     </div>
 
                     {/* Contact Links - Bottom Section */}
