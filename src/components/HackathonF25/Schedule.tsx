@@ -9,7 +9,7 @@ const schedule = [
     ["11:00AM", "Getting Hired at Google Workshop"],
     ["1:00PM", "Lunch"],
     ["4:30PM", "Project Submission Deadline"],
-    ["5:30PM", "Judging Begins"],
+    ["5:00PM", "Judging Begins"],
     ["6:30PM", "Closing Ceremony"],
 ];
 
