@@ -22,7 +22,7 @@ const sched: ScheduleItem[] = [
     },
     {
         day: "10/25",
-        time: "8:00 AM",
+        time: "8:30 AM",
         end_time: "9:00 AM",
         event: "Opening Ceremony",
         location: "MSC 2300",
@@ -30,22 +30,22 @@ const sched: ScheduleItem[] = [
     {
         day: "10/25",
         time: "9:00 AM",
-        end_time: "10:00 AM",
-        event: "Google Cloud Workshop #1",
+        end_time: "9:30 AM",
+        event: "Team Matchmaking Mixer!",
         location: "MSC 2401",
     },
     {
         day: "10/25",
         time: "10:00 AM",
         end_time: "11:00 AM",
-        event: "Google Cloud Workshop #2",
+        event: "Google Cloud Workshop #1",
         location: "MSC 2401",
     },
     {
         day: "10/25",
         time: "11:00 AM",
-        end_time: "1:00 PM",
-        event: "Google Cloud Workshop #3",
+        end_time: "12:00 PM",
+        event: "Google Cloud Workshop #2",
         location: "MSC 2401",
     },
     {
@@ -64,7 +64,7 @@ const sched: ScheduleItem[] = [
     },
     {
         day: "10/25",
-        time: "5:00 PM",
+        time: "5:30 PM",
         end_time: "6:30 PM",
         event: "Judging Begins",
         location: "MSC 2300",
@@ -165,7 +165,7 @@ export default function LiveSchedule() {
                                     JOIN DISCORD
                                 </p>
                                 <p className="text-yellow-400 font-mono text-lg font-semibold">
-                                    discord.gg/eQ8ScamG4H
+                                    tx.ag/tidaldiscord
                                 </p>
                             </div>
                         </div>
