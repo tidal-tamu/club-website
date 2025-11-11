@@ -2,12 +2,15 @@ import { motion } from "framer-motion";
 import FloatingParticles from "./ui/FloatingParticles";
 
 const schedule = [
-    ["7:00AM", "Student Check In Begins"],
-    ["7:30AM", "Opening Ceremony"],
-    ["8:30AM", "Start Hacking!"],
-    ["12:00PM", "Lunch"],
-    ["5:00PM", "Judging"],
-    ["6:00PM", "Closing Ceremony and Awards"],
+    ["7:30AM", "Check In + Breakfast"],
+    ["8:00AM", "Opening Ceremony"],
+    ["8:45AM", "Team Matchmaking Mixer!"],
+    ["10:00AM", "Google Cloud and Security Workshop"],
+    ["11:00AM", "Getting Hired at Google Workshop"],
+    ["1:00PM", "Lunch"],
+    ["4:30PM", "Project Submission Deadline"],
+    ["5:00PM", "Judging Begins"],
+    ["6:30PM", "Closing Ceremony"],
 ];
 
 export default function Schedule() {

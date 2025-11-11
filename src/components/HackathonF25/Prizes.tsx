@@ -31,7 +31,7 @@ export default function Prizes() {
                             1st
                         </span>
                         <p className="text-white font-inter text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-center break-words">
-                            Samsung "24 Monitor
+                            Samsung Odyssey G3 Monitor
                         </p>
                     </div>
                 </motion.div>
@@ -56,19 +56,19 @@ export default function Prizes() {
                             3rd
                         </span>
                         <p className="text-white font-inter text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center break-words">
-                            Mini Projector
+                            Fujifilm Instax Camera
                         </p>
                     </div>
                 </motion.div>
 
                 <motion.div
-                    className="flex flex-col justify-center gap-6 w-full mb-20"
+                    className="flex flex-col justify-center w-full mb-20"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.6 }}
                     viewport={{ once: true }}
                 >
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-4 sm:gap-6 w-full">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-4 sm:gap-6 w-full mb-6">
                         <div className="flex flex-col items-center bg-[#003132] shadow-lg rounded-xl border-opacity-70 border-4 sm:border-6 lg:border-8 border-[#1E4F3E] px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6 hover:scale-105 duration-300">
                             <div className="flex flex-row gap-2 sm:gap-3 items-center mb-5 justify-center">
                                 <svg
@@ -103,7 +103,7 @@ export default function Prizes() {
                                 </span>
                             </div>
                             <p className="text-white font-inter text-sm sm:text-base md:text-lg lg:text-xl text-center">
-                                Chrysanthemum Legos
+                                LEGO Botanicals Set
                             </p>
                         </div>
 
@@ -134,6 +134,23 @@ export default function Prizes() {
                             </div>
                             <p className="text-white font-inter text-sm sm:text-base md:text-lg lg:text-xl text-center">
                                 $50 Figma Credits
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="flex flex-row justify-center w-full">
+                        <div className="flex flex-col items-center bg-[#003132] shadow-lg rounded-xl border-opacity-70 border-4 sm:border-6 lg:border-8 border-[#3B82F6] px-6 sm:px-8 lg:px-12 py-4 sm:py-5 lg:py-6 w-full hover:scale-105 duration-300">
+                            <div className="flex flex-row gap-2 sm:gap-3 items-center mb-5 justify-center">
+                                <img
+                                    src="/f25/static/beginner_trophy.png"
+                                    className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 flex-shrink-0 object-contain"
+                                />
+                                <span className="text-white font-inter font-black text-xs sm:text-sm md:text-lg lg:text-xl text-center">
+                                    Best Beginner Track
+                                </span>
+                            </div>
+                            <p className="text-white font-inter text-sm sm:text-base md:text-lg lg:text-xl text-center">
+                                $50 Amazon Gift Cards
                             </p>
                         </div>
                     </div>

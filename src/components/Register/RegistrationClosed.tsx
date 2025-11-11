@@ -1,6 +1,6 @@
-import Headroom from "react-headroom";
-import Navbar from "../Navbar";
+import Navbar from "../HackathonF25/Navbar";
 import { useEffect } from "react";
+import tidalBackground from "/f25/tidal-background.png";
 
 export default function RegistrationClosed() {
     useEffect(() => {
@@ -8,28 +8,56 @@ export default function RegistrationClosed() {
     }, []);
 
     return (
-        <>
-            <div className="relative z-50 flex flex-col">
-                <Headroom>
-                    <Navbar dark />
-                </Headroom>
+        <div
+            className="min-h-screen hero-gradient relative overflow-hidden"
+            style={{
+                backgroundImage: `url(${tidalBackground})`,
+                backgroundSize: "cover",
+                backgroundPosition: "top",
+                backgroundRepeat: "no-repeat",
+            }}
+        >
+            <div className="absolute inset-0 bg-tidal-deep/70 backdrop-blur-[1px]" />
+
+            <div className="relative z-30">
+                <Navbar dark />
             </div>
-            <div className="bg-spaceBlack flex flex-col items-center justify-center">
 
-                <div className="w-11/12 sm:w-10/12 lg:w-[60vw] px-6 sm:px-24 pt-12 pb-24 mt-20 bg-white rounded-2xl z-10 relative min-h-[60dvh]">
-                    <img src="/icons/logos/tidal-newblue.svg" className="w-64 mx-auto pb-5" />
+            <div className="flex flex-col items-center justify-center min-h-screen py-20">
+                <div className="w-11/12 sm:w-10/12 lg:w-[60vw] px-6 sm:px-24 pt-12 pb-24 bg-black/20 backdrop-blur-sm rounded-2xl z-10 relative min-h-[60dvh] border border-white/20">
+                    <img
+                        src="/icons/logos/tidal-white-transparent.png"
+                        className="w-64 mx-auto pb-5"
+                    />
 
-                    <h1 className="text-2xl sm:text-3xl font-medium text-center pt-2 h-full"> Registrations are now <span className="text-red-600">closed!</span> </h1>
+                    <h1 className="text-2xl sm:text-3xl font-semibold text-center pt-2 text-white">
+                        {" "}
+                        Registrations are now{" "}
+                        <span className="text-red-400">closed!</span>{" "}
+                    </h1>
 
-                    <p className="pt-16 pb-10  text-lg">We are no longer accepting registrations for tidalhack 25.
-                        If you already registered and would like to check your registration, <a className="underline" href="/check-registration">click here!</a>
+                    <p className="pt-16 pb-10 text-lg text-white">
+                        We are no longer accepting registrations for TIDALHack
+                        25. If you already registered and would like to check
+                        your registration,{" "}
+                        <a
+                            className="underline text-yellow-400 hover:text-yellow-300"
+                            href="/check-registration"
+                        >
+                            click here!
+                        </a>
                     </p>
 
-                    <p className="text-lg">For further questions, please contact us at tidaltamu@gmail.com</p>
+                    <p className="text-lg text-white">
+                        For further questions, please contact us at
+                        tidaltamu@gmail.com
+                    </p>
 
-                    <p className="absolute m-auto bottom-4 left-0 right-0 text-center">© 2025 TIDALTAMU</p>                    
+                    <p className="absolute m-auto bottom-4 left-0 right-0 text-center text-white/70">
+                        © 2025 TIDALTAMU
+                    </p>
                 </div>
             </div>
-        </>
+        </div>
     );
 }

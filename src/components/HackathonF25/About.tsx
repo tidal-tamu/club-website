@@ -353,15 +353,15 @@ const About = () => {
                             </span>
                             <br />
                             <span className="underline">
-                                Central Parking Garage (CPG)
+                                Lot 74 (Free on Weekends)
                             </span>
                             <br />
                             <span className="underline">
-                                Lot 100 (Free On Weekends)
+                                Lot 100 (Free on Weekends)
                             </span>
                             <br />
                             <br />
-                            Parking is free on weekends in all TAMU owned lots.
+                            Parking is free on weekends in most TAMU owned lots.
                             Keep in mind that you cannot park in reserved,
                             timed, business, or service vehicle spaces. We hope
                             to see you there!

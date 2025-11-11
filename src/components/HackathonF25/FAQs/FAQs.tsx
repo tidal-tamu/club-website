@@ -20,7 +20,7 @@ const details1 = [
     },
     {
         question: "What should I bring?",
-        answer: "Please bring your laptop, charger, and anything that will help you hack. If you plan on staying overnight, make sure to prepare accordingly. A blanket and pillow may come in handy, but try to limit the size of the items you bring. Most importantly, don’t forget your deodorant. 🫡 ",
+        answer: "Please bring your laptop, charger, and anything that will help you hack. Most importantly, don’t forget your deodorant. 🫡 ",
         id: "4",
     },
     {
