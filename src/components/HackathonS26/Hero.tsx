@@ -29,7 +29,7 @@ const Hero = () => {
                     />
                 </div>
 
-                <div className="text-center z-20 max-w-4xl mx-auto -translate-y-[10vh] space-y-0">
+                <div className="text-center z-20 max-w-4xl mx-auto -translate-y-[22vh] space-y-0">
                     <div className="flex flex-wrap md:flex-nowrap justify-center gap-2 sm:gap-3 md:gap-4 z-20 mb-4 mt-8">
                         <div className="bg-[#9FC9E6] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap hover:bg-[#8AB8D5] hover:border-[rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-200">
                             <span className="text-white font-medium text-xs sm:text-sm md:text-base">

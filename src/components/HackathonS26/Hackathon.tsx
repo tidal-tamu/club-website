@@ -32,12 +32,12 @@ const HackathonS26 = () => {
                 {/* Snowman button on the right side - responsive positioning */}
                 <Link
                     to="/register"
-                    className="absolute bottom-20 right-20 sm:bottom-24 sm:right-28 md:bottom-28 md:right-36 lg:bottom-36 lg:right-44 xl:bottom-36 xl:right-44 z-30 cursor-pointer transition-all duration-200 hover:scale-105 group inline-block"
+                    className="absolute bottom-36 right-1/2 translate-x-1/2 sm:bottom-24 sm:right-28 sm:translate-x-0 md:bottom-28 md:right-36 lg:bottom-36 lg:right-44 xl:bottom-36 xl:right-44 z-30 cursor-pointer transition-all duration-200 hover:scale-105 group inline-block"
                 >
                     <img
                         src="/s26/snowman.png"
                         alt="Snowman"
-                        className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-60 xl:h-60 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200 group-hover:animate-jiggle block"
+                        className="w-60 h-60 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-60 xl:h-60 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200 group-hover:animate-jiggle block"
                     />
                 </Link>
 
