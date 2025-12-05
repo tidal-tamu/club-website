@@ -17,6 +17,7 @@ const initialFormData = {
     Allow_Emails: false,
     Submission_Time: "",
     Need_Team: "",
+    Dietary_Restrictions: "None",
 };
 
 const schoolOptions = [
@@ -243,12 +244,25 @@ const countryOptions = [
     "Zimbabwe",
 ];
 
+const dietaryOptions = [
+    "None",
+    "Vegetarian",
+    "Vegan",
+    "Gluten-Free",
+    "Halal",
+    "No Beef",
+    "No Pork",
+    "Other",
+];
+
 export default function Form() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const formRef = useRef<HTMLFormElement | null>(null);
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [formData, setFormData] = useState(initialFormData);
+    const [selectedDietaryOptions, setSelectedDietaryOptions] = useState<string[]>(["None"]);
+    const [isDietaryMenuOpen, setIsDietaryMenuOpen] = useState(false);
     //const [submittedData, setSubmittedData] = useState(initialFormData);
 
     const handleChange = (e: React.ChangeEvent) => {
@@ -267,6 +281,31 @@ export default function Form() {
                 [name]: value,
             });
         }
+    };
+
+    const handleDietarySelection = (option: string) => {
+        setSelectedDietaryOptions((prev) => {
+            let updated: string[];
+            if (option === "None") {
+                updated = ["None"];
+            } else {
+                const filtered = prev.filter((item) => item !== "None");
+                if (filtered.includes(option)) {
+                    updated = filtered.filter((item) => item !== option);
+                } else {
+                    updated = [...filtered, option];
+                }
+                if (updated.length === 0) {
+                    updated = ["None"];
+                }
+            }
+
+            setFormData((prevData) => ({
+                ...prevData,
+                Dietary_Restrictions: updated.join(", "),
+            }));
+            return updated;
+        });
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -333,7 +372,7 @@ export default function Form() {
             }
 
             const response = await fetch(
-                "https://script.google.com/macros/s/AKfycbzCRaNfy99mmrjcJwwy694zcmgDK5ZqaWv5RvRgzHMfVfBlbK-PVCnansrKcUC5cV42/exec",
+                "https://script.google.com/macros/s/AKfycbwnxYYe_tbtRZI-EBXwqEtAdea5ilwSmHZ8kpFdzO_QGymAIboXDpqoKgprs_KjlX_b/exec",
                 {
                     method: "POST",
                     body: toSend,
@@ -348,6 +387,8 @@ export default function Form() {
                     console.log("Success:", result);
                     formRef.current?.reset();
                     setFormData({ ...initialFormData });
+                    setSelectedDietaryOptions(["None"]);
+                    setIsDietaryMenuOpen(false);
                 } else {
                     setErrorMessage(result.message);
                     setSuccessMessage("");
@@ -613,6 +654,52 @@ export default function Form() {
                                     No - and I would like to work alone
                                 </option>
                             </select>
+                        </label>
+                        <label className="flex flex-col gap-1">
+                            <p className="text-white">
+                                Dietary Restrictions
+                                <span className="text-gray-400 text-sm pl-2">
+                                    (Optional)
+                                </span>
+                            </p>
+                            <div className="relative">
+                                <button
+                                    type="button"
+                                    className="w-full p-3 border border-gray-300 rounded text-left bg-white text-gray-900 flex justify-between items-center"
+                                    onClick={() => setIsDietaryMenuOpen((prev) => !prev)}
+                                >
+                                    <span>
+                                        {selectedDietaryOptions.join(", ")}
+                                    </span>
+                                    <span className="ml-2 text-xs uppercase tracking-wide text-gray-500">
+                                        {isDietaryMenuOpen ? "Hide" : "Select"}
+                                    </span>
+                                </button>
+                                {isDietaryMenuOpen && (
+                                    <div className="absolute left-0 right-0 mt-2 p-3 border border-gray-300 rounded bg-white text-gray-900 max-h-48 overflow-y-auto space-y-2 shadow-lg z-10">
+                                        {dietaryOptions.map((option) => (
+                                            <label
+                                                key={option}
+                                                className="flex items-center gap-3 text-gray-900 text-sm"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    className="size-4 accent-yellow-400"
+                                                    checked={selectedDietaryOptions.includes(option)}
+                                                    onChange={() => handleDietarySelection(option)}
+                                                />
+                                                <span>{option}</span>
+                                            </label>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                            <input
+                                type="hidden"
+                                name="Dietary_Restrictions"
+                                value={formData.Dietary_Restrictions}
+                                readOnly
+                            />
                         </label>
                         <div className="flex items-center text-sm">
                             <input

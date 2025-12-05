@@ -22,7 +22,7 @@ export default function CheckRegistration() {
     const handleEmailLookup = async () => {
         setSearching(true);
         try {
-            const response = await fetch(`https://script.google.com/macros/s/AKfycbxMhXYrzcLgptsOpJlow7CPzrtgT_Zii-MiyCwHrHxI_RJ6_rB6cOgYwAnwUY5UYs5G/exec?email=${lookupEmail}`);
+            const response = await fetch(`https://script.google.com/macros/s/AKfycbwnxYYe_tbtRZI-EBXwqEtAdea5ilwSmHZ8kpFdzO_QGymAIboXDpqoKgprs_KjlX_b/exec?email=${lookupEmail}`);
             const result = await response.json();
             setEmailExists(result.exists);
         } catch (error) {
