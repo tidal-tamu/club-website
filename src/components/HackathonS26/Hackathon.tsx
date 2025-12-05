@@ -43,7 +43,10 @@ const HackathonS26 = () => {
                     <img
                         src="/s26/snowman.png"
                         alt="Snowman"
-                        className="w-60 h-60 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-60 lg:h-60 xl:w-64 xl:h-64 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200 group-hover:animate-jiggle block"
+                        className="w-60 h-60 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-60 lg:h-60 xl:w-64 xl:h-64 object-contain opacity-90 hover:opacity-100 transition-opacity duration-200 group-hover:animate-jiggle block animate-throb"
+                        style={{
+                            filter: 'saturate(1.3) drop-shadow(0 0 15px rgba(255, 215, 0, 0.7))'
+                        }}
                     />
                 </Link>
 
