@@ -431,7 +431,7 @@ export default function Form() {
                                 your registration, please contact us at{" "}
                                 <a
                                     href="mailto:tidaltamu@gmail.com"
-                                    className="underline"
+                                    className="underline text-[#434374] font-bold"
                                 >
                                     tidaltamu@gmail.com
                                 </a>{" "}
@@ -439,7 +439,7 @@ export default function Form() {
                             </h1>
                             {/* {<pre>{JSON.stringify(submittedData, null, 2)}</pre>} */}
                             <Link to="/hackathon">
-                                <button className="p-4 rounded-xl bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-bold mt-10 transition-all duration-300">
+                                <button className="p-4 rounded-xl bg-[#AB3243] hover:bg-[#8F2838] text-white font-bold mt-10 transition-all duration-300">
                                     {" "}
                                     Return To Home
                                 </button>
@@ -491,7 +491,7 @@ export default function Form() {
                         <label className="flex flex-col gap-1">
                             <p className="text-white">
                                 Age{" "}
-                                <span className="text-gray-400 text-sm pl-1">
+                                <span className="text-white text-base font-semibold pl-1">
                                     ( You Must be 18 or older )
                                 </span>{" "}
                                 <span className="text-red-500">*</span>
@@ -718,7 +718,7 @@ export default function Form() {
                                 I have read and agree to the{" "}
                                 <a
                                     href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md"
-                                    className="underline text-blue-400"
+                                    className="underline text-[#434374] font-bold"
                                 >
                                     MLH Code of Conduct
                                 </a>
@@ -746,21 +746,21 @@ export default function Form() {
                                 ranking, and MLH administration in-line with the{" "}
                                 <a
                                     href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md"
-                                    className="underline text-blue-400"
+                                    className="underline text-[#434374] font-bold"
                                 >
                                     MLH Privacy Policy{" "}
                                 </a>
                                 . I further agree to the terms of both the{" "}
                                 <a
                                     href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md"
-                                    className="underline text-blue-400"
+                                    className="underline text-[#434374] font-bold"
                                 >
                                     MLH Contest Terms and Conditions{" "}
                                 </a>
                                 and the{" "}
                                 <a
                                     href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md"
-                                    className="underline text-blue-400"
+                                    className="underline text-[#434374] font-bold"
                                 >
                                     MLH Privacy Policy{" "}
                                 </a>
@@ -789,7 +789,7 @@ export default function Form() {
 
                         <button
                             type="submit"
-                            className="w-full px-8 py-3 bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                            className="w-full px-8 py-3 bg-[#AB3243] hover:bg-[#8F2838] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                             disabled={isSubmitting}
                         >
                             {isSubmitting ? "Submitting..." : "Register"}
@@ -809,7 +809,7 @@ export default function Form() {
                             Already Registered?{" "}
                             <a
                                 href="/check-registration"
-                                className="underline cursor-pointer text-blue-400"
+                                className="underline cursor-pointer text-[#434374] font-bold"
                             >
                                 Check your registration here
                             </a>

@@ -1,4 +1,4 @@
-import Navbar from '../HackathonF25/Navbar';
+import Navbar from '../HackathonS26/Navbar';
 import { useEffect} from 'react';
 import Form from './Form';
 
