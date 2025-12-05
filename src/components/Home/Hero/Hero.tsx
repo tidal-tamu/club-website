@@ -138,7 +138,7 @@ export default function Hero() {
 
                         <div className="mb-8">
                             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#336699] mb-2">
-                                October 25th, 2025 | 9AM-6PM
+                                Feb 7-8, 2025 | 24 Hours
                             </p>
                             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
                                 Join us for Texas A&M's most innovative AI/ML
@@ -159,7 +159,7 @@ export default function Hero() {
                                 <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </motion.a>
                             <motion.a
-                                href="#about-us"
+                                href="/hackathon"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 className="flex justify-center items-center gap-3 font-bold border-2 border-[#336699] text-[#336699] hover:bg-[#336699] hover:text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full transition-all duration-300 bg-transparent"

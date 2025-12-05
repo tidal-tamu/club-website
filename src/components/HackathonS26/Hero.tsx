@@ -9,7 +9,7 @@ const Hero = () => {
             <div className="relative min-h-screen flex items-center justify-center px-6 md:px-12 overflow-hidden">
                 <a
                     href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white"
-                    className="hidden lg:block max-w-[100px] min-w-[60px] absolute top-0 right-[20px] w-[10%] z-30 hover:scale-105 transition-transform duration-200"
+                    className="hidden lg:block max-w-[80px] min-w-[50px] absolute top-0 right-[20px] w-[8%] z-30 hover:scale-105 transition-transform duration-200"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
