@@ -28,8 +28,8 @@ const Hero = () => {
           />
         </div>
 
-        <div className="text-center z-20 max-w-4xl mx-auto -translate-y-[5vh] space-y-0">
-          <div className="flex flex-wrap md:flex-nowrap justify-center gap-2 sm:gap-3 md:gap-4 z-20 mb-4 mt-8">
+        <div className="text-center z-20 max-w-4xl mx-auto -translate-y-[5vh] space-y-0 flex flex-col gap-5">
+          <div className="flex flex-wrap md:flex-nowrap justify-center gap-2 sm:gap-3 z-20">
             <div className="bg-[#9FC9E6] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap hover:bg-[#8AB8D5] hover:border-[rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-200">
               <span className="text-white font-medium text-xs sm:text-sm md:text-base">
                 MSC Bethancourt
@@ -47,7 +47,7 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className="mb-6 md:mb-8 mt-16 md:mt-20 relative flex items-center justify-center gap-6 md:gap-8 lg:gap-10 xl:gap-10 animate-float-subtle">
+          <div className="relative flex items-center justify-center gap-6 md:gap-8 lg:gap-10 xl:gap-10">
             <h1
               className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-dynapuff"
               style={{
@@ -74,7 +74,7 @@ const Hero = () => {
             </span>
           </div>
 
-          <div className="flex flex-col items-center gap-4 mt-8 md:mt-10">
+          <div className="flex flex-col items-center gap-4 mt-12 md:mt-16">
             <Link
               to="/register"
               className="bg-[#AB3243] hover:bg-[#8F2838] text-white font-bold text-lg md:text-xl px-6 md:px-8 py-2.5 md:py-3 rounded-xl transition-all duration-200 flex items-center gap-3 hover:scale-105 hover:shadow-lg"

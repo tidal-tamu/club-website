@@ -35,16 +35,14 @@ const HackathonS26 = () => {
         {/* Snowman graphic - static on mobile, clickable on larger screens */}
         <Link
           to="/register"
-          className={`absolute bottom-36 right-1/2 translate-x-1/2 sm:bottom-24 sm:right-28 sm:translate-x-0 md:bottom-28 md:right-36 lg:bottom-36 lg:right-44 xl:bottom-36 xl:right-44 z-30 cursor-pointer transition-all duration-200 group inline-block ${isMobileMenuOpen ? "opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto" : "opacity-100"
+          className={`flex absolute right-4 sm:right-8 z-30 cursor-pointer transition-all duration-200 group inline-block ${isMobileMenuOpen ? "opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto" : "opacity-100"
             } pointer-events-none sm:pointer-events-auto`}
+          style={{ bottom: '6vh' }}
         >
           <img
             src="/s26/snowman.png"
             alt="Snowman"
-            className="w-28 h-28 sm:w-56 sm:h-56 md:w-56 md:h-56 lg:w-60 lg:h-60 xl:w-64 xl:h-64 object-contain opacity-90 hover:opacity-100 transition-opacity duration-200 group-hover:animate-jiggle block animate-throb"
-            style={{
-              filter: 'saturate(1.3) drop-shadow(0 0 15px rgba(255, 215, 0, 0.7))'
-            }}
+            className="w-20 h-20 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 xl:w-44 xl:h-44 object-contain opacity-90 hover:opacity-100 transition-opacity duration-200 group-hover:animate-jiggle block"
           />
         </Link>
 
