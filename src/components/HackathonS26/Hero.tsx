@@ -29,7 +29,7 @@ const Hero = () => {
                     />
                 </div>
 
-                <div className="text-center z-20 max-w-4xl mx-auto -translate-y-[22vh] md:-translate-y-[16vh] space-y-0">
+                <div className="text-center z-20 max-w-4xl mx-auto -translate-y-[14vh] md:-translate-y-[16vh] space-y-0">
                     <div className="flex flex-wrap md:flex-nowrap justify-center gap-2 sm:gap-3 md:gap-4 z-20 mb-4 mt-8">
                         <div className="bg-[#9FC9E6] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap hover:bg-[#8AB8D5] hover:border-[rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-200">
                             <span className="text-white font-medium text-xs sm:text-sm md:text-base">
@@ -59,8 +59,7 @@ const Hero = () => {
                         />
                     </div>
 
-                    {/* APPLY NOW button - Commented out per user request to remove from display */}
-                    {/* <div className="flex flex-col items-center gap-8">
+                    <div className="flex flex-col items-center gap-8 mt-6 md:mt-8">
                         <Link
                             to="/register"
                             className="bg-[#AB3243] hover:bg-[#8F2838] text-white font-bold text-lg md:text-xl px-4 md:px-6 py-1.5 md:py-2.5 rounded-xl transition-all duration-150 flex items-center gap-3"
@@ -73,7 +72,7 @@ const Hero = () => {
                             APPLY NOW
                             <FaPlay className="h-4 w-4 md:h-5 md:w-5 text-white" />
                         </Link>
-                    </div> */}
+                    </div>
                 </div>                
             </div>
         </>
