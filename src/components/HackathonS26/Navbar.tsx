@@ -19,9 +19,10 @@ const navLinks: { title: string; path: string; isExternal?: boolean }[] = [
 
 interface NavbarProps {
     dark?: boolean;
+    onMenuToggle?: (isOpen: boolean) => void;
 }
 
-export default function Navbar({ dark = false }: NavbarProps) {
+export default function Navbar({ dark = false, onMenuToggle }: NavbarProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
@@ -47,7 +48,8 @@ export default function Navbar({ dark = false }: NavbarProps) {
                 window.scrollTo(0, parseInt(scrollY || "0") * -1);
             }
         }
-    }, [isOpen]);
+        onMenuToggle?.(isOpen);
+    }, [isOpen, onMenuToggle]);
 
     useEffect(() => {
         const handleScroll = () => {
