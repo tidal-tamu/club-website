@@ -109,12 +109,14 @@ export default function Navbar({ dark = false }: NavbarProps) {
                                 {link.title}
                             </Link>
                         ))}
+                    {/* Apply button - Commented out per user request
                     <a
                         href="/register"
                         className="bg-[#AB3243] hover:bg-[#8F2838] text-white px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-medium"
                     >
                         Apply
                     </a>
+                    */}
                 </div>
 
                 <button
@@ -208,6 +210,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
                                 </Link>
                             )
                         )}
+                        {/* Apply button mobile - Commented out per user request
                         <a
                             href="/register"
                             target="_blank"
@@ -215,6 +218,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
                         >
                             Apply
                         </a>
+                        */}
                     </div>
 
                     {/* Contact Links - Bottom Section */}
