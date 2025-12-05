@@ -21,16 +21,16 @@ const Hero = () => {
 
                 <FloatingParticles count={12} />
 
-                <div className="flex absolute left-0 lg:right-0 z-10 animate-float-subtle" style={{ bottom: '0vh' }}>
+                <div className="flex absolute left-0 z-10 animate-float-subtle" style={{ bottom: '0vh' }}>
                     <img
                         src="/s26/pebble.gif"
                         alt="Penguin mascot"
-                        className="w-[500px] lg:w-[800px] flex-shrink-0"
+                        className="w-[300px] sm:w-[400px] md:w-[500px] lg:w-[650px] xl:w-[800px] flex-shrink-0"
                     />
                 </div>
 
-                <div className="text-center z-20 max-w-4xl mx-auto -translate-y-[6vh] space-y-10 md:space-y-12">
-                    <div className="flex flex-wrap md:flex-nowrap justify-center gap-2 sm:gap-3 md:gap-4 z-20 mb-4">
+                <div className="text-center z-20 max-w-4xl mx-auto -translate-y-[10vh] space-y-0">
+                    <div className="flex flex-wrap md:flex-nowrap justify-center gap-2 sm:gap-3 md:gap-4 z-20 mb-4 mt-8">
                         <div className="bg-[#9FC9E6] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap hover:bg-[#8AB8D5] hover:border-[rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-200">
                             <span className="text-white font-medium text-xs sm:text-sm md:text-base">
                                 MSC Bethancourt

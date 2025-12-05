@@ -22,23 +22,22 @@ const HackathonS26 = () => {
                     <Navbar dark />
                 </div>
 
-                {/* Penguin cover image - bottom left corner */}
+                {/* Penguin cover image - bottom left corner - responsive sizing */}
                 <img
                     src="/s26/PenguinCoverSidIsBadAtCoding.png"
                     alt="Penguin Cover"
-                    className="absolute bottom-0 left-0 z-40 pointer-events-none"
-                    style={{ width: '30.69vw', height: '23.07vh' }}
+                    className="absolute bottom-0 left-0 z-40 pointer-events-none w-[200px] sm:w-[250px] md:w-[300px] lg:w-[380px] xl:w-[442px] h-auto"
                 />
 
-                {/* Snowman button on the right side */}
+                {/* Snowman button on the right side - responsive positioning */}
                 <Link
                     to="/register"
-                    className="absolute bottom-36 right-44 z-30 cursor-pointer transition-all duration-200 hover:scale-105 group inline-block"
+                    className="absolute bottom-20 right-20 sm:bottom-24 sm:right-28 md:bottom-28 md:right-36 lg:bottom-36 lg:right-44 xl:bottom-36 xl:right-44 z-30 cursor-pointer transition-all duration-200 hover:scale-105 group inline-block"
                 >
                     <img
                         src="/s26/snowman.png"
                         alt="Snowman"
-                        className="w-48 h-48 md:w-60 md:h-60 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200 group-hover:animate-jiggle block"
+                        className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-60 xl:h-60 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200 group-hover:animate-jiggle block"
                     />
                 </Link>
 
