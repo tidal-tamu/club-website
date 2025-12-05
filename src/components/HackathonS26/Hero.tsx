@@ -1,7 +1,7 @@
-import { FaPlay } from "react-icons/fa";
 import FloatingParticles from "./ui/FloatingParticles";
 import tidalHeroText from "/s26/hero-text.svg";
 import { Link } from "react-router-dom";
+import { FaPlay } from "react-icons/fa";
 
 const Hero = () => {
     return (
@@ -21,7 +21,7 @@ const Hero = () => {
 
                 <FloatingParticles count={12} />
 
-                <div className="flex absolute left-0 lg:right-0 z-10 animate-float-subtle" style={{ bottom: '10vh' }}>
+                <div className="flex absolute left-0 lg:right-0 z-10 animate-float-subtle" style={{ bottom: '0vh' }}>
                     <img
                         src="/s26/pebble.gif"
                         alt="Penguin mascot"
@@ -59,7 +59,8 @@ const Hero = () => {
                         />
                     </div>
 
-                    <div className="flex flex-col items-center gap-8">
+                    {/* APPLY NOW button - Commented out per user request to remove from display */}
+                    {/* <div className="flex flex-col items-center gap-8">
                         <Link
                             to="/register"
                             className="bg-[#AB3243] hover:bg-[#8F2838] text-white font-bold text-lg md:text-xl px-4 md:px-6 py-1.5 md:py-2.5 rounded-xl transition-all duration-150 flex items-center gap-3"
@@ -72,7 +73,7 @@ const Hero = () => {
                             APPLY NOW
                             <FaPlay className="h-4 w-4 md:h-5 md:w-5 text-white" />
                         </Link>
-                    </div>
+                    </div> */}
                 </div>                
             </div>
         </>
