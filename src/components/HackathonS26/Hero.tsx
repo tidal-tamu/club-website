@@ -25,15 +25,6 @@ const Hero = () => {
           />
         </div>
 
-        {/* LowSnow layer */}
-        <div className="absolute inset-0 z-10">
-          <img
-            src="/s26/Hero/LowSnowPreShadowed.png"
-            alt="Low Snow Pre Shadowed"
-            className="absolute bottom-20 left-0 scale-[4]"
-          />
-        </div>
-
         {/* House layer */}
         <div className="absolute w-screen inset-0 z-7">
           <img
@@ -74,11 +65,28 @@ const Hero = () => {
 
         <FloatingParticles count={12} />
 
-        <div className="absolute left-0 z-10 animate-float-subtle bottom-0" >
+        {/* LowSnow layer */}
+        <div className="absolute inset-0 z-10">
+          <div className="absolute bottom-0 overflow-hidden w-screen">
+            <img
+              src="/s26/Hero/LowSnowPreShadowed.png"
+              alt="Low Snow Pre Shadowed"
+              className="left-0 scale-[3] sm:scale-[2] lg:scale-[1]"
+            />
+            <div
+              className="h-[8rem]"
+              style={{
+                background: "linear-gradient(to bottom, #76a4c5, #6fa7cf)"
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="absolute left-0 z-10 bottom-[5rem] lg:bottom-[8rem]" >
           <img
             src="/s26/pebble.gif"
             alt="Penguin mascot"
-            className="w-[400px] md:w-[500px] lg:w-[650px] xl:w-[800px] flex-shrink-0"
+            className="w-[400px] md:w-[500px] lg:w-[650px] xl:w-[800px] flex-shrink-0 animate-float-subtle bottom-0"
           />
           <img
             src="/s26/PenguinCover.png"
