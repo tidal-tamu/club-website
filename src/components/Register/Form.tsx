@@ -265,6 +265,29 @@ export default function Form() {
     const [isDietaryMenuOpen, setIsDietaryMenuOpen] = useState(false);
     //const [submittedData, setSubmittedData] = useState(initialFormData);
 
+    // Format phone number as (XXX) XXX-XXXX
+    const formatPhoneNumber = (value: string): string => {
+        // Remove all non-numeric characters
+        const numbers = value.replace(/\D/g, "");
+        
+        // Limit to 10 digits
+        const limitedNumbers = numbers.slice(0, 10);
+        
+        // Format based on length
+        if (limitedNumbers.length === 0) return "";
+        if (limitedNumbers.length <= 3) return `(${limitedNumbers}`;
+        if (limitedNumbers.length <= 6) {
+            return `(${limitedNumbers.slice(0, 3)}) ${limitedNumbers.slice(3)}`;
+        }
+        return `(${limitedNumbers.slice(0, 3)}) ${limitedNumbers.slice(3, 6)}-${limitedNumbers.slice(6)}`;
+    };
+
+    // Validate email format
+    const isValidEmail = (email: string): boolean => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
     const handleChange = (e: React.ChangeEvent) => {
         const { name, value, type } = e.target as
             | HTMLInputElement
@@ -276,9 +299,29 @@ export default function Form() {
                 [name]: checked,
             });
         } else {
+            let processedValue = value;
+            
+            // Handle phone number formatting
+            if (name === "Phone_Number" || name === "Emergency_Phone_Number") {
+                processedValue = formatPhoneNumber(value);
+            }
+            
+            // Handle age - only allow numbers and validate <= 18
+            if (name === "Age") {
+                // Only allow numeric input
+                const numericValue = value.replace(/\D/g, "");
+                if (numericValue === "") {
+                    processedValue = "";
+                } else {
+                    const ageNum = parseInt(numericValue, 10);
+                    // Allow input but will validate on submit
+                    processedValue = numericValue;
+                }
+            }
+            
             setFormData({
                 ...formData,
-                [name]: value,
+                [name]: processedValue,
             });
         }
     };
@@ -337,28 +380,37 @@ export default function Form() {
         toSend.append("Allow_Emails", formData.Allow_Emails.toString());
 
         try {
-            if (formData.Age && parseInt(formData.Age) < 18) {
-                setErrorMessage("You must be 18 or older to register.");
-                setSuccessMessage("");
-                setIsSubmitting(false);
-                return;
+            // Validate age <= 18
+            if (formData.Age) {
+                const age = parseInt(formData.Age, 10);
+                if (isNaN(age) || age > 18) {
+                    setErrorMessage("You must be 18 years old or younger to register.");
+                    setSuccessMessage("");
+                    setIsSubmitting(false);
+                    return;
+                }
             }
 
-            if (!formData.Email.includes("@")) {
+            // Validate email format
+            if (!isValidEmail(formData.Email)) {
                 setErrorMessage("Please enter a valid email address.");
                 setSuccessMessage("");
                 setIsSubmitting(false);
                 return;
             }
-            if (!/^\+?[0-9\s\-()]{7,}$/.test(formData.Phone_Number)) {
-                setErrorMessage("Please enter a valid phone number.");
+            // Validate phone number format (should be (XXX) XXX-XXXX = 10 digits)
+            const phoneDigits = formData.Phone_Number.replace(/\D/g, "");
+            if (phoneDigits.length !== 10) {
+                setErrorMessage("Please enter a valid 10-digit phone number.");
                 setSuccessMessage("");
                 setIsSubmitting(false);
                 return;
             }
-            if (!/^\+?[0-9\s\-()]{7,}$/.test(formData.Emergency_Phone_Number)) {
+            
+            const emergencyPhoneDigits = formData.Emergency_Phone_Number.replace(/\D/g, "");
+            if (emergencyPhoneDigits.length !== 10) {
                 setErrorMessage(
-                    "Please enter a valid emergency contact phone number."
+                    "Please enter a valid 10-digit emergency contact phone number."
                 );
                 setSuccessMessage("");
                 setIsSubmitting(false);
@@ -492,19 +544,27 @@ export default function Form() {
                             <p className="text-white">
                                 Age{" "}
                                 <span className="text-white text-base font-semibold pl-1">
-                                    ( You Must be 18 or older )
+                                    ( You must be 18 years old or younger )
                                 </span>{" "}
                                 <span className="text-red-500">*</span>
                             </p>
                             <input
-                                type="Age"
+                                type="text"
                                 name="Age"
                                 placeholder="Age"
                                 className="p-3 border border-gray-300 rounded"
                                 value={formData.Age}
                                 onChange={handleChange}
+                                inputMode="numeric"
+                                pattern="[0-9]*"
+                                maxLength={2}
                                 required
                             />
+                            {formData.Age && parseInt(formData.Age) > 18 && (
+                                <p className="text-red-500 text-sm mt-1">
+                                    You must be 18 years old or younger to register.
+                                </p>
+                            )}
                         </label>
 
                         <label className="flex flex-col gap-1">
@@ -512,6 +572,7 @@ export default function Form() {
                                 Email <span className="text-red-500">*</span>
                             </p>
                             <input
+                                type="email"
                                 name="Email"
                                 placeholder="Email"
                                 className="p-3 border border-gray-300 rounded"
@@ -519,6 +580,11 @@ export default function Form() {
                                 onChange={handleChange}
                                 required
                             />
+                            {formData.Email && !isValidEmail(formData.Email) && (
+                                <p className="text-red-500 text-sm mt-1">
+                                    Please enter a valid email address.
+                                </p>
+                            )}
                         </label>
 
                         <label className="flex flex-col gap-1">
@@ -527,11 +593,14 @@ export default function Form() {
                                 <span className="text-red-500">*</span>
                             </p>
                             <input
+                                type="tel"
                                 name="Phone_Number"
-                                placeholder="Phone Number"
+                                placeholder="(XXX) XXX-XXXX"
                                 className="p-3 border border-gray-300 rounded"
                                 value={formData.Phone_Number}
                                 onChange={handleChange}
+                                inputMode="numeric"
+                                maxLength={14}
                                 required
                             />
                         </label>
@@ -542,11 +611,14 @@ export default function Form() {
                                 <span className="text-red-500">*</span>
                             </p>
                             <input
+                                type="tel"
                                 name="Emergency_Phone_Number"
-                                placeholder="Phone Number"
+                                placeholder="(XXX) XXX-XXXX"
                                 className="p-3 border border-gray-300 rounded"
                                 value={formData.Emergency_Phone_Number}
                                 onChange={handleChange}
+                                inputMode="numeric"
+                                maxLength={14}
                                 required
                             />
                         </label>
