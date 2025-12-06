@@ -6,6 +6,60 @@ const Hero = () => {
   return (
     <>
       <div className="relative min-h-screen flex items-center justify-center px-6 md:px-12 overflow-hidden">
+        {/* Background layer - hills and bushes */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/s26/Hero/BackBushes.png"
+            alt="Back Bushes"
+            className="absolute bottom-[30vh] left-0 w-screen"
+          />
+          <img
+            src="/s26/Hero/TopHill.png"
+            alt="Top Hill"
+            className="absolute bottom-0 left-0 w-screen h-[55vh]"
+          />
+          <img
+            src="/s26/Hero/LowHill.png"
+            alt="Low Hill"
+            className="absolute bottom-0 left-0 w-screen h-[40vh]"
+          />
+        </div>
+
+        {/* LowSnow layer */}
+        <div className="absolute inset-0 z-10">
+          <img
+            src="/s26/Hero/LowSnowPreShadowed.png"
+            alt="Low Snow Pre Shadowed"
+            className="absolute bottom-0 left-0 w-screen"
+          />
+        </div>
+
+        {/* House layer */}
+        <div className="absolute w-screen inset-0 z-7">
+          <img
+            src="/s26/Hero/HouseGlowing.png"
+            alt="House Glowing"
+            className="hidden sm:block absolute bottom-[48vh] sm:right-[3vh] md:right-[6vh] lg:right-[10vh] xl:right-[14vh] 2xl:right-[18vh] w-[40vh]"
+          />
+        </div>
+
+        {/* Trees layer */}
+
+        <div className="hidden sm:block absolute w-screen inset-0 z-5">
+          <img
+            src="/s26/Hero/LargeBrownTreeAlt.png"
+            alt="Large Brown Tree Alt"
+            className="absolute right-0 bottom-[20vh] translate-x-[20%] h-[85vh]"
+          />
+        </div>
+        <div className="absolute inset-0 z-5">
+          <img
+            src="/s26/Hero/TreesPreShadowed.png"
+            alt="Trees Pre Shadowed"
+            className="absolute bottom-0 left-0 w-screen bottom-[46vh] sm:bottom-[45vh] md:bottom-[44vh] lg:bottom-[43vh] xl:bottom-[41vh] 2xl:bottom-[40vh] w-full sm:w-[80%]"
+          />
+        </div>
+
         <a
           href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white"
           className="hidden lg:block max-w-[80px] min-w-[50px] absolute top-0 right-[20px] w-[8%] z-30 hover:scale-105 transition-transform duration-200"
@@ -20,11 +74,16 @@ const Hero = () => {
 
         <FloatingParticles count={12} />
 
-        <div className="flex absolute left-0 z-10 animate-float-subtle" style={{ bottom: '0vh' }}>
+        <div className="absolute left-0 z-10 animate-float-subtle bottom-0" >
           <img
             src="/s26/pebble.gif"
             alt="Penguin mascot"
             className="w-[300px] sm:w-[400px] md:w-[500px] lg:w-[650px] xl:w-[800px] flex-shrink-0"
+          />
+          <img
+            src="/s26/PenguinCover.png"
+            alt="Penguin Cover"
+            className="absolute bottom-0 w-[150px] sm:w-[200px] md:w-[250px] lg:w-[325px] xl:w-[400px] flex-shrink-0"
           />
         </div>
 

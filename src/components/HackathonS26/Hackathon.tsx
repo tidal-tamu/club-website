@@ -2,7 +2,6 @@ import { useState } from "react";
 import Navbar from "../HackathonS26/Navbar";
 import Hero from "../HackathonS26/Hero";
 import Footer from "../Footer";
-import heroBackground from "/s26/s26-hero.svg";
 import "./tidal-effects.css";
 import { Link } from "react-router-dom";
 
@@ -14,28 +13,17 @@ const HackathonS26 = () => {
       <div
         className="hero-gradient relative overflow-hidden"
         style={{
-          backgroundImage: `url(${heroBackground})`,
-          backgroundSize: "cover",
-          backgroundPosition: "top center",
-          backgroundRepeat: "no-repeat",
+          backgroundColor: "#6fa7cf",
         }}
       >
         <div className="relative z-30">
           <Navbar dark onMenuToggle={setIsMobileMenuOpen} />
         </div>
 
-        {/* Penguin cover image - bottom left corner - responsive sizing */}
-        <img
-          src="/s26/PenguinCoverSidIsBadAtCoding.png"
-          alt="Penguin Cover"
-          className={`absolute bottom-0 left-0 z-40 pointer-events-none w-[200px] sm:w-[250px] md:w-[300px] lg:w-[380px] xl:w-[442px] h-auto transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-0 md:opacity-100" : "opacity-100"
-            }`}
-        />
-
         {/* Snowman graphic - static on mobile, clickable on larger screens */}
         <Link
           to="/register"
-          className={`flex absolute right-4 sm:right-8 z-30 cursor-pointer transition-all duration-200 group inline-block ${isMobileMenuOpen ? "opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto" : "opacity-100"
+          className={`hidden sm:flex absolute right-4 sm:right-8 z-30 cursor-pointer transition-all duration-200 group inline-block ${isMobileMenuOpen ? "opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto" : "opacity-100"
             } pointer-events-none sm:pointer-events-auto`}
           style={{ bottom: '6vh' }}
         >
@@ -53,7 +41,7 @@ const HackathonS26 = () => {
 
       <div
         className="relative z-20"
-        style={{ backgroundColor: "#76A4C5" }}
+        style={{ backgroundColor: "#6fa7cf" }}
       >
         <Footer variant="hackathon-spring-26" />
       </div>
