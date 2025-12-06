@@ -19,6 +19,19 @@ const HackathonS26 = () => {
 
     document.body.style.overflow = "hidden";
     document.body.style.backgroundColor = "#6fa7cf";
+    document.body.style.cursor = "default";
+    // Override cursor for all elements on this page
+    const style = document.createElement('style');
+    style.setAttribute('data-cursor-override', 'true');
+    style.textContent = `
+      * {
+        cursor: default !important;
+      }
+      button, a, input, select, label {
+        cursor: pointer !important;
+      }
+    `;
+    document.head.appendChild(style);
 
     let browserLoaded = false;
     let imagesLoaded = false;
@@ -104,6 +117,12 @@ const HackathonS26 = () => {
       // Restore original values
       document.body.style.overflow = originalOverflow;
       document.body.style.backgroundColor = originalBackgroundColor;
+      document.body.style.cursor = "";
+      // Remove cursor override style
+      const styleElement = document.head.querySelector('style[data-cursor-override]');
+      if (styleElement) {
+        document.head.removeChild(styleElement);
+      }
       window.removeEventListener("load", handleWindowLoad);
       clearInterval(progressInterval);
       clearTimeout(safetyTimeout);
