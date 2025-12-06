@@ -11,7 +11,13 @@ interface Particle {
     opacityDirection: number;
 }
 
-const FloatingParticles = ({ count = 8 }: { count?: number }) => {
+const FloatingParticles = ({
+    count = 8,
+    sizeMultiplier = 1,
+}: {
+    count?: number;
+    sizeMultiplier?: number;
+}) => {
     const [particles, setParticles] = useState<Particle[]>([]);
     const [isDesktop, setIsDesktop] = useState(false);
     const animationRef = useRef<number>();
@@ -21,27 +27,28 @@ const FloatingParticles = ({ count = 8 }: { count?: number }) => {
         const checkDesktop = () => {
             setIsDesktop(window.innerWidth >= 1024);
         };
-        
+
         checkDesktop();
-        window.addEventListener('resize', checkDesktop);
-        
-        return () => window.removeEventListener('resize', checkDesktop);
+        window.addEventListener("resize", checkDesktop);
+
+        return () => window.removeEventListener("resize", checkDesktop);
     }, []);
 
     useEffect(() => {
         // Initialize particles with responsive sizes
         // Desktop: 5.5-11px, Mobile: 2.5-5px
-        const sizeMultiplier = isDesktop ? 2.2 : 1;
-        const baseSize = 2.5;
-        const sizeRange = 2.5;
-        
+        // Can be scaled up with sizeMultiplier parameter
+        const deviceMultiplier = isDesktop ? 2.2 : 1;
+        const baseSize = 2.5 * sizeMultiplier;
+        const sizeRange = 2.5 * sizeMultiplier;
+
         const newParticles: Particle[] = [];
         for (let i = 0; i < count; i++) {
             newParticles.push({
                 id: i,
                 x: Math.random() * 100,
                 y: Math.random() * 100,
-                size: (Math.random() * sizeRange + baseSize) * sizeMultiplier,
+                size: (Math.random() * sizeRange + baseSize) * deviceMultiplier,
                 vx: (Math.random() - 0.5) * 0.2, // Slower random x velocity
                 vy: (Math.random() - 0.5) * 0.2, // Slower random y velocity
                 opacity: Math.random() * 0.5 + 0.3, // Start with random opacity 0.3-0.8
@@ -74,7 +81,7 @@ const FloatingParticles = ({ count = 8 }: { count?: number }) => {
                     newVy = Math.max(-0.3, Math.min(0.3, newVy));
 
                     // Update opacity for pulsing effect
-                    let newOpacity = p.opacity + (p.opacityDirection * 0.003);
+                    let newOpacity = p.opacity + p.opacityDirection * 0.003;
                     let newOpacityDirection = p.opacityDirection;
 
                     // Reverse direction at opacity limits
@@ -107,7 +114,7 @@ const FloatingParticles = ({ count = 8 }: { count?: number }) => {
                 cancelAnimationFrame(animationRef.current);
             }
         };
-    }, [count, isDesktop]);
+    }, [count, isDesktop, sizeMultiplier]);
 
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -121,8 +128,14 @@ const FloatingParticles = ({ count = 8 }: { count?: number }) => {
                         width: `${particle.size}px`,
                         height: `${particle.size}px`,
                         backgroundColor: `rgba(255, 230, 100, ${particle.opacity})`,
-                        boxShadow: `0 0 ${particle.size * 5}px rgba(255, 230, 100, ${particle.opacity * 0.8}), 0 0 ${particle.size * 10}px rgba(255, 200, 50, ${particle.opacity * 0.5})`,
-                        transform: 'translate(-50%, -50%)',
+                        boxShadow: `0 0 ${
+                            particle.size * 5
+                        }px rgba(255, 230, 100, ${
+                            particle.opacity * 0.8
+                        }), 0 0 ${particle.size * 10}px rgba(255, 200, 50, ${
+                            particle.opacity * 0.5
+                        })`,
+                        transform: "translate(-50%, -50%)",
                         opacity: particle.opacity,
                     }}
                 />

@@ -9,7 +9,6 @@ import FAQs from "./FAQs/FAQs";
 import Footer from "../Footer";
 import tidalBackground from "/f25/tidal-background.png";
 import tidalHeroText from "/f25/hero.png";
-import lightImage from "/f25/Light.png";
 import "./tidal-effects.css";
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
@@ -74,7 +73,7 @@ const HackathonF25 = () => {
             window.addEventListener("load", handleWindowLoad);
         }
 
-        const imagesToLoad = [tidalBackground, tidalHeroText, lightImage];
+        const imagesToLoad = [tidalBackground, tidalHeroText];
         let loadedCount = 0;
 
         const checkImageLoaded = () => {
