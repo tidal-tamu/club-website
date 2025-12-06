@@ -8,13 +8,13 @@ import {
     FaExternalLinkAlt,
 } from "react-icons/fa";
 
-const navLinks: { title: string; path: string; isExternal?: boolean }[] = [
+const navLinks: { title: string; path: string; isExternal?: boolean; disabled?: boolean }[] = [
     { title: "Home", path: "/", isExternal: true },
-    { title: "About", path: "about" },
-    { title: "Schedule", path: "schedule" },
-    { title: "Prizes", path: "prizes" },
-    { title: "FAQ", path: "faq" },
-    { title: "Sponsors", path: "sponsors" },
+    { title: "About", path: "about", disabled: true },
+    { title: "Schedule", path: "schedule", disabled: true },
+    { title: "Prizes", path: "prizes", disabled: true },
+    { title: "FAQ", path: "faq", disabled: true },
+    { title: "Sponsors", path: "sponsors", disabled: true },
 ];
 
 interface NavbarProps {
@@ -101,15 +101,28 @@ export default function Navbar({ dark = false, onMenuToggle }: NavbarProps) {
                     {navLinks
                         .filter((link) => !link.isExternal) // Hide external links (Home) on desktop
                         .map((link) => (
-                            <Link
-                                key={link.title}
-                                to={link.path}
-                                smooth={true}
-                                duration={500}
-                                className="text-white hover:text-[#336699] transition-all duration-300 font-medium"
-                            >
-                                {link.title}
-                            </Link>
+                            link.disabled ? (
+                                <span
+                                    key={link.title}
+                                    className="text-white/50 cursor-not-allowed transition-all duration-300 font-medium relative group"
+                                    title="coming soon!"
+                                >
+                                    {link.title}
+                                    <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap transition-opacity duration-200">
+                                        coming soon!
+                                    </span>
+                                </span>
+                            ) : (
+                                <Link
+                                    key={link.title}
+                                    to={link.path}
+                                    smooth={true}
+                                    duration={500}
+                                    className="text-white hover:text-[#336699] transition-all duration-300 font-medium"
+                                >
+                                    {link.title}
+                                </Link>
+                            )
                         ))}
                     <a
                         href="/register"
@@ -193,6 +206,25 @@ export default function Navbar({ dark = false, onMenuToggle }: NavbarProps) {
                                 >
                                     {link.title}
                                 </a>
+                            ) : link.disabled ? (
+                                <span
+                                    key={link.title}
+                                    className={`text-2xl transition-all duration-300 font-medium text-center relative group ${
+                                        dark
+                                            ? "text-gray-500/50 cursor-not-allowed"
+                                            : "text-gray-400/50 cursor-not-allowed"
+                                    }`}
+                                    title="coming soon!"
+                                >
+                                    {link.title}
+                                    <span className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1.5 text-sm rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap transition-opacity duration-200 ${
+                                        dark
+                                            ? "bg-gray-800 text-white"
+                                            : "bg-gray-200 text-gray-800"
+                                    }`}>
+                                        coming soon!
+                                    </span>
+                                </span>
                             ) : (
                                 <Link
                                     key={link.title}

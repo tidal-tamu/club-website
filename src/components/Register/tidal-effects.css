@@ -22,8 +22,3 @@
 .bg-gradient-radial {
   background: radial-gradient(circle, var(--tw-gradient-stops));
 }
-
-/* Custom cursor - firefly-like yellow-orange circle */
-* {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="%23FFD700" stroke="%23FFA500" stroke-width="2" opacity="0.8"/><circle cx="10" cy="10" r="4" fill="%23FFA500" opacity="0.6"/></svg>') 10 10, auto;
-}
