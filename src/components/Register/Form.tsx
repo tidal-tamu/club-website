@@ -306,7 +306,7 @@ export default function Form() {
         processedValue = formatPhoneNumber(value);
       }
 
-      // Handle age - only allow numbers and validate <= 18
+      // Handle age - only allow numbers and validate >= 18 requirement
       if (name === "Age") {
         // Only allow numeric input
         const numericValue = value.replace(/\D/g, "");
@@ -381,11 +381,11 @@ export default function Form() {
     toSend.append("Allow_Emails", formData.Allow_Emails.toString());
 
     try {
-      // Validate age <= 18
+      // Validate age >= 18
       if (formData.Age) {
         const age = parseInt(formData.Age, 10);
-        if (isNaN(age) || age > 18) {
-          setErrorMessage("You must be 18 years old or younger to register.");
+        if (isNaN(age) || age < 18) {
+          setErrorMessage("You must be 18 years old or older to register.");
           setSuccessMessage("");
           setIsSubmitting(false);
           return;
@@ -545,7 +545,7 @@ export default function Form() {
               <p className="text-white">
                 Age{" "}
                 <span className="text-white text-base font-semibold pl-1">
-                  ( You must be 18 years old or younger )
+                  ( You must be 18 years old or older )
                 </span>{" "}
                 <span className="text-red-500">*</span>
               </p>
@@ -561,9 +561,9 @@ export default function Form() {
                 maxLength={2}
                 required
               />
-              {formData.Age && parseInt(formData.Age) > 18 && (
+              {formData.Age && parseInt(formData.Age) < 18 && (
                 <p className="text-red-500 text-sm mt-1">
-                  You must be 18 years old or younger to register.
+                  You must be 18 years old or older to register.
                 </p>
               )}
             </label>
