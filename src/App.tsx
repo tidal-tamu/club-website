@@ -6,9 +6,7 @@ import HackathonS25 from "./components/HackathonS25/Hackathon";
 import HackathonF25 from "./components/HackathonF25/Hackathon";
 import SponsorUs from "./components/Sponsor-Us/SponsorUs";
 import CheckRegistration from "./components/Register/CheckRegistration";
-import RegistrationClosed from "./components/Register/RegistrationClosed";
-// import Register from "./components/Register/Register";
-import LiveSchedule from "./components/Schedule/LiveSchedule";
+import Register from "./components/Register/Register";
 
 export default function App() {
   return (
