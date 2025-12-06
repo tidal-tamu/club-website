@@ -10,11 +10,6 @@ import {
 
 const navLinks: { title: string; path: string; isExternal?: boolean; disabled?: boolean }[] = [
     { title: "Home", path: "/", isExternal: true },
-    { title: "About", path: "about", disabled: true },
-    { title: "Schedule", path: "schedule", disabled: true },
-    { title: "Prizes", path: "prizes", disabled: true },
-    { title: "FAQ", path: "faq", disabled: true },
-    { title: "Sponsors", path: "sponsors", disabled: true },
 ];
 
 interface NavbarProps {
@@ -99,30 +94,17 @@ export default function Navbar({ dark = false, onMenuToggle }: NavbarProps) {
 
                 <div className="hidden md:flex items-center space-x-8">
                     {navLinks
-                        .filter((link) => !link.isExternal) // Hide external links (Home) on desktop
+                        .filter((link) => !link.isExternal && !link.disabled) // Hide external links (Home) and disabled links on desktop
                         .map((link) => (
-                            link.disabled ? (
-                                <span
-                                    key={link.title}
-                                    className="text-white/50 cursor-not-allowed transition-all duration-300 font-medium relative group"
-                                    title="coming soon!"
-                                >
-                                    {link.title}
-                                    <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap transition-opacity duration-200">
-                                        coming soon!
-                                    </span>
-                                </span>
-                            ) : (
-                                <Link
-                                    key={link.title}
-                                    to={link.path}
-                                    smooth={true}
-                                    duration={500}
-                                    className="text-white hover:text-[#336699] transition-all duration-300 font-medium"
-                                >
-                                    {link.title}
-                                </Link>
-                            )
+                            <Link
+                                key={link.title}
+                                to={link.path}
+                                smooth={true}
+                                duration={500}
+                                className="text-white hover:text-[#336699] transition-all duration-300 font-medium"
+                            >
+                                {link.title}
+                            </Link>
                         ))}
                     <a
                         href="/register"
@@ -193,55 +175,38 @@ export default function Navbar({ dark = false, onMenuToggle }: NavbarProps) {
                 <div className="flex flex-col h-full px-6 py-12">
                     {/* Navigation Links - Center Section */}
                     <div className="flex-1 flex flex-col items-center justify-center space-y-12">
-                        {navLinks.map((link) =>
-                            link.isExternal ? (
-                                <a
-                                    key={link.title}
-                                    href={link.path}
-                                    className={`text-2xl transition-all duration-300 font-medium text-center ${
-                                        dark
-                                            ? "text-gray-300 hover:text-white"
-                                            : "text-gray-600 hover:text-[#336699]"
-                                    }`}
-                                >
-                                    {link.title}
-                                </a>
-                            ) : link.disabled ? (
-                                <span
-                                    key={link.title}
-                                    className={`text-2xl transition-all duration-300 font-medium text-center relative group ${
-                                        dark
-                                            ? "text-gray-500/50 cursor-not-allowed"
-                                            : "text-gray-400/50 cursor-not-allowed"
-                                    }`}
-                                    title="coming soon!"
-                                >
-                                    {link.title}
-                                    <span className={`absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1.5 text-sm rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap transition-opacity duration-200 ${
-                                        dark
-                                            ? "bg-gray-800 text-white"
-                                            : "bg-gray-200 text-gray-800"
-                                    }`}>
-                                        coming soon!
-                                    </span>
-                                </span>
-                            ) : (
-                                <Link
-                                    key={link.title}
-                                    to={link.path}
-                                    smooth={true}
-                                    duration={500}
-                                    onClick={() => setIsOpen(false)}
-                                    className={`text-2xl transition-all duration-300 font-medium text-center ${
-                                        dark
-                                            ? "text-gray-300 hover:text-white"
-                                            : "text-gray-600 hover:text-[#336699]"
-                                    }`}
-                                >
-                                    {link.title}
-                                </Link>
-                            )
-                        )}
+                        {navLinks
+                            .filter((link) => !link.disabled)
+                            .map((link) =>
+                                link.isExternal ? (
+                                    <a
+                                        key={link.title}
+                                        href={link.path}
+                                        className={`text-2xl transition-all duration-300 font-medium text-center ${
+                                            dark
+                                                ? "text-gray-300 hover:text-white"
+                                                : "text-gray-600 hover:text-[#336699]"
+                                        }`}
+                                    >
+                                        {link.title}
+                                    </a>
+                                ) : (
+                                    <Link
+                                        key={link.title}
+                                        to={link.path}
+                                        smooth={true}
+                                        duration={500}
+                                        onClick={() => setIsOpen(false)}
+                                        className={`text-2xl transition-all duration-300 font-medium text-center ${
+                                            dark
+                                                ? "text-gray-300 hover:text-white"
+                                                : "text-gray-600 hover:text-[#336699]"
+                                        }`}
+                                    >
+                                        {link.title}
+                                    </Link>
+                                )
+                            )}
                         {/* Apply button mobile - Commented out per user request
                         <a
                             href="/register"
