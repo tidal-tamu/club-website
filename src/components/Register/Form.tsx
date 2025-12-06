@@ -507,7 +507,7 @@ export default function Form() {
           >
             <h1 className="text-2xl sm:text-3xl font-semibold text-center pb-10 pt-2 text-white">
               {" "}
-              TIDALHACK 2025 Registration{" "}
+              TIDALHACK 2026 Registration{" "}
             </h1>
             <label className="flex flex-col gap-1">
               <p className="text-white">
