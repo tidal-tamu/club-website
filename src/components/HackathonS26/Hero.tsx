@@ -63,7 +63,7 @@ const Hero = () => {
           />
         </a>
 
-        <FloatingParticles count={12} />
+        <FloatingParticles count={64} />
 
         {/* LowSnow layer */}
         <div className="absolute inset-0 z-10">
@@ -114,7 +114,7 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className="relative flex items-center justify-center gap-6 md:gap-8 lg:gap-10 xl:gap-10">
+          <div className="relative flex items-center justify-center gap-6 md:gap-8 lg:gap-10 xl:gap-10 animate-float-subtle">
             <h1
               className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-dynapuff"
               style={{
