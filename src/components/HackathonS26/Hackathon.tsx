@@ -82,7 +82,7 @@ const HackathonS26 = () => {
       "/s26/Hero/LowSnowPreShadowed.png",
       "/s26/Hero/TreesPreShadowed.png",
       "/s26/pebble.gif",
-      "/s26/Hero/LowSnowPreShadowed.png",
+      "/s26/PenguinCover.png",
       "/s26/snowman.png",
     ];
     let loadedCount = 0;

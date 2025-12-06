@@ -89,7 +89,7 @@ const Hero = () => {
             className="w-[400px] md:w-[500px] lg:w-[650px] xl:w-[800px] flex-shrink-0 animate-float-subtle bottom-0"
           />
           <img
-            src="/s26/Hero/LowSnowPreShadowed.png"
+            src="/s26/PenguinCover.png"
             alt="Penguin Cover"
             className="absolute bottom-0 w-[200px] md:w-[250px] lg:w-[325px] xl:w-[400px] flex-shrink-0"
           />
