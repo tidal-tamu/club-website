@@ -16,12 +16,12 @@ const Hero = () => {
           <img
             src="/s26/Hero/TopHill.png"
             alt="Top Hill"
-            className="absolute bottom-0 left-0 w-screen h-[55vh]"
+            className="absolute bottom-0 left-0 w-screen h-[55%]"
           />
           <img
             src="/s26/Hero/LowHill.png"
             alt="Low Hill"
-            className="absolute bottom-0 left-0 w-screen h-[40vh]"
+            className="hidden sm:block absolute bottom-0 left-0 w-screen h-[33%]"
           />
         </div>
 
@@ -30,7 +30,7 @@ const Hero = () => {
           <img
             src="/s26/Hero/LowSnowPreShadowed.png"
             alt="Low Snow Pre Shadowed"
-            className="absolute bottom-0 left-0 w-screen"
+            className="absolute bottom-20 left-0 scale-[4]"
           />
         </div>
 
@@ -78,12 +78,12 @@ const Hero = () => {
           <img
             src="/s26/pebble.gif"
             alt="Penguin mascot"
-            className="w-[300px] sm:w-[400px] md:w-[500px] lg:w-[650px] xl:w-[800px] flex-shrink-0"
+            className="w-[400px] md:w-[500px] lg:w-[650px] xl:w-[800px] flex-shrink-0"
           />
           <img
             src="/s26/PenguinCover.png"
             alt="Penguin Cover"
-            className="absolute bottom-0 w-[150px] sm:w-[200px] md:w-[250px] lg:w-[325px] xl:w-[400px] flex-shrink-0"
+            className="absolute bottom-0 w-[200px] md:w-[250px] lg:w-[325px] xl:w-[400px] flex-shrink-0"
           />
         </div>
 
