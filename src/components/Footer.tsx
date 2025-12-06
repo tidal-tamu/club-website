@@ -7,15 +7,16 @@ import {
 } from "react-icons/fa";
 
 interface FooterProps {
-    variant?: "home" | "hackathon-spring-25" | "hackathon-fall-25";
+    variant?: "home" | "hackathon-spring-25" | "hackathon-fall-25" | "hackathon-spring-26";
 }
 
 export default function Footer({ variant = "home" }: FooterProps) {
     const isHackathon = variant.includes("hackathon");
     const isSpring25 = variant === "hackathon-spring-25";
     const isFall25 = variant === 'hackathon-fall-25';
+    const isSpring26 = variant === 'hackathon-spring-26';
 
-    if (isFall25) {
+    if (isFall25 || isSpring26) {
         return (
             <footer className="text-white bg-transparent px-6 lg:px-12 py-16 relative z-10">
                 <div className="max-w-7xl mx-auto">
@@ -31,7 +32,7 @@ export default function Footer({ variant = "home" }: FooterProps) {
                             <div className="text-white text-lg font-bold mb-2">
                                 TIDALTAMU
                             </div>
-                            <p className="text-gray-400 text-sm">
+                            <p className="text-white-400 text-sm">
                                 The AI Wave Starts Here
                             </p>
                         </div>
@@ -40,7 +41,7 @@ export default function Footer({ variant = "home" }: FooterProps) {
                             <h4 className="text-lg font-bold mb-6">Sponsor Us</h4>
                             <a
                                 href="mailto:tidaltamu@gmail.com"
-                                className="text-gray-400 hover:text-white transition-colors"
+                                className="text-white-400 hover:text-white transition-colors"
                             >
                                 tidaltamu@gmail.com
                             </a>
@@ -48,7 +49,7 @@ export default function Footer({ variant = "home" }: FooterProps) {
 
                         <div>
                             <h4 className="text-lg font-bold mb-6">Quick Links</h4>
-                            <ul className="space-y-3 text-gray-400">
+                            <ul className="space-y-3 text-white-400">
                                 <li>
                                     <a
                                         href="/"
@@ -113,7 +114,7 @@ export default function Footer({ variant = "home" }: FooterProps) {
                                     <FaEnvelope className="w-5 h-5" />
                                 </a>
                             </div>
-                            <div className="text-gray-400 text-sm">
+                            <div className="text-white-400 text-sm">
                                 <p className="mb-2">  © 2025 TIDALTAMU </p>
                                 <a
                                     href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"

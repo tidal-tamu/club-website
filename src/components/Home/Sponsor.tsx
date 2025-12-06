@@ -41,7 +41,7 @@ export default function Sponsor() {
                         { name: "AWS", logo: "/icons/logos/companies/aws-light-logo.png", link: "https://aws.amazon.com/" },
                         { name: "Blue Origin", logo: "/icons/logos/companies/bo-logo.png", link: "https://www.blueorigin.com/" },
                         { name: "NVIDIA", logo: "/icons/logos/companies/nvidia-logo-green.png", link: "https://www.nvidia.com/" },
-                        { name: "Google", logo: "/icons/logos/companies/google-color.png", link: "https://www.google.com/" },
+                        { name: "Google", logo: "/icons/logos/companies/google-color.png", link: "https://about.google/" },
                         { name: "Jane Street", logo: "/icons/logos/companies/jane-street-blue.png", link: "https://www.janestreet.com/" },
                         { name: "Chevron", logo: "/icons/logos/companies/chevron-logo.png", link: "https://www.chevron.com/" },
                         { name: "ConocoPhillips", logo: "/icons/logos/companies/conocophillips-logo.png", link: "https://www.conocophillips.com/" },

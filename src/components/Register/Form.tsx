@@ -17,6 +17,7 @@ const initialFormData = {
     Allow_Emails: false,
     Submission_Time: "",
     Need_Team: "",
+    Dietary_Restrictions: "None",
 };
 
 const schoolOptions = [
@@ -243,13 +244,49 @@ const countryOptions = [
     "Zimbabwe",
 ];
 
+const dietaryOptions = [
+    "None",
+    "Vegetarian",
+    "Vegan",
+    "Gluten-Free",
+    "Halal",
+    "No Beef",
+    "No Pork",
+    "Other",
+];
+
 export default function Form() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const formRef = useRef<HTMLFormElement | null>(null);
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [formData, setFormData] = useState(initialFormData);
+    const [selectedDietaryOptions, setSelectedDietaryOptions] = useState<string[]>(["None"]);
+    const [isDietaryMenuOpen, setIsDietaryMenuOpen] = useState(false);
     //const [submittedData, setSubmittedData] = useState(initialFormData);
+
+    // Format phone number as (XXX) XXX-XXXX
+    const formatPhoneNumber = (value: string): string => {
+        // Remove all non-numeric characters
+        const numbers = value.replace(/\D/g, "");
+        
+        // Limit to 10 digits
+        const limitedNumbers = numbers.slice(0, 10);
+        
+        // Format based on length
+        if (limitedNumbers.length === 0) return "";
+        if (limitedNumbers.length <= 3) return `(${limitedNumbers}`;
+        if (limitedNumbers.length <= 6) {
+            return `(${limitedNumbers.slice(0, 3)}) ${limitedNumbers.slice(3)}`;
+        }
+        return `(${limitedNumbers.slice(0, 3)}) ${limitedNumbers.slice(3, 6)}-${limitedNumbers.slice(6)}`;
+    };
+
+    // Validate email format
+    const isValidEmail = (email: string): boolean => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
 
     const handleChange = (e: React.ChangeEvent) => {
         const { name, value, type } = e.target as
@@ -262,11 +299,56 @@ export default function Form() {
                 [name]: checked,
             });
         } else {
+            let processedValue = value;
+            
+            // Handle phone number formatting
+            if (name === "Phone_Number" || name === "Emergency_Phone_Number") {
+                processedValue = formatPhoneNumber(value);
+            }
+            
+            // Handle age - only allow numbers and validate <= 18
+            if (name === "Age") {
+                // Only allow numeric input
+                const numericValue = value.replace(/\D/g, "");
+                if (numericValue === "") {
+                    processedValue = "";
+                } else {
+                    const ageNum = parseInt(numericValue, 10);
+                    // Allow input but will validate on submit
+                    processedValue = numericValue;
+                }
+            }
+            
             setFormData({
                 ...formData,
-                [name]: value,
+                [name]: processedValue,
             });
         }
+    };
+
+    const handleDietarySelection = (option: string) => {
+        setSelectedDietaryOptions((prev) => {
+            let updated: string[];
+            if (option === "None") {
+                updated = ["None"];
+            } else {
+                const filtered = prev.filter((item) => item !== "None");
+                if (filtered.includes(option)) {
+                    updated = filtered.filter((item) => item !== option);
+                } else {
+                    updated = [...filtered, option];
+                }
+                if (updated.length === 0) {
+                    updated = ["None"];
+                }
+            }
+
+            setFormData((prevData) => ({
+                ...prevData,
+                Dietary_Restrictions: updated.join(", "),
+            }));
+            return updated;
+        });
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -298,28 +380,37 @@ export default function Form() {
         toSend.append("Allow_Emails", formData.Allow_Emails.toString());
 
         try {
-            if (formData.Age && parseInt(formData.Age) < 18) {
-                setErrorMessage("You must be 18 or older to register.");
-                setSuccessMessage("");
-                setIsSubmitting(false);
-                return;
+            // Validate age <= 18
+            if (formData.Age) {
+                const age = parseInt(formData.Age, 10);
+                if (isNaN(age) || age > 18) {
+                    setErrorMessage("You must be 18 years old or younger to register.");
+                    setSuccessMessage("");
+                    setIsSubmitting(false);
+                    return;
+                }
             }
 
-            if (!formData.Email.includes("@")) {
+            // Validate email format
+            if (!isValidEmail(formData.Email)) {
                 setErrorMessage("Please enter a valid email address.");
                 setSuccessMessage("");
                 setIsSubmitting(false);
                 return;
             }
-            if (!/^\+?[0-9\s\-()]{7,}$/.test(formData.Phone_Number)) {
-                setErrorMessage("Please enter a valid phone number.");
+            // Validate phone number format (should be (XXX) XXX-XXXX = 10 digits)
+            const phoneDigits = formData.Phone_Number.replace(/\D/g, "");
+            if (phoneDigits.length !== 10) {
+                setErrorMessage("Please enter a valid 10-digit phone number.");
                 setSuccessMessage("");
                 setIsSubmitting(false);
                 return;
             }
-            if (!/^\+?[0-9\s\-()]{7,}$/.test(formData.Emergency_Phone_Number)) {
+            
+            const emergencyPhoneDigits = formData.Emergency_Phone_Number.replace(/\D/g, "");
+            if (emergencyPhoneDigits.length !== 10) {
                 setErrorMessage(
-                    "Please enter a valid emergency contact phone number."
+                    "Please enter a valid 10-digit emergency contact phone number."
                 );
                 setSuccessMessage("");
                 setIsSubmitting(false);
@@ -333,7 +424,7 @@ export default function Form() {
             }
 
             const response = await fetch(
-                "https://script.google.com/macros/s/AKfycbzCRaNfy99mmrjcJwwy694zcmgDK5ZqaWv5RvRgzHMfVfBlbK-PVCnansrKcUC5cV42/exec",
+                "https://script.google.com/macros/s/AKfycbwnxYYe_tbtRZI-EBXwqEtAdea5ilwSmHZ8kpFdzO_QGymAIboXDpqoKgprs_KjlX_b/exec",
                 {
                     method: "POST",
                     body: toSend,
@@ -348,6 +439,8 @@ export default function Form() {
                     console.log("Success:", result);
                     formRef.current?.reset();
                     setFormData({ ...initialFormData });
+                    setSelectedDietaryOptions(["None"]);
+                    setIsDietaryMenuOpen(false);
                 } else {
                     setErrorMessage(result.message);
                     setSuccessMessage("");
@@ -390,7 +483,7 @@ export default function Form() {
                                 your registration, please contact us at{" "}
                                 <a
                                     href="mailto:tidaltamu@gmail.com"
-                                    className="underline"
+                                    className="underline text-[#434374] font-bold"
                                 >
                                     tidaltamu@gmail.com
                                 </a>{" "}
@@ -398,7 +491,7 @@ export default function Form() {
                             </h1>
                             {/* {<pre>{JSON.stringify(submittedData, null, 2)}</pre>} */}
                             <Link to="/hackathon">
-                                <button className="p-4 rounded-xl bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-bold mt-10 transition-all duration-300">
+                                <button className="p-4 rounded-xl bg-[#AB3243] hover:bg-[#8F2838] text-white font-bold mt-10 transition-all duration-300">
                                     {" "}
                                     Return To Home
                                 </button>
@@ -450,20 +543,28 @@ export default function Form() {
                         <label className="flex flex-col gap-1">
                             <p className="text-white">
                                 Age{" "}
-                                <span className="text-gray-400 text-sm pl-1">
-                                    ( You Must be 18 or older )
+                                <span className="text-white text-base font-semibold pl-1">
+                                    ( You must be 18 years old or younger )
                                 </span>{" "}
                                 <span className="text-red-500">*</span>
                             </p>
                             <input
-                                type="Age"
+                                type="text"
                                 name="Age"
                                 placeholder="Age"
                                 className="p-3 border border-gray-300 rounded"
                                 value={formData.Age}
                                 onChange={handleChange}
+                                inputMode="numeric"
+                                pattern="[0-9]*"
+                                maxLength={2}
                                 required
                             />
+                            {formData.Age && parseInt(formData.Age) > 18 && (
+                                <p className="text-red-500 text-sm mt-1">
+                                    You must be 18 years old or younger to register.
+                                </p>
+                            )}
                         </label>
 
                         <label className="flex flex-col gap-1">
@@ -471,6 +572,7 @@ export default function Form() {
                                 Email <span className="text-red-500">*</span>
                             </p>
                             <input
+                                type="email"
                                 name="Email"
                                 placeholder="Email"
                                 className="p-3 border border-gray-300 rounded"
@@ -478,6 +580,11 @@ export default function Form() {
                                 onChange={handleChange}
                                 required
                             />
+                            {formData.Email && !isValidEmail(formData.Email) && (
+                                <p className="text-red-500 text-sm mt-1">
+                                    Please enter a valid email address.
+                                </p>
+                            )}
                         </label>
 
                         <label className="flex flex-col gap-1">
@@ -486,11 +593,14 @@ export default function Form() {
                                 <span className="text-red-500">*</span>
                             </p>
                             <input
+                                type="tel"
                                 name="Phone_Number"
-                                placeholder="Phone Number"
+                                placeholder="(XXX) XXX-XXXX"
                                 className="p-3 border border-gray-300 rounded"
                                 value={formData.Phone_Number}
                                 onChange={handleChange}
+                                inputMode="numeric"
+                                maxLength={14}
                                 required
                             />
                         </label>
@@ -501,11 +611,14 @@ export default function Form() {
                                 <span className="text-red-500">*</span>
                             </p>
                             <input
+                                type="tel"
                                 name="Emergency_Phone_Number"
-                                placeholder="Phone Number"
+                                placeholder="(XXX) XXX-XXXX"
                                 className="p-3 border border-gray-300 rounded"
                                 value={formData.Emergency_Phone_Number}
                                 onChange={handleChange}
+                                inputMode="numeric"
+                                maxLength={14}
                                 required
                             />
                         </label>
@@ -614,6 +727,52 @@ export default function Form() {
                                 </option>
                             </select>
                         </label>
+                        <label className="flex flex-col gap-1">
+                            <p className="text-white">
+                                Dietary Restrictions
+                                <span className="text-gray-400 text-sm pl-2">
+                                    (Optional)
+                                </span>
+                            </p>
+                            <div className="relative">
+                                <button
+                                    type="button"
+                                    className="w-full p-3 border border-gray-300 rounded text-left bg-white text-gray-900 flex justify-between items-center"
+                                    onClick={() => setIsDietaryMenuOpen((prev) => !prev)}
+                                >
+                                    <span>
+                                        {selectedDietaryOptions.join(", ")}
+                                    </span>
+                                    <span className="ml-2 text-xs uppercase tracking-wide text-gray-500">
+                                        {isDietaryMenuOpen ? "Hide" : "Select"}
+                                    </span>
+                                </button>
+                                {isDietaryMenuOpen && (
+                                    <div className="absolute left-0 right-0 mt-2 p-3 border border-gray-300 rounded bg-white text-gray-900 max-h-48 overflow-y-auto space-y-2 shadow-lg z-10">
+                                        {dietaryOptions.map((option) => (
+                                            <label
+                                                key={option}
+                                                className="flex items-center gap-3 text-gray-900 text-sm"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    className="size-4 accent-yellow-400"
+                                                    checked={selectedDietaryOptions.includes(option)}
+                                                    onChange={() => handleDietarySelection(option)}
+                                                />
+                                                <span>{option}</span>
+                                            </label>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                            <input
+                                type="hidden"
+                                name="Dietary_Restrictions"
+                                value={formData.Dietary_Restrictions}
+                                readOnly
+                            />
+                        </label>
                         <div className="flex items-center text-sm">
                             <input
                                 type="checkbox"
@@ -631,7 +790,7 @@ export default function Form() {
                                 I have read and agree to the{" "}
                                 <a
                                     href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md"
-                                    className="underline text-blue-400"
+                                    className="underline text-[#434374] font-bold"
                                 >
                                     MLH Code of Conduct
                                 </a>
@@ -659,21 +818,21 @@ export default function Form() {
                                 ranking, and MLH administration in-line with the{" "}
                                 <a
                                     href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md"
-                                    className="underline text-blue-400"
+                                    className="underline text-[#434374] font-bold"
                                 >
                                     MLH Privacy Policy{" "}
                                 </a>
                                 . I further agree to the terms of both the{" "}
                                 <a
                                     href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md"
-                                    className="underline text-blue-400"
+                                    className="underline text-[#434374] font-bold"
                                 >
                                     MLH Contest Terms and Conditions{" "}
                                 </a>
                                 and the{" "}
                                 <a
                                     href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md"
-                                    className="underline text-blue-400"
+                                    className="underline text-[#434374] font-bold"
                                 >
                                     MLH Privacy Policy{" "}
                                 </a>
@@ -702,7 +861,7 @@ export default function Form() {
 
                         <button
                             type="submit"
-                            className="w-full px-8 py-3 bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                            className="w-full px-8 py-3 bg-[#AB3243] hover:bg-[#8F2838] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                             disabled={isSubmitting}
                         >
                             {isSubmitting ? "Submitting..." : "Register"}
@@ -722,7 +881,7 @@ export default function Form() {
                             Already Registered?{" "}
                             <a
                                 href="/check-registration"
-                                className="underline cursor-pointer text-blue-400"
+                                className="underline cursor-pointer text-[#434374] font-bold"
                             >
                                 Check your registration here
                             </a>
