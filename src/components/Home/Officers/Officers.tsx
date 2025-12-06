@@ -98,6 +98,13 @@ const officers = [
         pfp: "/images/officer-pictures/matthew.jpg",
     },
     {
+        name: "Isaac Chacko",
+        position: "Activities",
+        major: "",
+        desc: "",
+        pfp: "/images/officer-pictures/isaac.jpg",
+    },
+    {
         name: "Kyle Moore",
         position: "Workshops",
         major: "Computer Science '26",
