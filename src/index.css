@@ -55,14 +55,6 @@ body {
 }
 
 @font-face {
-    font-family: "More Sugar";
-    src: url("/fonts/more-sugar.regular.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
     font-family: "DynaPuff";
     src: url("/fonts/static/DynaPuff-Regular.ttf") format("truetype");
     font-weight: normal;
@@ -124,10 +116,6 @@ body {
 
 .plasma-bold {
     font-family: "plasma", sans-serif;
-}
-
-.font-more-sugar {
-    font-family: "More Sugar", sans-serif;
 }
 
 .font-dynapuff {
