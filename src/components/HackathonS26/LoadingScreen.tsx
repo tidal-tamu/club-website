@@ -16,7 +16,7 @@ const LoadingScreen = ({ progress = 0 }: LoadingScreenProps) => {
             transition={{ duration: 0.8, ease: "easeInOut" }}
         >
             {/* Animated background particles */}
-            <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute inset-0 overflow-hidden select-none">
                 {[...Array(18)].map((_, i) => (
                     <motion.div
                         key={i}

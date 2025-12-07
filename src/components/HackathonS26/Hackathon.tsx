@@ -9,7 +9,10 @@ import { AnimatePresence } from "framer-motion";
 
 const HackathonS26 = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => {
+    // Check if page has already loaded in this session
+    return sessionStorage.getItem('s26-page-loaded') !== 'true';
+  });
   const [loadingProgress, setLoadingProgress] = useState(0);
 
   useEffect(() => {
@@ -56,7 +59,10 @@ const HackathonS26 = () => {
         currentProgress >= 100
       ) {
         clearInterval(progressInterval);
-        setTimeout(() => setIsLoading(false), 500);
+        setTimeout(() => {
+          sessionStorage.setItem('s26-page-loaded', 'true');
+          setIsLoading(false);
+        }, 500);
       }
     };
 
@@ -110,7 +116,10 @@ const HackathonS26 = () => {
       minimumTimeElapsed = true;
       clearInterval(progressInterval);
       setLoadingProgress(100);
-      setTimeout(() => setIsLoading(false), 500);
+      setTimeout(() => {
+        sessionStorage.setItem('s26-page-loaded', 'true');
+        setIsLoading(false);
+      }, 500);
     }, 8000);
 
     return () => {
@@ -153,7 +162,7 @@ const HackathonS26 = () => {
             <Link
               to="/register"
               className={`hidden sm:flex absolute right-4 sm:right-8 z-30 cursor-pointer transition-all duration-200 group inline-block ${isMobileMenuOpen ? "opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto" : "opacity-100"
-                } pointer-events-none sm:pointer-events-auto`}
+                } cursor-pointer`}
               style={{ bottom: '6vh' }}
             >
               <img

@@ -164,7 +164,8 @@ export default function Hero() {
                                 whileTap={{ scale: 0.95 }}
                                 className="flex justify-center items-center gap-3 font-bold border-2 border-[#336699] text-[#336699] hover:bg-[#336699] hover:text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full transition-all duration-300 bg-transparent"
                             >
-                                Learn More
+                                Hackathon
+                                <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </motion.a>
                         </div>
                     </motion.div>

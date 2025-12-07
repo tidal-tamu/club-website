@@ -5,7 +5,7 @@ import { FaPlay } from "react-icons/fa";
 const Hero = () => {
   return (
     <>
-      <div className="relative min-h-screen flex items-center justify-center px-6 md:px-12 overflow-hidden">
+      <div className="relative min-h-screen flex items-center justify-center px-6 md:px-12 overflow-hidden select-none">
         {/* Background layer - hills and bushes */}
         <div className="absolute inset-0 z-0">
           <img
@@ -26,21 +26,21 @@ const Hero = () => {
         </div>
 
         {/* House layer */}
-        <div className="absolute w-screen inset-0 z-7">
+        <div className="absolute w-screen inset-0 z-7 overflow-hidden">
           <img
             src="/s26/Hero/HouseGlowing.png"
             alt="House Glowing"
-            className="hidden sm:block absolute bottom-[48vh] sm:right-[3vh] md:right-[6vh] lg:right-[10vh] xl:right-[14vh] 2xl:right-[18vh] w-[40vh]"
+            className="absolute bottom-[48vh] right-[-10vh] sm:right-[3vh] md:right-[6vh] lg:right-[10vh] xl:right-[14vh] 2xl:right-[18vh] w-[40vh] object-contain"
           />
         </div>
 
         {/* Trees layer */}
 
-        <div className="hidden sm:block absolute w-screen inset-0 z-5">
+        <div className="absolute w-screen inset-0 z-10">
           <img
             src="/s26/Hero/LargeBrownTreeAlt.png"
             alt="Large Brown Tree Alt"
-            className="absolute right-0 bottom-[20vh] translate-x-[20%] h-[85vh]"
+            className="absolute right-0 bottom-[20vh] translate-x-[20%] h-[85vh] w-auto object-cover"
           />
         </div>
         <div className="absolute inset-0 z-5">
