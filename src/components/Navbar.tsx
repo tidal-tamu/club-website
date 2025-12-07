@@ -76,7 +76,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
             transition={{ duration: 0.3, ease: "easeInOut" }}
         >
             <div className="container mx-auto px-6 lg:px-12 py-6 flex items-center justify-between z-50">
-                <a href="/" className="flex items-center">
+                <a href="/" className="flex items-center cursor-pointer">
                     <img
                         src={
                             dark
@@ -84,7 +84,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
                                 : "./icons/logos/tidal-newblue.svg"
                         }
                         alt="TIDAL Logo"
-                        className="h-6 w-auto"
+                        className="h-6 w-auto cursor-pointer"
                     />
                 </a>
 

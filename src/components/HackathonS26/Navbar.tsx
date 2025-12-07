@@ -8,9 +8,12 @@ import {
     FaExternalLinkAlt,
 } from "react-icons/fa";
 
-const navLinks: { title: string; path: string; isExternal?: boolean; disabled?: boolean }[] = [
-    { title: "Home", path: "/", isExternal: true },
-];
+const navLinks: {
+    title: string;
+    path: string;
+    isExternal?: boolean;
+    disabled?: boolean;
+}[] = [{ title: "Home", path: "/hackathon", isExternal: true }];
 
 interface NavbarProps {
     dark?: boolean;
@@ -80,7 +83,7 @@ export default function Navbar({ dark = false, onMenuToggle }: NavbarProps) {
             transition={{ duration: 0.3, ease: "easeInOut" }}
         >
             <div className="container mx-auto px-6 lg:px-12 py-6 flex items-center justify-between">
-                <a href="/" className="flex items-center">
+                <a href="/" className="flex items-center !cursor-pointer z-50">
                     <img
                         src={
                             dark
@@ -88,7 +91,7 @@ export default function Navbar({ dark = false, onMenuToggle }: NavbarProps) {
                                 : "./icons/logos/tidal-newblue.svg"
                         }
                         alt="TIDAL Logo"
-                        className="h-6 w-auto"
+                        className="h-6 w-auto !cursor-pointer"
                     />
                 </a>
 
@@ -169,7 +172,6 @@ export default function Navbar({ dark = false, onMenuToggle }: NavbarProps) {
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 style={{
                     display: isOpen ? "block" : "none",
-                    pointerEvents: isOpen ? "auto" : "none",
                 }}
             >
                 <div className="flex flex-col h-full px-6 py-12">
