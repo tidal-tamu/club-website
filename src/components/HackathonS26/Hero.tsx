@@ -40,7 +40,7 @@ const Hero = () => {
                     <img
                         src="/s26/Hero/LargeBrownTreeAlt.png"
                         alt="Large Brown Tree Alt"
-                        className="absolute md:right-0 bottom-[20vh] -translate-x-16 md:translate-x-16 lg:translate-x-20 xl:translate-x-24 2xl:translate-x-28 h-full min-w-[600px] md:min-w-[800px]"
+                        className="absolute md:right-0 bottom-[18vh] -translate-x-32 md:translate-x-16 lg:translate-x-20 xl:translate-x-24 2xl:translate-x-28 h-full min-w-[700px]"
                     />
                 </div>
                 <div className="absolute inset-0 z-5">
