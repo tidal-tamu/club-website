@@ -111,7 +111,7 @@ export default function Navbar({ dark = false, onMenuToggle }: NavbarProps) {
                         ))}
                     <a
                         href="/register"
-                        className="bg-[#AB3243] hover:bg-[#8F2838] text-white px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-medium"
+                        className="bg-[#AB3243] hover:bg-[#8F2838] text-white px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-medium hidden"
                     >
                         Apply
                     </a>
