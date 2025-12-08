@@ -54,7 +54,7 @@ const LoadingScreen = ({ progress = 0 }: LoadingScreenProps) => {
                     <img
                         src="/s26/pebble.gif"
                         alt="Loading..."
-                        className="max-w-48 max-h-48 md:max-w-64 md:max-h-64 w-auto h-auto object-contain"
+                        className="max-w-48 max-h-48 md:max-w-64 md:max-h-64 w-auto h-auto object-contain translate-x-[10%]"
                         style={{
                             filter: "drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5))",
                         }}

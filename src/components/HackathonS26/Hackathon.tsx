@@ -8,8 +8,15 @@ import { Link } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 const HackathonS26 = () => {
+    // Debug mode: when true, loading screen triggers on every refresh
+    const DEBUG_MODE = false;
+    
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(() => {
+        // In debug mode, always show loading screen
+        if (DEBUG_MODE) {
+            return true;
+        }
         // Check if page has already loaded in this session
         return sessionStorage.getItem("s26-page-loaded") !== "true";
     });
@@ -60,7 +67,9 @@ const HackathonS26 = () => {
             ) {
                 clearInterval(progressInterval);
                 setTimeout(() => {
-                    sessionStorage.setItem("s26-page-loaded", "true");
+                    if (!DEBUG_MODE) {
+                        sessionStorage.setItem("s26-page-loaded", "true");
+                    }
                     setIsLoading(false);
                 }, 500);
             }
@@ -117,7 +126,9 @@ const HackathonS26 = () => {
             clearInterval(progressInterval);
             setLoadingProgress(100);
             setTimeout(() => {
-                sessionStorage.setItem("s26-page-loaded", "true");
+                if (!DEBUG_MODE) {
+                    sessionStorage.setItem("s26-page-loaded", "true");
+                }
                 setIsLoading(false);
             }, 500);
         }, 8000);
