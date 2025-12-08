@@ -73,7 +73,7 @@ export default function Navbar({ dark = false, onMenuToggle }: NavbarProps) {
 
     return (
         <motion.nav
-            className={`fixed top-0 w-screen font-mont font-semibold z-50 transition-all duration-300 ${
+            className={`fixed top-0 w-full font-mont font-semibold z-50 transition-all duration-300 ${
                 isScrolled
                     ? "bg-black/20 border-b border-white/10 backdrop-blur-md"
                     : "bg-transparent border-b border-transparent"
@@ -82,25 +82,8 @@ export default function Navbar({ dark = false, onMenuToggle }: NavbarProps) {
             animate={{ y: isVisible ? 0 : -100 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-            {/* TIDAL Logo - Fixed top left of navbar, respecting navbar padding */}
-            <a 
-                href="/" 
-                className="hidden lg:block absolute top-6 left-6 lg:left-12 z-30 hover:scale-105 transition-transform duration-200"
-            >
-                <img
-                    src={
-                        dark
-                            ? "./icons/logos/tidal-white-transparent.png"
-                            : "./icons/logos/tidal-newblue.svg"
-                    }
-                    alt="TIDAL Logo"
-                    className="h-6 w-auto !cursor-pointer"
-                />
-            </a>
-
             <div className="container mx-auto px-6 lg:px-12 py-6 flex items-center justify-between">
-                {/* Mobile logo - shown on smaller screens */}
-                <a href="/" className="lg:hidden flex items-center !cursor-pointer z-50">
+                <a href="/" className="flex items-center !cursor-pointer z-50">
                     <img
                         src={
                             dark
