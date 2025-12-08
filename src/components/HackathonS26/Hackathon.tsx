@@ -48,11 +48,11 @@ const HackathonS26 = () => {
         let minimumTimeElapsed = false;
         let progressInterval: NodeJS.Timeout;
         let currentProgress = 0;
-        const minimumLoadTime = 3000;
+        const minimumLoadTime = 1500;
 
         const smoothProgressUpdate = () => {
             if (currentProgress < 100) {
-                const increment = Math.random() * 3 + 1;
+                const increment = Math.random() * 6 + 2;
                 currentProgress = Math.min(currentProgress + increment, 100);
                 setLoadingProgress(Math.floor(currentProgress));
             }
