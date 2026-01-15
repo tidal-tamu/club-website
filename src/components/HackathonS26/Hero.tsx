@@ -164,7 +164,7 @@ const Hero = () => {
                 filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3))",
               }}
             >
-              MENTOR
+              JUDGE / MENTOR
             </a>
           </div>
         </div>
