@@ -38,14 +38,18 @@ const FloatingParticles = ({ count = 8 }: { count?: number }) => {
         
         const newParticles: Particle[] = [];
         for (let i = 0; i < count; i++) {
-            // Start particles at random x positions, but spread them vertically
+            // Start particles at random x positions, spread them vertically including visible area
+            // Mix of particles starting above viewport and already visible at top
+            const startY = i < count * 0.3 
+                ? Math.random() * 20 - 10 // Some start visible at top (0-20% from top)
+                : Math.random() * -20 - 10; // Others start above viewport
             newParticles.push({
                 id: i,
                 x: Math.random() * 100,
-                y: Math.random() * -20 - 10, // Start above viewport or at top
+                y: startY,
                 size: (Math.random() * sizeRange + baseSize) * sizeMultiplier,
-                vx: (Math.random() - 0.5) * 0.15, // Slight horizontal drift
-                vy: Math.random() * 0.15 + 0.1, // Downward fall speed (0.1-0.25)
+                vx: (Math.random() - 0.5) * 0.1, // Slight horizontal drift (reduced)
+                vy: Math.random() * 0.08 + 0.05, // Downward fall speed (0.05-0.13, slower)
                 opacity: Math.random() * 0.4 + 0.6, // More visible, 0.6-1.0
                 rotation: Math.random() * 360,
                 rotationSpeed: (Math.random() - 0.5) * 2, // Slow rotation
@@ -73,8 +77,8 @@ const FloatingParticles = ({ count = 8 }: { count?: number }) => {
                         newY = Math.random() * -20 - 10;
                         newX = Math.random() * 100;
                         // Reset with new random properties for variety
-                        newVx = (Math.random() - 0.5) * 0.15;
-                        p.vy = Math.random() * 0.15 + 0.1;
+                        newVx = (Math.random() - 0.5) * 0.1;
+                        p.vy = Math.random() * 0.08 + 0.05;
                         p.opacity = Math.random() * 0.4 + 0.6;
                     }
 

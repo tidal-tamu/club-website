@@ -1,8 +1,13 @@
 import FloatingParticles from "./ui/FloatingParticles";
 import { Link } from "react-router-dom";
 import { FaPlay } from "react-icons/fa";
+import { motion } from "framer-motion";
 
-const Hero = () => {
+interface HeroProps {
+    shouldAnimate?: boolean;
+}
+
+const Hero = ({ shouldAnimate = false }: HeroProps) => {
   return (
     <>
       <div className="relative min-h-screen flex items-center justify-center px-6 md:px-12 select-none">
@@ -97,25 +102,45 @@ const Hero = () => {
         </div>
 
         <div className="text-center z-20 max-w-4xl mx-auto -translate-y-[5vh] space-y-0 flex flex-col gap-5">
-          <div className="flex flex-wrap md:flex-nowrap justify-center gap-2 sm:gap-3 z-20">
-            <div className="bg-[#9FC9E6] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap hover:bg-[#8AB8D5] hover:border-[rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-200">
+          {/* Pills - animate text only (top element, starts first) */}
+          <motion.div
+            className="flex flex-wrap md:flex-nowrap justify-center gap-2 sm:gap-3 z-20"
+            initial={{ y: 30, opacity: 0 }}
+            animate={shouldAnimate ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
+            transition={{
+              duration: 2.0,
+              ease: [0.34, 1.56, 0.64, 1],
+              delay: 0.1,
+            }}
+          >
+            <div className="bg-[#9FC9E6] border-[2px] border-[#9FC9E6] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap hover:bg-[#8AB8D5] hover:border-[#8AB8D5] hover:scale-105 transition-all duration-200">
               <span className="text-white font-medium text-xs sm:text-sm md:text-base">
                 MSC Bethancourt
               </span>
             </div>
-            <div className="bg-[#9FC9E6] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap hover:bg-[#8AB8D5] hover:border-[rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-200">
+            <div className="bg-[#9FC9E6] border-[2px] border-[#9FC9E6] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap hover:bg-[#8AB8D5] hover:border-[#8AB8D5] hover:scale-105 transition-all duration-200">
               <span className="text-white font-medium text-xs sm:text-sm md:text-base">
                 24 Hours
               </span>
             </div>
-            <div className="bg-[#9FC9E6] border-[2px] border-[rgba(255,255,255,0.11)] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap hover:bg-[#8AB8D5] hover:border-[rgba(255,255,255,0.2)] hover:scale-105 transition-all duration-200 cursor-pointer">
+            <div className="bg-[#9FC9E6] border-[2px] border-[#9FC9E6] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-xl whitespace-nowrap hover:bg-[#8AB8D5] hover:border-[#8AB8D5] hover:scale-105 transition-all duration-200 cursor-pointer">
               <span className="text-white font-medium text-xs sm:text-sm md:text-base">
                 Feb 7-8
               </span>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="relative flex items-center justify-center gap-6 md:gap-8 lg:gap-10 xl:gap-10 animate-float-subtle">
+          {/* Main title - animate text only (middle element, starts after pills) */}
+          <motion.div
+            className="relative flex items-center justify-center gap-6 md:gap-8 lg:gap-10 xl:gap-10 animate-float-subtle"
+            initial={{ y: 40, opacity: 0 }}
+            animate={shouldAnimate ? { y: 0, opacity: 1 } : { y: 40, opacity: 0 }}
+            transition={{
+              duration: 2.2,
+              ease: [0.34, 1.56, 0.64, 1],
+              delay: 0.8,
+            }}
+          >
             <h1
               className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-dynapuff"
               style={{
@@ -142,31 +167,41 @@ const Hero = () => {
             >
               '26
             </span>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-row items-center gap-4 mt-12 md:mt-16 justify-center">
+          {/* Buttons - animate text only (bottom element, starts last) */}
+          <motion.div
+            className="flex flex-row items-center gap-3 sm:gap-4 mt-12 md:mt-16 justify-center"
+            initial={{ y: 30, opacity: 0 }}
+            animate={shouldAnimate ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
+            transition={{
+              duration: 2.0,
+              ease: [0.34, 1.56, 0.64, 1],
+              delay: 0.6,
+            }}
+          >
             <Link
               to="/register"
-              className="bg-[#AB3243] hover:bg-[#8F2838] text-white font-bold text-lg md:text-xl px-6 md:px-8 py-2.5 md:py-3 rounded-xl transition-all duration-200 flex items-center gap-3 hover:scale-105 hover:shadow-lg"
+              className="bg-[#AB3243] hover:bg-[#8F2838] text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 md:gap-2.5 hover:scale-110 hover:shadow-lg border-[2.5px] border-[#AB3243] hover:border-[#8F2838] min-w-[140px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px]"
               style={{
                 filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3))",
               }}
             >
               APPLY NOW
-              <FaPlay className="h-4 w-4 md:h-5 md:w-5 text-white" />
+              <FaPlay className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4 text-white" />
             </Link>
             <a
               href="https://forms.gle/oBEQk9y9xadLhYnE9"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#9FC9E6] hover:bg-[#8AB8D5] text-white font-bold text-lg md:text-xl px-6 md:px-8 py-2.5 md:py-3 rounded-xl transition-all duration-200 flex items-center gap-3 hover:scale-105 hover:shadow-lg border-[2px] border-[rgba(255,255,255,0.11)] hover:border-[rgba(255,255,255,0.2)]"
+              className="bg-[#9FC9E6] hover:bg-[#8AB8D5] text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 md:gap-2.5 hover:scale-110 hover:shadow-lg border-[2.5px] border-[#9FC9E6] hover:border-[#8AB8D5] min-w-[140px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px]"
               style={{
-                filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3))",
+                filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4))",
               }}
             >
               JUDGE / MENTOR
             </a>
-          </div>
+          </motion.div>
         </div>
       </div>
     </>

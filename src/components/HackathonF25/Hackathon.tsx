@@ -23,8 +23,15 @@ const HackathonF25 = () => {
         const originalOverflow = document.body.style.overflow;
         const originalBackgroundColor = document.body.style.backgroundColor;
 
-        document.body.style.overflow = "hidden";
-        document.body.style.backgroundColor = "#121111";
+        // Only hide overflow and set styles when loading
+        if (isLoading) {
+            document.body.style.overflow = "hidden";
+            document.body.style.backgroundColor = "#121111";
+        } else {
+            // Restore overflow when loading is done
+            document.body.style.overflow = originalOverflow || "";
+            return;
+        }
 
         const handleMouseMove = (e: MouseEvent) => {
             setCursorPosition({ x: e.clientX, y: e.clientY });
@@ -104,14 +111,14 @@ const HackathonF25 = () => {
 
         return () => {
             // Restore original values
-            document.body.style.overflow = originalOverflow;
-            document.body.style.backgroundColor = originalBackgroundColor;
+            document.body.style.overflow = originalOverflow || "";
+            document.body.style.backgroundColor = originalBackgroundColor || "";
             window.removeEventListener("mousemove", handleMouseMove);
             window.removeEventListener("load", handleWindowLoad);
             clearInterval(progressInterval);
             clearTimeout(safetyTimeout);
         };
-    }, []);
+    }, [isLoading]);
 
     return (
         <>
@@ -121,44 +128,45 @@ const HackathonF25 = () => {
                 )}
             </AnimatePresence>
 
-            {!isLoading && (
+            {/* Always render the content, but hide it visually during loading */}
+            <div
+                className={`hackathon-f25-container min-h-screen hero-gradient relative overflow-hidden transition-opacity duration-500 ${
+                    isLoading ? 'opacity-0 pointer-events-none' : 'opacity-100'
+                }`}
+                style={{
+                    backgroundImage: `url(${tidalBackground})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "top center",
+                    backgroundRepeat: "no-repeat",
+                }}
+            >
                 <div
-                    className="hackathon-f25-container min-h-screen hero-gradient relative overflow-hidden"
+                    className="firefly-cursor"
                     style={{
-                        backgroundImage: `url(${tidalBackground})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "top center",
-                        backgroundRepeat: "no-repeat",
+                        left: `${cursorPosition.x}px`,
+                        top: `${cursorPosition.y}px`,
                     }}
-                >
-                    <div
-                        className="firefly-cursor"
-                        style={{
-                            left: `${cursorPosition.x}px`,
-                            top: `${cursorPosition.y}px`,
-                        }}
-                    />
+                />
 
-                    <div className="absolute inset-0 bg-tidal-deep/70 backdrop-blur-[1px]" />
+                <div className="absolute inset-0 bg-tidal-deep/70 backdrop-blur-[1px]" />
 
-                    <div className="relative z-30">
-                        <Navbar dark />
-                    </div>
-
-                    <div className="relative z-20">
-                        <Hero />
-                        <About />
-                        <Schedule />
-                        <Prizes />
-                        <FAQs />
-                        <Sponsors />
-                    </div>
-
-                    <div className="relative z-20">
-                        <Footer variant="hackathon-fall-25" />
-                    </div>
+                <div className="relative z-30">
+                    <Navbar dark />
                 </div>
-            )}
+
+                <div className="relative z-20">
+                    <Hero />
+                    <About />
+                    <Schedule />
+                    <Prizes />
+                    <FAQs />
+                    <Sponsors />
+                </div>
+
+                <div className="relative z-20">
+                    <Footer variant="hackathon-fall-25" />
+                </div>
+            </div>
         </>
     );
 };

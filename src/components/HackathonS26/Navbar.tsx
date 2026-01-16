@@ -18,9 +18,10 @@ const navLinks: {
 interface NavbarProps {
     dark?: boolean;
     onMenuToggle?: (isOpen: boolean) => void;
+    shouldAnimate?: boolean;
 }
 
-export default function Navbar({ dark = false, onMenuToggle }: NavbarProps) {
+export default function Navbar({ dark = false, onMenuToggle, shouldAnimate = false }: NavbarProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
@@ -75,15 +76,24 @@ export default function Navbar({ dark = false, onMenuToggle }: NavbarProps) {
         <motion.nav
             className={`fixed top-0 w-full font-mont font-semibold z-50 transition-all duration-300 ${
                 isScrolled
-                    ? "bg-black/20 border-b border-white/10 backdrop-blur-md"
-                    : "bg-transparent border-b border-transparent"
+                    ? "bg-[#6fa7cf]/30 border-b border-white/20 backdrop-blur-lg shadow-lg"
+                    : "bg-transparent/0 border-b border-transparent"
             } ${dark ? "text-white" : "text-black"}`}
             initial={{ y: -100 }}
             animate={{ y: isVisible ? 0 : -100 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-            <div className="container mx-auto px-6 lg:px-12 py-6 flex items-center justify-between">
-                <a href="/" className="flex items-center !cursor-pointer z-50">
+            <div className="container mx-auto px-6 lg:px-12 py-10 flex items-center justify-between">
+                <motion.a
+                    href="/"
+                    className="flex items-center !cursor-pointer z-50"
+                    initial={{ opacity: 0 }}
+                    animate={shouldAnimate ? { opacity: 1 } : { opacity: 0 }}
+                    transition={{
+                        duration: 1.8,
+                        ease: [0.34, 1.56, 0.64, 1],
+                    }}
+                >
                     <img
                         src={
                             dark
@@ -93,9 +103,18 @@ export default function Navbar({ dark = false, onMenuToggle }: NavbarProps) {
                         alt="TIDAL Logo"
                         className="h-6 w-auto !cursor-pointer"
                     />
-                </a>
+                </motion.a>
 
-                <div className="hidden md:flex items-center space-x-8">
+                <motion.div
+                    className="hidden md:flex items-center space-x-8"
+                    initial={{ opacity: 0 }}
+                    animate={shouldAnimate ? { opacity: 1 } : { opacity: 0 }}
+                    transition={{
+                        duration: 1.8,
+                        ease: [0.34, 1.56, 0.64, 1],
+                        delay: 0.1,
+                    }}
+                >
                     {navLinks
                         .filter((link) => !link.isExternal && !link.disabled) // Hide external links (Home) and disabled links on desktop
                         .map((link) => (
@@ -104,9 +123,10 @@ export default function Navbar({ dark = false, onMenuToggle }: NavbarProps) {
                                 to={link.path}
                                 smooth={true}
                                 duration={500}
-                                className="text-white hover:text-[#336699] transition-all duration-300 font-medium"
+                                className="text-white/90 hover:text-white transition-all duration-300 font-medium relative group"
                             >
                                 {link.title}
+                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300"></span>
                             </Link>
                         ))}
                     <a
@@ -115,7 +135,7 @@ export default function Navbar({ dark = false, onMenuToggle }: NavbarProps) {
                     >
                         Apply
                     </a>
-                </div>
+                </motion.div>
 
                 <button
                     className={`md:hidden inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg focus:outline-none focus:ring-2 z-50 relative ${

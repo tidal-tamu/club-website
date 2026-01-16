@@ -29,27 +29,27 @@ export default function Footer({ variant = "home" }: FooterProps) {
                                     className="h-8 w-auto object-contain"
                                 />
                             </div>
-                            <div className="text-white text-lg font-bold mb-2">
+                            <div className="text-white text-sm md:text-base lg:text-lg font-bold mb-2">
                                 TIDALTAMU
                             </div>
-                            <p className="text-white-400 text-sm">
+                            <p className="text-white-400 text-xs md:text-sm">
                                 The AI Wave Starts Here
                             </p>
                         </div>
 
                         <div>
-                            <h4 className="text-lg font-bold mb-6">Sponsor Us</h4>
+                            <h4 className="text-sm md:text-base lg:text-lg font-bold mb-6">Sponsor Us</h4>
                             <a
                                 href="mailto:tidaltamu@gmail.com"
-                                className="text-white-400 hover:text-white transition-colors"
+                                className="text-white-400 text-xs md:text-sm hover:text-white transition-colors"
                             >
                                 tidaltamu@gmail.com
                             </a>
                         </div>
 
                         <div>
-                            <h4 className="text-lg font-bold mb-6">Quick Links</h4>
-                            <ul className="space-y-3 text-white-400">
+                            <h4 className="text-sm md:text-base lg:text-lg font-bold mb-6">Quick Links</h4>
+                            <ul className="space-y-3 text-white-400 text-xs md:text-sm">
                                 <li>
                                     <a
                                         href="/"
@@ -114,8 +114,8 @@ export default function Footer({ variant = "home" }: FooterProps) {
                                     <FaEnvelope className="w-5 h-5" />
                                 </a>
                             </div>
-                            <div className="text-white-400 text-sm">
-                                <p className="mb-2">  © 2025 TIDALTAMU </p>
+                            <div className="text-white-400 text-xs md:text-sm">
+                                <p className="mb-2">  © 2026 TIDALTAMU </p>
                                 <a
                                     href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
                                     target="_blank"
@@ -155,15 +155,15 @@ export default function Footer({ variant = "home" }: FooterProps) {
                                 className="h-8 w-auto object-contain"
                             />
                         </div>
-                        <p className="text-gray-400 leading-relaxed">
+                        <p className="text-gray-400 text-xs md:text-sm lg:text-base leading-relaxed">
                             Empowering Aggies with AI/ML skills through hands-on
                             learning and community engagement.
                         </p>
                     </div>
 
                     <div>
-                        <h4 className="text-lg font-bold mb-6">Quick Links</h4>
-                        <ul className="space-y-3 text-gray-400">
+                        <h4 className="text-sm md:text-base lg:text-lg font-bold mb-6">Quick Links</h4>
+                        <ul className="space-y-3 text-gray-400 text-xs md:text-sm lg:text-base">
                             <li>
                                 <a
                                     href="#about-us"
@@ -200,8 +200,8 @@ export default function Footer({ variant = "home" }: FooterProps) {
                     </div>
 
                     <div>
-                        <h4 className="text-lg font-bold mb-6">Events</h4>
-                        <ul className="space-y-3 text-gray-400">
+                        <h4 className="text-sm md:text-base lg:text-lg font-bold mb-6">Events</h4>
+                        <ul className="space-y-3 text-gray-400 text-xs md:text-sm lg:text-base">
                             <li>
                                 <a
                                     href="/hackathon"
@@ -230,7 +230,7 @@ export default function Footer({ variant = "home" }: FooterProps) {
                     </div>
 
                     <div>
-                        <h4 className="text-lg font-bold mb-6">Connect</h4>
+                        <h4 className="text-sm md:text-base lg:text-lg font-bold mb-6">Connect</h4>
                         <div className="flex space-x-4">
                             <a
                                 href="https://github.com/tidal-tamu/"
@@ -264,7 +264,7 @@ export default function Footer({ variant = "home" }: FooterProps) {
                     </div>
                 </div>
 
-                <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <div className="border-t border-gray-800 pt-8 text-center text-gray-400 text-xs md:text-sm">
                     <p>
                         &copy; {new Date().getFullYear()} TIDAL - Texas A&M
                         University. All rights reserved.

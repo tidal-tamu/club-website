@@ -75,8 +75,8 @@ export default function Navbar({ dark = false }: NavbarProps) {
         <motion.nav
             className={`fixed top-0 w-full font-mont font-semibold z-50 transition-all duration-300 ${
                 isScrolled
-                    ? "bg-black/20 border-b border-white/10 backdrop-blur-md"
-                    : "bg-transparent border-b border-transparent"
+                    ? "bg-black/30 border-b border-white/10 backdrop-blur-lg shadow-lg"
+                    : "bg-transparent/0 border-b border-transparent"
             } ${dark ? "text-white" : "text-black"}`}
             initial={{ y: -100 }}
             animate={{ y: isVisible ? 0 : -100 }}
@@ -104,9 +104,10 @@ export default function Navbar({ dark = false }: NavbarProps) {
                                 to={link.path}
                                 smooth={true}
                                 duration={500}
-                                className="text-white hover:text-[#336699] transition-all duration-300 font-medium"
+                                className="text-white/90 hover:text-white transition-all duration-300 font-medium relative group"
                             >
                                 {link.title}
+                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300"></span>
                             </Link>
                         ))}
                     <button

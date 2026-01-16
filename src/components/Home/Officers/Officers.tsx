@@ -33,8 +33,8 @@ const organizeOfficers = (officersList: any[]) => {
             !o.position.includes("Vice President")
     );
 
-    // Keep Ahmed, Matthew, Kyle, and Aurora at the top, then sort the rest alphabetically
-    const specialOfficers = ["Ahmed Idrees", "Matthew Shi", "Kyle Moore", "Aurora Jiang"];
+    // sort officers alphabetically except for team leads
+    const specialOfficers = ["Ahmed Idrees", "Matthew Shi", "Harshit Saini", "Harshitha Sudhakar"];
     const special = specialOfficers
         .map(name => regularOfficers.find(o => o.name === name))
         .filter(o => o !== undefined);
@@ -105,46 +105,11 @@ const officers = [
         pfp: "/images/officer-pictures/isaac.jpg",
     },
     {
-        name: "Kyle Moore",
-        position: "Workshops",
-        major: "Computer Science '26",
-        desc: "Kyle is the workshops team lead and joined in the spring of 2024.",
-        pfp: "/images/officer-pictures/kyle.jpg",
-    },
-    {
-        name: "Aurora Jiang",
-        position: "Marketing",
-        major: "Biomedical Engineering '26",
-        desc: "Aurora is the marketing team lead and joined in the fall of 2024.",
-        pfp: "/images/officer-pictures/aurora.jpg",
-    },
-    {
-        name: "Dylan Hoang",
-        position: "Outreach",
-        major: "Computer Science '26",
-        desc: "Dylan is an outreach officer and joined in the fall of 2024.",
-        pfp: "/images/officer-pictures/dylan.jpg",
-    },
-    {
         name: "Bradley James",
         position: "Workshops",
         major: "Computer Science '26",
         desc: "Bradley is a workshops officer and joined in the spring of 2025.",
         pfp: "/images/officer-pictures/bradley.png",
-    },
-    {
-        name: "David Zhang",
-        position: "Outreach",
-        major: "Computer Science '27",
-        desc: "David is an outreach officer and joined in the spring of 2025.",
-        pfp: "/images/officer-pictures/david2.png",
-    },
-    {
-        name: "Pratha Gupta",
-        position: "Marketing",
-        major: "Computer Science '27",
-        desc: "Pratha is a marketing officer and joined in the spring of 2025.",
-        pfp: "/images/officer-pictures/pratha.png",
     },
     {
         name: "Harshit Saini",
@@ -169,7 +134,7 @@ const officers = [
     },
     {
         name: "Sid Reddy",
-        position: "Acivities",
+        position: "Activities",
         major: "Computer Engineering '28",
         desc: "",
         pfp:"/images/officer-pictures/sid.png",
@@ -177,9 +142,23 @@ const officers = [
     {
         name: "Shruthika",
         position:" Marketing",
-        major: "Computer Science '28",
+        major: "Statistics '28",
         desc:"",
         pfp:"/images/officer-pictures/shruthika.png",
+    },
+    {
+        name: "Nicholas Botello",
+        position: "Workshops",
+        major: "Computer Science '29",
+        desc: "",
+        pfp: "/images/officer-pictures/nico.jpg",
+    },
+    {
+        name: "Vyom Dwivedi",
+        position: "Workshops",
+        major: "Statistics '29",
+        desc: "",
+        pfp: "/images/officer-pictures/vyom.jpeg",
     }
 ];
 
