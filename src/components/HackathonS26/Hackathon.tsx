@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Navbar from "../HackathonS26/Navbar";
 import Hero from "../HackathonS26/Hero";
 import About from "../HackathonS26/About";
+import Schedule from "../HackathonS26/Schedule";
 import Footer from "../Footer";
 import "./tidal-effects.css";
 import { Link } from "react-router-dom";
@@ -62,6 +63,9 @@ const HackathonS26 = () => {
 
             {/* About Section - Snowy path with animated skier */}
             <About />
+
+            {/* Schedule Section - Ice rink schedule */}
+            <Schedule />
 
             {/* Footer - visible immediately, only text animates on scroll */}
             <div
