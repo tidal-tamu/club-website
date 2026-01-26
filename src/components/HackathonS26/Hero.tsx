@@ -82,7 +82,8 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
               className="h-[8rem]"
               style={{
                 background:
-                  "linear-gradient(to bottom, #76a4c5, #6fa7cf)",
+                //transitions between hero and about cleanly
+                  "linear-gradient(to bottom, #77A5C6, #77A5C6)",
               }}
             />
           </div>

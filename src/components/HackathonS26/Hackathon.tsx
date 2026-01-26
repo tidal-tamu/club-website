@@ -27,7 +27,7 @@ const HackathonS26 = () => {
             <div
                 className="hero-gradient relative overflow-x-clip overflow-y-visible"
                 style={{
-                    backgroundColor: "#6fa7cf",
+                    backgroundColor: "#77A5C6",
                 }}
             >
                 {/* Navbar - visible immediately, only text animates */}
