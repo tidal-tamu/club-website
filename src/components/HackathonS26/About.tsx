@@ -66,7 +66,7 @@ const About = () => {
       <div 
         className="absolute inset-0 w-full h-full pointer-events-none"
         style={{
-          backgroundImage: "url('/s26/Untitled_Artwork 54 1.png')",
+          backgroundImage: "url('/s26/SkiSlope.png')",
           backgroundSize: "100% 100%",
           backgroundPosition: "top",
           backgroundRepeat: "no-repeat"
