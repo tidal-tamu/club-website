@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-scroll";
 import { motion } from "framer-motion";
 import {
     FaGithub,
     FaLinkedin,
     FaInstagram,
-    FaExternalLinkAlt,
+    FaDiscord,
 } from "react-icons/fa";
 
 const navLinks: {
@@ -105,38 +104,6 @@ export default function Navbar({ dark = false, onMenuToggle, shouldAnimate = fal
                     />
                 </motion.a>
 
-                <motion.div
-                    className="hidden md:flex items-center space-x-8"
-                    initial={{ opacity: 0 }}
-                    animate={shouldAnimate ? { opacity: 1 } : { opacity: 0 }}
-                    transition={{
-                        duration: 1.8,
-                        ease: [0.34, 1.56, 0.64, 1],
-                        delay: 0.1,
-                    }}
-                >
-                    {navLinks
-                        .filter((link) => !link.isExternal && !link.disabled) // Hide external links (Home) and disabled links on desktop
-                        .map((link) => (
-                            <Link
-                                key={link.title}
-                                to={link.path}
-                                smooth={true}
-                                duration={500}
-                                className="text-white/90 hover:text-white transition-all duration-300 font-medium relative group"
-                            >
-                                {link.title}
-                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300"></span>
-                            </Link>
-                        ))}
-                    <a
-                        href="/register"
-                        className="bg-[#AB3243] hover:bg-[#8F2838] text-white px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-medium hidden"
-                    >
-                        Apply
-                    </a>
-                </motion.div>
-
                 <button
                     className={`md:hidden inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg focus:outline-none focus:ring-2 z-50 relative ${
                         dark
@@ -213,11 +180,9 @@ export default function Navbar({ dark = false, onMenuToggle, shouldAnimate = fal
                                         {link.title}
                                     </a>
                                 ) : (
-                                    <Link
+                                    <a
                                         key={link.title}
-                                        to={link.path}
-                                        smooth={true}
-                                        duration={500}
+                                        href={`#${link.path}`}
                                         onClick={() => setIsOpen(false)}
                                         className={`text-2xl transition-all duration-300 font-medium text-center ${
                                             dark
@@ -226,18 +191,9 @@ export default function Navbar({ dark = false, onMenuToggle, shouldAnimate = fal
                                         }`}
                                     >
                                         {link.title}
-                                    </Link>
+                                    </a>
                                 )
                             )}
-                        {/* Apply button mobile - Commented out per user request
-                        <a
-                            href="/register"
-                            target="_blank"
-                            className="bg-[#AB3243] hover:bg-[#8F2838] text-white px-14 py-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold text-xl mt-8"
-                        >
-                            Apply
-                        </a>
-                        */}
                     </div>
 
                     {/* Contact Links - Bottom Section */}
@@ -303,7 +259,7 @@ export default function Navbar({ dark = false, onMenuToggle, shouldAnimate = fal
                                         : "bg-gray-200 hover:bg-[#336699]"
                                 } rounded-xl flex items-center justify-center transition-all duration-300 group`}
                             >
-                                <FaExternalLinkAlt
+                                <FaDiscord
                                     className={`w-5 h-5 ${
                                         dark
                                             ? "text-gray-400 group-hover:text-white"
