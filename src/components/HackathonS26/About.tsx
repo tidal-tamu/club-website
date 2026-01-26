@@ -57,7 +57,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="relative w-full overflow-hidden"
+      className="relative z-50 w-full overflow-visible"
       style={{
         background: "linear-gradient(to bottom, #77a5c6, #79b0cf)",
       }}
@@ -75,9 +75,9 @@ const About = () => {
       />
 
       {/* Content Container */}
-      <div className="relative z-10 w-full min-h-screen px-6 md:px-12 lg:px-20 py-8 md:py-12">
+      <div className="relative z-50 w-full min-h-screen px-6 md:px-12 lg:px-20 pt-[0px] md:pt-[0px] lg:pt-[0px] pb-8 md:pb-12">
         {/* About Title Section */}
-        <div className="max-w-4xl">
+        <div className="max-w-4xl relative z-50 -translate-y-[180px]">
           <h2
             className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-bold leading-tight"
             style={{
@@ -112,9 +112,9 @@ const About = () => {
           </div>
         </div>
 
-        {/* Pebble Ski Character */}
-        <div className="flex justify-start md:justify-center mt-8 md:mt-12 lg:mt-16">
-          <div className="w-[200px] md:w-[280px] lg:w-[350px] xl:w-[400px] transform rotate-[10deg]">
+        {/* Pebble Ski Character - large, bottom-left */}
+        <div className="absolute left-4 md:left-8 lg:left-10 bottom-8 md:bottom-12 lg:bottom-16 z-30">
+          <div className="w-[320px] md:w-[420px] lg:w-[520px] xl:w-[620px] transform rotate-[8deg]">
             <img
               src="/s26/Pebble Ski.png"
               alt="Pebble Skiing"
@@ -203,7 +203,7 @@ const About = () => {
         </div>
 
         {/* Bottom spacing */}
-        <div className="h-24 md:h-32 lg:h-40" />
+        <div className="h-80 md:h-96 lg:h-[32rem]" />
       </div>
     </section>
   );

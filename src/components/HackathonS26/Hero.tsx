@@ -41,7 +41,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
 
         {/* Trees layer */}
 
-        <div className="absolute w-screen inset-0 z-10">
+        <div className="absolute w-screen inset-0 z-0">
           <img
             src="/s26/Hero/LargeBrownTreeAlt.png"
             alt="Large Brown Tree Alt"
@@ -71,7 +71,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
         <FloatingParticles count={64} />
 
         {/* LowSnow layer */}
-        <div className="absolute inset-0 z-10">
+        <div className="absolute inset-0 z-0">
           <div className="absolute bottom-0 overflow-hidden w-screen">
             <img
               src="/s26/Hero/LowSnowPreShadowed.png"
@@ -89,7 +89,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
           </div>
         </div>
 
-        <div className="absolute left-0 z-10 bottom-[5rem] lg:bottom-[8rem]">
+        <div className="absolute left-0 z-0 bottom-[5rem] lg:bottom-[8rem]">
           <img
             src="/s26/pebble.gif"
             alt="Penguin mascot"

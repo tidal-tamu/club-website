@@ -25,7 +25,7 @@ const HackathonS26 = () => {
         <div className="hackathon-s26-container min-h-screen">
             {/* Background stays visible - no animation */}
             <div
-                className="hero-gradient relative overflow-x-clip overflow-y-visible"
+                className="hero-gradient relative overflow-x-clip overflow-y-hidden"
                 style={{
                     backgroundColor: "#77A5C6",
                 }}
@@ -55,9 +55,14 @@ const HackathonS26 = () => {
                 </Link>
 
                 {/* Hero - background visible, only text animates */}
-                <div className="relative z-20">
+                <div className="relative z-0">
                     <Hero shouldAnimate={shouldAnimate} />
                 </div>
+            </div>
+
+            {/* Blue buffer between hero and about */}
+            <div className="relative w-full h-28 md:h-48 lg:h-64" aria-hidden="true">
+                <div className="absolute inset-0 -z-10" style={{ backgroundColor: "#77A5C6" }} />
             </div>
 
             {/* About Section - Snowy path with animated skier */}
