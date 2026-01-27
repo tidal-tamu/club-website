@@ -11,7 +11,7 @@ const day1Schedule = [
 const day1ScheduleLater = [
     { time: "2:00 PM", event: "Company Workshop 1" },
     { time: "4:00 PM", event: "Company Workshop 2" },
-    { time: "6:00 PM", event: "Dinner: Mai Shun Yun" },
+    { time: "6:00 PM", event: "Dinner: Mai Shan Yun" },
     { time: "10:00 PM", event: "Late Night Snack: Boba" },
 ];
 
