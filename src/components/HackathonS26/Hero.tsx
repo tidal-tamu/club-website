@@ -1,16 +1,120 @@
+'use client';
+
+import { useRef } from "react";
 import FloatingParticles from "./ui/FloatingParticles";
 import { Link } from "react-router-dom";
 import { FaPlay } from "react-icons/fa";
 import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface HeroProps {
   shouldAnimate?: boolean;
 }
 
 const Hero = ({ shouldAnimate = false }: HeroProps) => {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const pebbleRef = useRef<HTMLImageElement>(null);
+  const rustleRef = useRef<HTMLSpanElement>(null);
+
+  useGSAP(() => {
+    if (!heroRef.current || !pebbleRef.current) {
+      return;
+    }
+
+    const heroEl = heroRef.current;
+    const pebbleEl = pebbleRef.current;
+    const rustleEl = rustleRef.current;
+
+    const createScrollTriggerTimeline = () => {
+      // Calculate when to trigger based on 50% of hero height
+      // Start when we've scrolled 50% of the hero's height
+      // "50% bottom" means when bottom of trigger is at 50% from top of viewport
+      // This effectively triggers when we've scrolled past 50% of hero
+      const hideTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: heroEl,
+          start: "50% top", // Trigger when scrolled past 50% of hero height
+          end: "bottom top", // End when hero bottom reaches viewport top
+          // Discrete (non-scrubbed) behavior: play when entering, reverse when scrolling back above.
+          scrub: false,
+          toggleActions: "play none none reverse",
+          invalidateOnRefresh: true, // Recompute function-based tween values when refreshed (e.g., after image load)
+        },
+      });
+
+      hideTimeline.to(pebbleEl, {
+        // Discrete hide: move it down out of the overflow-hidden container.
+        yPercent: 120,
+        duration: 1.2,
+        ease: "power2.inOut",
+      });
+
+      return hideTimeline;
+    };
+
+    // If the GIF isn't loaded yet, wait; otherwise set up immediately.
+    // (This avoids initial 0px height causing the scroll animation to look broken.)
+    let hideTimeline: gsap.core.Timeline | null = null;
+    const startNow = pebbleEl.complete && pebbleEl.naturalWidth > 0 && pebbleEl.offsetHeight > 0;
+
+    const startAfterRustle = () => {
+      gsap.to(pebbleEl, {
+        yPercent: 0,
+        duration: 1.2,
+        ease: "power2.inOut",
+        onComplete: () => {
+          hideTimeline = createScrollTriggerTimeline();
+          ScrollTrigger.refresh();
+        },
+      });
+    };
+
+    const waitForRustleEndThenStart = () => {
+      // Hide immediately (via overflow-hidden containers) while waiting for rustle to end.
+      gsap.set(pebbleEl, { yPercent: 120 });
+
+      if (!rustleEl) {
+        // No rustle element -> just start immediately.
+        startAfterRustle();
+        return () => {};
+      }
+      const onRustleEnd = (e: AnimationEvent) => {
+        if (e.animationName !== "rustle") return;
+        startAfterRustle();
+      };
+      rustleEl.addEventListener("animationend", onRustleEnd as EventListener);
+      return () => rustleEl.removeEventListener("animationend", onRustleEnd as EventListener);
+    };
+
+    if (startNow) {
+      const cleanupRustle = waitForRustleEndThenStart();
+      return () => {
+        cleanupRustle();
+        hideTimeline?.kill();
+      };
+    } else {
+      const onLoad = () => {
+        waitForRustleEndThenStart();
+      };
+      pebbleEl.addEventListener("load", onLoad, { once: true });
+      return () => {
+        pebbleEl.removeEventListener("load", onLoad);
+        hideTimeline?.kill();
+      };
+    }
+
+    return () => {
+      hideTimeline?.kill();
+    };
+  }, { scope: heroRef });
+
   return (
     <>
-      <div className="relative min-h-screen flex items-center justify-center px-6 md:px-12 select-none">
+      <div ref={heroRef} className="relative min-h-screen flex items-center justify-center px-6 md:px-12 select-none">
         {/* Background layer - hills and bushes */}
         <div className="absolute inset-0 z-0">
           <img
@@ -92,9 +196,10 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
         <div className="absolute left-0 z-10 bottom-[5rem] lg:bottom-[8rem] overflow-hidden">
           <div className="overflow-hidden">
             <img
+              ref={pebbleRef}
               src="/s26/pebble.gif"
               alt="Penguin mascot"
-              className="w-[400px] md:w-[500px] lg:w-[650px] xl:w-[800px] flex-shrink-0 bottom-0 slide-up-3"
+              className="w-[400px] md:w-[500px] lg:w-[650px] xl:w-[800px] flex-shrink-0 bottom-0"
             />
           </div>
           <img
@@ -102,7 +207,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
             alt="Penguin Cover"
             className="absolute bottom-0 scale-[1.1] w-[200px] md:w-[250px] lg:w-[325px] xl:w-[400px] flex-shrink-0 slide-up-2"
           />
-          <span className="absolute left-0 bottom-[5rem] lg:bottom-[8rem] left-[100px] md:left-[125px] lg:left-[163px] xl:left-[200px] translate-y-full text-4xl animate-rustle">rustle</span>
+          <span ref={rustleRef} className="absolute left-0 bottom-[5rem] lg:bottom-[8rem] left-[100px] md:left-[125px] lg:left-[163px] xl:left-[200px] translate-y-full text-4xl animate-rustle">rustle</span>
         </div>
 
         <div className="text-center z-20 max-w-4xl mx-auto -translate-y-[5vh] space-y-0 flex flex-col gap-5">
@@ -186,7 +291,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
           >
             <Link
               to="/register"
-              className="bg-[#AB3243] hover:bg-[#8F2838] text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 md:gap-2.5 hover:scale-110 hover:shadow-lg border-[2.5px] border-[#AB3243] hover:border-[#8F2838] min-w-[140px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px]"
+              className="bg-[#AB3243] hover:bg-[#8F2838] text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 md:gap-2.5 hover:scale-110 active:scale-95 hover:shadow-lg border-b-4 md:border-b-6 lg:border-b-8 border-b-[#6B1A26] min-w-[140px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px]"
               style={{
                 filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3))",
               }}
@@ -198,7 +303,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
               href="https://forms.gle/oBEQk9y9xadLhYnE9"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#9FC9E6] hover:bg-[#8AB8D5] text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 md:gap-2.5 hover:scale-110 hover:shadow-lg border-[2.5px] border-[#9FC9E6] hover:border-[#8AB8D5] min-w-[140px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px]"
+              className="bg-[#9FC9E6] hover:bg-[#8AB8D5] text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 md:gap-2.5 hover:scale-110 active:scale-95 hover:shadow-lg border-b-4 md:border-b-6 lg:border-b-8 border-b-[#5A7FA0] min-w-[140px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px]"
               style={{
                 filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4))",
               }}
