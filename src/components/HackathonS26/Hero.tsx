@@ -4,7 +4,7 @@ import { FaPlay } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 interface HeroProps {
-    shouldAnimate?: boolean;
+  shouldAnimate?: boolean;
 }
 
 const Hero = ({ shouldAnimate = false }: HeroProps) => {
@@ -16,17 +16,17 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
           <img
             src="/s26/Hero/BackBushes.png"
             alt="Back Bushes"
-            className="absolute bottom-[30vh] left-0 w-screen"
+            className="absolute bottom-[30vh] left-0 w-screen slide-up-0"
           />
           <img
             src="/s26/Hero/TopHill.png"
             alt="Top Hill"
-            className="absolute bottom-0 left-0 w-screen h-[55%]"
+            className="absolute bottom-0 left-0 w-screen h-[55%] slide-up-0"
           />
           <img
             src="/s26/Hero/LowHill.png"
             alt="Low Hill"
-            className="absolute bottom-8 left-5 sm:bottom-10 sm:left-0 w-screen h-[33%]"
+            className="absolute bottom-8 left-5 sm:bottom-10 sm:left-0 w-screen h-[33%] slide-up-1"
           />
         </div>
 
@@ -35,24 +35,24 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
           <img
             src="/s26/Hero/HouseGlowing.png"
             alt="House Glowing"
-            className="absolute bottom-[48vh] right-[-10vh] sm:right-[3vh] md:right-[6vh] lg:right-[10vh] xl:right-[14vh] 2xl:right-[18vh] w-[40vh] object-contain"
+            className="absolute bottom-[48vh] right-[-10vh] sm:right-[3vh] md:right-[6vh] lg:right-[10vh] xl:right-[14vh] 2xl:right-[18vh] w-[40vh] object-contain slide-up-0"
           />
         </div>
 
         {/* Trees layer */}
 
-        <div className="absolute w-screen inset-0 z-0">
+        <div className="absolute w-screen inset-0 z-5">
           <img
             src="/s26/Hero/LargeBrownTreeAlt.png"
             alt="Large Brown Tree Alt"
-            className="absolute md:right-0 bottom-[18vh] -translate-x-32 md:translate-x-16 lg:translate-x-20 xl:translate-x-24 2xl:translate-x-28 h-full min-w-[700px]"
+            className="absolute md:right-0 bottom-[18vh] -translate-x-32 md:translate-x-16 lg:translate-x-20 xl:translate-x-24 2xl:translate-x-28 h-full min-w-[700px] slide-up-1"
           />
         </div>
-        <div className="absolute inset-0 z-5">
+        <div className="absolute inset-0 z-0">
           <img
             src="/s26/Hero/TreesPreShadowed.png"
             alt="Trees Pre Shadowed"
-            className="absolute left-0 bottom-[46vh] sm:bottom-[45vh] md:bottom-[44vh] lg:bottom-[43vh] xl:bottom-[41vh] 2xl:bottom-[40vh] w-full sm:w-[80%]"
+            className="absolute left-0 bottom-[46vh] sm:bottom-[45vh] md:bottom-[44vh] lg:bottom-[43vh] xl:bottom-[41vh] 2xl:bottom-[40vh] w-full sm:w-[80%] slide-up-0"
           />
         </div>
 
@@ -76,30 +76,33 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
             <img
               src="/s26/Hero/LowSnowPreShadowed.png"
               alt="Low Snow Pre Shadowed"
-              className="left-0 scale-[3] sm:scale-[2] lg:scale-[1]"
+              className="left-0 scale-[3] sm:scale-[2] lg:scale-[1] slide-up-2"
             />
             <div
               className="h-[8rem]"
               style={{
                 background:
-                //transitions between hero and about cleanly
+                  //transitions between hero and about cleanly
                   "linear-gradient(to bottom, #77A5C6, #77A5C6)",
               }}
             />
           </div>
         </div>
 
-        <div className="absolute left-0 z-0 bottom-[5rem] lg:bottom-[8rem]">
-          <img
-            src="/s26/pebble.gif"
-            alt="Penguin mascot"
-            className="w-[400px] md:w-[500px] lg:w-[650px] xl:w-[800px] flex-shrink-0 animate-float-subtle bottom-0"
-          />
+        <div className="absolute left-0 z-10 bottom-[5rem] lg:bottom-[8rem] overflow-hidden">
+          <div className="overflow-hidden">
+            <img
+              src="/s26/pebble.gif"
+              alt="Penguin mascot"
+              className="w-[400px] md:w-[500px] lg:w-[650px] xl:w-[800px] flex-shrink-0 bottom-0 slide-up-3"
+            />
+          </div>
           <img
             src="/s26/PenguinCover.png"
             alt="Penguin Cover"
-            className="absolute bottom-0 w-[200px] md:w-[250px] lg:w-[325px] xl:w-[400px] flex-shrink-0"
+            className="absolute bottom-0 scale-[1.1] w-[200px] md:w-[250px] lg:w-[325px] xl:w-[400px] flex-shrink-0 slide-up-2"
           />
+          <span className="absolute left-0 bottom-[5rem] lg:bottom-[8rem] left-[100px] md:left-[125px] lg:left-[163px] xl:left-[200px] translate-y-full text-4xl animate-rustle">rustle</span>
         </div>
 
         <div className="text-center z-20 max-w-4xl mx-auto -translate-y-[5vh] space-y-0 flex flex-col gap-5">

@@ -66,3 +66,75 @@
 .snowman-container:hover {
     animation: shake 0.3s ease-in-out;
 }
+
+@keyframes slide-up {
+    from {
+        translate: 0 100%;
+        opacity: 0;
+    }
+    to {
+        translate: 0 0;
+        opacity: 1;
+    }
+}
+
+@keyframes wash-mah-belly {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes rustle {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%) rotate(-12deg);
+    }
+    1% {
+        opacity: 1;
+        transform: translateX(-100%) rotate(-12deg);
+    }
+    40% {
+        opacity: 0;
+        transform: translateX(-100%) rotate(-12deg);
+    }
+    50% {
+        opacity: 0;
+        transform: translateX(0) rotate(12deg);
+    }
+    51% {
+        opacity: 1;
+        transform: translateX(0) rotate(12deg);
+    }
+    90% {
+        opacity: 0;
+        transform: translateX(0) rotate(12deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(0) rotate(12deg);
+    }
+}
+
+
+.slide-up-0 {
+    animation: slide-up 2s ease 0.3s both;
+}
+
+.slide-up-1 {
+    animation: slide-up 2s ease 0.9s both;
+}
+
+.slide-up-2 {
+    animation: slide-up 2s ease 1.5s both;
+}
+
+.animate-rustle {
+    animation: rustle 0.8s linear 3s both;
+}
+
+.slide-up-3 {
+    animation: wash-mah-belly 1s ease 4s both;
+}
