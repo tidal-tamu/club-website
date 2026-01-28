@@ -33,6 +33,12 @@ export default function App() {
                             <RedirectExternal url="https://tx.ag/tidaldiscord" />
                         }
                     />
+                    <Route
+                        path="/hacker-guide"
+                        element={
+                            <RedirectExternal url="/hacker-guide.pdf" />
+                        }
+                    />
                 </Routes>
             </Router>
         </React.StrictMode>
