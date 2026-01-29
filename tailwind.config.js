@@ -17,6 +17,8 @@ export default {
             fontFamily: {
                 mont: ["Montserrat", "sans-serif"],
                 chelsea: ["Chelsea Market", "sans-serif"],
+                header: ["Bebas Neue", "sans-serif"],
+                caudex: ["Caudex", "serif"],
             },
             fontWeight: {
                 light: 300,

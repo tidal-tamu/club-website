@@ -58,7 +58,6 @@
     animation: shake 0.3s ease-in-out;
 }
 
-/* Snowman hover shake - combines float with shake on hover */
 .snowman-container {
     animation: float-around 6s ease-in-out infinite;
 }

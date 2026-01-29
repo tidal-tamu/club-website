@@ -7,12 +7,14 @@ import {
     FaDiscord,
 } from "react-icons/fa";
 
-const navLinks: {
+type NavLink = {
     title: string;
     path: string;
     isExternal?: boolean;
     disabled?: boolean;
-}[] = [{ title: "Home", path: "/hackathon", isExternal: true }];
+};
+
+const navLinks: NavLink[] = [{ title: "Home", path: "/hackathon", isExternal: true }];
 
 interface NavbarProps {
     dark?: boolean;
@@ -28,14 +30,12 @@ export default function Navbar({ dark = false, onMenuToggle, shouldAnimate = fal
 
     useEffect(() => {
         if (isOpen) {
-            // Prevent scrolling on both body and html elements
             document.body.style.overflow = "hidden";
             document.documentElement.style.overflow = "hidden";
             document.body.style.position = "fixed";
             document.body.style.top = `-${window.scrollY}px`;
             document.body.style.width = "100%";
         } else {
-            // Restore scrolling
             const scrollY = document.body.style.top;
             document.body.style.overflow = "";
             document.documentElement.style.overflow = "";
@@ -53,7 +53,6 @@ export default function Navbar({ dark = false, onMenuToggle, shouldAnimate = fal
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
 
-            // Update backdrop state
             setIsScrolled(currentScrollY > 50);
 
             if (currentScrollY < 10) {
@@ -101,6 +100,9 @@ export default function Navbar({ dark = false, onMenuToggle, shouldAnimate = fal
                         }
                         alt="TIDAL Logo"
                         className="h-6 w-auto !cursor-pointer"
+                        width={120}
+                        height={24}
+                        decoding="async"
                     />
                 </motion.a>
 
@@ -146,7 +148,6 @@ export default function Navbar({ dark = false, onMenuToggle, shouldAnimate = fal
                 </button>
             </div>
 
-            {/* Mobile Menu */}
             <motion.div
                 className={`md:hidden fixed inset-0 top-0 left-0 w-full h-screen backdrop-blur-xl ${
                     dark ? "bg-black/20 text-white" : "bg-white/20 text-black"
@@ -162,7 +163,6 @@ export default function Navbar({ dark = false, onMenuToggle, shouldAnimate = fal
                 }}
             >
                 <div className="flex flex-col h-full px-6 py-12">
-                    {/* Navigation Links - Center Section */}
                     <div className="flex-1 flex flex-col items-center justify-center space-y-12">
                         {navLinks
                             .filter((link) => !link.disabled)
@@ -196,7 +196,6 @@ export default function Navbar({ dark = false, onMenuToggle, shouldAnimate = fal
                             )}
                     </div>
 
-                    {/* Contact Links - Bottom Section */}
                     <div className="flex flex-col items-center pb-16">
                         <div className="flex space-x-5">
                             <a

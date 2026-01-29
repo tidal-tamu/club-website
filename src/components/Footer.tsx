@@ -18,7 +18,11 @@ export default function Footer({ variant = "home" }: FooterProps) {
 
     if (isFall25 || isSpring26) {
         return (
-            <footer className="text-white bg-transparent px-6 lg:px-12 py-16 relative z-10">
+            <footer
+                className={`text-white px-6 lg:px-12 py-16 relative z-10 ${
+                    isSpring26 ? "bg-[#79b0cf]" : "bg-transparent"
+                }`}
+            >
                 <div className="max-w-7xl mx-auto">
                     <div className="grid md:grid-cols-4 gap-8 mb-12">
                         <div>
@@ -38,7 +42,7 @@ export default function Footer({ variant = "home" }: FooterProps) {
                         </div>
 
                         <div>
-                            <h4 className="text-sm md:text-base lg:text-lg font-bold mb-6">Sponsor Us</h4>
+                            <h4 className="text-sm md:text-base lg:text-lg font-bold mb-6">Contact Us</h4>
                             <a
                                 href="mailto:tidaltamu@gmail.com"
                                 className="text-white-400 text-xs md:text-sm hover:text-white transition-colors"

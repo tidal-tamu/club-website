@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
-import Navbar from "../HackathonS26/Navbar";
-import Hero from "../HackathonS26/Hero";
-import About from "../HackathonS26/About";
-import Schedule from "../HackathonS26/Schedule";
+import Navbar from "./Navbar";
+import Hero from "./Hero";
+import About from "./About";
+import Schedule from "./Schedule";
+import Prizes from "./Prizes";
+import Sponsors from "./Sponsors";
+import FAQs from "./FAQs/FAQs";
 import Footer from "../Footer";
 import "./tidal-effects.css";
 import { Link } from "react-router-dom";
@@ -12,8 +15,6 @@ const HackathonS26 = () => {
     const [shouldAnimate, setShouldAnimate] = useState(false);
 
     useEffect(() => {
-        // Snow animation starts immediately when component mounts
-        // Text animations start after a short delay
         const timer = setTimeout(() => {
             setShouldAnimate(true);
         }, 100);
@@ -21,22 +22,18 @@ const HackathonS26 = () => {
         return () => clearTimeout(timer);
     }, []);
 
-
     return (
-        <div className="hackathon-s26-container min-h-screen">
-            {/* Background stays visible - no animation */}
+        <div className="hackathon-s26-container min-h-screen overflow-x-hidden w-full">
             <div
                 className="hero-gradient relative overflow-x-clip overflow-y-hidden"
                 style={{
                     backgroundColor: "#77A5C6",
                 }}
             >
-                {/* Navbar - visible immediately, only text animates */}
                 <div className="relative z-30">
                     <Navbar dark onMenuToggle={setIsMobileMenuOpen} shouldAnimate={shouldAnimate} />
                 </div>
 
-                {/* Snowman graphic - visible immediately */}
                 <Link
                     to="/register"
                     className={`hidden sm:flex absolute right-4 sm:right-8 z-30 !cursor-pointer transition-all duration-200 ${
@@ -51,28 +48,32 @@ const HackathonS26 = () => {
                             src="/s26/snowman.png"
                             alt="Snowman"
                             className="w-20 h-20 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 xl:w-44 xl:h-44 object-contain opacity-90 hover:opacity-100 transition-opacity duration-200 block cursor-pointer"
+                            width={176}
+                            height={176}
+                            decoding="async"
                         />
                     </div>
                 </Link>
 
-                {/* Hero - background visible, only text animates */}
                 <div className="relative z-0">
                     <Hero shouldAnimate={shouldAnimate} />
                 </div>
             </div>
 
-            {/* Blue buffer between hero and about */}
             <div className="relative w-full h-28 md:h-48 lg:h-64" aria-hidden="true">
                 <div className="absolute inset-0 -z-10" style={{ backgroundColor: "#77A5C6" }} />
             </div>
 
-            {/* About Section - Snowy path with animated skier */}
             <About />
 
-            {/* Schedule Section - Ice rink schedule */}
             <Schedule />
 
-            {/* Footer - visible immediately, only text animates on scroll */}
+            <Prizes />
+
+            <Sponsors />
+
+            <FAQs />
+
             <div
                 className="relative z-20"
                 style={{ backgroundColor: "#6fa7cf" }}
