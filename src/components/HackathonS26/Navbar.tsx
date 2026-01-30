@@ -14,7 +14,13 @@ type NavLink = {
     disabled?: boolean;
 };
 
-const navLinks: NavLink[] = [{ title: "Home", path: "/hackathon", isExternal: true }];
+const navLinks: NavLink[] = [
+    { title: "Home", path: "/hackathon", isExternal: true },
+    { title: "About", path: "about", isExternal: false },
+    { title: "Schedule", path: "schedule", isExternal: false },
+    { title: "Prizes", path: "prizes", isExternal: false },
+    { title: "Sponsors", path: "sponsors", isExternal: false },
+];
 
 interface NavbarProps {
     dark?: boolean;
@@ -24,9 +30,18 @@ interface NavbarProps {
 
 export default function Navbar({ dark = false, onMenuToggle, shouldAnimate = false }: NavbarProps) {
     const [isOpen, setIsOpen] = useState(false);
-    const [isVisible, setIsVisible] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
     const [isScrolled, setIsScrolled] = useState(false);
+
+    const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+        if (!path.startsWith("/") && !path.startsWith("http")) {
+            e.preventDefault();
+            const element = document.getElementById(path);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "start" });
+                setIsOpen(false);
+            }
+        }
+    };
 
     useEffect(() => {
         if (isOpen) {
@@ -52,34 +67,20 @@ export default function Navbar({ dark = false, onMenuToggle, shouldAnimate = fal
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
-
             setIsScrolled(currentScrollY > 50);
-
-            if (currentScrollY < 10) {
-                setIsVisible(true);
-            } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                setIsVisible(false);
-            } else if (currentScrollY < lastScrollY) {
-                setIsVisible(true);
-            }
-
-            setLastScrollY(currentScrollY);
         };
 
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [lastScrollY]);
+    }, []);
 
     return (
         <motion.nav
-            className={`fixed top-0 w-full font-mont font-semibold z-50 transition-all duration-300 ${
+            className={`fixed top-0 w-full font-mont font-semibold z-[9999] transition-all duration-300 ${
                 isScrolled
                     ? "bg-[#6fa7cf]/30 border-b border-white/20 backdrop-blur-lg shadow-lg"
                     : "bg-transparent/0 border-b border-transparent"
             } ${dark ? "text-white" : "text-black"}`}
-            initial={{ y: -100 }}
-            animate={{ y: isVisible ? 0 : -100 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
         >
             <div className="container mx-auto px-6 lg:px-12 py-10 flex items-center justify-between">
                 <motion.a
@@ -105,6 +106,40 @@ export default function Navbar({ dark = false, onMenuToggle, shouldAnimate = fal
                         decoding="async"
                     />
                 </motion.a>
+
+                {/* Desktop Navigation */}
+                <div className="hidden md:flex items-center space-x-8">
+                    {navLinks
+                        .filter((link) => !link.disabled)
+                        .map((link) =>
+                            link.isExternal ? (
+                                <a
+                                    key={link.title}
+                                    href={link.path}
+                                    className={`text-sm lg:text-base transition-all duration-300 font-medium ${
+                                        dark
+                                            ? "text-gray-200 hover:text-white"
+                                            : "text-gray-700 hover:text-[#336699]"
+                                    }`}
+                                >
+                                    {link.title}
+                                </a>
+                            ) : (
+                                <a
+                                    key={link.title}
+                                    href={`#${link.path}`}
+                                    onClick={(e) => handleAnchorClick(e, link.path)}
+                                    className={`text-sm lg:text-base transition-all duration-300 font-medium ${
+                                        dark
+                                            ? "text-gray-200 hover:text-white"
+                                            : "text-gray-700 hover:text-[#336699]"
+                                    }`}
+                                >
+                                    {link.title}
+                                </a>
+                            )
+                        )}
+                </div>
 
                 <button
                     className={`md:hidden inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg focus:outline-none focus:ring-2 z-50 relative ${
@@ -149,9 +184,9 @@ export default function Navbar({ dark = false, onMenuToggle, shouldAnimate = fal
             </div>
 
             <motion.div
-                className={`md:hidden fixed inset-0 top-0 left-0 w-full h-screen backdrop-blur-xl ${
+                className={`md:hidden fixed inset-0 top-0 left-0 w-full h-screen backdrop-blur-xl z-[9998] ${
                     dark ? "bg-black/20 text-white" : "bg-white/20 text-black"
-                } z-40`}
+                }`}
                 initial={{ x: "100%", opacity: 0 }}
                 animate={{
                     x: isOpen ? "0%" : "100%",
@@ -183,7 +218,10 @@ export default function Navbar({ dark = false, onMenuToggle, shouldAnimate = fal
                                     <a
                                         key={link.title}
                                         href={`#${link.path}`}
-                                        onClick={() => setIsOpen(false)}
+                                        onClick={(e) => {
+                                            handleAnchorClick(e, link.path);
+                                            setIsOpen(false);
+                                        }}
                                         className={`text-2xl transition-all duration-300 font-medium text-center ${
                                             dark
                                                 ? "text-gray-300 hover:text-white"

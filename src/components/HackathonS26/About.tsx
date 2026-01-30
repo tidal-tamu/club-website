@@ -56,7 +56,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="relative z-50 w-full overflow-visible"
+      className="relative z-10 w-full overflow-visible"
       style={{
         background: "linear-gradient(to bottom, #77a5c6, #79b0cf)",
       }}
@@ -72,8 +72,8 @@ const About = () => {
         aria-label="Snowy Path"
       />
 
-      <div className="relative z-50 w-full min-h-screen px-6 md:px-12 lg:px-20 pb-8 md:pb-12">
-        <div className="max-w-4xl relative z-50 -translate-y-[180px]">
+      <div className="relative z-10 w-full min-h-screen px-6 md:px-12 lg:px-20 pb-8 md:pb-12">
+        <div className="max-w-4xl relative z-10 -translate-y-[180px]">
           <h2
             className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-bold leading-tight"
             style={{
@@ -106,7 +106,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="absolute left-4 md:left-8 lg:left-10 bottom-8 md:bottom-12 lg:bottom-16 z-30">
+        <div className="absolute left-4 md:left-8 lg:left-10 bottom-8 md:bottom-12 lg:bottom-16 z-10">
           <div className="w-[320px] md:w-[420px] lg:w-[520px] xl:w-[620px] transform rotate-[8deg]">
             <img
               src="/s26/Pebble Ski.png"
