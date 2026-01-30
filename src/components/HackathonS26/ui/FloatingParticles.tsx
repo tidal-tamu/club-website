@@ -16,6 +16,7 @@ const FloatingParticles = ({ count = 8 }: { count?: number }) => {
     const [particles, setParticles] = useState<Particle[]>([]);
     const [isDesktop, setIsDesktop] = useState(false);
     const animationRef = useRef<number>();
+    const mouseRef = useRef({ x: 50, y: 50, active: false });
 
     useEffect(() => {
         const checkDesktop = () => {
@@ -29,9 +30,38 @@ const FloatingParticles = ({ count = 8 }: { count?: number }) => {
     }, []);
 
     useEffect(() => {
+        const handleMove = (event: MouseEvent) => {
+            mouseRef.current = {
+                x: (event.clientX / window.innerWidth) * 100,
+                y: (event.clientY / window.innerHeight) * 100,
+                active: true,
+            };
+        };
+
+        const handleLeave = () => {
+            mouseRef.current = {
+                ...mouseRef.current,
+                active: false,
+            };
+        };
+
+        window.addEventListener("mousemove", handleMove);
+        window.addEventListener("mouseleave", handleLeave);
+        window.addEventListener("blur", handleLeave);
+
+        return () => {
+            window.removeEventListener("mousemove", handleMove);
+            window.removeEventListener("mouseleave", handleLeave);
+            window.removeEventListener("blur", handleLeave);
+        };
+    }, []);
+
+    useEffect(() => {
         const sizeMultiplier = isDesktop ? 2 : 1;
         const baseSize = 2;
         const sizeRange = 2;
+        const mouseRadius = 12;
+        const mouseStrength = 0.6;
 
         const newParticles: Particle[] = [];
         for (let i = 0; i < count; i++) {
@@ -63,6 +93,17 @@ const FloatingParticles = ({ count = 8 }: { count?: number }) => {
                     newVx += Math.sin(p.y * 0.01) * 0.002;
 
                     newVx = Math.max(-0.2, Math.min(0.2, newVx));
+
+                    if (isDesktop && mouseRef.current.active) {
+                        const dx = p.x - mouseRef.current.x;
+                        const dy = p.y - mouseRef.current.y;
+                        const distance = Math.hypot(dx, dy);
+                        if (distance > 0 && distance < mouseRadius) {
+                            const force = (1 - distance / mouseRadius) * mouseStrength;
+                            newX += (dx / distance) * force;
+                            newY += (dy / distance) * force;
+                        }
+                    }
 
                     if (newY > 110) {
                         newY = Math.random() * -20 - 10;
