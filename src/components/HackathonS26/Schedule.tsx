@@ -29,19 +29,19 @@ interface ScheduleItemProps {
 
 const ScheduleItem = ({ time, event, index }: ScheduleItemProps) => (
   <motion.div
-    className="flex justify-between items-center py-2 sm:py-2.5 md:py-3 lg:py-4 xl:py-5 2xl:py-6 px-2 sm:px-3 md:px-4 lg:px-5 xl:px-6 2xl:px-8"
+    className="flex items-center justify-between gap-1.5 sm:gap-3 lg:gap-6 xl:gap-8 text-left py-1.5 sm:py-2 md:py-2.5 lg:py-3 xl:py-3.5 2xl:py-4 px-2 sm:px-3 md:px-4 lg:px-5 xl:px-6 2xl:px-7"
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
     viewport={{ once: true }}
   >
     <span
-      className="font-caudex font-bold text-[#b34756] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl"
+      className="font-caudex font-bold text-[#b34756] leading-tight text-[clamp(12px,1.7vw,18px)] md:text-[clamp(14px,1.15vw,22px)] lg:text-[clamp(18px,1.05vw,26px)] whitespace-nowrap"
     >
       {time}
     </span>
     <span
-      className="font-caudex font-bold text-[#004272] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-right"
+      className="font-caudex font-bold text-[#004272] leading-tight text-[clamp(12px,1.8vw,18px)] md:text-[clamp(14px,1.2vw,22px)] lg:text-[clamp(18px,1.1vw,26px)] whitespace-nowrap overflow-hidden text-ellipsis min-w-0"
     >
       {event}
     </span>
@@ -54,9 +54,15 @@ interface IceRinkSectionProps {
   isSecondRink?: boolean;
 }
 
+const splitSchedule = (items: { time: string; event: string }[]) => {
+  if (items.length <= 4) return [items, []];
+  const mid = Math.ceil(items.length / 2);
+  return [items.slice(0, mid), items.slice(mid)];
+};
+
 const IceRinkSection = ({ dayLabel, schedule, isSecondRink = false }: IceRinkSectionProps) => (
   <motion.div
-    className="relative w-full max-w-4xl mx-auto flex justify-center items-center"
+    className="relative w-full max-w-4xl mx-auto flex justify-center items-center overflow-hidden"
     initial={{ opacity: 0, scale: 0.95 }}
     whileInView={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.6 }}
@@ -70,10 +76,10 @@ const IceRinkSection = ({ dayLabel, schedule, isSecondRink = false }: IceRinkSec
       decoding="async"
     />
 
-    <div className="absolute inset-0 flex flex-col px-8 sm:px-12 md:px-16 lg:px-20">
-      <div className="flex-[0_0_20%] flex items-end justify-center">
+    <div className="absolute inset-0 flex flex-col px-6 sm:px-10 md:px-14 lg:px-16">
+      <div className="flex-[0_0_18%] flex items-end justify-center">
         <motion.h3
-          className="font-caudex font-bold text-[#18339f] text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-center"
+          className="font-caudex font-bold text-[#18339f] text-[clamp(18px,3vw,28px)] md:text-[clamp(22px,2vw,36px)] text-center leading-tight"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -82,16 +88,24 @@ const IceRinkSection = ({ dayLabel, schedule, isSecondRink = false }: IceRinkSec
           {dayLabel}
         </motion.h3>
       </div>
-      <div className="flex-[0_0_5%]"></div>
+      <div className="flex-[0_0_5%]" />
 
-      <div className="flex-[0_0_75%] flex flex-col justify-start space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-5 xl:space-y-6 2xl:space-y-8 overflow-y-auto">
-        {schedule.map((item, index) => (
-          <ScheduleItem
-            key={`${dayLabel}-${index}`}
-            time={item.time}
-            event={item.event}
-            index={index}
-          />
+      <div className="flex-[0_0_77%] flex flex-col justify-start space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-7 items-center">
+        {splitSchedule(schedule).map((group, groupIndex) => (
+          <div
+            key={`${dayLabel}-group-${groupIndex}`}
+            className="w-[88%] sm:w-[84%] md:w-[80%] lg:w-[80%] xl:w-[80%] 2xl:w-[80%] max-w-2xl"
+            style={groupIndex === 0 ? {} : { marginTop: "min(20vw, 140px)" }}
+          >
+            {group.map((item, index) => (
+              <ScheduleItem
+                key={`${dayLabel}-${groupIndex}-${index}`}
+                time={item.time}
+                event={item.event}
+                index={index}
+              />
+            ))}
+          </div>
         ))}
       </div>
     </div>
@@ -126,16 +140,19 @@ const Schedule = () => {
             schedule={day1Schedule}
           />
           <motion.div
-            className="absolute bottom-0 left-0 z-20 -translate-x-5 translate-y-5"
+            className="absolute left-0 z-20 -translate-x-6 sm:-translate-x-8"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            style={{
+              bottom: "-10%",
+            }}
           >
             <img
               src="/s26/pebble-smol.png"
               alt="Pebble Smol"
-              className="w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 h-auto object-contain"
+              className="w-40 sm:w-48 md:w-56 lg:w-64 xl:w-72 h-auto object-contain"
               loading="lazy"
               decoding="async"
             />
@@ -147,25 +164,27 @@ const Schedule = () => {
             schedule={day2Schedule}
             isSecondRink={true}
           />
+          <motion.div
+            className="absolute right-0 z-20 translate-x-6 sm:translate-x-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            style={{
+              bottom: "-10%",
+            }}
+          >
+            <img
+              src="/s26/Mug Car.png"
+              alt="Cat in Mug Car"
+              className="w-36 sm:w-44 md:w-52 lg:w-56 xl:w-60 h-auto object-contain drop-shadow-lg"
+              loading="lazy"
+              decoding="async"
+            />
+          </motion.div>
         </div>
 
       </div>
-
-      <motion.div
-        className="flex justify-end pr-4 sm:pr-8 md:pr-16 lg:pr-24 xl:pr-32 mt-8 md:mt-12"
-        initial={{ opacity: 0, x: 50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        viewport={{ once: true }}
-      >
-        <img
-          src="/s26/Mug Car.png"
-          alt="Cat in Mug Car"
-          className="w-40 sm:w-48 md:w-56 lg:w-64 xl:w-72 h-auto object-contain drop-shadow-lg"
-          loading="lazy"
-          decoding="async"
-        />
-      </motion.div>
     </section>
   );
 };
