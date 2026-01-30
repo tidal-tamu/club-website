@@ -5,6 +5,7 @@ import {
   useIsomorphicLayoutEffect,
 } from "framer-motion";
 import { useRef } from "react";
+import ParametricScrollPath from "./ParametricScrollPath";
 
 type AnimatedCounterProps = {
   from: number;
@@ -55,7 +56,6 @@ const AnimatedCounter = ({
 const About = () => {
   return (
     <section
-      id="about"
       className="relative z-10 w-full overflow-visible"
       style={{
         background: "linear-gradient(to bottom, #77a5c6, #79b0cf)",
@@ -71,11 +71,24 @@ const About = () => {
         }}
         aria-label="Snowy Path"
       />
+      <ParametricScrollPath
+        startX={10}
+        startY={20}
+        endX={90}
+        endY={80}
+        controlX1={30}
+        controlY1={40}
+        controlX2={70}
+        controlY2={60}
+        dotSize={16}
+        showPath={true}
+      />
 
       <div className="relative z-10 w-full min-h-screen px-6 md:px-12 lg:px-20 pb-8 md:pb-12">
         <div className="max-w-4xl relative z-10 -translate-y-[180px]">
           <h2
             className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-bold leading-tight"
+            id="about"
             style={{
               fontFamily: "'Caudex', serif",
               textShadow: "0px 4px 4px rgba(0,0,0,0.25)",

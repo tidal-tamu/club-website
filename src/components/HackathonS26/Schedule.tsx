@@ -29,19 +29,19 @@ interface ScheduleItemProps {
 
 const ScheduleItem = ({ time, event, index }: ScheduleItemProps) => (
   <motion.div
-    className="flex justify-between items-center py-2 md:py-3"
+    className="flex justify-between items-center py-2 sm:py-2.5 md:py-3 lg:py-4 px-2 sm:px-3 md:px-4 lg:px-5"
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
     viewport={{ once: true }}
   >
     <span
-      className="font-caudex font-bold text-[#b34756] text-lg sm:text-xl md:text-2xl lg:text-3xl"
+      className="font-caudex font-bold text-[#b34756] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl"
     >
       {time}
     </span>
     <span
-      className="font-caudex font-bold text-[#004272] text-lg sm:text-xl md:text-2xl lg:text-3xl text-right"
+      className="font-caudex font-bold text-[#004272] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-right"
     >
       {event}
     </span>
@@ -56,7 +56,7 @@ interface IceRinkSectionProps {
 
 const IceRinkSection = ({ dayLabel, schedule, isSecondRink = false }: IceRinkSectionProps) => (
   <motion.div
-    className="relative w-full max-w-4xl mx-auto"
+    className="relative w-full max-w-4xl mx-auto flex justify-center items-center"
     initial={{ opacity: 0, scale: 0.95 }}
     whileInView={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.6 }}
@@ -70,18 +70,21 @@ const IceRinkSection = ({ dayLabel, schedule, isSecondRink = false }: IceRinkSec
       decoding="async"
     />
 
-    <div className="absolute inset-0 flex flex-col justify-center px-8 sm:px-12 md:px-16 lg:px-20">
-      <motion.h3
-        className="font-caudex font-bold text-[#18339f] text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center mb-4 md:mb-6"
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-      >
-        {dayLabel}
-      </motion.h3>
+    <div className="absolute inset-0 flex flex-col px-8 sm:px-12 md:px-16 lg:px-20">
+      <div className="flex-[0_0_20%] flex items-end justify-center">
+        <motion.h3
+          className="font-caudex font-bold text-[#18339f] text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-center"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          {dayLabel}
+        </motion.h3>
+      </div>
+      <div className="flex-[0_0_5%]"></div>
 
-      <div className="space-y-0 md:space-y-1">
+      <div className="flex-[0_0_75%] flex flex-col justify-start space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-5 xl:space-y-6 overflow-y-auto">
         {schedule.map((item, index) => (
           <ScheduleItem
             key={`${dayLabel}-${index}`}
@@ -115,23 +118,8 @@ const Schedule = () => {
         SCHEDULE
       </motion.h2>
 
-      <motion.div
-        className="absolute top-32 md:top-40 lg:top-48 right-4 sm:right-8 md:right-16 lg:right-24 xl:right-32 z-20 hidden md:block"
-        initial={{ opacity: 0, x: 50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        viewport={{ once: true }}
-      >
-        <img
-          src="/s26/fox.png"
-          alt="Arctic Fox"
-          className="w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 h-auto object-contain"
-          loading="lazy"
-          decoding="async"
-        />
-      </motion.div>
 
-      <div className="flex flex-row gap-10 px-4 md:px-8">
+      <div className="flex flex-col lg:flex-row gap-10 px-4 md:px-8 sm:justify-center">
         <div className="relative">
           <IceRinkSection
             dayLabel="Saturday 2/7"
