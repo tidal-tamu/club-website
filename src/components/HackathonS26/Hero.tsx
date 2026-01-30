@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useMemo } from "react";
+import { useRef } from "react";
 import FloatingParticles from "./ui/FloatingParticles";
 import { Link } from "react-router-dom";
 import { FaPlay } from "react-icons/fa";
@@ -17,36 +17,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
   const heroRef = useRef<HTMLDivElement>(null);
   const pebbleRef = useRef<HTMLImageElement>(null);
   const rustleRef = useRef<HTMLSpanElement>(null);
-  
-  const targetDate = useMemo(() => new Date("February 7, 2026 09:00:00").getTime(), []);
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
-  const calculateTimeLeft = (target: number) => {
-    const now = new Date().getTime();
-    const distance = target - now;
-
-    if (distance < 0) {
-      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    return { days, hours, minutes, seconds };
-  };
-
-  useEffect(() => {
-    setTimeLeft(calculateTimeLeft(targetDate));
-    const interval = setInterval(() => {
-      setTimeLeft(calculateTimeLeft(targetDate));
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [targetDate]);
-
-  const formatNumber = (num: number) => num.toString().padStart(2, "0");
 
   useGSAP(() => {
     if (!heroRef.current || !pebbleRef.current) {
@@ -144,7 +115,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
           alt="Top Hill"
           className="absolute bottom-0 left-0 right-0 w-full min-w-0 h-[55%] slide-up-0"
           decoding="async"
-          fetchPriority="high"
+          fetchpriority="high"
         />
         <img
           src="/s26/Hero/LowHill.png"
@@ -298,50 +269,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
         </motion.div>
 
         <motion.div
-          className="flex flex-col items-center gap-4 mt-8 md:mt-12"
-          initial={{ y: 30, opacity: 0 }}
-          animate={shouldAnimate ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
-          transition={{
-            duration: 2.0,
-            ease: [0.34, 1.56, 0.64, 1],
-            delay: 0.5,
-          }}
-        >
-          <div className="px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-5">
-            <div className="flex flex-row items-center gap-2 sm:gap-3 md:gap-4 text-white">
-              <div className="flex flex-col items-center">
-                <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-dynapuff">
-                  {formatNumber(timeLeft.days)}
-                </span>
-                <span className="text-xs sm:text-sm md:text-base font-medium">Days</span>
-              </div>
-              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">:</span>
-              <div className="flex flex-col items-center">
-                <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-dynapuff">
-                  {formatNumber(timeLeft.hours)}
-                </span>
-                <span className="text-xs sm:text-sm md:text-base font-medium">Hours</span>
-              </div>
-              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">:</span>
-              <div className="flex flex-col items-center">
-                <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-dynapuff">
-                  {formatNumber(timeLeft.minutes)}
-                </span>
-                <span className="text-xs sm:text-sm md:text-base font-medium">Minutes</span>
-              </div>
-              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">:</span>
-              <div className="flex flex-col items-center">
-                <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-dynapuff">
-                  {formatNumber(timeLeft.seconds)}
-                </span>
-                <span className="text-xs sm:text-sm md:text-base font-medium">Seconds</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="flex flex-row items-center gap-3 sm:gap-4 mt-4 md:mt-8 justify-center"
+          className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mt-4 md:mt-8 justify-center"
           initial={{ y: 30, opacity: 0 }}
           animate={shouldAnimate ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
           transition={{
@@ -371,15 +299,6 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
           >
             JUDGE / MENTOR
           </a>
-          <Link
-            to="/hacker-guide"
-            className="bg-[#39729b] hover:bg-[#29608b] text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 md:gap-2.5 hover:scale-110 active:scale-95 hover:shadow-lg border-b-4 md:border-b-6 lg:border-b-8 border-b-[#1d4f73] min-w-[140px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px]"
-            style={{
-              filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3))",
-            }}
-          >
-            HACKERPACK
-          </Link>
         </motion.div>
       </div>
     </div>

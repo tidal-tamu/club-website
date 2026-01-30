@@ -7,6 +7,7 @@ import {
 import { useRef, useEffect } from "react";
 import ParametricScrollPath from "./ParametricScrollPath";
 import gsap from "gsap";
+import { Link } from "react-router-dom";
 
 type AnimatedCounterProps = {
   from: number;
@@ -143,7 +144,10 @@ const About = () => {
             </p>
             <p style={{ fontFamily: "'Inter', sans-serif" }}>
               Enjoy free food, mentorship, and networking with sponsors on{" "}
-              <span className="font-bold">Feb. 7-8th</span>
+              <span className="font-bold">Feb. 7-8th!</span>{" "}
+              Check out our{" "}
+              <Link to="/hacker-guide"><span className="font-bold text-[#29608b] hover:text-white transition-colors duration-300">Hackerpack</span></Link>{" "}
+              for more info.
             </p>
           </div>
         </div>
