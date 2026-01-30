@@ -4,8 +4,9 @@ import {
   useInView,
   useIsomorphicLayoutEffect,
 } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import ParametricScrollPath from "./ParametricScrollPath";
+import gsap from "gsap";
 
 type AnimatedCounterProps = {
   from: number;
@@ -54,6 +55,45 @@ const AnimatedCounter = ({
 };
 
 const About = () => {
+  const pebbleSkiRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    if (pebbleSkiRef.current) {
+      // Start off-screen (bottom left, diagonally) - position far to the left and down
+      gsap.set(pebbleSkiRef.current, {
+        x: -window.innerWidth,
+        y: window.innerHeight,
+        opacity: 0,
+      });
+    }
+  }, []);
+
+  const handleReachEnd = () => {
+    if (pebbleSkiRef.current) {
+      // Slide in diagonally from bottom left to final position
+      gsap.to(pebbleSkiRef.current, {
+        x: 0,
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: "power2.out",
+      });
+    }
+  };
+
+  const handleLeaveEnd = () => {
+    if (pebbleSkiRef.current) {
+      // Reverse animation - slide back out to bottom left
+      gsap.to(pebbleSkiRef.current, {
+        x: -window.innerWidth,
+        y: window.innerHeight,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power2.out",
+      });
+    }
+  };
+
   return (
     <section
       className="relative z-10 w-full overflow-visible"
@@ -71,7 +111,7 @@ const About = () => {
         }}
         aria-label="Snowy Path"
       />
-      <ParametricScrollPath />
+      <ParametricScrollPath onReachEnd={handleReachEnd} onLeaveEnd={handleLeaveEnd} />
 
       <div className="relative z-10 w-full min-h-screen px-6 md:px-12 lg:px-20 pb-8 md:pb-12">
         <div className="max-w-4xl relative z-10 -translate-y-[180px]">
@@ -111,6 +151,7 @@ const About = () => {
         <div className="absolute left-4 md:left-8 lg:left-10 bottom-8 md:bottom-12 lg:bottom-16 z-10">
           <div className="w-[320px] md:w-[420px] lg:w-[520px] xl:w-[620px] transform rotate-[8deg]">
             <img
+              ref={pebbleSkiRef}
               src="/s26/Pebble Ski.png"
               alt="Pebble Skiing"
               className="w-full h-auto object-contain"

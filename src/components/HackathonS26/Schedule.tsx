@@ -29,19 +29,19 @@ interface ScheduleItemProps {
 
 const ScheduleItem = ({ time, event, index }: ScheduleItemProps) => (
   <motion.div
-    className="flex justify-between items-center py-2 sm:py-2.5 md:py-3 lg:py-4 px-2 sm:px-3 md:px-4 lg:px-5"
+    className="flex justify-between items-center py-2 sm:py-2.5 md:py-3 lg:py-4 xl:py-5 2xl:py-6 px-2 sm:px-3 md:px-4 lg:px-5 xl:px-6 2xl:px-8"
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
     viewport={{ once: true }}
   >
     <span
-      className="font-caudex font-bold text-[#b34756] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl"
+      className="font-caudex font-bold text-[#b34756] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl"
     >
       {time}
     </span>
     <span
-      className="font-caudex font-bold text-[#004272] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-right"
+      className="font-caudex font-bold text-[#004272] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-right"
     >
       {event}
     </span>
@@ -84,7 +84,7 @@ const IceRinkSection = ({ dayLabel, schedule, isSecondRink = false }: IceRinkSec
       </div>
       <div className="flex-[0_0_5%]"></div>
 
-      <div className="flex-[0_0_75%] flex flex-col justify-start space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-5 xl:space-y-6 overflow-y-auto">
+      <div className="flex-[0_0_75%] flex flex-col justify-start space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-5 xl:space-y-6 2xl:space-y-8 overflow-y-auto">
         {schedule.map((item, index) => (
           <ScheduleItem
             key={`${dayLabel}-${index}`}
@@ -125,6 +125,21 @@ const Schedule = () => {
             dayLabel="Saturday 2/7"
             schedule={day1Schedule}
           />
+          <motion.div
+            className="absolute bottom-0 left-0 z-20 -translate-x-5 translate-y-5"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <img
+              src="/s26/pebble-smol.png"
+              alt="Pebble Smol"
+              className="w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 h-auto object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+          </motion.div>
         </div>
         <div className="relative">
           <IceRinkSection
@@ -135,22 +150,6 @@ const Schedule = () => {
         </div>
 
       </div>
-
-      <motion.div
-        className="relative z-20 -my-8 md:-my-16"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <img
-          src="/s26/pebble-smol.png"
-          alt="Pebble Smol"
-          className="w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 h-auto object-contain ml-4 md:ml-8 lg:ml-16"
-          loading="lazy"
-          decoding="async"
-        />
-      </motion.div>
 
       <motion.div
         className="flex justify-end pr-4 sm:pr-8 md:pr-16 lg:pr-24 xl:pr-32 mt-8 md:mt-12"

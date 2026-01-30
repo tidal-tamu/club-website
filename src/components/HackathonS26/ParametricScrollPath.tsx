@@ -6,6 +6,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface ParametricScrollPathProps {
   triggerElement?: string;
+  onReachEnd?: () => void;
+  onLeaveEnd?: () => void;
 }
 
 interface BezierPoint {
@@ -15,6 +17,8 @@ interface BezierPoint {
 
 const ParametricScrollPath = ({
   triggerElement,
+  onReachEnd,
+  onLeaveEnd,
 }: ParametricScrollPathProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
@@ -32,7 +36,7 @@ const ParametricScrollPath = ({
       try {
         const response = await fetch('/s26/bezier-points-1769750280934.json');
         const data = await response.json();
-        
+
         if (data.formattedForBezier?.allPoints) {
           setBezierPoints(data.formattedForBezier.allPoints);
         } else if (data.points && Array.isArray(data.points)) {
@@ -66,17 +70,17 @@ const ParametricScrollPath = ({
       containerDimensionsRef.current = { width, height };
       return { width, height };
     };
-    
+
     // Build Catmull-Rom spline path that passes through all points
     const buildPath = (width: number, height: number) => {
       const pathParts: string[] = [];
-      
+
       for (let i = 0; i < bezierPoints.length - 1; i++) {
         const p0 = i > 0 ? bezierPoints[i - 1] : bezierPoints[i];
         const p1 = bezierPoints[i];
         const p2 = bezierPoints[i + 1];
         const p3 = i < bezierPoints.length - 2 ? bezierPoints[i + 2] : bezierPoints[i + 1];
-        
+
         // Convert percentage to pixel coordinates
         const x0 = (p0.x / 100) * width;
         const y0 = (p0.y / 100) * height;
@@ -86,20 +90,20 @@ const ParametricScrollPath = ({
         const y2 = (p2.y / 100) * height;
         const x3 = (p3.x / 100) * width;
         const y3 = (p3.y / 100) * height;
-        
+
         // Catmull-Rom to Bezier conversion
         const cp1x = x1 + (x2 - x0) / 6;
         const cp1y = y1 + (y2 - y0) / 6;
         const cp2x = x2 - (x3 - x1) / 6;
         const cp2y = y2 - (y3 - y1) / 6;
-        
+
         if (i === 0) {
           pathParts.push(`M ${x1} ${y1} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${x2} ${y2}`);
         } else {
           pathParts.push(`C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${x2} ${y2}`);
         }
       }
-      
+
       return pathParts.join(" ");
     };
 
@@ -119,7 +123,7 @@ const ParametricScrollPath = ({
     };
 
     rebuildPath();
-    
+
     // Function to get point on path at progress (0-1)
     const getPointOnPath = (progress: number) => {
       const clampedProgress = Math.max(0, Math.min(1, progress));
@@ -134,6 +138,7 @@ const ParametricScrollPath = ({
         y: point.y,
         xPercent: -50,
         yPercent: -50,
+        opacity: progress >= 1 ? 0 : 1,
       });
     };
 
@@ -145,13 +150,24 @@ const ParametricScrollPath = ({
         scrollTriggerRef.current.kill();
       }
 
+      let hasReachedEnd = false;
       scrollTriggerRef.current = ScrollTrigger.create({
         trigger: trigger || container,
         start: "top bottom",
-        end: "+=1500",
+        end: "+=1415",
         scrub: 1,
         onUpdate: (self) => {
           setDotAtProgress(self.progress);
+          // Trigger callback when reaching the end
+          if (self.progress >= 1 && !hasReachedEnd && onReachEnd) {
+            hasReachedEnd = true;
+            onReachEnd();
+          }
+          // Trigger callback when leaving the end (scrolling back up)
+          if (self.progress < 1 && hasReachedEnd && onLeaveEnd) {
+            hasReachedEnd = false;
+            onLeaveEnd();
+          }
         },
       });
     };
@@ -165,20 +181,20 @@ const ParametricScrollPath = ({
       setDotAtProgress(scrollTriggerRef.current?.progress ?? 0);
       ScrollTrigger.refresh();
     };
-    
+
     // Monitor container size changes - use the same handleResize function that works for zoom
     const resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
         const newWidth = entry.contentRect.width;
         const newHeight = entry.contentRect.height;
-        
+
         if (newWidth !== containerDimensionsRef.current.width || newHeight !== containerDimensionsRef.current.height) {
           // Use the same handleResize function that works for zoom
           handleResize();
         }
       }
     });
-    
+
     resizeObserver.observe(container);
 
     window.addEventListener("resize", handleResize);
@@ -191,7 +207,7 @@ const ParametricScrollPath = ({
         scrollTriggerRef.current = null;
       }
     };
-  }, [bezierPoints, isLoading, triggerElement]);
+  }, [bezierPoints, isLoading, triggerElement, onReachEnd, onLeaveEnd]);
 
   if (isLoading || bezierPoints.length < 2) {
     return null;
