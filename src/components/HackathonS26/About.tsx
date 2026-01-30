@@ -71,18 +71,7 @@ const About = () => {
         }}
         aria-label="Snowy Path"
       />
-      <ParametricScrollPath
-        startX={10}
-        startY={20}
-        endX={90}
-        endY={80}
-        controlX1={30}
-        controlY1={40}
-        controlX2={70}
-        controlY2={60}
-        dotSize={16}
-        showPath={true}
-      />
+      <ParametricScrollPath />
 
       <div className="relative z-10 w-full min-h-screen px-6 md:px-12 lg:px-20 pb-8 md:pb-12">
         <div className="max-w-4xl relative z-10 -translate-y-[180px]">
