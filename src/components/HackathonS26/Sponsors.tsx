@@ -19,11 +19,12 @@ const sponsors: {
     { id: 1, name: "AWS", logo: "/icons/logos/companies/aws-logo.png", isDummy: false, tier: "platinum", position: { left: "0%", top: "20%" } },
     { id: 2, name: "XPerf", logo: "/icons/logos/companies/xperf-white.png", isDummy: false, tier: "gold", position: { left: "80%", top: "18%" } },
     { id: 3, name: "Google", logo: "/icons/logos/companies/google-color.png", isDummy: false, tier: "gold", position: { left: "80%", top: "56%" } },
-    { id: 4, name: "Wolfram", logo: "/icons/logos/companies/wolfram-logo.png", isDummy: false, tier: "gold", position: { left: "6%", top: "60%" } },
-    { id: 5, name: "Celsius", logo: null, isDummy: true, tier: "silver", position: { left: "18%", top: "75%" } },
-    { id: 6, name: "Mai Shan Yun", logo: null, isDummy: true, tier: "silver", position: { left: "72%", top: "78%" } },
-    { id: 7, name: "Frogslayer", logo: null, isDummy: true, tier: "silver", position: { left: "22%", top: "36%" } },
-    { id: 8, name: "IT Bridge", logo: null, isDummy: true, tier: "silver", position: { left: "74%", top: "40%" } },
+    { id: 4, name: "Wolfram", logo: "/icons/logos/companies/wolfram-logo.png", isDummy: false, tier: "gold", position: { left: "0%", top: "60%" } },
+    { id: 5, name: "Celsius", logo: "/icons/logos/companies/celsius.png", isDummy: false,    tier: "silver", position: { left: "18%", top: "75%" } },
+    { id: 6, name: "Mai Shan Yun", logo: "/icons/logos/companies/msy.png", isDummy: false, tier: "silver", position: { left: "72%", top: "78%" } },
+    { id: 7, name: "Frogslayer", logo: "/icons/logos/companies/frogslayer.png", isDummy: false, tier: "silver", position: { left: "22%", top: "36%" } },
+    { id: 8, name: "IT Bridge", logo: "/icons/logos/companies/itbridge.png", isDummy: false, tier: "silver", position: { left: "74%", top: "40%" } },
+    { id: 8, name: "Jane Street", logo: "/icons/logos/companies/jane-street-blue.png", isDummy: false, tier: "gold", position: { left: "18%", top: "56%" } },
 ];
 
 const blurStyle = {

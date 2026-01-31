@@ -116,7 +116,7 @@ const Schedule = () => {
   return (
     <section
       id="schedule"
-      className="relative py-16 md:py-24 overflow-hidden"
+      className="relative py-16 md:py-24 pb-24 md:pb-32 overflow-visible"
       style={{ backgroundColor: "#79b0cf" }}
     >
       <motion.h2
@@ -152,7 +152,7 @@ const Schedule = () => {
             <img
               src="/s26/pebble-smol.png"
               alt="Pebble Smol"
-              className="w-40 sm:w-48 md:w-56 lg:w-64 xl:w-72 h-auto object-contain"
+              className="w-[clamp(12rem,18vw,18rem)] h-auto object-contain"
               loading="lazy"
               decoding="async"
             />
@@ -177,7 +177,7 @@ const Schedule = () => {
             <img
               src="/s26/Mug Car.png"
               alt="Cat in Mug Car"
-              className="w-36 sm:w-44 md:w-52 lg:w-56 xl:w-60 h-auto object-contain drop-shadow-lg"
+              className="w-[clamp(10rem,16vw,15rem)] h-auto object-contain drop-shadow-lg"
               loading="lazy"
               decoding="async"
             />

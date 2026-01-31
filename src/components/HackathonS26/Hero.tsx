@@ -115,7 +115,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
           alt="Top Hill"
           className="absolute bottom-0 left-0 right-0 w-full min-w-0 h-[55%] slide-up-0"
           decoding="async"
-          fetchpriority="high"
+          fetchPriority="high"
         />
         <img
           src="/s26/Hero/LowHill.png"

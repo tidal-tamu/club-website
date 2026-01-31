@@ -145,7 +145,7 @@ export default function FAQs() {
                         viewport={{ once: true }}
                     >
                         <img
-                            src="/s26/bunny.png"
+                            src="/s26/faq_bunny.png"
                             alt=""
                             className="max-w-md lg:max-w-lg xl:max-w-xl object-contain drop-shadow-lg animate-float-subtle"
                             loading="lazy"
