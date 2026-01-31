@@ -79,7 +79,7 @@ const IceRinkSection = ({ dayLabel, schedule, isSecondRink = false }: IceRinkSec
     <div className="absolute inset-0 flex flex-col px-6 sm:px-10 md:px-14 lg:px-16">
       <div className="flex-[0_0_18%] flex items-end justify-center">
         <motion.h3
-          className="font-caudex font-bold text-[#18339f] text-[clamp(18px,3vw,28px)] md:text-[clamp(22px,2vw,36px)] text-center leading-tight"
+          className="font-caudex font-bold text-[#18339f] text-[clamp(22px,3.4vw,32px)] md:text-[clamp(26px,2.4vw,40px)] text-center leading-tight"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
