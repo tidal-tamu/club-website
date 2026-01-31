@@ -74,7 +74,7 @@ const faqDetails = [
         id: "9",
         question: "Can I stay in MSC overnight?",
         answer:
-            "Yes! TIDALhack is a full 24 hour event this year. Please keep in mind that the MSC closes at 11:00 PM on Saturday, meaning you won't be able to re-enter until Sunday morning if you leave the building. 😴",
+            "Yes! TIDALhack is a full 24 hour event this year. Please keep in mind that the MSC closes at 11:00 PM on Saturday. This means you won't be able to re-enter until Sunday morning if you leave the building. 😴",
         icon: "car" as const,
     },
     {
