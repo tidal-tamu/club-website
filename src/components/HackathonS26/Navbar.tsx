@@ -30,7 +30,6 @@ interface NavbarProps {
 
 export default function Navbar({ dark = false, onMenuToggle, shouldAnimate = false }: NavbarProps) {
     const [isOpen, setIsOpen] = useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
 
     const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
         if (!path.startsWith("/") && !path.startsWith("http")) {
@@ -64,25 +63,13 @@ export default function Navbar({ dark = false, onMenuToggle, shouldAnimate = fal
         onMenuToggle?.(isOpen);
     }, [isOpen, onMenuToggle]);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const currentScrollY = window.scrollY;
-            setIsScrolled(currentScrollY > 50);
-        };
-
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
     return (
         <motion.nav
-            className={`fixed top-0 w-full font-mont font-semibold z-[9999] transition-all duration-300 ${
-                isScrolled
-                    ? "bg-[#6fa7cf]/30 border-b border-white/20 backdrop-blur-lg shadow-lg"
-                    : "bg-transparent/0 border-b border-transparent"
-            } ${dark ? "text-white" : "text-black"}`}
+            className={`absolute top-0 w-full font-mont font-semibold z-[9999] ${
+                dark ? "text-white" : "text-black"
+            }`}
         >
-            <div className="container mx-auto px-6 lg:px-12 py-10 flex items-center justify-between">
+            <div className="w-full px-6 lg:pl-12 lg:pr-28 py-10 flex items-center justify-between">
                 <motion.a
                     href="/"
                     className="flex items-center !cursor-pointer z-50"
