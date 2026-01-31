@@ -117,7 +117,7 @@ export default function FAQs() {
             }}
         >
             <h2
-                className="font-caudex font-bold text-center text-white uppercase tracking-widest mb-12 md:mb-16"
+                className="s26-section-header font-bold text-center text-white uppercase tracking-widest mb-12 md:mb-16"
                 style={{ fontSize: "clamp(32px, 5vw, 52px)" }}
             >
                 FAQ

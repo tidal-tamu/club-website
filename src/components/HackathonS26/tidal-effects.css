@@ -7,6 +7,15 @@
     animation: float-subtle 8s ease-in-out infinite;
 }
 
+.s26-section-header {
+    font-family: "DynaPuff", sans-serif !important;
+}
+
+.s26-dynapuff-text,
+.s26-dynapuff-text * {
+    font-family: "DynaPuff", sans-serif !important;
+}
+
 @keyframes float-subtle {
 
     0%,

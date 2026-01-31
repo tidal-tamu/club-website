@@ -4,7 +4,7 @@ const Prizes = () => {
   return (
     <section
       id="prizes"
-      className="prizes-section relative overflow-x-clip overflow-y-hidden"
+      className="prizes-section s26-dynapuff-text relative overflow-x-clip overflow-y-hidden"
       style={{
         backgroundColor: "#79b0cf",
         paddingTop: "clamp(80px, 10vw, 140px)",
@@ -36,7 +36,7 @@ const Prizes = () => {
       </div>
 
       <h2
-        className="prizes-title font-caudex font-bold text-center text-white uppercase tracking-widest"
+        className="prizes-title s26-section-header font-bold text-center text-white uppercase tracking-widest"
         style={{
           fontSize: "clamp(32px, 5vw, 52px)",
           marginBottom: "clamp(48px, 7vw, 96px)",

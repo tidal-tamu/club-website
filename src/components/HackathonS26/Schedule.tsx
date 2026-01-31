@@ -116,11 +116,11 @@ const Schedule = () => {
   return (
     <section
       id="schedule"
-      className="relative py-16 md:py-24 pb-24 md:pb-32 overflow-visible"
+      className="s26-dynapuff-text relative py-16 md:py-24 pb-24 md:pb-32 overflow-visible"
       style={{ backgroundColor: "#79b0cf" }}
     >
       <motion.h2
-        className="font-caudex font-bold text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-center mb-8 md:mb-12 drop-shadow-lg"
+        className="s26-section-header font-bold text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-center mb-8 md:mb-12 drop-shadow-lg"
         style={{
           textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
         }}
