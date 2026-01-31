@@ -119,62 +119,62 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
             className="relative min-h-screen flex items-center justify-center px-6 md:px-12 select-none"
         >
             <div
-                className="h-[25rem] absolute bottom-0 left-0 right-0 w-full z-10"
+                className="h-[15rem] lg:h-[25rem] absolute bottom-0 left-0 right-0 w-full z-50"
                 style={{
-                    background: "linear-gradient(transparent 30%, #76A4C5 66%)",
+                    background: "linear-gradient(transparent 20%, #77a5c6 66%)",
                 }}
             ></div>
 
-            <div className="absolute inset-0 -z-[1]">
+            <div className="absolute inset-0">
                 <img
                     src="/s26/Hero/BackBushes.png"
                     alt="Back Bushes"
-                    className="absolute bottom-[30vh] left-0 right-0 w-full min-w-0 slide-up-0"
+                    className="absolute bottom-[30vh] left-0 right-0 w-full min-w-0 slide-up-0 -z-[1]"
                     decoding="async"
                 />
                 <img
                     src="/s26/Hero/TopHill.png"
                     alt="Top Hill"
-                    className="absolute bottom-0 left-0 right-0 w-full min-w-0 h-[55%] slide-up-0"
+                    className="absolute bottom-0 left-0 right-0 w-full min-w-0 h-[55%] slide-up-0-z-[1]"
                     decoding="async"
                     fetchPriority="high"
                 />
                 <img
                     src="/s26/Hero/LowHill.png"
                     alt="Low Hill"
-                    className="absolute bottom-8 left-5 sm:bottom-10 sm:left-0 right-0 w-full min-w-0 h-[33%]"
+                    className="absolute bottom-8 sm:left-0 right-0 w-full min-w-0 h-[33%] z-[2]"
                     decoding="async"
                 />
             </div>
 
+            <div className="absolute inset-0">
+                <img
+                    src="/s26/Hero/TreesPreShadowed.png"
+                    alt="Trees Pre Shadowed"
+                    className="absolute left-0 bottom-[46vh] sm:bottom-[45vh] md:bottom-[44vh] lg:bottom-[43vh] xl:bottom-[41vh] 2xl:bottom-[40vh] w-full sm:w-[80%] slide-up-2 z-[1]"
+                    decoding="async"
+                />
+            </div>
             <div
-                className="absolute inset-0 w-full min-w-0 -z-[1] overflow-hidden"
+                className="absolute inset-0 w-full min-w-0  overflow-hidden"
                 style={{ left: 0, right: 0 }}
             >
                 <img
                     src="/s26/Hero/HouseGlowing.png"
                     alt="House Glowing"
-                    className="absolute bottom-[48vh] right-[-10vh] sm:right-[3vh] md:right-[6vh] lg:right-[10vh] xl:right-[14vh] 2xl:right-[18vh] w-[40vh] object-contain slide-up-0"
+                    className="absolute bottom-[48vh] right-[-10vh] sm:right-[3vh] md:right-[6vh] lg:right-[10vh] xl:right-[14vh] 2xl:right-[18vh] w-[40vh] object-contain slide-up-2"
                     decoding="async"
                 />
             </div>
 
             <div
-                className="absolute inset-0 w-full min-w-0"
+                className="absolute inset-0 w-full min-w-0 z-[2]"
                 style={{ left: 0, right: 0 }}
             >
                 <img
                     src="/s26/Hero/LargeBrownTreeAlt.png"
                     alt="Large Brown Tree Alt"
                     className="absolute md:right-0 bottom-[18vh] -translate-x-32 md:translate-x-16 lg:translate-x-20 xl:translate-x-24 2xl:translate-x-28 h-full min-w-[700px]"
-                    decoding="async"
-                />
-            </div>
-            <div className="absolute inset-0 -z-[1]">
-                <img
-                    src="/s26/Hero/TreesPreShadowed.png"
-                    alt="Trees Pre Shadowed"
-                    className="absolute left-0 bottom-[46vh] sm:bottom-[45vh] md:bottom-[44vh] lg:bottom-[43vh] xl:bottom-[41vh] 2xl:bottom-[40vh] w-full sm:w-[80%] slide-up-1"
                     decoding="async"
                 />
             </div>
@@ -195,7 +195,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
             <FloatingParticles count={64} />
 
             <div className="absolute inset-0">
-                <div className="absolute bottom-0 left-0 right-0 overflow-hidden w-full">
+                <div className="absolute bottom-0 left-0 right-0 overflow-hidden w-full z-20">
                     <img
                         src="/s26/Hero/LowSnowPreShadowed.png"
                         alt="Low Snow Pre Shadowed"
@@ -203,17 +203,17 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
                         decoding="async"
                     />
                     <div
-                        className="h-[8rem]"
+                        className="h-[8rem] z-20"
                         style={{
                             background:
-                                "linear-gradient(to bottom, #77A5C6, #77A5C6)",
+                                "linear-gradient(transparent 20%, #76A4C5 66%)",
                         }}
                     />
                 </div>
             </div>
 
-            <div className="absolute left-0 bottom-[5rem] lg:bottom-[8rem] overflow-hidden">
-                <div className="overflow-hidden z-0">
+            <div className="absolute left-0 bottom-[5rem] lg:bottom-[8rem] overflow-hidden z-30">
+                <div className="overflow-hidden0">
                     <img
                         ref={pebbleRef}
                         src="/s26/pebble.gif"

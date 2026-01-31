@@ -4,12 +4,14 @@
 }
 
 .bg-tidal-deep {
-    background: linear-gradient(180deg,
-            rgba(0, 0, 0, 0.3) 0%,
-            rgba(0, 20, 40, 0.5) 25%,
-            rgba(0, 40, 80, 0.4) 50%,
-            rgba(0, 20, 40, 0.5) 75%,
-            rgba(0, 0, 0, 0.3) 100%);
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(0, 20, 40, 0.5) 25%,
+        rgba(0, 40, 80, 0.4) 50%,
+        rgba(0, 20, 40, 0.5) 75%,
+        rgba(0, 0, 0, 0.3) 100%
+    );
 }
 
 :root {
@@ -35,10 +37,18 @@
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,240,0.95) 0%, rgba(255,240,150,0.8) 25%, rgba(255,220,100,0.4) 50%, transparent 100%);
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 240, 0.95) 0%,
+        rgba(255, 240, 150, 0.8) 25%,
+        rgba(255, 220, 100, 0.4) 50%,
+        transparent 100%
+    );
     pointer-events: none;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 20px rgba(255,220,100,0.9), 0 0 40px rgba(255,200,50,0.6);
+    box-shadow:
+        0 0 20px rgba(255, 220, 100, 0.9),
+        0 0 40px rgba(255, 200, 50, 0.6);
     transition: transform 0.05s linear;
     z-index: 9999;
     display: none;
@@ -55,7 +65,6 @@
 }
 
 @keyframes float-subtle {
-
     0%,
     100% {
         transform: translateY(0px);
@@ -71,7 +80,6 @@
 }
 
 @keyframes firefly-dance {
-
     0%,
     100% {
         transform: translateY(0px) translateX(0px) scale(1);
