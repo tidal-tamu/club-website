@@ -79,7 +79,7 @@ const IceRinkSection = ({ dayLabel, schedule, isSecondRink = false }: IceRinkSec
     <div className="absolute inset-0 flex flex-col px-6 sm:px-10 md:px-14 lg:px-16">
       <div className="flex-[0_0_18%] flex items-end justify-center">
         <motion.h3
-          className="font-caudex font-bold text-[#18339f] text-[clamp(18px,3vw,28px)] md:text-[clamp(22px,2vw,36px)] text-center leading-tight"
+          className="font-caudex font-bold text-[#18339f] text-[clamp(22px,3.4vw,32px)] md:text-[clamp(26px,2.4vw,40px)] text-center leading-tight"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -116,7 +116,7 @@ const Schedule = () => {
   return (
     <section
       id="schedule"
-      className="relative py-16 md:py-24 overflow-hidden"
+      className="relative py-16 md:py-24 pb-24 md:pb-32 overflow-visible"
       style={{ backgroundColor: "#79b0cf" }}
     >
       <motion.h2
@@ -152,7 +152,7 @@ const Schedule = () => {
             <img
               src="/s26/pebble-smol.png"
               alt="Pebble Smol"
-              className="w-40 sm:w-48 md:w-56 lg:w-64 xl:w-72 h-auto object-contain"
+              className="w-[clamp(12rem,18vw,18rem)] h-auto object-contain"
               loading="lazy"
               decoding="async"
             />
@@ -177,7 +177,7 @@ const Schedule = () => {
             <img
               src="/s26/Mug Car.png"
               alt="Cat in Mug Car"
-              className="w-36 sm:w-44 md:w-52 lg:w-56 xl:w-60 h-auto object-contain drop-shadow-lg"
+              className="w-[clamp(10rem,16vw,15rem)] h-auto object-contain drop-shadow-lg"
               loading="lazy"
               decoding="async"
             />

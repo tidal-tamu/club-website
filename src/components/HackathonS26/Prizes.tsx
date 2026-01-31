@@ -122,12 +122,12 @@ const Prizes = () => {
                 }}
               >
                 <img
-                  src="/s26/airfryer.png"
-                  alt="Air Fryer"
+                  src="/s26/airpods.png"
+                  alt="AirPods"
                   className="object-contain drop-shadow-md"
                   loading="lazy"
                   decoding="async"
-                  style={{ width: "clamp(130px, 22vw, 240px)" }}
+                  style={{ width: "clamp(130px, 20vw, 230px)" }}
                 />
               </div>
             </div>
@@ -152,6 +152,23 @@ const Prizes = () => {
                 decoding="async"
                 style={{ maxHeight: "clamp(320px, 44vw, 520px)" }}
               />
+              <div
+                className="absolute z-[4] flex flex-col items-center"
+                style={{
+                  bottom: "clamp(8%, 5vw, 14%)",
+                  left: "50%",
+                  transform: "translateX(-50%) rotate(-3deg)",
+                }}
+              >
+                <img
+                  src="/s26/airfryer.png"
+                  alt="Air Fryer"
+                  className="object-contain drop-shadow-md"
+                  loading="lazy"
+                  decoding="async"
+                  style={{ width: "clamp(120px, 19vw, 220px)" }}
+                />
+              </div>
             </div>
           </div>
         </div>

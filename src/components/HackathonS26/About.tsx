@@ -138,7 +138,7 @@ const About = () => {
             <p style={{ fontFamily: "'Inter', sans-serif" }}>
               TidalHack Spring 2026 is a{" "}
               <span className="font-bold">24-hour</span> event for{" "}
-              <span className="font-bold">data science, AI, and ML enthusiasts</span>{" "}
+              <span className="font-bold">data science and AI/ML enthusiasts</span>{" "}
               to build open-ended projects, learn new skills, and have fun with
               friends.
             </p>
@@ -146,7 +146,7 @@ const About = () => {
               Enjoy free food, mentorship, and networking with sponsors on{" "}
               <span className="font-bold">Feb. 7-8th!</span>{" "}
               Check out our{" "}
-              <Link to="/hacker-guide"><span className="font-bold text-[#29608b] hover:text-white transition-colors duration-300">Hackerpack</span></Link>{" "}
+              <Link to="/hacker-guide"><span className="font-bold text-[#29608b] hover:text-white transition-colors duration-300">Hacker Guide</span></Link>{" "}
               for more info.
             </p>
           </div>

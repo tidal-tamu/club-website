@@ -72,9 +72,9 @@ const faqDetails = [
     },
     {
         id: "9",
-        question: "Can I stay in REC overnight?",
+        question: "Can I stay in MSC overnight?",
         answer:
-            "Yes! TIDALhack is a full 24 hour event this year. Please keep in mind that the REC closes at 11:00 PM on Saturday, meaning you won't be able to re-enter if you leave the building. 😴",
+            "Yes! TIDALhack is a full 24 hour event this year. Please keep in mind that the MSC closes at 11:00 PM on Saturday. This means you won't be able to re-enter until Sunday morning if you leave the building. 😴",
         icon: "car" as const,
     },
     {
@@ -145,7 +145,7 @@ export default function FAQs() {
                         viewport={{ once: true }}
                     >
                         <img
-                            src="/s26/bunny.png"
+                            src="/s26/faq_bunny.png"
                             alt=""
                             className="max-w-md lg:max-w-lg xl:max-w-xl object-contain drop-shadow-lg animate-float-subtle"
                             loading="lazy"

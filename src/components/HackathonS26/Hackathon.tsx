@@ -69,6 +69,13 @@ const HackathonS26 = () => {
                         backgroundColor: "#77A5C6",
                     }}
                 >
+                    <div className="relative z-30">
+                        <Navbar
+                            dark
+                            onMenuToggle={setIsMobileMenuOpen}
+                            shouldAnimate={shouldAnimate}
+                        />
+                    </div>
                     <Link
                         to="/register"
                         className={`hidden sm:flex absolute right-4 sm:right-8 z-30 !cursor-pointer transition-all duration-200 ${
@@ -120,13 +127,6 @@ const HackathonS26 = () => {
                     style={{ backgroundColor: "#6fa7cf" }}
                 >
                     <Footer variant="hackathon-spring-26" />
-                </div>
-                <div className="relative z-30">
-                    <Navbar
-                        dark
-                        onMenuToggle={setIsMobileMenuOpen}
-                        shouldAnimate={shouldAnimate}
-                    />
                 </div>
             </div>
         </>
