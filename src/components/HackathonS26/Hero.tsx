@@ -199,7 +199,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
           className="absolute bottom-0 scale-[1.1] w-[200px] md:w-[250px] lg:w-[325px] xl:w-[400px] flex-shrink-0 slide-up-2"
           decoding="async"
         />
-        <span ref={rustleRef} className="absolute bottom-[5rem] lg:bottom-[8rem] left-[100px] md:left-[125px] lg:left-[163px] xl:left-[200px] translate-y-full text-4xl text-white animate-rustle">rustle</span>
+        <span ref={rustleRef} className="absolute bottom-[5rem] lg:bottom-[8rem] left-[100px] md:left-[125px] lg:left-[163px] xl:left-[200px] translate-y-full text-4xl text-white animate-rustle">*rustle*</span>
       </div>
 
       <div className="text-center z-20 max-w-4xl mx-auto -translate-y-[5vh] space-y-0 flex flex-col gap-5">
@@ -232,6 +232,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
 
         <motion.div
           className="relative flex items-center justify-center gap-6 md:gap-8 lg:gap-10 xl:gap-10"
+          style={{ transform: "translateX(clamp(-32px, -2.5vw, -12px))" }}
           initial={{ y: 40, opacity: 0 }}
           animate={shouldAnimate ? { y: 0, opacity: 1 } : { y: 40, opacity: 0 }}
           transition={{
@@ -254,7 +255,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
             Hack
           </h1>
           <span
-            className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-dynapuff inline-flex items-center scale-[2]"
+            className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-dynapuff inline-flex items-center scale-[2] origin-center"
             style={{
               fontWeight: "bold",
               filter: "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 40px rgba(255, 200, 50, 0.08))",
