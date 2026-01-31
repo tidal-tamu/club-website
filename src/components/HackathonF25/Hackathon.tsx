@@ -131,7 +131,7 @@ const HackathonF25 = () => {
             {/* Always render the content, but hide it visually during loading */}
             <div
                 className={`hackathon-f25-container min-h-screen hero-gradient relative overflow-hidden transition-opacity duration-500 ${
-                    isLoading ? 'opacity-0 pointer-events-none' : 'opacity-100'
+                    isLoading ? "opacity-0 pointer-events-none" : "opacity-100"
                 }`}
                 style={{
                     backgroundImage: `url(${tidalBackground})`,

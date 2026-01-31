@@ -7,7 +7,7 @@ interface LoadingScreenProps {
 const LoadingScreen = ({ progress = 0 }: LoadingScreenProps) => {
     return (
         <motion.div
-            className="fixed inset-0 z-[9999] flex items-center justify-center"
+            className="fixed w-full h-screen inset-0 z-[9999] flex items-center justify-center overflow-hidden"
             style={{
                 background:
                     "linear-gradient(180deg, #0a1612 0%, #0d1f1a 50%, #081410 100%)",
