@@ -14,27 +14,6 @@ const Prizes = () => {
         marginLeft: "calc(-50vw + 50%)",
       }}
     >
-      <div
-        className="absolute right-0 top-[55%] pointer-events-none hidden sm:block"
-        style={{
-          transform: "translateY(-50%)",
-          zIndex: 3,
-        }}
-      >
-        <img
-          src="/s26/sidesign.png"
-          alt="More Tracks TBD"
-          className="object-contain block"
-          loading="lazy"
-          decoding="async"
-          style={{
-            width: "clamp(160px, 24vw, 280px)",
-            display: "block",
-            transform: "translateX(28px)",
-          }}
-        />
-      </div>
-
       <h2
         className="prizes-title s26-section-header font-bold text-center text-white uppercase tracking-widest"
         style={{
@@ -55,14 +34,15 @@ const Prizes = () => {
             style={{
               fontSize: "clamp(24px, 3.5vw, 40px)",
               marginBottom: "clamp(2px, 0.25vw, 6px)",
+              transform: "translate(5px, 20px)",
             }}
           >
             1st Overall
           </span>
           <div className="relative w-full flex flex-col items-center">
             <img
-              src="/s26/1st.png"
-              alt=""
+              src="/s26/FIRSTPLACEIGLOO.svg"
+              alt="First place igloo"
               className="relative z-[2] w-full object-contain object-bottom"
               loading="lazy"
               decoding="async"
@@ -83,7 +63,8 @@ const Prizes = () => {
                 loading="lazy"
                 decoding="async"
                 style={{
-                  width: "clamp(180px, 30vw, 340px)",
+                  width: "clamp(146px, 24.3vw, 276px)",
+                  transform: "translateY(-13px)",
                 }}
               />
             </div>
@@ -96,29 +77,33 @@ const Prizes = () => {
         >
           <div className="relative flex flex-col items-center justify-end">
             <span
-              className="relative z-[6] font-caudex font-bold text-white text-center block mb-3"
+              className="relative z-[6] font-caudex font-bold text-white text-center block mb-3 translate-y-[60px]"
               style={{ fontSize: "clamp(22px, 2.8vw, 34px)" }}
             >
               2nd Overall
             </span>
             <div
               className="relative w-full flex flex-col items-center"
-              style={{ width: "clamp(420px, 60vw, 700px)", margin: "0 auto" }}
+              style={{ width: "clamp(360px, 50vw, 600px)", margin: "0 auto" }}
             >
-              <img
-                src="/s26/2nd.png"
-                alt=""
-                className="relative z-[2] w-full object-contain object-bottom"
-                loading="lazy"
-                decoding="async"
-                style={{ maxHeight: "clamp(380px, 51vw, 610px)" }}
-              />
+              <div
+                className="relative z-[2] w-full"
+                style={{ height: "clamp(320px, 44vw, 520px)" }}
+              >
+                <img
+                  src="/s26/2nd.png"
+                  alt=""
+                  className="w-full h-full object-contain object-bottom scale-[1.115] origin-bottom"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
               <div
                 className="absolute z-[4] flex flex-col items-center"
                 style={{
                   bottom: "clamp(6%, 4vw, 12%)",
                   left: "50%",
-                  transform: "translateX(-50%) rotate(-4deg)",
+                  transform: "translateX(calc(-50% - 7px)) translateY(-15px) rotate(-4deg)",
                 }}
               >
                 <img
@@ -135,7 +120,7 @@ const Prizes = () => {
 
           <div className="relative flex flex-col items-center justify-end">
             <span
-              className="relative z-[6] font-caudex font-bold text-white text-center block mb-3"
+              className="relative z-[6] font-caudex font-bold text-white text-center block mb-3 translate-y-[60px]"
               style={{ fontSize: "clamp(22px, 2.8vw, 34px)" }}
             >
               3rd Overall
@@ -144,18 +129,22 @@ const Prizes = () => {
               className="relative w-full flex flex-col items-center"
               style={{ width: "clamp(360px, 50vw, 600px)", margin: "0 auto" }}
             >
-              <img
-                src="/s26/3rd.png"
-                alt=""
-                className="relative z-[2] w-full object-contain object-bottom"
-                loading="lazy"
-                decoding="async"
-                style={{ maxHeight: "clamp(320px, 44vw, 520px)" }}
-              />
+              <div
+                className="relative z-[2] w-full -translate-y-[20px]"
+                style={{ height: "clamp(320px, 44vw, 520px)" }}
+              >
+                <img
+                  src="/s26/3rd.png"
+                  alt=""
+                  className="w-full h-full object-contain object-bottom"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
               <div
                 className="absolute z-[4] flex flex-col items-center"
                 style={{
-                  bottom: "clamp(8%, 5vw, 14%)",
+                  bottom: "clamp(6%, 4vw, 12%)",
                   left: "50%",
                   transform: "translateX(-50%) rotate(-3deg)",
                 }}
@@ -179,19 +168,24 @@ const Prizes = () => {
             style={{ gap: "clamp(32px, 6vw, 64px)" }}
           >
             <motion.div
-              className="relative flex flex-col items-center justify-center"
+              className="relative flex flex-col items-center justify-start"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <span
-                className="font-caudex font-bold text-white text-center block mb-3"
+              <div
+                className="mb-3 flex items-center justify-center min-h-[2.6em]"
                 style={{ fontSize: "clamp(20px, 2.5vw, 30px)" }}
               >
-                Best Design
-              </span>
-              <div className="relative flex flex-col items-center min-h-[200px]">
+                <span className="font-caudex font-bold text-white text-center">
+                  Best Design
+                </span>
+              </div>
+              <div
+                className="relative flex flex-col items-center"
+                style={{ height: "clamp(220px, 30vw, 320px)" }}
+              >
                 <img
                   src="/s26/drawing tablet.png"
                   alt="Drawing Tablet"
@@ -204,7 +198,7 @@ const Prizes = () => {
                   }}
                 />
                 <span
-                  className="font-caudex font-bold text-white text-center mt-3"
+                  className="font-caudex font-bold text-white text-center mt-auto block"
                   style={{ fontSize: "clamp(16px, 1.8vw, 22px)" }}
                 >
                   Drawing Tablet
@@ -213,19 +207,24 @@ const Prizes = () => {
             </motion.div>
 
             <motion.div
-              className="relative flex flex-col items-center"
+              className="relative flex flex-col items-center justify-start"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <span
-                className="font-caudex font-bold text-white text-center block mb-3"
+              <div
+                className="mb-3 flex items-center justify-center min-h-[2.6em]"
                 style={{ fontSize: "clamp(20px, 2.5vw, 30px)" }}
               >
-                Best Beginner
-              </span>
-              <div className="relative flex flex-col items-center min-h-[200px]">
+                <span className="font-caudex font-bold text-white text-center">
+                  Best Beginner
+                </span>
+              </div>
+              <div
+                className="relative flex flex-col items-center"
+                style={{ height: "clamp(220px, 30vw, 320px)" }}
+              >
                 <img
                   src="/s26/legoset.png"
                   alt="Lego Set"
@@ -235,7 +234,7 @@ const Prizes = () => {
                   style={{ width: "clamp(160px, 26vw, 300px)" }}
                 />
                 <span
-                  className="font-caudex font-bold text-white text-center mt-3"
+                  className="font-caudex font-bold text-white text-center mt-auto block"
                   style={{ fontSize: "clamp(16px, 1.8vw, 22px)" }}
                 >
                   Lego Set
@@ -244,19 +243,24 @@ const Prizes = () => {
             </motion.div>
 
             <motion.div
-              className="relative flex flex-col items-center"
+              className="relative flex flex-col items-center justify-start"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.15 }}
               viewport={{ once: true }}
             >
-              <span
-                className="font-caudex font-bold text-white text-center block mb-3"
+              <div
+                className="mb-3 flex items-center justify-center min-h-[2.6em]"
                 style={{ fontSize: "clamp(20px, 2.5vw, 30px)" }}
               >
-                Best Winter
-              </span>
-              <div className="relative flex flex-col items-center min-h-[200px]">
+                <span className="font-caudex font-bold text-white text-center">
+                  Best Winter
+                </span>
+              </div>
+              <div
+                className="relative flex flex-col items-center"
+                style={{ height: "clamp(220px, 30vw, 320px)" }}
+              >
                 <img
                   src="/s26/plushie.png"
                   alt="Plushie"
@@ -266,7 +270,7 @@ const Prizes = () => {
                   style={{ width: "clamp(140px, 24vw, 280px)" }}
                 />
                 <span
-                  className="font-caudex font-bold text-white text-center mt-3"
+                  className="font-caudex font-bold text-white text-center mt-auto block"
                   style={{ fontSize: "clamp(16px, 1.8vw, 22px)" }}
                 >
                   Plushie
@@ -277,24 +281,19 @@ const Prizes = () => {
         </div>
       </div>
 
-      <div
-        className="relative left-1/2 pointer-events-none mt-8 md:mt-12"
-        style={{
-          transform: "translateX(-50%)",
-          zIndex: 5,
-        }}
-      >
+      <div className="relative w-full mt-10 md:mt-12 pointer-events-none flex justify-center translate-y-[100px]">
         <img
-          src="/s26/skatingpeng.png"
-          alt=""
-          className="object-contain block mx-auto"
+          src="/s26/TRACKSTBD.png"
+          alt="More Tracks TBD"
+          className="object-contain block"
           loading="lazy"
           decoding="async"
           style={{
-            width: "clamp(680px, 88vw, 1200px)",
+            width: "clamp(420px, 70vw, 980px)",
           }}
         />
       </div>
+
     </section>
   );
 };

@@ -52,6 +52,7 @@ interface IceRinkSectionProps {
   dayLabel: string;
   schedule: { time: string; event: string }[];
   isSecondRink?: boolean;
+  dayLabelColor?: string;
 }
 
 const splitSchedule = (items: { time: string; event: string }[]) => {
@@ -60,7 +61,7 @@ const splitSchedule = (items: { time: string; event: string }[]) => {
   return [items.slice(0, mid), items.slice(mid)];
 };
 
-const IceRinkSection = ({ dayLabel, schedule, isSecondRink = false }: IceRinkSectionProps) => (
+const IceRinkSection = ({ dayLabel, schedule, isSecondRink = false, dayLabelColor }: IceRinkSectionProps) => (
   <motion.div
     className="relative w-full max-w-4xl mx-auto flex justify-center items-center overflow-hidden"
     initial={{ opacity: 0, scale: 0.95 }}
@@ -79,7 +80,8 @@ const IceRinkSection = ({ dayLabel, schedule, isSecondRink = false }: IceRinkSec
     <div className="absolute inset-0 flex flex-col px-6 sm:px-10 md:px-14 lg:px-16">
       <div className="flex-[0_0_18%] flex items-end justify-center">
         <motion.h3
-          className="font-caudex font-bold text-[#18339f] text-[clamp(22px,3.4vw,32px)] md:text-[clamp(26px,2.4vw,40px)] text-center leading-tight"
+          className="font-caudex font-bold text-[clamp(22px,3.4vw,32px)] md:text-[clamp(26px,2.4vw,40px)] text-center leading-tight"
+          style={{ color: dayLabelColor ?? "#18339f" }}
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -138,6 +140,7 @@ const Schedule = () => {
           <IceRinkSection
             dayLabel="Saturday 2/7"
             schedule={day1Schedule}
+            dayLabelColor="#548fbf"
           />
           <motion.div
             className="absolute left-0 z-20 -translate-x-6 sm:-translate-x-8"
@@ -163,6 +166,7 @@ const Schedule = () => {
             dayLabel="Sunday 2/8"
             schedule={day2Schedule}
             isSecondRink={true}
+            dayLabelColor="#b34756"
           />
           <motion.div
             className="absolute right-0 z-20 translate-x-6 sm:translate-x-8"
