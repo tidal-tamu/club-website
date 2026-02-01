@@ -281,7 +281,7 @@ const About = () => {
       />
 
       <div className="relative z-0 w-full min-h-screen px-6 md:px-12 lg:px-20 pb-8 md:pb-12">
-        <div className="max-w-4xl relative z-20 -translate-y-[250px]">
+        <div className="max-w-4xl relative z-20 -translate-y-[290px] origin-top-left scale-90">
           <h2
             className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-bold leading-tight"
             id="about"

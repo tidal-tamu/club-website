@@ -378,6 +378,11 @@ const ParametricScrollPath = ({
 
       const updateMarkers = (currentProgress: number) => {
         if (!pathMarkers || pathMarkers.length === 0) return;
+        const containerWidth = containerDimensionsRef.current.width;
+        const containerHeight = containerDimensionsRef.current.height;
+        const shouldClamp = containerWidth > 0 && containerWidth < 768;
+        const clamp = (value: number, min: number, max: number) =>
+          Math.min(Math.max(value, min), max);
         for (const marker of pathMarkers) {
           const el = markerRefs.current[marker.id];
           if (!el) continue;
@@ -387,14 +392,25 @@ const ParametricScrollPath = ({
           const revealProgress = Math.max(0, Math.min(1, (currentProgress - marker.progress) / revealWindow));
           const offsetX = marker.offsetX ?? 0;
           const offsetY = marker.offsetY ?? 0;
+          let x = point.x + offsetX;
+          let y = point.y + offsetY;
+          if (shouldClamp) {
+            const halfW = el.offsetWidth / 2;
+            const halfH = el.offsetHeight / 2;
+            const margin = 12;
+            x = clamp(x, halfW + margin, containerWidth - halfW - margin);
+            y = clamp(y, halfH + margin, containerHeight - halfH - margin);
+          }
+          const clip = `inset(0 ${Math.round((1 - revealProgress) * 100)}% 0 0)`;
           gsap.set(el, {
-            x: point.x + offsetX,
-            y: point.y + offsetY,
+            x,
+            y,
             xPercent: -50,
             yPercent: -50,
             rotate: rotation,
             opacity: revealProgress,
-            clipPath: `inset(0 ${Math.round((1 - revealProgress) * 100)}% 0 0)`,
+            clipPath: clip,
+            webkitClipPath: clip,
           });
         }
       };
