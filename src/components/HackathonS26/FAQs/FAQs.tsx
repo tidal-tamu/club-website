@@ -7,50 +7,43 @@ const faqDetails = [
     {
         id: "1",
         question: "What is TIDALhack?",
-        answer:
-            "TIDALHack is a student-led data science competition where students of all levels and majors develop a project to win big prizes. 😀",
+        answer: "TIDALHack is a student-led data science competition where students of all levels and majors develop a project to win big prizes. 😀",
         icon: "trophy" as const,
     },
     {
         id: "2",
         question: "Why do TIDALhack?",
-        answer:
-            "TIDALhack is an opportunity to challenge yourself, gain practical experience in data science, and solve real-world problems! It also looks good on your resume!! 😉",
+        answer: "TIDALhack is an opportunity to challenge yourself, gain practical experience in data science, and solve real-world problems! It also looks good on your resume!! 😉",
         icon: "trophy" as const,
     },
     {
         id: "3",
         question: "What if I'm new to hackathons?",
-        answer:
-            "Don't worry! We will conduct introductory workshops and provide mentors for you. We foster a welcoming environment for beginners to ensure you have the best experience. 🤗",
+        answer: "Don't worry! We will conduct introductory workshops and provide mentors for you. We foster a welcoming environment for beginners to ensure you have the best experience. 🤗",
         icon: "user" as const,
     },
     {
         id: "4",
         question: "What should I bring?",
-        answer:
-            "Please bring your laptop, charger, and anything that will help you hack. If you plan on staying overnight, make sure to prepare accordingly. A blanket and pillow may come in handy, but try to limit the size of the items you bring. Most importantly, don't forget your deodorant. 🫡",
+        answer: "Please bring your laptop, charger, and anything that will help you hack. If you plan on staying overnight, make sure to prepare accordingly. A blanket and pillow may come in handy, but try to limit the size of the items you bring. Most importantly, don't forget your deodorant. 🫡",
         icon: "clipboard" as const,
     },
     {
         id: "5",
         question: "Do I have to be in person?",
-        answer:
-            "Yes, TIDALhack is an in-person event. Hackers must check in and be present throughout the hackathon to participate. 😺",
+        answer: "Yes, TIDALhack is an in-person event. Hackers must check in and be present throughout the hackathon to participate. 😺",
         icon: "user" as const,
     },
     {
         id: "6",
         question: "How do teams work?",
-        answer:
-            "Teams are limited to 4 hackers. Make sure to check on the registration form whether you have a team or are in need of one. During the opening ceremony we will have time for matchmaking, but we encourage you to find a team beforehand (preferably through our discord)! 😎",
+        answer: "Teams are limited to 4 hackers. Make sure to check on the registration form whether you have a team or are in need of one. During the opening ceremony we will have time for matchmaking, but we encourage you to find a team beforehand (preferably through our discord)! 😎",
         icon: "team" as const,
     },
     {
         id: "7",
         question: "What is the judging criteria?",
-        answer:
-            "The judging criteria will be released closer to the event. However, you can expect to be judged on creativity, technical difficulty, and presentation. Emphasis on CREATIVITY! 🧐",
+        answer: "The judging criteria will be released closer to the event. However, you can expect to be judged on creativity, technical difficulty, and presentation. Emphasis on CREATIVITY! 🧐",
         icon: "trophy" as const,
     },
     {
@@ -73,8 +66,7 @@ const faqDetails = [
     {
         id: "9",
         question: "Can I stay in MSC overnight?",
-        answer:
-            "Yes! TIDALhack is a full 24 hour event this year. Please keep in mind that the MSC closes at 11:00 PM on Saturday. This means you won't be able to re-enter until Sunday morning if you leave the building. 😴",
+        answer: "Yes! TIDALhack is a full 24 hour event this year. Please keep in mind that the MSC closes at 11:00 PM on Saturday. This means you won't be able to re-enter until Sunday morning if you leave the building. 😴",
         icon: "car" as const,
     },
     {
@@ -118,7 +110,10 @@ export default function FAQs() {
         >
             <h2
                 className="s26-section-header font-bold text-center text-white uppercase tracking-widest mb-12 md:mb-16"
-                style={{ fontSize: "clamp(32px, 5vw, 52px)" }}
+                style={{
+                    fontSize: "clamp(32px, 5vw, 52px)",
+                    textShadow: "0px 4px 4px rgba(0,0,0,0.25)",
+                }}
             >
                 FAQ
             </h2>

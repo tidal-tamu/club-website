@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 type SponsorTier = "gold" | "silver" | "bronze";
 
@@ -85,6 +86,15 @@ const sponsors: {
 ];
 
 const Sponsors = () => {
+    const trackRef = useRef<HTMLDivElement>(null);
+    const [trackWidth, setTrackWidth] = useState(0);
+
+    useEffect(() => {
+        if (trackRef.current) {
+            setTrackWidth(trackRef.current.scrollWidth / 2);
+        }
+    }, []);
+
     return (
         <section
             id="sponsors"
@@ -97,7 +107,10 @@ const Sponsors = () => {
         >
             <motion.h2
                 className="s26-section-header font-bold text-center text-white uppercase tracking-widest mb-8 md:mb-16 lg:mb-20"
-                style={{ fontSize: "clamp(28px, 5vw, 52px)" }}
+                style={{
+                    fontSize: "clamp(28px, 5vw, 52px)",
+                    textShadow: "0px 4px 4px rgba(0,0,0,0.25)",
+                }}
                 initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
@@ -214,53 +227,42 @@ const Sponsors = () => {
                             className="w-full h-full object-contain"
                         />
                     </div>
+                    <motion.div
+                        ref={trackRef}
+                        className="flex"
+                        animate={{ x: [-0, -trackWidth] }}
+                        transition={{
+                            duration: 30,
+                            repeat: Infinity,
+                            ease: "linear",
+                        }}
+                    >
+                        {[...sponsors, ...sponsors].map((sponsor, index) => (
+                            <div
+                                key={`${sponsor.id}-${index}`}
+                                className="flex-shrink-0 flex items-center justify-center mr-6"
+                            >
+                                {sponsor.isDummy ? (
+                                    <span className="text-white font-caudex font-bold text-center px-3 bg-white bg-opacity-20 rounded-lg p-2 text-sm">
+                                        {sponsor.name}
+                                    </span>
+                                ) : (
+                                    <img
+                                        src={sponsor.logo ?? ""}
+                                        alt={sponsor.name}
+                                        style={{
+                                            width: "200px",
+                                            height: "150px",
+                                            objectFit: "contain",
+                                        }}
+                                        className="drop-shadow-[0_2px_6px_rgba(0,0,0,0.2)]"
+                                        loading="lazy"
+                                    />
+                                )}
+                            </div>
+                        ))}
+                    </motion.div>
 
-                    <style>{`
-                        @keyframes scroll {
-                            0% { transform: translateX(0); }
-                            100% { transform: translateX(calc(-100% - 24px)); }
-                        }
-                        .auto-scroll {
-                            animation: scroll 30s linear infinite;
-                        }
-                        @media (hover: hover) {
-                            .auto-scroll:hover {
-                                animation-play-state: paused;
-                            }
-                        }
-                    `}</style>
-                    <div className="w-full">
-                        <div className="auto-scroll flex gap-6 w-max">
-                            {[...sponsors, ...sponsors].map(
-                                (sponsor, index) => (
-                                    <div
-                                        key={`${sponsor.id}-${index}`}
-                                        className="flex-shrink-0 flex flex-col items-center justify-center"
-                                    >
-                                        <div className="relative flex items-center justify-center">
-                                            {sponsor.isDummy ? (
-                                                <span className="text-white font-caudex font-bold text-center px-3 bg-white bg-opacity-20 rounded-lg p-2 text-sm">
-                                                    {sponsor.name}
-                                                </span>
-                                            ) : (
-                                                <img
-                                                    src={sponsor.logo ?? ""}
-                                                    alt={sponsor.name}
-                                                    style={{
-                                                        width: "200px",
-                                                        height: "150px",
-                                                        objectFit: "contain",
-                                                    }}
-                                                    className="drop-shadow-[0_2px_6px_rgba(0,0,0,0.2)]"
-                                                    loading="lazy"
-                                                />
-                                            )}
-                                        </div>
-                                    </div>
-                                ),
-                            )}
-                        </div>
-                    </div>
                     {/* Fox bottom-right - same sizing as desktop */}
                     <div className="w-[600px] h-[600px] -translate-x-20 -my-36">
                         <img

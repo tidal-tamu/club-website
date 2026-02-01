@@ -19,6 +19,7 @@ const Prizes = () => {
                 style={{
                     fontSize: "clamp(32px, 5vw, 52px)",
                     marginBottom: "clamp(48px, 7vw, 96px)",
+                    textShadow: "0px 4px 4px rgba(0,0,0,0.25)",
                 }}
             >
                 Prizes & Competition Tracks
@@ -37,6 +38,7 @@ const Prizes = () => {
                             fontSize: "clamp(24px, 3.5vw, 40px)",
                             marginBottom: "clamp(2px, 0.25vw, 6px)",
                             transform: "translate(5px, 20px)",
+                            textShadow: "0px 4px 4px rgba(0,0,0,0.25)",
                         }}
                     >
                         1st Overall
@@ -90,7 +92,10 @@ const Prizes = () => {
                     <div className="relative flex flex-col items-center justify-end">
                         <span
                             className="relative z-[6] font-caudex font-bold text-white text-center block mb-3 translate-y-[60px]"
-                            style={{ fontSize: "clamp(22px, 2.8vw, 34px)" }}
+                            style={{
+                                fontSize: "clamp(22px, 2.8vw, 34px)",
+                                textShadow: "0px 4px 4px rgba(0,0,0,0.25)",
+                            }}
                         >
                             2nd Overall
                         </span>
@@ -148,7 +153,10 @@ const Prizes = () => {
                     <div className="relative flex flex-col items-center justify-end">
                         <span
                             className="relative z-[6] font-caudex font-bold text-white text-center block mb-3 translate-y-[60px]"
-                            style={{ fontSize: "clamp(22px, 2.8vw, 34px)" }}
+                            style={{
+                                fontSize: "clamp(22px, 2.8vw, 34px)",
+                                textShadow: "0px 4px 4px rgba(0,0,0,0.25)",
+                            }}
                         >
                             3rd Overall
                         </span>
@@ -217,7 +225,10 @@ const Prizes = () => {
                         >
                             <div
                                 className="mb-3 flex items-center justify-center min-h-[2.6em]"
-                                style={{ fontSize: "clamp(20px, 2.5vw, 30px)" }}
+                                style={{
+                                    fontSize: "clamp(20px, 2.5vw, 30px)",
+                                    textShadow: "0px 4px 4px rgba(0,0,0,0.25)",
+                                }}
                             >
                                 <span className="font-caudex font-bold text-white text-center">
                                     Best Design
@@ -258,7 +269,10 @@ const Prizes = () => {
                         >
                             <div
                                 className="mb-3 flex items-center justify-center min-h-[2.6em]"
-                                style={{ fontSize: "clamp(20px, 2.5vw, 30px)" }}
+                                style={{
+                                    fontSize: "clamp(20px, 2.5vw, 30px)",
+                                    textShadow: "0px 4px 4px rgba(0,0,0,0.25)",
+                                }}
                             >
                                 <span className="font-caudex font-bold text-white text-center">
                                     Best Beginner
@@ -298,7 +312,10 @@ const Prizes = () => {
                         >
                             <div
                                 className="mb-3 flex items-center justify-center min-h-[2.6em]"
-                                style={{ fontSize: "clamp(20px, 2.5vw, 30px)" }}
+                                style={{
+                                    fontSize: "clamp(20px, 2.5vw, 30px)",
+                                    textShadow: "0px 4px 4px rgba(0,0,0,0.25)",
+                                }}
                             >
                                 <span className="font-caudex font-bold text-white text-center">
                                     Best Winter Theme
