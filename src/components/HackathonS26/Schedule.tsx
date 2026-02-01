@@ -8,10 +8,10 @@ const day1Schedule = [
   { time: "2:00 PM", event: "Company Workshop 1" },
   { time: "4:00 PM", event: "Company Workshop 2" },
   { time: "6:00 PM", event: "Dinner: Mai Shan Yun" },
-  { time: "10:00 PM", event: "Late Night Snack: Boba" },
 ];
 
 const day2Schedule = [
+  { time: "12:00 AM", event: "Midnight Snack: Boba" },
   { time: "8:00 AM", event: "Breakfast: Tacos" },
   { time: "11:00 AM", event: "Pitch Workshop" },
   { time: "12:00 PM", event: "Hacking Ends!" },
