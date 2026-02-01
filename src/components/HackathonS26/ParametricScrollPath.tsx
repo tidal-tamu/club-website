@@ -40,6 +40,7 @@ const ParametricScrollPath = ({
   const animationTimelineRef = useRef<gsap.core.Timeline | null>(null);
   const hasReachedEndRef = useRef(false);
   const isLockedOffscreenRef = useRef(false);
+  const hasCompletedRef = useRef(false);
   const hasStartedRef = useRef(false);
   const containerDimensionsRef = useRef({ width: 0, height: 0 });
   const pathLengthRef = useRef(0);
@@ -326,6 +327,12 @@ const ParametricScrollPath = ({
         animationTimelineRef.current.kill();
         animationTimelineRef.current = null;
       }
+      // Keep completed state across rebuilds; only reset when not completed.
+      if (!hasCompletedRef.current) {
+        hasReachedEndRef.current = false;
+        isLockedOffscreenRef.current = false;
+        gsap.set(dot, { opacity: 1 });
+      }
 
       // Precompute cumulative |ΔY| samples for monotonic vertical distance mapping
       const numSamples = 600;
@@ -415,7 +422,12 @@ const ParametricScrollPath = ({
         }
       };
 
-      updateMarkers(0);
+      if (hasCompletedRef.current) {
+        updateMarkers(1);
+        gsap.set(dot, { opacity: 0 });
+      } else {
+        updateMarkers(0);
+      }
 
       scrollTriggerRef.current = ScrollTrigger.create({
         trigger: trigger || container,
@@ -438,6 +450,7 @@ const ParametricScrollPath = ({
           if (self.progress >= 1 && !hasReachedEndRef.current) {
             hasReachedEndRef.current = true;
             isLockedOffscreenRef.current = true;
+            hasCompletedRef.current = true;
             const endPoint = getPointOnPath(1);
             const nearEndPoint = getPointOnPath(0.98);
             const dx = endPoint.x - nearEndPoint.x;
@@ -452,7 +465,7 @@ const ParametricScrollPath = ({
               },
             });
             if (onReachEnd) onReachEnd();
-          } else if (self.progress < 1 && hasReachedEndRef.current) {
+          } else if (self.progress < 1 && hasReachedEndRef.current && !hasCompletedRef.current) {
             hasReachedEndRef.current = false;
             if (onLeaveEnd) onLeaveEnd();
           }
