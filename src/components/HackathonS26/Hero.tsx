@@ -236,7 +236,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
                 </span>
             </div>
 
-            <div className="text-center z-20 max-w-4xl mx-auto -translate-y-[5vh] space-y-0 flex flex-col gap-5">
+            <div className="text-center z-50 max-w-4xl mx-auto -translate-y-[5vh] space-y-0 flex flex-col gap-5">
                 <motion.div
                     className="flex flex-wrap md:flex-nowrap justify-center gap-2 sm:gap-3 z-20"
                     initial={{ y: 30, opacity: 0 }}
@@ -269,7 +269,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
                 </motion.div>
 
                 <motion.div
-                    className="relative flex items-center justify-center gap-6 md:gap-8 lg:gap-10 xl:gap-10"
+                    className="relative flex items-center justify-center gap-6 md:gap-8 lg:gap-10 xl:gap-10 z-50"
                     style={{
                         transform: "translateX(clamp(-32px, -2.5vw, -12px))",
                     }}
@@ -314,7 +314,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
                 </motion.div>
 
                 <motion.div
-                    className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mt-4 md:mt-8 justify-center"
+                    className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mt-4 md:mt-8 justify-center z-50"
                     initial={{ y: 30, opacity: 0 }}
                     animate={
                         shouldAnimate

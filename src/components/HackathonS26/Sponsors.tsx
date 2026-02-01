@@ -109,105 +109,6 @@ const sponsors: {
 ];
 
 const Sponsors = () => {
-    const goldSponsors = sponsors.filter((s) => s.tier === "gold");
-    const silverSponsors = sponsors.filter((s) => s.tier === "silver");
-    const bronzeSponsors = sponsors.filter((s) => s.tier === "bronze");
-
-    const renderTierSection = (
-        tierName: string,
-        tierSponsors: typeof sponsors,
-        tierKey: SponsorTier,
-    ) => {
-        const { size, globePath, color } = TIER_CONFIG[tierKey];
-
-        return (
-            <div key={tierKey} className="mb-12 md:mb-16 select-none">
-                <h3
-                    className="s26-section-header font-bold text-white uppercase tracking-widest mb-6 md:mb-8 text-center"
-                    style={{
-                        fontSize: "clamp(18px, 3vw, 32px)",
-                        color: color,
-                        textShadow: `0 0 20px ${color}40`,
-                    }}
-                >
-                    {tierName} Partners
-                </h3>
-
-                <div className="flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-10">
-                    {tierSponsors.map((sponsor, index) => (
-                        <motion.div
-                            key={sponsor.id}
-                            className="relative flex items-center justify-center"
-                            style={{ width: size, height: size }}
-                            initial={{ opacity: 0, scale: 0, rotate: -180 }}
-                            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                            animate={{ y: [0, -8, 0] }}
-                            transition={{
-                                initial: {
-                                    duration: 1,
-                                    delay: index * 0.1,
-                                    type: "spring",
-                                    stiffness: 100,
-                                },
-                                y: {
-                                    duration: 2,
-                                    repeat: Infinity,
-                                    ease: "easeInOut",
-                                    delay: index * 0.15,
-                                },
-                            }}
-                            viewport={{ once: true }}
-                        >
-                            {/* Globe background */}
-                            <img
-                                src={globePath}
-                                alt={`${tierName} globe`}
-                                className="absolute w-full h-full object-contain drop-shadow-[0_12px_28px_rgba(0,0,0,0.2)]"
-                                loading="lazy"
-                                decoding="async"
-                            />
-
-                            {/* Logo container with hover effect */}
-                            <motion.div
-                                className="absolute inset-0 flex items-center justify-center"
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                {sponsor.isDummy ? (
-                                    <span className="text-white font-caudex font-bold text-center px-2 leading-tight">
-                                        {sponsor.name}
-                                    </span>
-                                ) : (
-                                    <img
-                                        src={sponsor.logo ?? ""}
-                                        alt={sponsor.name}
-                                        style={{
-                                            width: `${sponsor.logoSize || 70}%`,
-                                            height: `${sponsor.logoSize || 70}%`,
-                                            objectFit: "contain",
-                                        }}
-                                        className="drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
-                                        loading="lazy"
-                                    />
-                                )}
-                            </motion.div>
-
-                            {/* Label on hover */}
-                            <motion.div
-                                className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full mt-2 bg-white rounded px-2 py-1 whitespace-nowrap pointer-events-none text-xs font-semibold"
-                                initial={{ opacity: 0, y: -5 }}
-                                whileHover={{ opacity: 1, y: 0 }}
-                                style={{ color: color }}
-                            >
-                                {sponsor.name}
-                            </motion.div>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-        );
-    };
-
     return (
         <section
             id="sponsors"
@@ -216,6 +117,7 @@ const Sponsors = () => {
                 backgroundColor: "#79b0cf",
                 paddingTop: "clamp(60px, 8vw, 140px)",
                 paddingBottom: "clamp(40px, 5vw, 72px)",
+                minHeight: "600px",
             }}
         >
             <motion.h2
@@ -229,10 +131,70 @@ const Sponsors = () => {
                 Our Amazing Sponsors
             </motion.h2>
 
-            <div className="max-w-7xl mx-auto w-full">
-                {renderTierSection("Platinum", goldSponsors, "gold")}
-                {renderTierSection("Silver", silverSponsors, "silver")}
-                {renderTierSection("Bronze", bronzeSponsors, "bronze")}
+            <div className="relative max-w-7xl mx-auto w-full h-full">
+                <div className="absolute -left-30 bottom-50 w-[600px] h-[600px]">
+                    <img
+                        src="/s26/lilguywatchingtv.png"
+                        alt="Lil guy watching TV on ice"
+                        className="w-full h-full object-contain"
+                    />
+                </div>
+
+                <div className="absolute top-50 -right-30 w-[600px] h-[600px]">
+                    <img
+                        src="/s26/foxsleeping.png"
+                        alt="Fox sleeping on ice"
+                        className="w-full h-full object-contain"
+                    />
+                </div>
+
+                {/* Sponsors Grid in Center */}
+                <div className="relative flex items-center justify-center py-16">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 px-8 w-full max-w-4xl">
+                        {sponsors.map((sponsor, index) => (
+                            <motion.div
+                                key={sponsor.id}
+                                className="flex flex-col items-center justify-center"
+                                initial={{ opacity: 0, scale: 0 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                transition={{
+                                    duration: 0.6,
+                                    delay: index * 0.1,
+                                    type: "spring",
+                                    stiffness: 100,
+                                }}
+                                viewport={{ once: true }}
+                            >
+                                <motion.div
+                                    className="bg-[#3A729B] bg-opacity-80 rounded-lg p-6 hover:bg-opacity-50 transition-all shadow-lg"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    {sponsor.isDummy ? (
+                                        <span className="text-white font-caudex font-bold text-center">
+                                            {sponsor.name}
+                                        </span>
+                                    ) : (
+                                        <img
+                                            src={sponsor.logo ?? ""}
+                                            alt={sponsor.name}
+                                            style={{
+                                                width: "120px",
+                                                height: "80px",
+                                                objectFit: "contain",
+                                            }}
+                                            className="drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+                                            loading="lazy"
+                                        />
+                                    )}
+                                </motion.div>
+                                <p className="text-white text-sm font-semibold mt-3 text-center">
+                                    {sponsor.name}
+                                </p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
             </div>
         </section>
     );
