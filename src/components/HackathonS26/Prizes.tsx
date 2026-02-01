@@ -68,6 +68,16 @@ const Prizes = () => {
                 }}
               />
             </div>
+            <span
+              className="relative z-[6] font-caudex font-bold text-white text-center block"
+              style={{
+                fontSize: "clamp(18px, 2.4vw, 28px)",
+                marginTop: "clamp(4px, 0.8vw, 12px)",
+                transform: "translateY(-6px)",
+              }}
+            >
+              4K TV
+            </span>
           </div>
         </div>
 
@@ -116,6 +126,15 @@ const Prizes = () => {
                 />
               </div>
             </div>
+            <span
+              className="relative z-[6] font-caudex font-bold text-white text-center block"
+              style={{
+                fontSize: "clamp(18px, 2.2vw, 26px)",
+                marginTop: "clamp(6px, 1vw, 14px)",
+              }}
+            >
+              Airpods
+            </span>
           </div>
 
           <div className="relative flex flex-col items-center justify-end">
@@ -159,6 +178,15 @@ const Prizes = () => {
                 />
               </div>
             </div>
+            <span
+              className="relative z-[6] font-caudex font-bold text-white text-center block"
+              style={{
+                fontSize: "clamp(18px, 2.2vw, 26px)",
+                marginTop: "clamp(6px, 1vw, 14px)",
+              }}
+            >
+              Airfryer
+            </span>
           </div>
         </div>
 
