@@ -112,16 +112,15 @@ const Sponsors = () => {
     return (
         <section
             id="sponsors"
-            className="relative w-full overflow-x-hidden px-4 sm:px-6 lg:px-8"
+            className="relative w-full px-4 sm:px-6 lg:px-8 overflow-x-hidden"
             style={{
                 backgroundColor: "#79b0cf",
                 paddingTop: "clamp(60px, 8vw, 140px)",
                 paddingBottom: "clamp(40px, 5vw, 72px)",
-                minHeight: "600px",
             }}
         >
             <motion.h2
-                className="s26-section-header font-bold text-center text-white uppercase tracking-widest mb-12 md:mb-16 lg:mb-20"
+                className="s26-section-header font-bold text-center text-white uppercase tracking-widest mb-8 md:mb-16 lg:mb-20"
                 style={{ fontSize: "clamp(28px, 5vw, 52px)" }}
                 initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -131,8 +130,8 @@ const Sponsors = () => {
                 Our Amazing Sponsors
             </motion.h2>
 
-            <div className="relative max-w-7xl mx-auto w-full h-full">
-                <div className="absolute -left-30 bottom-50 w-[600px] h-[600px]">
+            <div className="relative max-w-7xl mx-auto w-full">
+                <div className="absolute -left-30 bottom-50 w-[600px] h-[600px] hidden md:block">
                     <img
                         src="/s26/lilguywatchingtv.png"
                         alt="Lil guy watching TV on ice"
@@ -140,7 +139,7 @@ const Sponsors = () => {
                     />
                 </div>
 
-                <div className="absolute top-50 -right-30 w-[600px] h-[600px]">
+                <div className="absolute top-50 -right-30 w-[600px] h-[600px] hidden md:block">
                     <img
                         src="/s26/foxsleeping.png"
                         alt="Fox sleeping on ice"
@@ -148,51 +147,140 @@ const Sponsors = () => {
                     />
                 </div>
 
-                {/* Sponsors Grid in Center */}
-                <div className="relative flex items-center justify-center py-16">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 px-8 w-full max-w-4xl">
-                        {sponsors.map((sponsor, index) => (
-                            <motion.div
-                                key={sponsor.id}
-                                className="flex flex-col items-center justify-center"
-                                initial={{ opacity: 0, scale: 0 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{
-                                    duration: 0.6,
-                                    delay: index * 0.1,
-                                    type: "spring",
-                                    stiffness: 100,
-                                }}
-                                viewport={{ once: true }}
-                            >
+                {/* Sponsors Grid in Center with Central Globe */}
+                {/* Desktop: Orbital Layout */}
+                <div className="hidden md:relative md:flex md:items-center md:justify-center md:py-32 md:h-[800px]">
+                    {/* Central Globe */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 z-0">
+                        <img
+                            src="/s26/globe.png"
+                            alt="Central globe"
+                            className="w-full h-full object-contain"
+                        />
+                    </div>
+
+                    {/* Sponsors floating around */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        {sponsors.map((sponsor, index) => {
+                            const angle =
+                                (index / sponsors.length) * Math.PI * 2;
+                            const radius = 280;
+                            const x = Math.cos(angle) * radius;
+                            const y = Math.sin(angle) * radius;
+
+                            return (
                                 <motion.div
-                                    className="bg-[#3A729B] bg-opacity-80 rounded-lg p-6 hover:bg-opacity-50 transition-all shadow-lg"
-                                    whileHover={{ scale: 1.05 }}
+                                    key={sponsor.id}
+                                    className="absolute flex flex-col items-center justify-center"
+                                    initial={{ opacity: 0, scale: 0 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    transition={{
+                                        duration: 0.6,
+                                        delay: index * 0.1,
+                                        type: "spring",
+                                        stiffness: 100,
+                                    }}
+                                    viewport={{ once: true }}
+                                    animate={{
+                                        x: [x, x * 1.15, x],
+                                        y: [y, y * 1.15, y],
+                                    }}
+                                    whileHover={{ scale: 1.15 }}
                                     whileTap={{ scale: 0.95 }}
                                 >
-                                    {sponsor.isDummy ? (
-                                        <span className="text-white font-caudex font-bold text-center">
-                                            {sponsor.name}
-                                        </span>
-                                    ) : (
-                                        <img
-                                            src={sponsor.logo ?? ""}
-                                            alt={sponsor.name}
-                                            style={{
-                                                width: "120px",
-                                                height: "80px",
-                                                objectFit: "contain",
-                                            }}
-                                            className="drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
-                                            loading="lazy"
-                                        />
-                                    )}
+                                    <div className="flex flex-col items-center">
+                                        <div className="relative flex items-center justify-center">
+                                            {sponsor.isDummy ? (
+                                                <span className="text-white font-caudex font-bold text-center px-4 bg-white bg-opacity-20 rounded-lg p-3">
+                                                    {sponsor.name}
+                                                </span>
+                                            ) : (
+                                                <img
+                                                    src={sponsor.logo ?? ""}
+                                                    alt={sponsor.name}
+                                                    style={{
+                                                        width: "200px",
+                                                        height: "150px",
+                                                        objectFit: "contain",
+                                                    }}
+                                                    className="drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
+                                                    loading="lazy"
+                                                />
+                                            )}
+                                        </div>
+                                    </div>
                                 </motion.div>
-                                <p className="text-white text-sm font-semibold mt-3 text-center">
-                                    {sponsor.name}
-                                </p>
-                            </motion.div>
-                        ))}
+                            );
+                        })}
+                    </div>
+                </div>
+
+                {/* Mobile: Auto-Scrolling Carousel */}
+                <div
+                    className="md:hidden relative w-full py-8"
+                    style={{ minHeight: "700px" }}
+                >
+                    <div className="w-[600px] h-[600px] -translate-x-32 -my-36">
+                        <img
+                            src="/s26/lilguywatchingtv.png"
+                            alt="Lil guy watching TV on ice"
+                            className="w-full h-full object-contain"
+                        />
+                    </div>
+
+                    <style>{`
+                        @keyframes scroll {
+                            0% { transform: translateX(0); }
+                            100% { transform: translateX(calc(-100% - 24px)); }
+                        }
+                        .auto-scroll {
+                            animation: scroll 30s linear infinite;
+                        }
+                        @media (hover: hover) {
+                            .auto-scroll:hover {
+                                animation-play-state: paused;
+                            }
+                        }
+                    `}</style>
+                    <div className="w-full">
+                        <div className="auto-scroll flex gap-6 w-max">
+                            {[...sponsors, ...sponsors].map(
+                                (sponsor, index) => (
+                                    <div
+                                        key={`${sponsor.id}-${index}`}
+                                        className="flex-shrink-0 flex flex-col items-center justify-center"
+                                    >
+                                        <div className="relative flex items-center justify-center">
+                                            {sponsor.isDummy ? (
+                                                <span className="text-white font-caudex font-bold text-center px-3 bg-white bg-opacity-20 rounded-lg p-2 text-sm">
+                                                    {sponsor.name}
+                                                </span>
+                                            ) : (
+                                                <img
+                                                    src={sponsor.logo ?? ""}
+                                                    alt={sponsor.name}
+                                                    style={{
+                                                        width: "200px",
+                                                        height: "150px",
+                                                        objectFit: "contain",
+                                                    }}
+                                                    className="drop-shadow-[0_2px_6px_rgba(0,0,0,0.2)]"
+                                                    loading="lazy"
+                                                />
+                                            )}
+                                        </div>
+                                    </div>
+                                ),
+                            )}
+                        </div>
+                    </div>
+                    {/* Fox bottom-right - same sizing as desktop */}
+                    <div className="w-[600px] h-[600px] -translate-x-20 -my-36">
+                        <img
+                            src="/s26/foxsleeping.png"
+                            alt="Fox sleeping on ice"
+                            className="w-full h-full object-contain"
+                        />
                     </div>
                 </div>
             </div>
