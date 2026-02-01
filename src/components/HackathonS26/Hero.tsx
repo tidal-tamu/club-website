@@ -252,17 +252,17 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
                     }}
                 >
                     <div className="bg-[#9FC9E6] border-[2px] border-[#9FC9E6] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-3xl whitespace-nowrap hover:bg-[#8AB8D5] hover:border-[#8AB8D5] hover:scale-105 transition-all duration-200">
-                        <span className="text-white font-medium text-xs sm:text-sm md:text-base">
+                        <span className="text-white font-medium text-base">
                             MSC Bethancourt
                         </span>
                     </div>
                     <div className="bg-[#9FC9E6] border-[2px] border-[#9FC9E6] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-3xl whitespace-nowrap hover:bg-[#8AB8D5] hover:border-[#8AB8D5] hover:scale-105 transition-all duration-200">
-                        <span className="text-white font-medium text-xs sm:text-sm md:text-base">
+                        <span className="text-white font-medium text-sm md:text-base">
                             24 Hours
                         </span>
                     </div>
                     <div className="bg-[#9FC9E6] border-[2px] border-[#9FC9E6] px-2 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1 rounded-3xl whitespace-nowrap hover:bg-[#8AB8D5] hover:border-[#8AB8D5] hover:scale-105 transition-all duration-200 cursor-pointer">
-                        <span className="text-white font-medium text-xs sm:text-sm md:text-base">
+                        <span className="text-white font-medium text-sm md:text-base">
                             Feb 7-8
                         </span>
                     </div>
@@ -286,7 +286,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
                     }}
                 >
                     <h1
-                        className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-dynapuff"
+                        className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-dynapuff"
                         style={{
                             fontWeight: "bold",
                             filter: "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 40px rgba(255, 200, 50, 0.08))",
@@ -299,7 +299,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
                         Hack
                     </h1>
                     <span
-                        className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-dynapuff inline-flex items-center scale-[2] origin-center"
+                        className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-dynapuff inline-flex items-center scale-[2] origin-center"
                         style={{
                             fontWeight: "bold",
                             filter: "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 40px rgba(255, 200, 50, 0.08))",
@@ -329,7 +329,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
                 >
                     <Link
                         to="/register"
-                        className="bg-[#AB3243] hover:bg-[#8F2838] text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 md:gap-2.5 hover:scale-110 active:scale-95 hover:shadow-lg border-b-4 md:border-b-6 lg:border-b-8 border-b-[#6B1A26] min-w-[140px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px]"
+                        className="bg-[#AB3243] hover:bg-[#8F2838] text-white font-bold text-base md:text-lg px-7 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 md:gap-2.5 hover:scale-110 active:scale-95 hover:shadow-lg border-b-4 md:border-b-6 lg:border-b-8 border-b-[#6B1A26] min-w-[140px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px]"
                         style={{
                             filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3))",
                         }}
@@ -341,7 +341,7 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
                         href="https://forms.gle/oBEQk9y9xadLhYnE9"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-[#9FC9E6] hover:bg-[#8AB8D5] text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 md:gap-2.5 hover:scale-110 active:scale-95 hover:shadow-lg border-b-4 md:border-b-6 lg:border-b-8 border-b-[#5A7FA0] min-w-[140px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px]"
+                        className="bg-[#9FC9E6] hover:bg-[#8AB8D5] text-white font-bold text-base md:text-lg lg:text-lg px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 md:gap-2.5 hover:scale-110 active:scale-95 hover:shadow-lg border-b-4 md:border-b-6 lg:border-b-8 border-b-[#5A7FA0] min-w-[140px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px]"
                         style={{
                             filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4))",
                         }}

@@ -16,7 +16,6 @@ type AnimatedCounterProps = {
     animationOptions?: KeyframeOptions;
     start?: boolean;
 };
-
 const AnimatedCounter = ({
     from,
     to,
@@ -25,7 +24,9 @@ const AnimatedCounter = ({
     start = true,
 }: AnimatedCounterProps) => {
     const ref = useRef<HTMLSpanElement>(null);
-    const inView = useInView(ref, { once: true, amount: 0.5 });
+
+    // CHANGED: Reduced amount to 0.2 to ensure it triggers easily on mobile
+    const inView = useInView(ref, { once: true, amount: 0.2 });
 
     useIsomorphicLayoutEffect(() => {
         const element = ref.current;
@@ -52,7 +53,7 @@ const AnimatedCounter = ({
         return () => {
             controls.stop();
         };
-    }, [ref, inView, from, to, suffix]);
+    }, [ref, inView, from, to, suffix, start]);
 
     return (
         <span
@@ -61,11 +62,11 @@ const AnimatedCounter = ({
                 display: "inline-block",
                 minWidth: "3.5em",
                 fontVariantNumeric: "tabular-nums",
+                minHeight: "1em",
             }}
         />
     );
 };
-
 const About = () => {
     const pebbleSkiRef = useRef<HTMLImageElement>(null);
     const revealIndexRef = useRef(-1);
