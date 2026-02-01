@@ -2,30 +2,6 @@ import { motion } from "framer-motion";
 
 type SponsorTier = "gold" | "silver" | "bronze";
 
-const TIER_CONFIG: Record<
-    SponsorTier,
-    { size: string; globePath: string; color: string; colorName: string }
-> = {
-    gold: {
-        size: "clamp(200px, 28vw, 340px)",
-        globePath: "/s26/Sponsors/PurpleSponsor.png",
-        color: "#a855f7",
-        colorName: "purple",
-    },
-    silver: {
-        size: "clamp(180px, 25vw, 320px)",
-        globePath: "/s26/Sponsors/SilverSponsor.png",
-        color: "#c0c0c0",
-        colorName: "silver",
-    },
-    bronze: {
-        size: "clamp(160px, 22vw, 300px)",
-        globePath: "/s26/Sponsors/RedSponsor.png",
-        color: "#ef4444",
-        colorName: "red",
-    },
-};
-
 const sponsors: {
     id: number;
     name: string;

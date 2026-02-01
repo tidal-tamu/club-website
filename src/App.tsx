@@ -1,5 +1,5 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import React, { lazy, Suspense } from "react";
+import React, { lazy } from "react";
 import Home from "./components/Home/Home";
 import HackathonS25 from "./components/HackathonS25/Hackathon";
 import HackathonF25 from "./components/HackathonF25/Hackathon";
