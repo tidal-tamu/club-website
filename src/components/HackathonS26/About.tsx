@@ -4,7 +4,7 @@ import {
     useInView,
     useIsomorphicLayoutEffect,
 } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import ParametricScrollPath from "./ParametricScrollPath";
 import gsap from "gsap";
 import { Link } from "react-router-dom";
@@ -14,6 +14,7 @@ type AnimatedCounterProps = {
     to: number;
     suffix?: string;
     animationOptions?: KeyframeOptions;
+    start?: boolean;
 };
 
 const AnimatedCounter = ({
@@ -21,6 +22,7 @@ const AnimatedCounter = ({
     to,
     suffix = "",
     animationOptions,
+    start = true,
 }: AnimatedCounterProps) => {
     const ref = useRef<HTMLSpanElement>(null);
     const inView = useInView(ref, { once: true, amount: 0.5 });
@@ -29,7 +31,7 @@ const AnimatedCounter = ({
         const element = ref.current;
 
         if (!element) return;
-        if (!inView) return;
+        if (!inView || !start) return;
 
         element.textContent = String(from) + suffix;
 
@@ -66,6 +68,17 @@ const AnimatedCounter = ({
 
 const About = () => {
     const pebbleSkiRef = useRef<HTMLImageElement>(null);
+    const [revealIndex, setRevealIndex] = useState(-1);
+    const revealIndexRef = useRef(-1);
+    const revealThresholds = [0.2, 0.35, 0.5, 0.65];
+    const [prizesMarkerActive, setPrizesMarkerActive] = useState(false);
+    const [secondPrizesMarkerActive, setSecondPrizesMarkerActive] = useState(false);
+    const [mentorsMarkerActive, setMentorsMarkerActive] = useState(false);
+    const [sponsorsMarkerActive, setSponsorsMarkerActive] = useState(false);
+    const prizesMarkerProgress = 0.68;
+    const secondPrizesMarkerProgress = 0.73;
+    const mentorsMarkerProgress = 0.78;
+    const sponsorsMarkerProgress = 0.83;
 
     useEffect(() => {
         if (pebbleSkiRef.current) {
@@ -82,8 +95,8 @@ const About = () => {
         if (pebbleSkiRef.current) {
             // Slide in diagonally from bottom left to final position
             gsap.to(pebbleSkiRef.current, {
-                x: 0,
-                y: 0,
+                x: -120,
+                y: 120,
                 opacity: 1,
                 duration: 1.2,
                 ease: "power2.out",
@@ -104,6 +117,45 @@ const About = () => {
         }
     };
 
+    const handleProgress = (progress: number) => {
+        let nextIndex = -1;
+        for (let i = 0; i < revealThresholds.length; i++) {
+            if (progress >= revealThresholds[i]) {
+                nextIndex = i;
+            }
+        }
+        if (nextIndex !== revealIndexRef.current) {
+            revealIndexRef.current = nextIndex;
+            setRevealIndex(nextIndex);
+        }
+        if (progress >= prizesMarkerProgress && !prizesMarkerActive) {
+            setPrizesMarkerActive(true);
+        }
+        if (progress < prizesMarkerProgress && prizesMarkerActive) {
+            setPrizesMarkerActive(false);
+        }
+        if (progress >= secondPrizesMarkerProgress && !secondPrizesMarkerActive) {
+            setSecondPrizesMarkerActive(true);
+        }
+        if (progress < secondPrizesMarkerProgress && secondPrizesMarkerActive) {
+            setSecondPrizesMarkerActive(false);
+        }
+        if (progress >= mentorsMarkerProgress && !mentorsMarkerActive) {
+            setMentorsMarkerActive(true);
+        }
+        if (progress < mentorsMarkerProgress && mentorsMarkerActive) {
+            setMentorsMarkerActive(false);
+        }
+        if (progress >= sponsorsMarkerProgress && !sponsorsMarkerActive) {
+            setSponsorsMarkerActive(true);
+        }
+        if (progress < sponsorsMarkerProgress && sponsorsMarkerActive) {
+            setSponsorsMarkerActive(false);
+        }
+    };
+
+    const isRevealed = (index: number) => revealIndex >= index;
+
   return (
     <section
       className="relative z-10 w-full overflow-visible pt-10 md:pt-16"
@@ -121,10 +173,115 @@ const About = () => {
         }}
         aria-label="Snowy Path"
       />
-      <ParametricScrollPath onReachEnd={handleReachEnd} onLeaveEnd={handleLeaveEnd} />
+      <ParametricScrollPath
+        onReachEnd={handleReachEnd}
+        onLeaveEnd={handleLeaveEnd}
+        onProgress={handleProgress}
+        pathMarkers={[
+          {
+            id: "last-year-we-had",
+            progress: 0.45,
+            revealWindow: 0.2,
+            offsetX: 200,
+            offsetY: -18,
+            element: (
+              <div
+                className="text-[#3a729b] text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-[72px] font-bold leading-tight"
+                style={{ fontFamily: "'Caudex', serif" }}
+              >
+                LAST YEAR WE HAD...
+              </div>
+            ),
+          },
+          {
+            id: "participants-marker",
+            progress: prizesMarkerProgress,
+            revealWindow: 0.1,
+            element: (
+              <div className="flex flex-col items-center">
+                <span
+                  className="text-[#3a729b] text-4xl md:text-5xl lg:text-6xl xl:text-[72px] font-normal"
+                  style={{ fontFamily: "'Chelsea Market', cursive" }}
+                >
+                  <AnimatedCounter from={0} to={300} suffix="+" start={prizesMarkerActive} />
+                </span>
+                <span
+                  className="text-[#004272] text-base md:text-lg lg:text-xl mt-1 transform rotate-1"
+                  style={{ fontFamily: "'Pangolin', cursive" }}
+                >
+                  participants
+                </span>
+              </div>
+            ),
+          },
+          {
+            id: "prizes-marker-2k",
+            progress: secondPrizesMarkerProgress,
+            revealWindow: 0.12,
+            element: (
+              <div className="flex flex-col items-center">
+                <span
+                  className="text-[#3a729b] text-4xl md:text-5xl lg:text-6xl xl:text-[72px] font-normal"
+                  style={{ fontFamily: "'Chelsea Market', cursive" }}
+                >
+                  <AnimatedCounter from={0} to={2} suffix="k+" start={secondPrizesMarkerActive} />
+                </span>
+                <span
+                  className="text-[#004272] text-base md:text-lg lg:text-xl mt-1 transform rotate-1"
+                  style={{ fontFamily: "'Pangolin', cursive" }}
+                >
+                  in prizes
+                </span>
+              </div>
+            ),
+          },
+          {
+            id: "mentors-marker",
+            progress: mentorsMarkerProgress,
+            revealWindow: 0.12,
+            element: (
+              <div className="flex flex-col items-center">
+                <span
+                  className="text-[#3a729b] text-4xl md:text-5xl lg:text-6xl xl:text-[72px] font-normal"
+                  style={{ fontFamily: "'Chelsea Market', cursive" }}
+                >
+                  <AnimatedCounter from={0} to={20} suffix="+" start={mentorsMarkerActive} />
+                </span>
+                <span
+                  className="text-[#004272] text-base md:text-lg lg:text-xl mt-1"
+                  style={{ fontFamily: "'Pangolin', cursive" }}
+                >
+                  mentors
+                </span>
+              </div>
+            ),
+          },
+          {
+            id: "sponsors-marker",
+            progress: sponsorsMarkerProgress,
+            revealWindow: 0.12,
+            element: (
+              <div className="flex flex-col items-center">
+                <span
+                  className="text-[#3a729b] text-4xl md:text-5xl lg:text-6xl xl:text-[72px] font-normal"
+                  style={{ fontFamily: "'Chelsea Market', cursive" }}
+                >
+                  <AnimatedCounter from={0} to={10} suffix="+" start={sponsorsMarkerActive} />
+                </span>
+                <span
+                  className="text-[#004272] text-base md:text-lg lg:text-xl mt-1 transform -rotate-2"
+                  style={{ fontFamily: "'Pangolin', cursive" }}
+                >
+                  sponsors
+                </span>
+              </div>
+            ),
+          },
+        ]}
+      />
 
-      <div className="relative z-10 w-full min-h-screen px-6 md:px-12 lg:px-20 pb-8 md:pb-12">
-        <div className="max-w-4xl relative z-10 -translate-y-[250px]">
+      <div className="relative z-0 w-full min-h-screen px-6 md:px-12 lg:px-20 pb-8 md:pb-12">
+        <div className="max-w-4xl relative z-20 -translate-y-[250px]">
           <h2
             className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-bold leading-tight"
             id="about"
@@ -165,7 +322,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="absolute left-4 md:left-8 lg:left-10 bottom-8 md:bottom-12 lg:bottom-16 z-10">
+        <div className="absolute left-4 md:left-8 lg:left-10 bottom-8 md:bottom-12 lg:bottom-16 z-20">
           <div className="w-[320px] md:w-[420px] lg:w-[520px] xl:w-[620px] transform rotate-[8deg]">
             <img
               ref={pebbleSkiRef}
@@ -178,78 +335,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="mt-16 md:mt-24 lg:mt-32 text-center">
-          <h3
-            className="text-[#3a729b] text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[96px] font-bold leading-tight"
-            style={{
-              fontFamily: "'Caudex', serif",
-            }}
-          >
-            LAST YEAR WE HAD...
-          </h3>
-
-          <div className="mt-12 md:mt-16 lg:mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 lg:gap-16 max-w-5xl mx-auto">
-            <div className="flex flex-col items-center">
-              <span
-                className="text-[#3a729b] text-5xl md:text-6xl lg:text-7xl xl:text-[96px] font-normal"
-                style={{ fontFamily: "'Chelsea Market', cursive" }}
-              >
-                <AnimatedCounter from={0} to={300} />
-              </span>
-              <span
-                className="text-[#004272] text-lg md:text-xl lg:text-2xl mt-2 transform -rotate-2"
-                style={{ fontFamily: "'Pangolin', cursive" }}
-              >
-                participants
-              </span>
-            </div>
-
-            <div className="flex flex-col items-center">
-              <span
-                className="text-[#3a729b] text-5xl md:text-6xl lg:text-7xl xl:text-[96px] font-normal"
-                style={{ fontFamily: "'Chelsea Market', cursive" }}
-              >
-                <AnimatedCounter from={0} to={2} suffix="k+" />
-              </span>
-              <span
-                className="text-[#004272] text-lg md:text-xl lg:text-2xl mt-2 transform rotate-1"
-                style={{ fontFamily: "'Pangolin', cursive" }}
-              >
-                in prizes
-              </span>
-            </div>
-
-            <div className="flex flex-col items-center">
-              <span
-                className="text-[#3a729b] text-5xl md:text-6xl lg:text-7xl xl:text-[96px] font-normal"
-                style={{ fontFamily: "'Chelsea Market', cursive" }}
-              >
-                <AnimatedCounter from={0} to={20} suffix="+" />
-              </span>
-              <span
-                className="text-[#004272] text-lg md:text-xl lg:text-2xl mt-2"
-                style={{ fontFamily: "'Pangolin', cursive" }}
-              >
-                mentors
-              </span>
-            </div>
-
-            <div className="flex flex-col items-center">
-              <span
-                className="text-[#3a729b] text-5xl md:text-6xl lg:text-7xl xl:text-[96px] font-normal"
-                style={{ fontFamily: "'Chelsea Market', cursive" }}
-              >
-                <AnimatedCounter from={0} to={11} />
-              </span>
-              <span
-                className="text-[#004272] text-lg md:text-xl lg:text-2xl mt-2 transform -rotate-2"
-                style={{ fontFamily: "'Pangolin', cursive" }}
-              >
-                sponsors
-              </span>
-            </div>
-          </div>
-        </div>
+        <div className="mt-16 md:mt-24 lg:mt-32 text-center relative z-0" />
 
         <div className="h-80 md:h-96 lg:h-[32rem]" />
       </div>

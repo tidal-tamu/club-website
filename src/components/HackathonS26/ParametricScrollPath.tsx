@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, type ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -8,6 +8,15 @@ interface ParametricScrollPathProps {
   triggerElement?: string;
   onReachEnd?: () => void;
   onLeaveEnd?: () => void;
+  onProgress?: (progress: number) => void;
+  pathMarkers?: Array<{
+    id: string;
+    progress: number;
+    element: ReactNode;
+    revealWindow?: number;
+    offsetX?: number;
+    offsetY?: number;
+  }>;
 }
 
 interface BezierPoint {
@@ -19,14 +28,18 @@ const ParametricScrollPath = ({
   triggerElement,
   onReachEnd,
   onLeaveEnd,
+  onProgress,
+  pathMarkers,
 }: ParametricScrollPathProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const dotRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLImageElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
+  const markerRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
   const animationTimelineRef = useRef<gsap.core.Timeline | null>(null);
   const hasReachedEndRef = useRef(false);
+  const isLockedOffscreenRef = useRef(false);
   const hasStartedRef = useRef(false);
   const containerDimensionsRef = useRef({ width: 0, height: 0 });
   const pathLengthRef = useRef(0);
@@ -280,13 +293,24 @@ const ParametricScrollPath = ({
       };
     };
 
+    const getTangentRotation = (progress: number, sampleDistance: number = 0.002) => {
+      const p1 = getPointOnPath(Math.max(0, progress - sampleDistance));
+      const p2 = getPointOnPath(Math.min(1, progress + sampleDistance));
+      const dx = p2.x - p1.x;
+      const dy = p2.y - p1.y;
+      const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
+      return angle + 90;
+    };
+
     const setDotAtProgress = (progress: number) => {
       const point = getPointOnPath(progress);
+      const rotation = getTangentRotation(progress);
       gsap.set(dot, {
         x: point.x,
         y: point.y,
         xPercent: -50,
         yPercent: -50,
+        rotate: rotation,
       });
     };
 
@@ -294,141 +318,144 @@ const ParametricScrollPath = ({
     setDotAtProgress(0);
     gsap.set(dot, { opacity: 1 });
 
-    // Create discrete animation timeline
+    // Create scroll-driven animation
     const trigger = triggerElement ? document.querySelector(triggerElement) : container;
 
     const createAnimation = () => {
       if (animationTimelineRef.current) {
         animationTimelineRef.current.kill();
+        animationTimelineRef.current = null;
       }
 
-      // Create curvature-based progress mapping
-      const progressMap = createCurvatureBasedProgressMap();
+      // Precompute cumulative |ΔY| samples for monotonic vertical distance mapping
+      const numSamples = 600;
+      const cumulativeYSamples: { progress: number; cumulativeY: number }[] = [];
+      let cumulativeY = 0;
+      let prevPoint = getPointOnPath(0);
+      cumulativeYSamples.push({ progress: 0, cumulativeY: 0 });
+      for (let i = 1; i <= numSamples; i++) {
+        const progress = i / numSamples;
+        const point = getPointOnPath(progress);
+        cumulativeY += Math.abs(point.y - prevPoint.y);
+        cumulativeYSamples.push({ progress, cumulativeY });
+        prevPoint = point;
+      }
+      const totalYDelta = Math.max(1, cumulativeY);
 
-      // Create a progress object to animate
-      const progressObj = { progress: 0 };
+      const getProgressForCumulativeY = (targetCumulativeY: number) => {
+        let left = 0;
+        let right = cumulativeYSamples.length - 1;
+        while (left < right) {
+          const mid = Math.floor((left + right) / 2);
+          if (cumulativeYSamples[mid].cumulativeY < targetCumulativeY) {
+            left = mid + 1;
+          } else {
+            right = mid;
+          }
+        }
+        return cumulativeYSamples[left].progress;
+      };
 
-      // Create timeline that animates along the path
-      const timeline = gsap.timeline({
-        paused: true,
-        onUpdate: () => {
-          // Map the linear progress through curvature-adjusted progress
-          const mappedProgress = progressMap(progressObj.progress);
-          const point = getPointOnPath(mappedProgress);
-          gsap.set(dot, {
-            x: point.x,
-            y: point.y,
-            xPercent: -50,
-            yPercent: -50,
-          });
-        },
-        onComplete: () => {
-          // Mark as reached end
-          hasReachedEndRef.current = true;
-          // Get the direction at the end of the path to move off screen
-          const endPoint = getPointOnPath(1);
-          const nearEndPoint = getPointOnPath(0.98);
-          const dx = endPoint.x - nearEndPoint.x;
-          const dy = endPoint.y - nearEndPoint.y;
-
-          // Move dot off screen quickly in the direction it was traveling
-          gsap.to(dot, {
-            x: endPoint.x + dx * 10,
-            y: endPoint.y + dy * 10,
-            duration: 0.2,
-            ease: "power2.out",
-            onComplete: () => {
-              // Immediately trigger callback without delay
-              if (onReachEnd) {
-                onReachEnd();
-              }
-            },
-          });
-        },
-      });
-
-      // Animate progress from 0 to 1 (faster)
-      timeline.to(progressObj, {
-        progress: 1,
-        duration: 1.5,
-        ease: "none",
-      });
-
-      animationTimelineRef.current = timeline;
-
-      // Create ScrollTrigger to play animation when in view
+      // Create ScrollTrigger to scrub the animation with scroll
       if (scrollTriggerRef.current) {
         scrollTriggerRef.current.kill();
       }
 
+      const startOffset = 400;
       // Determine trigger start based on saved scroll position or default
       let triggerStart: string | (() => string);
       if (savedScrollPosition !== null) {
-        // Use a function to calculate trigger dynamically
         triggerStart = () => {
           const triggerEl = (trigger || container) as HTMLElement;
           if (!triggerEl) return "top bottom";
           const triggerTop = triggerEl.getBoundingClientRect().top + window.scrollY;
           const offsetFromTop = savedScrollPosition! - triggerTop;
-          // Return format: "offset top" means trigger when element is offset pixels from top of viewport
-          return `${Math.round(offsetFromTop)} top`;
+          return `${Math.round(offsetFromTop + startOffset)} top`;
         };
       } else {
-        // Default trigger
-        triggerStart = "top bottom";
+        triggerStart = `top+=${startOffset} bottom`;
       }
+
+      const updateMarkers = (currentProgress: number) => {
+        if (!pathMarkers || pathMarkers.length === 0) return;
+        for (const marker of pathMarkers) {
+          const el = markerRefs.current[marker.id];
+          if (!el) continue;
+          const point = getPointOnPath(marker.progress);
+          const rotation = 10;
+          const revealWindow = marker.revealWindow ?? 0.06;
+          const revealProgress = Math.max(0, Math.min(1, (currentProgress - marker.progress) / revealWindow));
+          const offsetX = marker.offsetX ?? 0;
+          const offsetY = marker.offsetY ?? 0;
+          gsap.set(el, {
+            x: point.x + offsetX,
+            y: point.y + offsetY,
+            xPercent: -50,
+            yPercent: -50,
+            rotate: rotation,
+            opacity: revealProgress,
+            clipPath: `inset(0 ${Math.round((1 - revealProgress) * 100)}% 0 0)`,
+          });
+        }
+      };
+
+      updateMarkers(0);
 
       scrollTriggerRef.current = ScrollTrigger.create({
         trigger: trigger || container,
         start: triggerStart,
-        end: "bottom top",
-        onEnter: () => {
-          if (!hasStartedRef.current) {
-            hasStartedRef.current = true;
-            hasReachedEndRef.current = false;
-            gsap.set(dot, { opacity: 1 });
-            setDotAtProgress(0);
-            timeline.restart();
+        end: () => `+=${Math.max(1, Math.round(totalYDelta))}`,
+        scrub: true,
+        onUpdate: (self) => {
+          if (isLockedOffscreenRef.current) {
+            return;
           }
-        },
-        onLeave: () => {
-          if (hasReachedEndRef.current && onLeaveEnd) {
-            hasReachedEndRef.current = false;
-            hasStartedRef.current = false;
-            timeline.pause();
-            timeline.progress(0);
+          const targetCumulativeY = self.progress * totalYDelta;
+          const mappedProgress = getProgressForCumulativeY(targetCumulativeY);
+          setDotAtProgress(mappedProgress);
+          updateMarkers(mappedProgress);
+
+          if (onProgress) {
+            onProgress(mappedProgress);
+          }
+
+          if (self.progress >= 1 && !hasReachedEndRef.current) {
+            hasReachedEndRef.current = true;
+            isLockedOffscreenRef.current = true;
+            const endPoint = getPointOnPath(1);
+            const nearEndPoint = getPointOnPath(0.98);
+            const dx = endPoint.x - nearEndPoint.x;
+            const dy = endPoint.y - nearEndPoint.y;
             gsap.to(dot, {
-              opacity: 0,
-              duration: 0.3,
+              x: endPoint.x + dx * 30,
+              y: endPoint.y + dy * 30,
+              duration: 0.6,
+              ease: "power2.out",
               onComplete: () => {
-                onLeaveEnd();
+                gsap.set(dot, { opacity: 0 });
               },
             });
+            if (onReachEnd) onReachEnd();
+          } else if (self.progress < 1 && hasReachedEndRef.current) {
+            hasReachedEndRef.current = false;
+            if (onLeaveEnd) onLeaveEnd();
           }
+        },
+        onEnter: () => {
+          if (isLockedOffscreenRef.current) return;
+          hasStartedRef.current = true;
+          gsap.set(dot, { opacity: 1 });
         },
         onEnterBack: () => {
-          if (!hasStartedRef.current) {
-            hasStartedRef.current = true;
-            hasReachedEndRef.current = false;
-            gsap.set(dot, { opacity: 1 });
-            setDotAtProgress(0);
-            timeline.restart();
-          }
+          if (isLockedOffscreenRef.current) return;
+          hasStartedRef.current = true;
+          gsap.set(dot, { opacity: 1 });
+        },
+        onLeave: () => {
+          hasStartedRef.current = false;
         },
         onLeaveBack: () => {
-          if (hasReachedEndRef.current && onLeaveEnd) {
-            hasReachedEndRef.current = false;
-            hasStartedRef.current = false;
-            timeline.pause();
-            timeline.progress(0);
-            gsap.to(dot, {
-              opacity: 0,
-              duration: 0.3,
-              onComplete: () => {
-                onLeaveEnd();
-              },
-            });
-          }
+          hasStartedRef.current = false;
         },
       });
     };
@@ -505,21 +532,36 @@ const ParametricScrollPath = ({
             ref={pathRef}
             d=""
             fill="none"
-            stroke="rgba(0, 0, 0, 0.2)"
+            stroke="transparent"
             strokeWidth="2"
             strokeDasharray="5,5"
           />
         </svg>
-        <div
+        <img
           ref={dotRef}
-          className="absolute bg-black pointer-events-none"
+          src="/s26/TOPDOWNPEBBLESKIING.png"
+          alt=""
+          className="absolute pointer-events-none select-none"
           style={{
-            width: "14px",
-            height: "14px",
+            width: "112px",
+            height: "112px",
             left: "0px",
             top: "0px",
+            transformOrigin: "50% 50%",
           }}
         />
+        {pathMarkers?.map((marker) => (
+          <div
+            key={marker.id}
+            ref={(el) => {
+              markerRefs.current[marker.id] = el;
+            }}
+            className="absolute pointer-events-none select-none"
+            style={{ opacity: 0 }}
+          >
+            {marker.element}
+          </div>
+        ))}
       </div>
     </>
   );

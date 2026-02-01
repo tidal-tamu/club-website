@@ -4,7 +4,7 @@
     {
       "pointNumber": 1,
       "x": 98.68,
-      "y": 9.35,
+      "y": 11.35,
       "timestamp": 1769750209081
     },
     {
@@ -58,13 +58,13 @@
   ],
   "formattedForBezier": {
     "startX": 98.68,
-    "startY": 9.35,
+    "startY": 11.35,
     "endX": 0.35,
     "endY": 74.91,
     "allPoints": [
       {
         "x": 98.68,
-        "y": 9.35
+        "y": 11.35
       },
       {
         "x": 51.11,
