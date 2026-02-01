@@ -130,22 +130,27 @@ const Sponsors = () => {
                 Our Amazing Sponsors
             </motion.h2>
 
-            <div className="relative max-w-7xl mx-auto w-full">
-                <div className="absolute -left-30 bottom-50 w-[600px] h-[600px] hidden md:block">
+            <div className="absolute inset-y-0 left-0 hidden md:flex items-center pointer-events-none">
+                <div className="w-[min(600px,38vw)] h-[min(600px,38vw)] -translate-x-[12%]">
                     <img
                         src="/s26/lilguywatchingtv.png"
                         alt="Lil guy watching TV on ice"
                         className="w-full h-full object-contain"
                     />
                 </div>
+            </div>
 
-                <div className="absolute top-50 -right-30 w-[600px] h-[600px] hidden md:block">
+            <div className="absolute inset-y-0 right-0 hidden md:flex items-center pointer-events-none">
+                <div className="w-[min(600px,38vw)] h-[min(600px,38vw)] translate-x-[12%]">
                     <img
                         src="/s26/foxsleeping.png"
                         alt="Fox sleeping on ice"
                         className="w-full h-full object-contain"
                     />
                 </div>
+            </div>
+
+            <div className="relative max-w-7xl mx-auto w-full">
 
                 {/* Sponsors Grid in Center with Central Globe */}
                 {/* Desktop: Orbital Layout */}

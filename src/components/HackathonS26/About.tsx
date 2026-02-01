@@ -286,7 +286,7 @@ const About = () => {
             className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-bold leading-tight"
             id="about"
             style={{
-              fontFamily: "'Caudex', serif",
+              fontFamily: "'Dynapuff', sans-serif",
               textShadow: "0px 4px 4px rgba(0,0,0,0.25)",
             }}
           >
