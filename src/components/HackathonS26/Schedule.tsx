@@ -12,11 +12,10 @@ const day1Schedule = [
 
 const day2Schedule = [
   { time: "12:00 AM", event: "Midnight Snack: Boba" },
-  { time: "8:00 AM", event: "Breakfast: Tacos" },
-  { time: "11:00 AM", event: "Pitch Workshop" },
+  { time: "8:00 AM", event: "Breakfast: Donuts" },
   { time: "12:00 PM", event: "Hacking Ends!" },
   { time: "12:30 PM", event: "Lunch: Pizza" },
-  { time: "2:00 PM", event: "Judging" },
+  { time: "1:00 PM", event: "Judging" },
   { time: "3:00 PM", event: "Judging Ends" },
   { time: "4:00 PM", event: "Closing Ceremony" },
 ];
