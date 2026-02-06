@@ -4,17 +4,17 @@ const day1Schedule = [
   { time: "9:00 AM", event: "Student Check In" },
   { time: "11:00 AM", event: "Opening Ceremony" },
   { time: "12:00 PM", event: "Start Hacking!" },
-  { time: "12:30 PM", event: "Lunch" },
-  { time: "2:00 PM", event: "Company Workshop 1" },
-  { time: "4:00 PM", event: "Company Workshop 2" },
+  { time: "12:30 PM", event: "Lunch: Pizza" },
+  { time: "2:00 PM", event: "MLH Workshop" },
+  { time: "4:00 PM", event: "Intro to Git" },
   { time: "6:00 PM", event: "Dinner: Mai Shan Yun" },
 ];
 
 const day2Schedule = [
-  { time: "12:00 AM", event: "Midnight Snack: Boba" },
   { time: "8:00 AM", event: "Breakfast: Donuts" },
+  { time: "11:00 AM", event: "Pitch Workshop" },
   { time: "12:00 PM", event: "Hacking Ends!" },
-  { time: "12:30 PM", event: "Lunch: Pizza" },
+  { time: "12:30 PM", event: "Lunch: Ronis + Canes" },
   { time: "1:00 PM", event: "Judging" },
   { time: "3:00 PM", event: "Judging Ends" },
   { time: "4:00 PM", event: "Closing Ceremony" },

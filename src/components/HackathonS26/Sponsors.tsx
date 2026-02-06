@@ -12,79 +12,111 @@ const sponsors: {
   logoSize?: number;
 }[] = [
     {
-      id: 1,
-      name: "Jane Street",
-      logo: "/icons/logos/companies/jane-street-blue.png",
-      isDummy: false,
-      tier: "bronze",
-      logoSize: 60,
+        id: 1,
+        name: "Jane Street",
+        logo: "/icons/logos/companies/jane-street-blue.png",
+        isDummy: false,
+        tier: "bronze",
+        logoSize: 60,
     },
     {
-      id: 2,
-      name: "Google",
-      logo: "/icons/logos/companies/google-color.png",
-      isDummy: false,
-      tier: "silver",
-      logoSize: 55,
+        id: 2,
+        name: "AWS",
+        logo: "/icons/logos/companies/aws-logo.png",
+        isDummy: false,
+        tier: "silver",
+        logoSize: 55,
     },
     {
-      id: 3,
-      name: "Wolfram",
-      logo: "/icons/logos/companies/wolfram-logo.png",
-      isDummy: false,
-      tier: "gold",
-      logoSize: 60,
+        id: 3,
+        name: "Wolfram",
+        logo: "/icons/logos/companies/wolfram-logo.png",
+        isDummy: false,
+        tier: "bronze",
+        logoSize: 60,
     },
     {
-      id: 4,
-      name: "XPerf",
-      logo: "/icons/logos/companies/xperf-white.png",
-      isDummy: false,
-      tier: "bronze",
-      logoSize: 60,
+        id: 4,
+        name: "XPerf",
+        logo: "/icons/logos/companies/xperf-white.png",
+        isDummy: false,
+        tier: "bronze",
+        logoSize: 60,
     },
     {
-      id: 5,
-      name: "Celsius",
-      logo: "/icons/logos/companies/celsius.png",
-      isDummy: false,
-      tier: "bronze",
-      logoSize: 60,
+        id: 5,
+        name: "Celsius",
+        logo: "/icons/logos/companies/celsius.png",
+        isDummy: false,
+        tier: "bronze",
+        logoSize: 60,
     },
     {
-      id: 6,
-      name: "Mai Shan Yun",
-      logo: "/icons/logos/companies/msy.png",
-      isDummy: false,
-      tier: "silver",
-      logoSize: 70,
+        id: 6,
+        name: "Mai Shan Yun",
+        logo: "/icons/logos/companies/msy.png",
+        isDummy: false,
+        tier: "silver",
+        logoSize: 70,
     },
     {
-      id: 7,
-      name: "Frogslayer",
-      logo: "/icons/logos/companies/frogslayer.png",
-      isDummy: false,
-      tier: "silver",
-      logoSize: 60,
+        id: 7,
+        name: "Frogslayer",
+        logo: "/icons/logos/companies/frogslayer.png",
+        isDummy: false,
+        tier: "silver",
+        logoSize: 60,
     },
     {
-      id: 8,
-      name: "IT Bridge",
-      logo: "/icons/logos/companies/itbridge.png",
-      isDummy: false,
-      tier: "bronze",
-      logoSize: 65,
+        id: 8,
+        name: "Google",
+        logo: "/icons/logos/companies/google-color.png",
+        isDummy: false,
+        tier: "bronze",
+        logoSize: 65,
     },
-  ];
+    {
+        id: 9,
+        name: "IT Bridge",
+        logo: "/icons/logos/companies/itbridge.png",
+        isDummy: false,
+        tier: "bronze",
+        logoSize: 65,
+    },
+    {
+        id: 10,
+        name: "ElevenLabs",
+        logo: "/icons/logos/companies/elevenlabs.png",
+        isDummy: false,
+        tier: "bronze",
+        logoSize: 60,
+    }
+];
 
 const Sponsors = () => {
   const trackRef = useRef<HTMLDivElement>(null);
   const [trackWidth, setTrackWidth] = useState(0);
 
   useEffect(() => {
-    if (trackRef.current) {
-      setTrackWidth(trackRef.current.scrollWidth / 2);
+    if (!trackRef.current) {
+      return;
     }
+
+    const element = trackRef.current;
+    const updateWidth = () => {
+      const fullWidth = element.scrollWidth;
+      setTrackWidth(fullWidth > 0 ? fullWidth / 2 : 0);
+    };
+
+    updateWidth();
+    const observer = new ResizeObserver(() => updateWidth());
+    observer.observe(element);
+    window.addEventListener("resize", updateWidth);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateWidth);
+    };
   }, []);
 
   return (
@@ -172,14 +204,14 @@ const Sponsors = () => {
                   {/* 3. The Wavering Animation */}
                   <motion.div
                     animate={{
-                      y: [0, -15, 0, 15, 0],
-                      x: [0, 10, 0, -10, 0],
+                      y: [0, -8, 0, 8, 0],
+                      x: [0, 6, 0, -6, 0],
                     }}
                     transition={{
-                      duration: 4 + (index % 3),
+                      duration: 8 + (index % 4),
                       repeat: Infinity,
                       ease: "easeInOut",
-                      delay: index * 0.5,
+                      delay: index * 0.2,
                     }}
                     whileHover={{ scale: 1.1 }}
                   >
@@ -219,41 +251,43 @@ const Sponsors = () => {
               className="w-full h-full object-contain"
             />
           </div>
-          <motion.div
-            ref={trackRef}
-            className="flex"
-            animate={{ x: [-0, -trackWidth] }}
-            transition={{
-              duration: 30,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            {[...sponsors, ...sponsors].map((sponsor, index) => (
-              <div
-                key={`${sponsor.id}-${index}`}
-                className="flex-shrink-0 flex items-center justify-center mr-6"
-              >
-                {sponsor.isDummy ? (
-                  <span className="text-white font-caudex font-bold text-center px-3 bg-white bg-opacity-20 rounded-lg p-2 text-sm">
-                    {sponsor.name}
-                  </span>
-                ) : (
-                  <img
-                    src={sponsor.logo ?? ""}
-                    alt={sponsor.name}
-                    style={{
-                      width: "200px",
-                      height: "150px",
-                      objectFit: "contain",
-                    }}
-                    className="drop-shadow-[0_2px_6px_rgba(0,0,0,0.2)]"
-                    loading="lazy"
-                  />
-                )}
-              </div>
-            ))}
-          </motion.div>
+          <div className="w-full overflow-hidden">
+            <motion.div
+              ref={trackRef}
+              className="flex w-max"
+              animate={trackWidth ? { x: [0, -trackWidth] } : { x: 0 }}
+              transition={{
+                duration: 30,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              {[...sponsors, ...sponsors].map((sponsor, index) => (
+                <div
+                  key={`${sponsor.id}-${index}`}
+                  className="flex-shrink-0 flex items-center justify-center mr-6"
+                >
+                  {sponsor.isDummy ? (
+                    <span className="text-white font-caudex font-bold text-center px-3 bg-white bg-opacity-20 rounded-lg p-2 text-sm">
+                      {sponsor.name}
+                    </span>
+                  ) : (
+                    <img
+                      src={sponsor.logo ?? ""}
+                      alt={sponsor.name}
+                      style={{
+                        width: "200px",
+                        height: "150px",
+                        objectFit: "contain",
+                      }}
+                      className="drop-shadow-[0_2px_6px_rgba(0,0,0,0.2)]"
+                      loading="lazy"
+                    />
+                  )}
+                </div>
+              ))}
+            </motion.div>
+          </div>
 
           {/* Fox bottom-right - same sizing as desktop */}
           <div className="w-[600px] h-[600px] -translate-x-20 -my-36">
