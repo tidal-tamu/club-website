@@ -154,8 +154,6 @@ const About = () => {
         }
     };
 
-    const isRevealed = (index: number) => revealIndex >= index;
-
   return (
     <section
       className="relative z-10 w-full overflow-visible pt-10 md:pt-16"
