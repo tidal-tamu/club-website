@@ -68,7 +68,6 @@ const AnimatedCounter = ({
 
 const About = () => {
     const pebbleSkiRef = useRef<HTMLImageElement>(null);
-    const [revealIndex, setRevealIndex] = useState(-1);
     const revealIndexRef = useRef(-1);
     const revealThresholds = [0.2, 0.35, 0.5, 0.65];
     const [prizesMarkerActive, setPrizesMarkerActive] = useState(false);
@@ -126,7 +125,6 @@ const About = () => {
         }
         if (nextIndex !== revealIndexRef.current) {
             revealIndexRef.current = nextIndex;
-            setRevealIndex(nextIndex);
         }
         if (progress >= prizesMarkerProgress && !prizesMarkerActive) {
             setPrizesMarkerActive(true);

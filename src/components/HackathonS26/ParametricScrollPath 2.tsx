@@ -189,36 +189,6 @@ const ParametricScrollPath = ({
       return { x: point.x, y: point.y };
     };
 
-    // Calculate curvature at a point on the path using a larger sample for better detection
-    const getCurvature = (progress: number, sampleDistance: number = 0.02) => {
-      const p1 = getPointOnPath(Math.max(0, progress - sampleDistance));
-      const p2 = getPointOnPath(progress);
-      const p3 = getPointOnPath(Math.min(1, progress + sampleDistance));
-
-      // Calculate vectors
-      const dx1 = p2.x - p1.x;
-      const dy1 = p2.y - p1.y;
-      const dx2 = p3.x - p2.x;
-      const dy2 = p3.y - p2.y;
-
-      // Calculate distances
-      const dist1 = Math.sqrt(dx1 * dx1 + dy1 * dy1);
-      const dist2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
-
-      // Normalize vectors
-      const v1x = dist1 > 0 ? dx1 / dist1 : 0;
-      const v1y = dist1 > 0 ? dy1 / dist1 : 0;
-      const v2x = dist2 > 0 ? dx2 / dist2 : 0;
-      const v2y = dist2 > 0 ? dy2 / dist2 : 0;
-
-      // Calculate angle between vectors
-      const dot = v1x * v2x + v1y * v2y;
-      const angleDiff = Math.acos(Math.max(-1, Math.min(1, dot)));
-
-      // Also consider the rate of change - sharp turns have higher curvature
-      return angleDiff;
-    };
-
     const getTangentRotation = (progress: number, sampleDistance: number = 0.002) => {
       const p1 = getPointOnPath(Math.max(0, progress - sampleDistance));
       const p2 = getPointOnPath(Math.min(1, progress + sampleDistance));
