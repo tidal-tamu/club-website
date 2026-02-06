@@ -36,6 +36,14 @@ const sponsors: {
         logoSize: 60,
     },
     {
+        id: 13,
+        name: "Roni's Mac Bar",
+        logo: "/icons/logos/companies/ronis.png",
+        isDummy: false,
+        tier: "bronze",
+        logoSize: 46,
+    },
+    {
         id: 4,
         name: "XPerf",
         logo: "/icons/logos/companies/xperf-white.png",
@@ -81,7 +89,7 @@ const sponsors: {
         logo: "/icons/logos/companies/itbridge.png",
         isDummy: false,
         tier: "bronze",
-        logoSize: 65,
+        logoSize: 58,
     },
     {
         id: 10,
@@ -89,7 +97,7 @@ const sponsors: {
         logo: "/icons/logos/companies/elevenlabs.png",
         isDummy: false,
         tier: "bronze",
-        logoSize: 60,
+        logoSize: 52,
     },
     {
         id: 11,
@@ -98,6 +106,14 @@ const sponsors: {
         isDummy: false,
         tier: "silver",
         logoSize: 71,
+    },
+    {
+        id: 12,
+        name: "Raising Cane's",
+        logo: "/icons/logos/companies/raising-canes.png",
+        isDummy: false,
+        tier: "bronze",
+        logoSize: 49,
     },
 ];
 
@@ -215,13 +231,15 @@ const Sponsors = () => {
                   {/* 3. The Wavering Animation */}
                   <motion.div
                     animate={{
-                      y: [0, -8, 0, 8, 0],
-                      x: [0, 6, 0, -6, 0],
+                      x: [0, 8, 3, -6, -2, 5, 0],
+                      y: [0, -4, 7, 2, -8, -1, 0],
+                      rotate: [0, 1.5, -0.6, 1.1, -0.9, 0.4, 0],
                     }}
                     transition={{
-                      duration: 8 + (index % 4),
+                      duration: 11 + (index % 5),
                       repeat: Infinity,
                       ease: "easeInOut",
+                      times: [0, 0.18, 0.34, 0.52, 0.7, 0.86, 1],
                       delay: index * 0.2,
                     }}
                     whileHover={{ scale: 1.1 }}
