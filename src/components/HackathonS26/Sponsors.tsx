@@ -65,7 +65,7 @@ const sponsors: {
         logo: "/icons/logos/companies/frogslayer.png",
         isDummy: false,
         tier: "silver",
-        logoSize: 60,
+        logoSize: 71,
     },
     {
         id: 8,
@@ -90,7 +90,15 @@ const sponsors: {
         isDummy: false,
         tier: "bronze",
         logoSize: 60,
-    }
+    },
+    {
+        id: 11,
+        name: "RankRabbit",
+        logo: "/icons/logos/companies/rankrabbit.png",
+        isDummy: false,
+        tier: "silver",
+        logoSize: 71,
+    },
 ];
 
 const Sponsors = () => {
@@ -178,9 +186,12 @@ const Sponsors = () => {
               // 1. Calculate the coordinates
               const angle =
                 (index / sponsors.length) * 2 * Math.PI;
-              const radius = 280;
+              const radius = 320;
               const xPos = Math.cos(angle) * radius;
               const yPos = Math.sin(angle) * radius;
+              const baseSize = sponsor.logoSize ?? 60;
+              const logoWidth = Math.round(baseSize * 2.8);
+              const logoHeight = Math.round(baseSize * 2.1);
 
               return (
                 <motion.div
@@ -224,8 +235,8 @@ const Sponsors = () => {
                         src={sponsor.logo ?? ""}
                         alt={sponsor.name}
                         style={{
-                          width: "180px",
-                          height: "140px",
+                          width: `${logoWidth}px`,
+                          height: `${logoHeight}px`,
                           objectFit: "contain",
                           transform: "rotate(0deg)",
                         }}
@@ -262,10 +273,14 @@ const Sponsors = () => {
                 ease: "linear",
               }}
             >
-              {[...sponsors, ...sponsors].map((sponsor, index) => (
+              {[...sponsors, ...sponsors].map((sponsor, index) => {
+                const baseSize = sponsor.logoSize ?? 60;
+                const logoWidth = Math.round(baseSize * 2.8);
+                const logoHeight = Math.round(baseSize * 2.1);
+                return (
                 <div
                   key={`${sponsor.id}-${index}`}
-                  className="flex-shrink-0 flex items-center justify-center mr-6"
+                  className="flex-shrink-0 flex items-center justify-center mr-10"
                 >
                   {sponsor.isDummy ? (
                     <span className="text-white font-caudex font-bold text-center px-3 bg-white bg-opacity-20 rounded-lg p-2 text-sm">
@@ -276,8 +291,8 @@ const Sponsors = () => {
                       src={sponsor.logo ?? ""}
                       alt={sponsor.name}
                       style={{
-                        width: "200px",
-                        height: "150px",
+                        width: `${logoWidth}px`,
+                        height: `${logoHeight}px`,
                         objectFit: "contain",
                       }}
                       className="drop-shadow-[0_2px_6px_rgba(0,0,0,0.2)]"
@@ -285,7 +300,7 @@ const Sponsors = () => {
                     />
                   )}
                 </div>
-              ))}
+              )})}
             </motion.div>
           </div>
 
