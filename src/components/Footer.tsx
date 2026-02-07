@@ -211,23 +211,7 @@ export default function Footer({ variant = "home" }: FooterProps) {
                                     href="/hackathon"
                                     className="hover:text-white transition-colors"
                                 >
-                                    TIDALHACK Fall 2025
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="/#about-us"
-                                    className="hover:text-white transition-colors"
-                                >
-                                    AI Workshops
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="/#about-us"
-                                    className="hover:text-white transition-colors"
-                                >
-                                    Industry Panels
+                                    Hackathon
                                 </a>
                             </li>
                         </ul>

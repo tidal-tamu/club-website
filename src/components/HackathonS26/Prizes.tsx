@@ -239,7 +239,7 @@ const Prizes = () => {
                                 style={{ height: "clamp(220px, 30vw, 320px)" }}
                             >
                                 <img
-                                    src="/s26/drawing tablet.png"
+                                    src="/s26/legoset.png"
                                     alt="Drawing Tablet"
                                     className="object-contain z-[4] drop-shadow-md"
                                     loading="lazy"
@@ -255,7 +255,7 @@ const Prizes = () => {
                                         fontSize: "clamp(16px, 1.8vw, 22px)",
                                     }}
                                 >
-                                    Drawing Tablet
+                                    Mystery Lego Set
                                 </span>
                             </div>
                         </motion.div>
@@ -283,7 +283,7 @@ const Prizes = () => {
                                 style={{ height: "clamp(220px, 30vw, 320px)" }}
                             >
                                 <img
-                                    src="/s26/legoset.png"
+                                    src="/s26/waterbottle.png"
                                     alt="Lego Set"
                                     className="object-contain z-[4]"
                                     loading="lazy"
@@ -298,7 +298,7 @@ const Prizes = () => {
                                         fontSize: "clamp(16px, 1.8vw, 22px)",
                                     }}
                                 >
-                                    Lego Set
+                                    Jane Street X Owala Bottle
                                 </span>
                             </div>
                         </motion.div>
@@ -318,7 +318,7 @@ const Prizes = () => {
                                 }}
                             >
                                 <span className="font-caudex font-bold text-white text-center">
-                                    Best Winter Theme
+                                    Best Solo
                                 </span>
                             </div>
                             <div
@@ -326,7 +326,7 @@ const Prizes = () => {
                                 style={{ height: "clamp(220px, 30vw, 320px)" }}
                             >
                                 <img
-                                    src="/s26/plushie.png"
+                                    src="/s26/canesbasket.png"
                                     alt="Plushie"
                                     className="object-contain z-[4] drop-shadow-md"
                                     loading="lazy"
@@ -341,7 +341,7 @@ const Prizes = () => {
                                         fontSize: "clamp(16px, 1.8vw, 22px)",
                                     }}
                                 >
-                                    Plushie
+                                    Canes Prize Basket
                                 </span>
                             </div>
                         </motion.div>
@@ -349,17 +349,19 @@ const Prizes = () => {
                 </div>
             </div>
 
-            <div className="relative w-full mt-10 md:mt-12 pointer-events-none flex justify-center translate-y-[100px]">
-                <img
-                    src="/s26/TRACKSTBD.png"
-                    alt="More Tracks TBD"
-                    className="object-contain block"
-                    loading="lazy"
-                    decoding="async"
-                    style={{
-                        width: "clamp(420px, 70vw, 980px)",
-                    }}
-                />
+            <div className="relative w-full mt-10 md:mt-12 flex justify-center translate-y-[100px]">
+                <a href="https://tx.ag/tidaldevpost" target="_blank" rel="noopener noreferrer" className="pointer-events-auto">
+                    <img
+                        src="/s26/tracks.png"
+                        alt="More Tracks"
+                        className="object-contain block"
+                        loading="lazy"
+                        decoding="async"
+                        style={{
+                            width: "clamp(420px, 70vw, 980px)",
+                        }}
+                    />
+                </a>
             </div>
         </section>
     );

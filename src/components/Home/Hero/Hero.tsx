@@ -138,7 +138,7 @@ export default function Hero() {
 
                         <div className="mb-8">
                             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#336699] mb-2">
-                                Feb 7-8, 2025 | 24 Hours
+                                Feb 7-8, 2026 | 24 Hours
                             </p>
                             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
                                 Join us for Texas A&M's most innovative AI/ML
