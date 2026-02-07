@@ -3,6 +3,7 @@ import React, { lazy } from "react";
 import Home from "./components/Home/Home";
 import HackathonS25 from "./components/HackathonS25/Hackathon";
 import HackathonF25 from "./components/HackathonF25/Hackathon";
+import LiveSchedule from "./components/Schedule/LiveSchedule";
 import SponsorUs from "./components/Sponsor-Us/SponsorUs";
 import CheckRegistration from "./components/Register/CheckRegistration";
 import Register from "./components/Register/Register";
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/HackathonS26" element={<HackathonS26 />} />
           <Route path="/HackathonS25" element={<HackathonS25 />} />
           <Route path="/HackathonF25" element={<HackathonF25 />} />
+          <Route path="/live-schedule" element={<LiveSchedule />} />
 
           <Route path="/register" element={<Register />} />
           <Route
