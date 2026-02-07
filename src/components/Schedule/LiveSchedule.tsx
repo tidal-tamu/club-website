@@ -17,6 +17,7 @@ const day1 = [
     { time: "12:30 PM", event: "Lunch: Pizza" },
     { time: "2:00 PM", event: "MLH Workshop" },
     { time: "4:00 PM", event: "Intro to Git" },
+    { time: "5:00 PM", event: "MLH Tech Together" },
     { time: "6:00 PM", event: "Dinner: Mai Shan Yun" },
 ];
 
