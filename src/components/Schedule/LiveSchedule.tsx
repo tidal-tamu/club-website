@@ -50,7 +50,7 @@ const formatTime = (minutes: number) => {
 
 const buildSchedule = (
     day: string,
-    items: { time: string; event: string; location?: string }[]
+    items: { time: string; event: string; location?: string }[],
 ): ScheduleItem[] => {
     return items.map((item, index) => {
         const currentTime = parseTime(item.time);
@@ -84,13 +84,6 @@ export default function LiveSchedule() {
 
     return (
         <div className="block relative w-full h-screen overflow-hidden select-none bg-[#77A5C6]">
-            <div
-                className="h-[15rem] lg:h-[25rem] absolute bottom-0 left-0 right-0 w-full z-10"
-                style={{
-                    background: "linear-gradient(transparent 20%, #77a5c6 66%)",
-                }}
-            />
-
             <div className="absolute inset-0">
                 <img
                     src="/s26/Hero/BackBushes.png"
@@ -121,7 +114,10 @@ export default function LiveSchedule() {
                     decoding="async"
                 />
             </div>
-            <div className="absolute inset-0 w-full min-w-0 overflow-hidden" style={{ left: 0, right: 0 }}>
+            <div
+                className="absolute inset-0 w-full min-w-0 overflow-hidden"
+                style={{ left: 0, right: 0 }}
+            >
                 <img
                     src="/s26/Hero/HouseGlowing.png"
                     alt="House Glowing"
@@ -130,7 +126,10 @@ export default function LiveSchedule() {
                 />
             </div>
 
-            <div className="absolute inset-0 w-full min-w-0 z-[2]" style={{ left: 0, right: 0 }}>
+            <div
+                className="absolute inset-0 w-full min-w-0 z-[2]"
+                style={{ left: 0, right: 0 }}
+            >
                 <img
                     src="/s26/Hero/LargeBrownTreeAlt.png"
                     alt="Large Brown Tree Alt"
@@ -139,7 +138,13 @@ export default function LiveSchedule() {
                 />
             </div>
 
-            {/* MLH badge removed per request */}
+            <div className="absolute left-120 bottom-[16vh] z-30 scale-[2]">
+                <img src="/s26/pebble.gif" className="w-[28vw]" />
+                <img
+                    src="/s26/Hero/PenguinCover.png"
+                    className="absolute bottom-0 w-[14vw]"
+                />
+            </div>
 
             <div className="absolute inset-0 z-20">
                 <FloatingParticles
@@ -167,10 +172,7 @@ export default function LiveSchedule() {
                 </div>
             </div>
 
-            {/* Penguin mascot removed per request */}
-
             <div className="relative w-full h-full flex flex-col text-white z-40 px-8 md:px-12 xl:px-16 2xl:px-24 py-0">
-                {/* Hero */}
                 <div className="flex justify-center items-center pb-2 md:pb-3 2xl:pb-4">
                     <img
                         src={heroImage}
@@ -179,53 +181,39 @@ export default function LiveSchedule() {
                     />
                 </div>
 
-                {/* Main Layout for TV */}
-                <div className="grid grid-cols-1 xl:grid-cols-[320px_minmax(0,1fr)_320px] 2xl:grid-cols-[420px_minmax(0,1fr)_420px] gap-8 xl:gap-12 2xl:gap-16 items-center flex-1 -mt-16 md:-mt-20 2xl:-mt-24">
-                    {/* Left: Current Time */}
-                    <div className="flex flex-col items-center gap-4 order-1 xl:order-none self-center">
-                        <div className="bg-white/20 backdrop-blur-md rounded-[32px] px-6 py-6 2xl:px-8 2xl:py-8 border-2 border-white/50 shadow-2xl w-full max-w-[420px]">
-                            <p className="text-white font-caudex text-[clamp(40px,3.6vw,88px)] font-bold tracking-wider drop-shadow-lg text-center tabular-nums">
-                                {date.toLocaleTimeString([], {
-                                    hour: "2-digit",
-                                    minute: "2-digit",
-                                    second: "2-digit",
-                                })}
-                            </p>
-                        </div>
-                        <p className="text-white/90 text-[clamp(14px,1.2vw,26px)] font-bold tracking-wide uppercase">
-                            Current Time
+                <div className="absolute top-[3vh] left-[3vw] z-50 flex flex-col items-start gap-2">
+                    <div className="bg-white/20 backdrop-blur-md rounded-[32px] px-6 py-6 border-2 border-white/50 shadow-2xl">
+                        <p className="text-white font-caudex text-[clamp(40px,3.6vw,88px)] font-bold tracking-wider drop-shadow-lg tabular-nums">
+                            {date.toLocaleTimeString([], {
+                                hour: "2-digit",
+                                minute: "2-digit",
+                                second: "2-digit",
+                            })}
                         </p>
                     </div>
 
-                    {/* Center: Schedule Cards */}
-                    <div className="w-full px-2 md:px-4 order-3 xl:order-none flex items-center">
-                        <LiveScheduleList
-                            list={sched}
-                            now={date}
-                            year={2026}
-                        />
-                    </div>
+                    <p className="text-white/90 text-[clamp(14px,1.2vw,26px)] font-bold tracking-wide uppercase">
+                        Current Time
+                    </p>
+                </div>
 
-                    {/* Right: Discord QR Code */}
-                    <div className="flex flex-col items-center gap-4 order-2 xl:order-none self-center">
-                        <div className="bg-white/20 backdrop-blur-md rounded-[32px] p-4 2xl:p-6 border-2 border-white/50 shadow-2xl w-full max-w-[420px] flex justify-center">
-                            <div className="bg-white p-4 rounded-2xl shadow-lg">
-                                <img
-                                    src="/images/tidal_discord_qr.png"
-                                    alt="Join our Discord"
-                                    className="w-44 h-44 md:w-52 md:h-52 2xl:w-64 2xl:h-64"
-                                />
-                            </div>
-                        </div>
-                        <div className="text-center">
-                            <p className="text-white font-bold text-[clamp(14px,1.2vw,26px)] mb-1 tracking-wide">
-                                JOIN DISCORD
-                            </p>
-                            <p className="text-[#b34756] font-mono text-[clamp(12px,1vw,22px)] font-semibold">
-                                tx.ag/tidaldiscord
-                            </p>
+                <div className="w-full px-[500px] order-3 xl:order-none flex items-center">
+                    <LiveScheduleList list={sched} now={date} year={2026} />
+                </div>
+
+                <div className="absolute top-[3vh] right-[3vw] z-50 flex flex-col items-center gap-2">
+                    <div className="bg-white/20 backdrop-blur-md rounded-[32px] p-4 border-2 border-white/50 shadow-2xl">
+                        <div className="bg-white p-4 rounded-2xl shadow-lg">
+                            <img
+                                src="/images/tidal_discord_qr.png"
+                                alt="Join our Discord"
+                                className="w-44 h-44 2xl:w-64 2xl:h-64"
+                            />
                         </div>
                     </div>
+                    <p className="text-white font-bold tracking-wide">
+                        JOIN DISCORD
+                    </p>
                 </div>
             </div>
         </div>
