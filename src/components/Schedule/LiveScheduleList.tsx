@@ -98,7 +98,6 @@ export default function LiveScheduleList({
                     {selected.map((item: any, index: number) => {
                             const live = item.start <= now && item.end >= now;
 
-                            const isLiveCard = live;
                             const isCenter = index === centerIndex;
                             const scaleValue = isCenter ? 1 : index === 0 ? 0.9 : 0.85;
                             const opacityValue = isCenter ? 1 : index === 0 ? 0.7 : 0.55;
