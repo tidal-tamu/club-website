@@ -28,14 +28,6 @@ const sponsors: {
         logoSize: 49,
     },
     {
-        id: 3,
-        name: "Wolfram",
-        logo: "/icons/logos/companies/wolfram-logo.png",
-        isDummy: false,
-        tier: "bronze",
-        logoSize: 60,
-    },
-    {
         id: 11,
         name: "RankRabbit",
         logo: "/icons/logos/companies/rankrabbit.png",
