@@ -12,7 +12,15 @@ interface Particle {
     rotationSpeed: number;
 }
 
-const FloatingParticles = ({ count = 8 }: { count?: number }) => {
+const FloatingParticles = ({
+    count = 8,
+    speedMultiplier = 1,
+    sizeMultiplier = 1,
+}: {
+    count?: number;
+    speedMultiplier?: number;
+    sizeMultiplier?: number;
+}) => {
     const [particles, setParticles] = useState<Particle[]>([]);
     const [isDesktop, setIsDesktop] = useState(false);
     const animationRef = useRef<number>();
@@ -57,7 +65,7 @@ const FloatingParticles = ({ count = 8 }: { count?: number }) => {
     }, []);
 
     useEffect(() => {
-        const sizeMultiplier = isDesktop ? 2 : 1;
+        const deviceMultiplier = isDesktop ? 2 : 1;
         const baseSize = 2;
         const sizeRange = 2;
         const mouseRadius = 12;
@@ -68,16 +76,21 @@ const FloatingParticles = ({ count = 8 }: { count?: number }) => {
             const startY = i < count * 0.3
                 ? Math.random() * 20 - 10
                 : Math.random() * -20 - 10;
+            const baseVy = Math.random() * 0.08 + 0.05;
+            const baseVx = (Math.random() - 0.5) * 0.1;
             newParticles.push({
                 id: i,
                 x: Math.random() * 100,
                 y: startY,
-                size: (Math.random() * sizeRange + baseSize) * sizeMultiplier,
-                vx: (Math.random() - 0.5) * 0.1,
-                vy: Math.random() * 0.08 + 0.05,
+                size:
+                    (Math.random() * sizeRange + baseSize) *
+                    deviceMultiplier *
+                    sizeMultiplier,
+                vx: baseVx * speedMultiplier,
+                vy: baseVy * speedMultiplier,
                 opacity: Math.random() * 0.4 + 0.6,
                 rotation: Math.random() * 360,
-                rotationSpeed: (Math.random() - 0.5) * 2,
+                rotationSpeed: (Math.random() - 0.5) * 2 * speedMultiplier,
             });
         }
         setParticles(newParticles);
@@ -90,9 +103,10 @@ const FloatingParticles = ({ count = 8 }: { count?: number }) => {
                     let newVx = p.vx;
                     let newRotation = p.rotation + p.rotationSpeed;
 
-                    newVx += Math.sin(p.y * 0.01) * 0.002;
+                    newVx += Math.sin(p.y * 0.01) * 0.002 * speedMultiplier;
 
-                    newVx = Math.max(-0.2, Math.min(0.2, newVx));
+                    const vxClamp = 0.2 * speedMultiplier;
+                    newVx = Math.max(-vxClamp, Math.min(vxClamp, newVx));
 
                     if (isDesktop && mouseRef.current.active) {
                         const dx = p.x - mouseRef.current.x;
@@ -109,7 +123,7 @@ const FloatingParticles = ({ count = 8 }: { count?: number }) => {
                         newY = Math.random() * -20 - 10;
                         newX = Math.random() * 100;
                         newVx = (Math.random() - 0.5) * 0.1;
-                        p.vy = Math.random() * 0.08 + 0.05;
+                        p.vy = (Math.random() * 0.08 + 0.05) * speedMultiplier;
                         p.opacity = Math.random() * 0.4 + 0.6;
                     }
 

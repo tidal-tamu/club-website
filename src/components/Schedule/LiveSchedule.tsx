@@ -1,180 +1,229 @@
 import { useEffect, useState } from "react";
 import LiveScheduleList from "./LiveScheduleList";
 import { ScheduleItem } from "./Schedule";
-import tidalBackground from "/f25/tidal-background.png";
-import heroImage from "/f25/hero.png";
-import lightImage from "/f25/Light.png";
-import FloatingParticles from "../HackathonF25/ui/FloatingParticles";
+import heroImage from "/s26/hero-text.svg";
+import FloatingParticles from "../HackathonS26/ui/FloatingParticles";
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // THIS LIVE SCHEDULE DOESNT ACCOUNT FOR EVENTS THAT SPAN ACROSS DAYS
-// FOR EXAMPLE, 10/25 11:00 PM START TO 10/26 12:00 AM END WILL NOT FUNCTION PROPERLY
-// INSTEAD USE 10/25 11:00 PM START TO 10/25 11:59 PM END
+// FOR EXAMPLE, 02/07 11:00 PM START TO 02/08 12:00 AM END WILL NOT FUNCTION PROPERLY
+// INSTEAD USE 02/07 11:00 PM START TO 02/07 11:59 PM END
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+const day1 = [
+    { time: "9:00 AM", event: "Student Check In" },
+    { time: "11:00 AM", event: "Opening Ceremony" },
+    { time: "12:00 PM", event: "Start Hacking!" },
+    { time: "12:30 PM", event: "Lunch: Pizza" },
+    { time: "2:00 PM", event: "MLH Workshop" },
+    { time: "4:00 PM", event: "Intro to Git" },
+    { time: "6:00 PM", event: "Dinner: Mai Shan Yun" },
+];
+
+const day2 = [
+    { time: "8:00 AM", event: "Breakfast: Donuts" },
+    { time: "11:00 AM", event: "Pitch Workshop" },
+    { time: "12:00 PM", event: "Hacking Ends!" },
+    { time: "12:30 PM", event: "Lunch: Roni's + Canes" },
+    { time: "1:00 PM", event: "Judging" },
+    { time: "3:00 PM", event: "Judging Ends" },
+    { time: "4:00 PM", event: "Closing Ceremony" },
+];
+
+const parseTime = (time: string) => {
+    const [rawTime, rawPeriod] = time.split(" ");
+    const [rawHour, rawMinute] = rawTime.split(":").map(Number);
+    const period = rawPeriod.toUpperCase();
+    let hour = rawHour % 12;
+    if (period === "PM") hour += 12;
+    return hour * 60 + rawMinute;
+};
+
+const formatTime = (minutes: number) => {
+    const total = ((minutes % (24 * 60)) + 24 * 60) % (24 * 60);
+    const hour24 = Math.floor(total / 60);
+    const minute = total % 60;
+    const period = hour24 >= 12 ? "PM" : "AM";
+    const hour12 = hour24 % 12 === 0 ? 12 : hour24 % 12;
+    return `${hour12}:${minute.toString().padStart(2, "0")} ${period}`;
+};
+
+const buildSchedule = (
+    day: string,
+    items: { time: string; event: string; location?: string }[]
+): ScheduleItem[] => {
+    return items.map((item, index) => {
+        const currentTime = parseTime(item.time);
+        const nextTime = items[index + 1]?.time;
+        const endTime = nextTime
+            ? formatTime(parseTime(nextTime) - 1)
+            : formatTime(currentTime + 60);
+
+        return {
+            day,
+            time: item.time,
+            end_time: endTime,
+            event: item.event,
+            location: item.location ?? "TBD",
+        };
+    });
+};
+
 const sched: ScheduleItem[] = [
-    {
-        day: "10/25",
-        time: "7:30 AM",
-        end_time: "8:00 AM",
-        event: "Check In + Breakfast",
-        location: "MSC 2300",
-    },
-    {
-        day: "10/25",
-        time: "8:40 AM",
-        end_time: "9:00 AM",
-        event: "Opening Ceremony",
-        location: "MSC 2300",
-    },
-    {
-        day: "10/25",
-        time: "9:30 AM",
-        end_time: "10:00 AM",
-        event: "Team Matchmaking Mixer!",
-        location: "MSC 2401",
-    },
-    {
-        day: "10/25",
-        time: "10:00 AM",
-        end_time: "11:00 AM",
-        event: "Google Cloud and Security Workshop",
-        location: "MSC 2401",
-    },
-    {
-        day: "10/25",
-        time: "11:00 AM",
-        end_time: "12:00 PM",
-        event: "Getting Hired at Google Workshop",
-        location: "MSC 2401",
-    },
-    {
-        day: "10/25",
-        time: "1:00 PM",
-        end_time: "2:00 PM",
-        event: "Lunch",
-        location: "MSC 2300",
-    },
-    {
-        day: "10/25",
-        time: "4:00 PM",
-        end_time: "4:29 PM",
-        event: "30 Minutes Remaining!",
-        location: "MSC 2300",
-    },
-    {
-        day: "10/25",
-        time: "4:30 PM",
-        end_time: "4:30 PM",
-        event: "Project Submission Deadline",
-        location: "MSC 2300",
-    },
-    {
-        day: "10/25",
-        time: "5:00 PM",
-        end_time: "6:30 PM",
-        event: "Judging Begins",
-        location: "MSC 2300",
-    },
-    {
-        day: "10/25",
-        time: "6:30 PM",
-        end_time: "7:00 PM",
-        event: "Closing Ceremony",
-        location: "MSC 2300",
-    },
+    ...buildSchedule("02/07", day1),
+    ...buildSchedule("02/08", day2),
 ];
 
 export default function LiveSchedule() {
     const [date, setDate] = useState(new Date());
 
     useEffect(() => {
-        const interval = setInterval(() => setDate(new Date()), 100); // 100 ms for accuracy
+        const interval = setInterval(() => setDate(new Date()), 100);
         return () => clearInterval(interval);
     }, []);
 
     return (
-        <div
-            className="block relative w-full h-screen overflow-hidden select-none"
-            style={{
-                backgroundImage: `url(${tidalBackground})`,
-                backgroundSize: "cover",
-                backgroundPosition: "top",
-                backgroundRepeat: "no-repeat",
-            }}
-        >
-            <div className="absolute inset-0 bg-tidal-deep/85 backdrop-blur-[1px]" />
-
-            {/* Light overlay effect from Hero */}
+        <div className="block relative w-full h-screen overflow-hidden select-none bg-[#77A5C6]">
             <div
-                className="absolute top-0 left-0 w-auto h-full pointer-events-none z-5 opacity-40"
+                className="h-[15rem] lg:h-[25rem] absolute bottom-0 left-0 right-0 w-full z-10"
                 style={{
-                    mixBlendMode: "screen" as any,
+                    background: "linear-gradient(transparent 20%, #77a5c6 66%)",
                 }}
-            >
+            />
+
+            <div className="absolute inset-0">
                 <img
-                    src={lightImage}
-                    alt=""
-                    className="h-full w-auto object-cover"
+                    src="/s26/Hero/BackBushes.png"
+                    alt="Back Bushes"
+                    className="absolute bottom-[30vh] left-0 right-0 w-full min-w-0 -z-[1]"
+                    decoding="async"
+                />
+                <img
+                    src="/s26/Hero/TopHill.png"
+                    alt="Top Hill"
+                    className="absolute bottom-0 left-0 right-0 w-full min-w-0 h-[55%] -z-[1]"
+                    decoding="async"
+                    fetchPriority="high"
+                />
+                <img
+                    src="/s26/Hero/LowHill.png"
+                    alt="Low Hill"
+                    className="absolute bottom-8 sm:left-0 right-0 w-full min-w-0 h-[33%] z-[2]"
+                    decoding="async"
                 />
             </div>
 
-            <FloatingParticles count={10} sizeMultiplier={1.2} />
+            <div className="absolute inset-0">
+                <img
+                    src="/s26/Hero/TreesPreShadowed.png"
+                    alt="Trees Pre Shadowed"
+                    className="absolute left-0 bottom-[46vh] sm:bottom-[45vh] md:bottom-[44vh] lg:bottom-[43vh] xl:bottom-[41vh] 2xl:bottom-[40vh] w-full sm:w-[80%] z-[1]"
+                    decoding="async"
+                />
+            </div>
+            <div className="absolute inset-0 w-full min-w-0 overflow-hidden" style={{ left: 0, right: 0 }}>
+                <img
+                    src="/s26/Hero/HouseGlowing.png"
+                    alt="House Glowing"
+                    className="absolute bottom-[48vh] right-[-10vh] sm:right-[3vh] md:right-[6vh] lg:right-[10vh] xl:right-[14vh] 2xl:right-[18vh] w-[40vh] object-contain"
+                    decoding="async"
+                />
+            </div>
 
-            <div className="relative w-full h-full flex flex-col text-white z-10 py-4 px-8">
-                {/* Middle Section - Time, Schedule Cards, QR Code */}
-                <div className="flex-1 flex flex-col justify-center gap-4">
-                    {/* Hero Logo - centered above schedule cards */}
-                    <div className="flex justify-center items-center pt-4">
-                        <img
-                            src={heroImage}
-                            className="w-full max-w-3xl"
-                            alt="TidalHack Hero"
+            <div className="absolute inset-0 w-full min-w-0 z-[2]" style={{ left: 0, right: 0 }}>
+                <img
+                    src="/s26/Hero/LargeBrownTreeAlt.png"
+                    alt="Large Brown Tree Alt"
+                    className="absolute md:right-0 bottom-[18vh] -translate-x-32 md:translate-x-16 lg:translate-x-20 xl:translate-x-24 2xl:translate-x-28 h-full min-w-[700px]"
+                    decoding="async"
+                />
+            </div>
+
+            {/* MLH badge removed per request */}
+
+            <div className="absolute inset-0 z-20">
+                <FloatingParticles
+                    count={192}
+                    speedMultiplier={0.6}
+                    sizeMultiplier={2.3}
+                />
+            </div>
+
+            <div className="absolute inset-0">
+                <div className="absolute bottom-0 left-0 right-0 overflow-hidden w-full z-20">
+                    <img
+                        src="/s26/Hero/LowSnowPreShadowed.png"
+                        alt="Low Snow Pre Shadowed"
+                        className="left-0 scale-[3] sm:scale-[2] lg:scale-[1]"
+                        decoding="async"
+                    />
+                    <div
+                        className="h-[8rem] z-20"
+                        style={{
+                            background:
+                                "linear-gradient(transparent 20%, #76A4C5 66%)",
+                        }}
+                    />
+                </div>
+            </div>
+
+            {/* Penguin mascot removed per request */}
+
+            <div className="relative w-full h-full flex flex-col text-white z-40 px-8 md:px-12 xl:px-16 2xl:px-24 py-0">
+                {/* Hero */}
+                <div className="flex justify-center items-center pb-2 md:pb-3 2xl:pb-4">
+                    <img
+                        src={heroImage}
+                        className="w-full max-w-[54vw] md:max-w-[38rem] 2xl:max-w-[46vw]"
+                        alt="TIDALhack Spring 26"
+                    />
+                </div>
+
+                {/* Main Layout for TV */}
+                <div className="grid grid-cols-1 xl:grid-cols-[320px_minmax(0,1fr)_320px] 2xl:grid-cols-[420px_minmax(0,1fr)_420px] gap-8 xl:gap-12 2xl:gap-16 items-center flex-1 -mt-16 md:-mt-20 2xl:-mt-24">
+                    {/* Left: Current Time */}
+                    <div className="flex flex-col items-center gap-4 order-1 xl:order-none self-center">
+                        <div className="bg-white/20 backdrop-blur-md rounded-[32px] px-6 py-6 2xl:px-8 2xl:py-8 border-2 border-white/50 shadow-2xl w-full max-w-[420px]">
+                            <p className="text-white font-caudex text-[clamp(40px,3.6vw,88px)] font-bold tracking-wider drop-shadow-lg text-center tabular-nums">
+                                {date.toLocaleTimeString([], {
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                    second: "2-digit",
+                                })}
+                            </p>
+                        </div>
+                        <p className="text-white/90 text-[clamp(14px,1.2vw,26px)] font-bold tracking-wide uppercase">
+                            Current Time
+                        </p>
+                    </div>
+
+                    {/* Center: Schedule Cards */}
+                    <div className="w-full px-2 md:px-4 order-3 xl:order-none flex items-center">
+                        <LiveScheduleList
+                            list={sched}
+                            now={date}
+                            year={2026}
                         />
                     </div>
 
-                    {/* Time, Schedule Cards, QR Code */}
-                    <div className="flex items-center justify-between gap-12 px-8">
-                        {/* Left: Current Time */}
-                        <div className="flex flex-col items-center gap-3 flex-shrink-0">
-                            <div className="bg-black/40 backdrop-blur-md rounded-3xl px-8 py-6 border-2 border-white/30 shadow-2xl w-[320px]">
-                                <p className="text-yellow-400 font-chelsea text-6xl font-bold tracking-wider drop-shadow-lg text-center tabular-nums">
-                                    {date.toLocaleTimeString([], {
-                                        hour: "2-digit",
-                                        minute: "2-digit",
-                                        second: "2-digit",
-                                    })}
-                                </p>
+                    {/* Right: Discord QR Code */}
+                    <div className="flex flex-col items-center gap-4 order-2 xl:order-none self-center">
+                        <div className="bg-white/20 backdrop-blur-md rounded-[32px] p-4 2xl:p-6 border-2 border-white/50 shadow-2xl w-full max-w-[420px] flex justify-center">
+                            <div className="bg-white p-4 rounded-2xl shadow-lg">
+                                <img
+                                    src="/images/tidal_discord_qr.png"
+                                    alt="Join our Discord"
+                                    className="w-44 h-44 md:w-52 md:h-52 2xl:w-64 2xl:h-64"
+                                />
                             </div>
-                            <p className="text-white/90 text-xl font-bold tracking-wide uppercase">
-                                Current Time
+                        </div>
+                        <div className="text-center">
+                            <p className="text-white font-bold text-[clamp(14px,1.2vw,26px)] mb-1 tracking-wide">
+                                JOIN DISCORD
                             </p>
-                        </div>
-
-                        {/* Center: Schedule Cards with Penguin */}
-                        <div className="w-full flex-grow mx-[250px] px-2">
-                            <LiveScheduleList list={sched} now={date} />
-                        </div>
-
-                        {/* Right: Discord QR Code */}
-                        <div className="flex flex-col items-center gap-3 flex-shrink-0">
-                            <div className="bg-black/40 backdrop-blur-md rounded-3xl p-4 border-2 border-white/30 shadow-2xl">
-                                <div className="bg-white p-4 rounded-2xl shadow-lg">
-                                    <img
-                                        src="/images/tidal_discord_qr.png"
-                                        alt="Join our Discord"
-                                        className="w-48 h-48"
-                                    />
-                                </div>
-                            </div>
-                            <div className="text-center">
-                                <p className="text-white font-bold text-xl mb-1 tracking-wide">
-                                    JOIN DISCORD
-                                </p>
-                                <p className="text-yellow-400 font-mono text-lg font-semibold">
-                                    tx.ag/tidaldiscord
-                                </p>
-                            </div>
+                            <p className="text-[#b34756] font-mono text-[clamp(12px,1vw,22px)] font-semibold">
+                                tx.ag/tidaldiscord
+                            </p>
                         </div>
                     </div>
                 </div>
