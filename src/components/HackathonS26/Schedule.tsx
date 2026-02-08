@@ -17,7 +17,7 @@ const day2Schedule = [
   { time: "12:30 PM", event: "Lunch: Canes & Roni's" },
   { time: "1:00 PM", event: "Judging" },
   { time: "3:00 PM", event: "Judging Ends" },
-  { time: "4:00 PM", event: "Closing Ceremony" },
+  { time: "3:30 PM", event: "Closing Ceremony" },
 ];
 
 interface ScheduleItemProps {
