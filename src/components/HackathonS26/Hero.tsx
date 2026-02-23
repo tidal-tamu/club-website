@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import FloatingParticles from "./ui/FloatingParticles";
-import { Link } from "react-router-dom";
 import { FaPlay } from "react-icons/fa";
 import { motion } from "framer-motion";
 import gsap from "gsap";
@@ -327,27 +326,18 @@ const Hero = ({ shouldAnimate = false }: HeroProps) => {
                         delay: 0.6,
                     }}
                 >
-                    <Link
-                        to="/register"
-                        className="bg-[#AB3243] hover:bg-[#8F2838] text-white font-bold text-base md:text-lg px-7 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 md:gap-2.5 hover:scale-110 active:scale-95 hover:shadow-lg border-b-4 md:border-b-6 lg:border-b-8 border-b-[#6B1A26] min-w-[140px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px]"
+                    <button
+                        disabled
+                        className="bg-gray-500 text-gray-300 font-bold text-base md:text-lg px-7 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-xl flex items-center justify-center gap-1.5 sm:gap-2 md:gap-2.5 cursor-not-allowed opacity-60 min-w-[140px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px]"
                         style={{
-                            filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3))",
+                            filter: "drop-shadow(0 8px 0 #4a4a4a) drop-shadow(0 12px 16px rgba(0, 0, 0, 0.3))",
+                            boxShadow:
+                                "inset 0 0 0 1.8px rgba(255, 255, 255, 0.10)",
                         }}
                     >
-                        APPLY NOW
-                        <FaPlay className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4 text-white" />
-                    </Link>
-                    <a
-                        href="https://forms.gle/oBEQk9y9xadLhYnE9"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-[#9FC9E6] hover:bg-[#8AB8D5] text-white font-bold text-base md:text-lg lg:text-lg px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 md:gap-2.5 hover:scale-110 active:scale-95 hover:shadow-lg border-b-4 md:border-b-6 lg:border-b-8 border-b-[#5A7FA0] min-w-[140px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px]"
-                        style={{
-                            filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4))",
-                        }}
-                    >
-                        JUDGE / MENTOR
-                    </a>
+                        REGISTRATIONS CLOSED
+                        <FaPlay className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4 text-gray-300" />
+                    </button>
                 </motion.div>
             </div>
         </div>
