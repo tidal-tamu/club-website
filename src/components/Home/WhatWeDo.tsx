@@ -203,7 +203,7 @@ function WhatWeDo() {
                         {[
                             {
                                 icon: FaUsers,
-                                number: "150+",
+                                number: "200+",
                                 label: "Active Members",
                                 color: "from-[#336699] to-[#706993]",
                             },
