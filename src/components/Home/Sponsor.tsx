@@ -2,6 +2,63 @@ import { motion } from "framer-motion";
 import { FaEnvelope } from "react-icons/fa";
 import confetti from "canvas-confetti";
 
+type SponsorItem = {
+    name: string;
+    logo: string;
+    link: string;
+};
+
+const sponsorRows: SponsorItem[][] = [
+    [
+        { name: "AWS", logo: "/icons/logos/companies/aws-light-logo.png", link: "https://aws.amazon.com/" },
+        { name: "Blue Origin", logo: "/icons/logos/companies/bo-logo.png", link: "https://www.blueorigin.com/" },
+        { name: "NVIDIA", logo: "/icons/logos/companies/nvidia-logo-green.png", link: "https://www.nvidia.com/" },
+        { name: "Google", logo: "/icons/logos/companies/google-color.png", link: "https://about.google/" },
+        { name: "Jane Street", logo: "/icons/logos/companies/jane-street-blue.png", link: "https://www.janestreet.com/" },
+        { name: "Chevron", logo: "/icons/logos/companies/chevron-logo.png", link: "https://www.chevron.com/" },
+    ],
+    [
+        { name: "ConocoPhillips", logo: "/icons/logos/companies/conocophillips-logo.png", link: "https://www.conocophillips.com/" },
+        { name: "Phillips 66", logo: "/icons/logos/companies/phillips66-logo.png", link: "https://www.phillips66.com/" },
+        { name: "PNNL", logo: "/icons/logos/companies/pnnl.png", link: "https://www.pnnl.gov/" },
+        { name: "Slalom", logo: "/icons/logos/companies/slalom-logo.png", link: "https://www.slalom.com/" },
+        { name: "Pariveda", logo: "/icons/logos/companies/pariveda-logo.png", link: "https://www.parivedasolutions.com/" },
+        { name: "Wolfram", logo: "/icons/logos/companies/wolfram-logo.png", link: "https://www.wolfram.com/" },
+    ],
+    [
+        { name: "ElevenLabs", logo: "/icons/logos/companies/elevenlabs.png", link: "https://elevenlabs.io" },
+        { name: "Celsius", logo: "/icons/logos/companies/celsius.png", link: "https://www.celsius.com" },
+    ],
+];
+
+function SponsorCard({
+    sponsor,
+    index,
+}: {
+    sponsor: SponsorItem;
+    index: number;
+}) {
+    return (
+        <motion.a
+            href={sponsor.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.05 }}
+            className="flex items-center justify-center p-4 sm:p-6 bg-gray-50 rounded-xl sm:rounded-2xl hover:bg-gray-100 transition-all duration-300 group"
+        >
+            <img
+                src={sponsor.logo}
+                alt={sponsor.name}
+                className="max-h-12 sm:max-h-16 lg:max-h-20 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+            />
+        </motion.a>
+    );
+}
+
 export default function Sponsor() {
     const handleEmailClick = () => {
         navigator.clipboard.writeText("tidaltamu@gmail.com");
@@ -35,40 +92,21 @@ export default function Sponsor() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                     viewport={{ once: true }}
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6 lg:gap-8 mb-12 sm:mb-16"
+                    className="space-y-4 sm:space-y-6 lg:space-y-8 mb-12 sm:mb-16"
                 >
-                    {[
-                        { name: "AWS", logo: "/icons/logos/companies/aws-light-logo.png", link: "https://aws.amazon.com/" },
-                        { name: "Blue Origin", logo: "/icons/logos/companies/bo-logo.png", link: "https://www.blueorigin.com/" },
-                        { name: "NVIDIA", logo: "/icons/logos/companies/nvidia-logo-green.png", link: "https://www.nvidia.com/" },
-                        { name: "Google", logo: "/icons/logos/companies/google-color.png", link: "https://about.google/" },
-                        { name: "Jane Street", logo: "/icons/logos/companies/jane-street-blue.png", link: "https://www.janestreet.com/" },
-                        { name: "Chevron", logo: "/icons/logos/companies/chevron-logo.png", link: "https://www.chevron.com/" },
-                        { name: "ConocoPhillips", logo: "/icons/logos/companies/conocophillips-logo.png", link: "https://www.conocophillips.com/" },
-                        { name: "Phillips 66", logo: "/icons/logos/companies/phillips66-logo.png", link: "https://www.phillips66.com/" },
-                        { name: "PNNL", logo: "/icons/logos/companies/pnnl.png", link: "https://www.pnnl.gov/" },
-                        { name: "Slalom", logo: "/icons/logos/companies/slalom-logo.png", link: "https://www.slalom.com/" },
-                        { name: "Pariveda", logo: "/icons/logos/companies/pariveda-logo.png", link: "https://www.parivedasolutions.com/" },
-                        { name: "Wolfram", logo: "/icons/logos/companies/wolfram-logo.png", link: "https://www.wolfram.com/" },
-                    ].map((sponsor, index) => (
-                        <motion.a
-                            key={index}
-                            href={sponsor.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.4, delay: index * 0.1 }}
-                            viewport={{ once: true }}
-                            whileHover={{ scale: 1.05 }}
-                            className="flex items-center justify-center p-4 sm:p-6 bg-gray-50 rounded-xl sm:rounded-2xl hover:bg-gray-100 transition-all duration-300 group"
+                    {sponsorRows.map((row, rowIndex) => (
+                        <div
+                            key={`sponsor-row-${rowIndex}`}
+                            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6 lg:gap-8"
                         >
-                            <img
-                                src={sponsor.logo}
-                                alt={sponsor.name}
-                                className="max-h-12 sm:max-h-16 lg:max-h-20 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
-                            />
-                        </motion.a>
+                            {row.map((sponsor, sponsorIndex) => (
+                                <SponsorCard
+                                    key={sponsor.name}
+                                    sponsor={sponsor}
+                                    index={rowIndex * 6 + sponsorIndex}
+                                />
+                            ))}
+                        </div>
                     ))}
                 </motion.div>
 
