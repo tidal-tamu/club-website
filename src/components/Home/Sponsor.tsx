@@ -6,6 +6,7 @@ type SponsorItem = {
     name: string;
     logo: string;
     link: string;
+    logoClassName?: string;
 };
 
 const sponsorRows: SponsorItem[][] = [
@@ -26,7 +27,12 @@ const sponsorRows: SponsorItem[][] = [
         { name: "Wolfram", logo: "/icons/logos/companies/wolfram-logo.png", link: "https://www.wolfram.com/" },
     ],
     [
-        { name: "ElevenLabs", logo: "/icons/logos/companies/elevenlabs.png", link: "https://elevenlabs.io" },
+        {
+            name: "ElevenLabs",
+            logo: "/icons/logos/companies/elevenlabs.png",
+            link: "https://elevenlabs.io",
+            logoClassName: "invert",
+        },
         { name: "Celsius", logo: "/icons/logos/companies/celsius.png", link: "https://www.celsius.com" },
     ],
 ];
@@ -53,7 +59,7 @@ function SponsorCard({
             <img
                 src={sponsor.logo}
                 alt={sponsor.name}
-                className="max-h-12 sm:max-h-16 lg:max-h-20 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                className={`max-h-12 sm:max-h-16 lg:max-h-20 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 ${sponsor.logoClassName ?? ""}`}
             />
         </motion.a>
     );
