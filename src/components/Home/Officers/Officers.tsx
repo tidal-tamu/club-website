@@ -159,9 +159,64 @@ const officers = [
         major: "Statistics '29",
         desc: "",
         pfp: "/images/officer-pictures/vyom.jpeg",
-    }
+    },
+    {
+        name: "Yash Kulkarni",
+        position: "Development",
+        major: "",
+        desc: "",
+        pfp: "/images/officer-pictures/yash.png",
+    },
+    {
+        name: "Balaram Palivela",
+        position: "Development",
+        major: "",
+        desc: "",
+        pfp: "/images/officer-pictures/balaram.jpg"
+    },
+    {
+        name: "Kiara Ramon-Lozano",
+        position: "Marketing",
+        major: "",
+        desc: "",
+        pfp: "/images/officer-pictures/kiara.png"
+    },
+    {
+        name: "Tanvee Borikar",
+        position: "Activities",
+        major: "",
+        desc: "",
+        pfp: "/images/officer-pictures/tanvee.png"
+    },
+    {
+        name: "Mariam Siddiqui",
+        position: "Finance",
+        major: "",
+        desc: "",
+        pfp: "/images/officer-pictures/mariam.png"
+    },
+    {
+        name: "Lynn Yang",
+        position: "Design",
+        major: "",
+        desc: "",
+        pfp: "/images/officer-pictures/lynn.png"
+    },
+    {
+        name: "Jamie Moe",
+        position: "Activities",
+        major: "",
+        desc: "",
+        pfp: "/images/officer-pictures/jamie.png"
+    },
+    {
+        name: "Arjun Babla",
+        position: "Activities",
+        major: "",
+        desc: "",
+        pfp: "/images/officer-pictures/arjun.png"
+    },
 ];
-
 export default function Officers() {
     const {
         coPresidents,
