@@ -133,13 +133,6 @@ const officers = [
         pfp: "/images/officer-pictures/tiffany yin.png",
     },
     {
-        name: "Sid Reddy",
-        position: "Activities",
-        major: "Computer Engineering '28",
-        desc: "",
-        pfp:"/images/officer-pictures/sid.png",
-    },
-    {
         name: "Shruthika",
         position:" Marketing",
         major: "Statistics '28",
