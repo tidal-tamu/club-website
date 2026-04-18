@@ -11,7 +11,6 @@ import {
 const navLinks = [
     { title: "Home", path: "/" },
     { title: "About Us", path: "about-us" },
-    { title: "Hackathon", path: "/hackathon" },
 ];
 
 interface NavbarProps {
@@ -110,14 +109,6 @@ export default function Navbar({ dark = false }: NavbarProps) {
                                     About
                                 </a>
                             )
-                        ) : link.title === "hackathon" ? (
-                            <Link
-                                key={link.title}
-                                to={link.path}
-                                className="text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium"
-                            >
-                                Hackathon
-                            </Link>
                         ) : link.title === "Sponsor Us" ? (
                             <a
                                 key={link.title}
@@ -226,14 +217,6 @@ export default function Navbar({ dark = false }: NavbarProps) {
                                         About
                                     </a>
                                 )
-                            ) : link.title === "Hackathon" ? (
-                                <a
-                                    key={link.title}
-                                    href={link.path}
-                                    className="text-2xl text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium text-center"
-                                >
-                                    Hackathon
-                                </a>
                             ) : link.title === "Sponsor Us" ? (
                                 <a
                                     key={link.title}

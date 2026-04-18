@@ -103,9 +103,9 @@ function WhatWeDo() {
                             viewport={{ once: true }}
                             className="relative"
                         >
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 items-stretch gap-4 sm:gap-6">
                                 <motion.div
-                                    className="bg-gradient-to-br from-[#336699]/10 to-[#706993]/10 p-4 sm:p-6 rounded-2xl group hover:from-[#336699]/20 hover:to-[#706993]/20 transition-all duration-300 border border-[#336699]/20 hover:border-[#336699]/40"
+                                    className="h-full flex flex-col bg-gradient-to-br from-[#336699]/10 to-[#706993]/10 p-4 sm:p-6 rounded-2xl group hover:from-[#336699]/20 hover:to-[#706993]/20 transition-all duration-300 border border-[#336699]/20 hover:border-[#336699]/40"
                                     whileHover={{ y: -5, scale: 1.02 }}
                                     transition={{ duration: 0.2 }}
                                 >
@@ -117,7 +117,7 @@ function WhatWeDo() {
                                             Hands-on Learning
                                         </h3>
                                     </div>
-                                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                                    <p className="flex-1 text-gray-300 text-sm sm:text-base leading-relaxed">
                                         Real projects with real impact, building
                                         practical skills through immersive
                                         experiences.
@@ -125,7 +125,7 @@ function WhatWeDo() {
                                 </motion.div>
 
                                 <motion.div
-                                    className="bg-gradient-to-br from-[#706993]/10 to-[#336699]/10 p-4 sm:p-6 rounded-2xl sm:mt-8 group hover:from-[#706993]/20 hover:to-[#336699]/20 transition-all duration-300 border border-[#706993]/20 hover:border-[#706993]/40"
+                                    className="h-full flex flex-col bg-gradient-to-br from-[#706993]/10 to-[#336699]/10 p-4 sm:p-6 rounded-2xl group hover:from-[#706993]/20 hover:to-[#336699]/20 transition-all duration-300 border border-[#706993]/20 hover:border-[#706993]/40"
                                     whileHover={{ y: -5, scale: 1.02 }}
                                     transition={{ duration: 0.2 }}
                                 >
@@ -137,7 +137,7 @@ function WhatWeDo() {
                                             Community
                                         </h3>
                                     </div>
-                                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                                    <p className="flex-1 text-gray-300 text-sm sm:text-base leading-relaxed">
                                         Connect with like-minded innovators and
                                         build lasting professional
                                         relationships.
@@ -145,7 +145,7 @@ function WhatWeDo() {
                                 </motion.div>
 
                                 <motion.div
-                                    className="bg-gradient-to-br from-[#336699]/10 to-[#706993]/10 p-4 sm:p-6 rounded-2xl sm:-mt-4 group hover:from-[#336699]/20 hover:to-[#706993]/20 transition-all duration-300 border border-[#336699]/20 hover:border-[#336699]/40"
+                                    className="h-full flex flex-col bg-gradient-to-br from-[#336699]/10 to-[#706993]/10 p-4 sm:p-6 rounded-2xl group hover:from-[#336699]/20 hover:to-[#706993]/20 transition-all duration-300 border border-[#336699]/20 hover:border-[#336699]/40"
                                     whileHover={{ y: -5, scale: 1.02 }}
                                     transition={{ duration: 0.2 }}
                                 >
@@ -157,7 +157,7 @@ function WhatWeDo() {
                                             Excellence
                                         </h3>
                                     </div>
-                                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                                    <p className="flex-1 text-gray-300 text-sm sm:text-base leading-relaxed">
                                         Award-winning programs and events that
                                         set the standard for student
                                         organizations.
@@ -165,7 +165,7 @@ function WhatWeDo() {
                                 </motion.div>
 
                                 <motion.div
-                                    className="bg-gradient-to-br from-[#706993]/10 to-[#336699]/10 p-4 sm:p-6 rounded-2xl group hover:from-[#706993]/20 hover:to-[#336699]/20 transition-all duration-300 border border-[#706993]/20 hover:border-[#706993]/40"
+                                    className="h-full flex flex-col bg-gradient-to-br from-[#706993]/10 to-[#336699]/10 p-4 sm:p-6 rounded-2xl group hover:from-[#706993]/20 hover:to-[#336699]/20 transition-all duration-300 border border-[#706993]/20 hover:border-[#706993]/40"
                                     whileHover={{ y: -5, scale: 1.02 }}
                                     transition={{ duration: 0.2 }}
                                 >
@@ -177,7 +177,7 @@ function WhatWeDo() {
                                             Innovation
                                         </h3>
                                     </div>
-                                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                                    <p className="flex-1 text-gray-300 text-sm sm:text-base leading-relaxed">
                                         Cutting-edge AI/ML projects that push
                                         the boundaries of what's possible.
                                     </p>

@@ -22,7 +22,7 @@ export default function Home() {
             <WhatWeDo />
             <Officers />
             <Sponsor />
-            <Footer variant="home" />
+            <Footer />
         </>
     );
 }
