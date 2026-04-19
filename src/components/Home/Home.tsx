@@ -1,5 +1,6 @@
-import Hero from "./Hero/Hero";
+import Hero from "./Hero";
 import About from "./About";
+import BentoBox from "./BentoBox";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import Headroom from "react-headroom";
@@ -14,6 +15,7 @@ export default function Home() {
                 <Hero />
             </div>
             <About />
+            <BentoBox />
             <Footer />
         </>
     );
