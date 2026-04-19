@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-scroll";
 import { motion } from "framer-motion";
 import {
     FaGithub,
@@ -8,10 +7,11 @@ import {
     FaExternalLinkAlt,
 } from "react-icons/fa";
 
-const navLinks = [
-    { title: "Home", path: "/" },
-    { title: "About Us", path: "about-us" },
-];
+const DISCORD_URL = "https://discord.gg/eQ8ScamG4H";
+const HACKATHON_URL = "https://s26.tidaltamu.com";
+
+const navLinkClass =
+    "font-mont text-gray-700 transition-colors hover:text-[#336699] font-medium";
 
 interface NavbarProps {
     dark?: boolean;
@@ -24,14 +24,12 @@ export default function Navbar({ dark = false }: NavbarProps) {
 
     useEffect(() => {
         if (isOpen) {
-            // Prevent scrolling on both body and html elements
             document.body.style.overflow = "hidden";
             document.documentElement.style.overflow = "hidden";
             document.body.style.position = "fixed";
             document.body.style.top = `-${window.scrollY}px`;
             document.body.style.width = "100%";
         } else {
-            // Restore scrolling
             const scrollY = document.body.style.top;
             document.body.style.overflow = "";
             document.documentElement.style.overflow = "";
@@ -74,8 +72,8 @@ export default function Navbar({ dark = false }: NavbarProps) {
             animate={{ y: isVisible ? 0 : -100 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-            <div className="container mx-auto px-6 lg:px-12 py-6 flex items-center justify-between z-50">
-                <a href="/" className="flex items-center cursor-pointer">
+            <div className="container mx-auto flex items-center justify-between px-6 py-3 lg:px-12 z-50">
+                <a href="/" className="flex shrink-0 cursor-pointer items-center">
                     <img
                         src={
                             dark
@@ -87,62 +85,36 @@ export default function Navbar({ dark = false }: NavbarProps) {
                     />
                 </a>
 
-                <div className="hidden md:flex items-center space-x-8">
-                    {navLinks.map((link) =>
-                        link.title === "About Us" ? (
-                            location.pathname === "/" ? (
-                                <Link
-                                    key={link.title}
-                                    to={link.path}
-                                    smooth={true}
-                                    duration={500}
-                                    className="text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium"
-                                >
-                                    About
-                                </Link>
-                            ) : (
-                                <a
-                                    key={link.title}
-                                    href={`/#${link.path}`}
-                                    className="text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium"
-                                >
-                                    About
-                                </a>
-                            )
-                        ) : link.title === "Sponsor Us" ? (
-                            <a
-                                key={link.title}
-                                href={link.path}
-                                className="text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium"
-                            >
-                                Sponsor
-                            </a>
-                        ) : (
-                            <a
-                                key={link.title}
-                                href={link.path}
-                                className="text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium"
-                            >
-                                {link.title}
-                            </a>
-                        )
-                    )}
+                <div className="hidden items-center gap-8 md:flex">
+                    <a href="/#about-us" className={navLinkClass}>
+                        About
+                    </a>
                     <a
-                        href="https://discord.gg/eQ8ScamG4H"
+                        href={HACKATHON_URL}
                         target="_blank"
-                        className="bg-[#336699] hover:bg-[#336699]/90 text-white px-6 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-medium"
+                        rel="noreferrer"
+                        className={navLinkClass}
+                    >
+                        Hackathon
+                    </a>
+                    <a
+                        href={DISCORD_URL}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={navLinkClass}
                     >
                         Join Us
                     </a>
                 </div>
 
                 <button
-                    className="md:hidden inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 z-50 relative"
+                    className="relative z-50 inline-flex h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden"
+                    type="button"
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     {isOpen ? (
                         <svg
-                            className="w-6 h-6"
+                            className="h-6 w-6"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -157,7 +129,7 @@ export default function Navbar({ dark = false }: NavbarProps) {
                         </svg>
                     ) : (
                         <svg
-                            className="w-6 h-6"
+                            className="h-6 w-6"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 17 14"
@@ -174,13 +146,12 @@ export default function Navbar({ dark = false }: NavbarProps) {
                 </button>
             </div>
 
-            {/* Mobile Menu */}
             <motion.div
-                className={`md:hidden fixed inset-0 top-0 left-0 w-full h-screen ${
+                className={`fixed inset-0 top-0 left-0 z-40 h-screen w-full md:hidden ${
                     dark
                         ? "bg-spaceBlack text-white"
                         : "bg-gradient-to-br from-gray-50 to-white text-black"
-                } z-40`}
+                }`}
                 initial={{ x: "100%", opacity: 0 }}
                 animate={{
                     x: isOpen ? "0%" : "100%",
@@ -192,72 +163,49 @@ export default function Navbar({ dark = false }: NavbarProps) {
                     pointerEvents: isOpen ? "auto" : "none",
                 }}
             >
-                <div className="flex flex-col h-full px-6 py-12">
-                    {/* Navigation Links - Center Section */}
-                    <div className="flex-1 flex flex-col items-center justify-center space-y-12">
-                        {navLinks.map((link) =>
-                            link.title === "About Us" ? (
-                                location.pathname === "/" ? (
-                                    <Link
-                                        key={link.title}
-                                        to={link.path}
-                                        smooth={true}
-                                        duration={500}
-                                        onClick={() => setIsOpen(false)}
-                                        className="text-2xl text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium text-center"
-                                    >
-                                        About
-                                    </Link>
-                                ) : (
-                                    <a
-                                        key={link.title}
-                                        href={`/#${link.path}`}
-                                        className="text-2xl text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium text-center"
-                                    >
-                                        About
-                                    </a>
-                                )
-                            ) : link.title === "Sponsor Us" ? (
-                                <a
-                                    key={link.title}
-                                    href={link.path}
-                                    className="text-2xl text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium text-center"
-                                >
-                                    Sponsor
-                                </a>
-                            ) : (
-                                <a
-                                    key={link.title}
-                                    href={link.path}
-                                    className="text-2xl text-gray-600 hover:text-[#336699] transition-all duration-300 font-medium text-center"
-                                >
-                                    {link.title}
-                                </a>
-                            )
-                        )}
+                <div className="flex h-full flex-col px-6 pt-24">
+                    <div className="flex flex-1 flex-col items-center justify-center space-y-10">
                         <a
-                            href="https://discord.gg/eQ8ScamG4H"
+                            href="/#about-us"
+                            className={`${navLinkClass} text-xl`}
+                            onClick={() => setIsOpen(false)}
+                        >
+                            About
+                        </a>
+                        <a
+                            href={HACKATHON_URL}
                             target="_blank"
-                            className="bg-[#336699] hover:bg-[#336699]/90 text-white px-14 py-5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-semibold text-xl mt-8"
+                            rel="noreferrer"
+                            className={`${navLinkClass} text-xl`}
+                            onClick={() => setIsOpen(false)}
+                        >
+                            Hackathon
+                        </a>
+                        <a
+                            href={DISCORD_URL}
+                            target="_blank"
+                            rel="noreferrer"
+                            className={`${navLinkClass} text-xl`}
+                            onClick={() => setIsOpen(false)}
                         >
                             Join Us
                         </a>
                     </div>
 
-                    {/* Contact Links - Bottom Section */}
                     <div className="flex flex-col items-center pb-16">
                         <div className="flex space-x-5">
                             <a
                                 href="https://github.com/tidal-tamu/"
                                 target="_blank"
-                                className={`w-12 h-12 ${
+                                rel="noreferrer"
+                                className={`flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 group ${
                                     dark
                                         ? "bg-gray-800 hover:bg-[#336699]"
                                         : "bg-gray-200 hover:bg-[#336699]"
-                                } rounded-xl flex items-center justify-center transition-all duration-300 group`}
+                                }`}
                             >
                                 <FaGithub
-                                    className={`w-5 h-5 ${
+                                    className={`h-5 w-5 ${
                                         dark
                                             ? "text-gray-400 group-hover:text-white"
                                             : "text-gray-600 group-hover:text-white"
@@ -267,14 +215,15 @@ export default function Navbar({ dark = false }: NavbarProps) {
                             <a
                                 href="https://www.linkedin.com/company/tidaltamu"
                                 target="_blank"
-                                className={`w-12 h-12 ${
+                                rel="noreferrer"
+                                className={`flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 group ${
                                     dark
                                         ? "bg-gray-800 hover:bg-[#336699]"
                                         : "bg-gray-200 hover:bg-[#336699]"
-                                } rounded-xl flex items-center justify-center transition-all duration-300 group`}
+                                }`}
                             >
                                 <FaLinkedin
-                                    className={`w-5 h-5 ${
+                                    className={`h-5 w-5 ${
                                         dark
                                             ? "text-gray-400 group-hover:text-white"
                                             : "text-gray-600 group-hover:text-white"
@@ -284,14 +233,15 @@ export default function Navbar({ dark = false }: NavbarProps) {
                             <a
                                 href="https://www.instagram.com/tidaltamu/"
                                 target="_blank"
-                                className={`w-12 h-12 ${
+                                rel="noreferrer"
+                                className={`flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 group ${
                                     dark
                                         ? "bg-gray-800 hover:bg-[#336699]"
                                         : "bg-gray-200 hover:bg-[#336699]"
-                                } rounded-xl flex items-center justify-center transition-all duration-300 group`}
+                                }`}
                             >
                                 <FaInstagram
-                                    className={`w-5 h-5 ${
+                                    className={`h-5 w-5 ${
                                         dark
                                             ? "text-gray-400 group-hover:text-white"
                                             : "text-gray-600 group-hover:text-white"
@@ -299,16 +249,17 @@ export default function Navbar({ dark = false }: NavbarProps) {
                                 />
                             </a>
                             <a
-                                href="https://discord.gg/eQ8ScamG4H"
+                                href={DISCORD_URL}
                                 target="_blank"
-                                className={`w-12 h-12 ${
+                                rel="noreferrer"
+                                className={`flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 group ${
                                     dark
                                         ? "bg-gray-800 hover:bg-[#336699]"
                                         : "bg-gray-200 hover:bg-[#336699]"
-                                } rounded-xl flex items-center justify-center transition-all duration-300 group`}
+                                }`}
                             >
                                 <FaExternalLinkAlt
-                                    className={`w-5 h-5 ${
+                                    className={`h-5 w-5 ${
                                         dark
                                             ? "text-gray-400 group-hover:text-white"
                                             : "text-gray-600 group-hover:text-white"
