@@ -20,7 +20,7 @@ const CardContent = ({
     className?: string;
 }) => <div className={`p-6 ${className}`}>{children}</div>;
 
-const organizeOfficers = (officersList: any[]) => {
+const organizeOfficers = <T extends { name: string; position: string }>(officersList: T[]) => {
     const coPresidents = officersList.filter((o) =>
         o.position.includes("Co-President")
     );
@@ -37,7 +37,7 @@ const organizeOfficers = (officersList: any[]) => {
     const specialOfficers = ["Ahmed Idrees", "Matthew Shi", "Harshit Saini", "Harshitha Sudhakar"];
     const special = specialOfficers
         .map(name => regularOfficers.find(o => o.name === name))
-        .filter(o => o !== undefined);
+        .filter((o): o is T => o !== undefined);
     const others = regularOfficers.filter((o) => !specialOfficers.includes(o.name));
     others.sort((a, b) => a.name.localeCompare(b.name));
     const sortedRegularOfficers = [...special, ...others];

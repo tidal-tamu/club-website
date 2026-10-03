@@ -1,34 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import { CONTACT_EMAIL, Sponsor, sponsors } from "../../data/tidal";
+import SectionHead from "./SectionHead";
 
-function Track({ list, className }: { list: Sponsor[]; className: string }) {
-    // duplicated so the -50% loop is seamless
-    const doubled = [...list, ...list];
+function Logo({ s, hidden }: { s: Sponsor; hidden?: boolean }) {
     return (
-        <div className="marquee">
-            <div className={`track ${className}`}>
-                {doubled.map((s, i) => (
-                    <a
-                        className="logo"
-                        key={`${s.name}-${i}`}
-                        href={s.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <img
-                            className={s.keepWhite ? "keep-white" : undefined}
-                            style={
-                                s.scale
-                                    ? ({ "--s": s.scale } as React.CSSProperties)
-                                    : undefined
-                            }
-                            src={s.logo}
-                            alt={s.name}
-                        />
-                    </a>
-                ))}
-            </div>
-        </div>
+        <li className="rail-item" aria-hidden={hidden || undefined}>
+            <a
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                tabIndex={hidden ? -1 : undefined}
+                title={s.name}
+            >
+                <img src={s.logo} alt={hidden ? "" : s.name} width={s.w} height={s.h} loading="lazy" decoding="async" />
+            </a>
+        </li>
     );
 }
 
@@ -46,37 +32,33 @@ export default function Sponsors() {
     };
 
     return (
-        <section className="sponsors" id="sponsors">
+        <section className="section sponsors" id="sponsors" aria-labelledby="sponsors-title">
             <div className="wrap">
-                <p className="spon-lede rv">
-                    Thank you to our amazing partners who make our events and programs
-                    possible.
-                </p>
+                <SectionHead title="Sponsors" id="sponsors-title" />
             </div>
 
-            <Track list={sponsors.slice(0, 7)} className="marquee-a" />
-            <div style={{ marginTop: 1 }}>
-                <Track list={sponsors.slice(7)} className="marquee-b" />
+            {/* the list runs twice so the -50% loop is seamless; the copy is hidden from AT */}
+            <div className="rail rv">
+                <ul className="rail-track">
+                    {sponsors.map((s) => (
+                        <Logo s={s} key={s.name} />
+                    ))}
+                    {sponsors.map((s) => (
+                        <Logo s={s} key={`${s.name}-copy`} hidden />
+                    ))}
+                </ul>
             </div>
 
             <div className="wrap">
-                <div className="ask">
-                    <div className="rv">
-                        <h3>Sponsor Us!</h3>
-                        <p>
-                            Interested in sponsoring? Click the button below to copy our
-                            email!
-                        </p>
-                    </div>
-                    <div className="rv">
-                        <button
-                            className={`copy${copied ? " done" : ""}`}
-                            onClick={copy}
-                            type="button"
-                        >
-                            {copied ? "Copied!" : CONTACT_EMAIL}
+                <div className="partner rv">
+                    <h3>Partner with us</h3>
+                    <div className="partner-actions">
+                        <a className="btn btn-ink" href={`mailto:${CONTACT_EMAIL}?subject=Partnering%20with%20TIDAL`}>
+                            {CONTACT_EMAIL}
+                        </a>
+                        <button className="btn btn-line" type="button" onClick={copy}>
+                            <span aria-live="polite">{copied ? "Copied" : "Copy"}</span>
                         </button>
-                        <p className="note">We would love to hear from you!</p>
                     </div>
                 </div>
             </div>

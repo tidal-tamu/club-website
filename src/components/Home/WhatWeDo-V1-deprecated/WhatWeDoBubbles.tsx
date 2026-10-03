@@ -55,7 +55,7 @@ export const Standard = ({
   bodies: string[];
   className?: string;
 }) => {
-  const gridRef = useRef<any>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   const third = Math.ceil(titles.length / 3);
   const firstPart = titles.slice(0, third);

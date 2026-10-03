@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-
-const LOGO = "/icons/logos/tidal-blueblack.png";
+import TidalMark from "./TidalMark";
 
 type Props = {
     /** fired as the overlay starts dissolving, so the page behind can come alive */
@@ -13,7 +12,7 @@ type Props = {
 /**
  * Current lines running through the body of the water. Each one is the same
  * wave function sampled at a fixed depth below the surface, with its own
- * amplitude, speed and broken dash pattern — so they read as sketched strata
+ * amplitude, speed and broken dash pattern, so they read as sketched strata
  * rather than a stack of parallel copies.
  */
 const STRATA = [
@@ -42,11 +41,13 @@ const BUBBLE_SPAN = 72;
  * Opens fully submerged, then the tide goes out downward and the sand comes up.
  *
  * The waterline is a clip-path on a stationary element rather than a translated
- * layer with a counter-translated logo — that keeps the white logo pixel-locked
- * to the dark one underneath, with no compositing seam between them.
+ * layer with a counter-translated logo, which keeps the white logo pixel-locked
+ * to the dark one underneath with no compositing seam between them.
  *
- * The overlay itself is transparent; the page's own sand and shoreline drawing
- * show through, so nothing swaps out when it dissolves.
+ * The overlay itself is transparent. Above the waterline you see the page
+ * itself: the sand, the shoreline and the hero logo, which sits exactly under
+ * the white one in the water. So the tide uncovers the hero rather than
+ * handing off to it, and nothing swaps when the overlay dissolves.
  */
 export default function Intro({ onReveal, onFinish }: Props) {
     const rootRef = useRef<HTMLDivElement>(null);
@@ -70,8 +71,9 @@ export default function Intro({ onReveal, onFinish }: Props) {
         const spray = sprayRef.current;
         if (!water || !back || !foam || !spray) return;
 
-        // p and amp are both percentages of viewport height
-        const st = { p: 0, ph: 0 };
+        // p and amp are both percentages of viewport height; the waterline starts
+        // above the top edge so the first frame is fully submerged
+        const st = { p: -8, ph: 0 };
 
         const surface = (p: number, amp: number, phase: number): [number, number][] => {
             const pts: [number, number][] = [];
@@ -109,11 +111,8 @@ export default function Intro({ onReveal, onFinish }: Props) {
                     " L100,100 L0,100 Z"
             );
 
-            // current lines through the body of the water
             STRATA.forEach((s, i) => {
-                const el = strataRef.current[i];
-                if (!el) return;
-                el.setAttribute(
+                strataRef.current[i]?.setAttribute(
                     "d",
                     toPath(surface(st.p + s.off, amp * s.amp * 0.34, st.ph * s.sp + i * 1.3))
                 );
@@ -146,29 +145,37 @@ export default function Intro({ onReveal, onFinish }: Props) {
         };
         gsap.ticker.add(tick);
 
+        let tl: gsap.core.Timeline | undefined;
         const ctx = gsap.context(() => {
-            gsap
+            tl = gsap
                 .timeline({ onComplete: () => finishRef.current() })
                 // hold on the submerged logo, then let the tide go out
                 .to(st, { p: 118, duration: 2.3, ease: "power2.inOut" }, 0.45)
-                // the page underneath is already sand-coloured, so this reads as one
-                // continuous motion rather than a cut
-                .to(".intro-dry", { scale: 0.94, opacity: 0, duration: 0.85, ease: "power2.inOut" }, 1.5)
                 // the root itself, not a selector: context selectors only match descendants
                 .to(rootRef.current, { opacity: 0, duration: 0.75, ease: "power2.inOut" }, 1.75)
                 .add(() => revealRef.current(), 1.85);
         }, rootRef);
 
+        // any attempt to interact hurries the tide out instead of cutting it
+        const hurry = () => tl?.timeScale(3.5);
+        const opts = { passive: true, once: true } as const;
+        window.addEventListener("pointerdown", hurry, opts);
+        window.addEventListener("keydown", hurry, opts);
+        window.addEventListener("wheel", hurry, opts);
+        window.addEventListener("touchmove", hurry, opts);
+
         return () => {
             gsap.ticker.remove(tick);
+            window.removeEventListener("pointerdown", hurry);
+            window.removeEventListener("keydown", hurry);
+            window.removeEventListener("wheel", hurry);
+            window.removeEventListener("touchmove", hurry);
             ctx.revert();
         };
     }, []);
 
     return (
         <div className="intro" ref={rootRef} aria-hidden="true">
-            <img className="intro-logo intro-dry" src={LOGO} alt="" />
-
             <div className="intro-water" ref={waterRef}>
                 <svg
                     className="intro-texture"
@@ -207,7 +214,7 @@ export default function Intro({ onReveal, onFinish }: Props) {
                     ))}
                 </svg>
 
-                <img className="intro-logo" src={LOGO} alt="" />
+                <TidalMark className="intro-logo intro-wet" decorative />
             </div>
 
             <svg
@@ -216,14 +223,7 @@ export default function Intro({ onReveal, onFinish }: Props) {
                 preserveAspectRatio="none"
                 aria-hidden="true"
             >
-                <defs>
-                    <linearGradient id="tidal-crest" x1="0" y1="0" x2="1" y2="0">
-                        <stop offset="0" stopColor="#00569E" />
-                        <stop offset="0.52" stopColor="#336699" />
-                        <stop offset="1" stopColor="#706993" />
-                    </linearGradient>
-                </defs>
-                <path ref={backRef} fill="url(#tidal-crest)" opacity={0.4} d="" />
+                <path ref={backRef} fill="#4DA3E8" opacity={0.28} d="" />
                 <path
                     ref={sprayRef}
                     fill="none"

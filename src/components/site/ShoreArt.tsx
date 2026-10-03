@@ -1,69 +1,51 @@
-import { useMemo } from "react";
+import PenguinTracks from "./PenguinTracks";
 
 /**
- * Minimal ocean line-art backdrop: horizon, a small island, tide contours
- * receding up the sand, coral fronds and a few fish. Everything is a hairline
- * at 9-15% opacity, so it reads as texture until you look straight at it.
+ * Line-art beach behind the hero, in a 1600x1000 viewBox anchored to the
+ * bottom of the stage: horizon, a setting sun and a far island (placed in the
+ * gap above the hero's two columns); tide contours
+ * receding to the waterline; then the dry sand band with a bench, an umbrella
+ * and Pebble's footprints leading up from the water.
  *
- * The three groups are separate so the motion hook can parallax them at
- * different rates.
+ * The dry band starts at y=750. The hero's bottom padding is sized to exactly
+ * that band (see .hero in tidal.css), so nothing on the sand sits under text.
+ *
+ * Lines run from x=-400 to 2000 with overflow visible, so ultra-wide screens
+ * see the tide continue past the drawing instead of stopping at its edge.
+ * The three groups are separate so the motion hook can parallax them.
  */
 
-const W = 1600;
-const H = 900;
-const TOP = 300;
-const LINES = 22;
+const HORIZON = 200;
+const WATERLINE = 722;
+const CONTOURS = 20;
 
-function Fish({
-    x,
-    y,
-    s,
-    flip,
-    op,
-}: {
-    x: number;
-    y: number;
-    s: number;
-    flip?: boolean;
-    op: number;
-}) {
-    return (
-        <g
-            transform={`translate(${x},${y}) scale(${flip ? -s : s},${s})`}
-            strokeOpacity={op}
-            strokeWidth={1.1}
-        >
-            <path d="M0,0 C8,-9 24,-9 32,0 C24,9 8,9 0,0 Z" />
-            <path d="M32,0 L43,-8 L43,8 Z" />
-            <path d="M12,-6 C16,-2 16,2 12,6" />
-            <circle cx={8} cy={-2} r={1.3} stroke="none" fillOpacity={op} />
-        </g>
-    );
+function wavyLine(y: number, amp: number, ph: number) {
+    let d = `M-400,${y.toFixed(1)}`;
+    for (let x = -360; x <= 2000; x += 40) {
+        const yy = y + amp * Math.sin(ph + x / 300) + amp * 0.4 * Math.sin(ph * 1.7 + x / 118);
+        d += ` L${x},${yy.toFixed(1)}`;
+    }
+    return d;
 }
 
-function Coral({ x, y, s, op }: { x: number; y: number; s: number; op: number }) {
-    return (
-        <g
-            transform={`translate(${x},${y}) scale(${s})`}
-            strokeOpacity={op}
-            strokeWidth={1.2}
-        >
-            <path d="M0,0 C3,-28 -6,-46 -2,-72" />
-            <path d="M-1,-38 C-14,-47 -21,-62 -18,-79" />
-            <path d="M-1,-51 C11,-58 17,-70 15,-87" />
-            <path d="M-2,-62 C-9,-72 -9,-85 -4,-95" />
-        </g>
-    );
-}
+/** Near lines spread out and swell; far lines bunch toward the horizon and fade. */
+const CONTOUR_LINES = Array.from({ length: CONTOURS }, (_, i) => {
+    const t = i / (CONTOURS - 1);
+    const y = HORIZON + 18 + Math.pow(t, 1.55) * (WATERLINE - HORIZON - 18);
+    return { d: wavyLine(y, 3 + 16 * t, i * 0.72), op: (0.05 + 0.09 * t).toFixed(3) };
+});
+const WATER_EDGE = CONTOUR_LINES.pop()!;
+const FOAM = wavyLine(WATERLINE + 11, 19, (CONTOURS - 1) * 0.72 + 0.3);
 
-function Island({ x, y, s, op }: { x: number; y: number; s: number; op: number }) {
+const GRAINS = Array.from({ length: 34 }, (_, g) => ({
+    cx: Math.round((g * 211.7) % 1600),
+    cy: Math.round(772 + ((g * 83) % 214)),
+}));
+
+function Island() {
     return (
-        <g
-            transform={`translate(${x},${y}) scale(${s})`}
-            strokeOpacity={op}
-            strokeWidth={1.2}
-        >
-            <path d="M-124,0 C-98,-27 -53,-41 -14,-39 C23,-37 63,-22 98,0 Z" />
+        <g transform={`translate(740 ${HORIZON}) scale(0.8)`} className="island">
+            <path d="M-124,0 C-98,-27 -53,-41 -14,-39 C23,-37 63,-22 98,0" />
             <path d="M-30,-39 C-28,-59 -26,-71 -24,-81" />
             <path d="M-24,-81 C-38,-89 -51,-87 -59,-79" />
             <path d="M-24,-81 C-10,-91 5,-89 13,-79" />
@@ -75,66 +57,90 @@ function Island({ x, y, s, op }: { x: number; y: number; s: number; op: number }
     );
 }
 
-export default function ShoreArt({ className = "" }: { className?: string }) {
-    const tideLines = useMemo(() => {
-        const out: { d: string; op: string; w: number }[] = [];
-        for (let i = 0; i < LINES; i++) {
-            const t = i / (LINES - 1);
-            const y = TOP + 22 + Math.pow(t, 1.35) * (H - TOP - 40);
-            const amp = 26 * (1 - t) + 5;
-            const ph = i * 0.72;
-            let d = `M0,${y.toFixed(1)}`;
-            for (let x = 40; x <= W; x += 40) {
-                const yy =
-                    y +
-                    amp * Math.sin(ph + x / 300) +
-                    amp * 0.4 * Math.sin(ph * 1.7 + x / 118);
-                d += ` L${x},${yy.toFixed(1)}`;
-            }
-            out.push({
-                d,
-                op: (0.05 + 0.12 * (1 - t)).toFixed(3),
-                w: t > 0.7 ? 1.25 : 1,
-            });
-        }
-        return out;
-    }, []);
-
-    const grains = useMemo(
-        () =>
-            Array.from({ length: 26 }, (_, g) => ({
-                cx: Number(((g * 137.5) % W).toFixed(0)),
-                cy: Number((TOP + ((g * 71) % (H - TOP))).toFixed(0)),
-            })),
-        []
-    );
-
+/** Canopy panels as wedges between curved ribs, alternately shaded. */
+const RIB_X = [-118, -79, -39, 0, 39, 79, 118];
+const APEX = { x: 0, y: -36 };
+const rib = (x: number) => ({ cx: x * 0.75, cy: -36 + 10 * (Math.abs(x) / 118) });
+const PANELS = RIB_X.slice(0, -1).map((x0, k) => {
+    const x1 = RIB_X[k + 1];
+    const c0 = rib(x0);
+    const c1 = rib(x1);
     return (
-        <div className={`shore ${className}`} aria-hidden="true">
-            <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice">
+        `M${APEX.x},${APEX.y} Q${c0.cx},${c0.cy} ${x0},30 ` +
+        `Q${(x0 + x1) / 2},40 ${x1},30 ` +
+        `Q${c1.cx},${c1.cy} ${APEX.x},${APEX.y} Z`
+    );
+});
+
+function Umbrella() {
+    return (
+        <g className="umbrella">
+            <path d="M1293,698 L1330,962" />
+            <path d="M1314,962 Q1330,954 1346,962" />
+            <g transform="translate(1299.4 744.3) rotate(-8)">
+                {PANELS.map((d, k) => (
+                    <path key={k} d={d} className={k % 2 ? "solid" : "shade"} />
+                ))}
+            </g>
+        </g>
+    );
+}
+
+function Bench() {
+    return (
+        <g className="bench">
+            {/* rear legs sit a touch higher: they're further away */}
+            <path d="M1176,924 L1176,952 M1290,924 L1290,952" className="far" />
+            <path d="M1164,924 L1164,960 M1278,924 L1278,960" />
+            <path d="M1172,882 L1172,918 M1270,882 L1270,918" />
+            <rect className="solid" x={1156} y={878} width={132} height={5} rx={1} />
+            <rect className="solid" x={1156} y={892} width={132} height={5} rx={1} />
+            <rect className="solid" x={1146} y={918} width={148} height={6} rx={1} />
+        </g>
+    );
+}
+
+function Shell({ x, y, r }: { x: number; y: number; r: number }) {
+    return (
+        <g transform={`translate(${x} ${y}) rotate(${r})`} className="shell">
+            <path d="M0,0 L-9,-10 Q0,-17 9,-10 Z" />
+            <path d="M0,0 L-4,-14 M0,0 L0,-15 M0,0 L4,-14" />
+        </g>
+    );
+}
+
+export default function ShoreArt() {
+    return (
+        <div className="shore" aria-hidden="true">
+            <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMax meet">
                 <g className="par-far">
-                    <circle className="sun" cx={1215} cy={196} r={88} />
-                    <path d={`M0,${TOP} L${W},${TOP}`} strokeOpacity={0.1} />
-                    <Island x={1258} y={TOP} s={1} op={0.15} />
+                    <path d={`M-400,${HORIZON} L2000,${HORIZON}`} className="horizon" />
+                    <path d={`M1116,${HORIZON} A64,64 0 0 1 1244,${HORIZON}`} className="sun" />
+                    <path
+                        d={`M1154,${HORIZON + 13} L1206,${HORIZON + 13} M1166,${HORIZON + 25} L1194,${HORIZON + 25} M1175,${HORIZON + 38} L1185,${HORIZON + 38}`}
+                        className="glint"
+                    />
+                    <Island />
                 </g>
 
                 <g className="par-mid">
-                    {tideLines.map((l, i) => (
-                        <path key={i} d={l.d} strokeOpacity={l.op} strokeWidth={l.w} />
+                    {CONTOUR_LINES.map((l, i) => (
+                        <path key={i} d={l.d} strokeOpacity={l.op} />
                     ))}
+                    <path d={WATER_EDGE.d} className="waterline" />
+                    <path d={FOAM} className="foam" />
                 </g>
 
                 <g className="par-near">
-                    <Coral x={150} y={878} s={1.15} op={0.13} />
-                    <Coral x={232} y={886} s={0.8} op={0.1} />
-                    <Coral x={1420} y={872} s={1} op={0.12} />
-                    <Fish x={300} y={470} s={1} op={0.13} />
-                    <Fish x={1090} y={556} s={0.8} flip op={0.11} />
-                    <Fish x={660} y={700} s={1.15} op={0.1} />
-                    <Fish x={1310} y={690} s={0.7} flip op={0.12} />
-                    {grains.map((g, i) => (
-                        <circle key={i} cx={g.cx} cy={g.cy} r={1.4} fillOpacity={0.1} />
+                    {GRAINS.map((g, i) => (
+                        <circle key={i} cx={g.cx} cy={g.cy} r={1.3} className="grain" />
                     ))}
+                    <Shell x={782} y={902} r={-14} />
+                    <Shell x={1012} y={826} r={22} />
+                    <ellipse className="cast" cx={1262} cy={968} rx={166} ry={12} />
+                    <PenguinTracks />
+                    <Bench />
+                    <Umbrella />
                 </g>
             </svg>
         </div>
