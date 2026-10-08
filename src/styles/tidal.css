@@ -1,0 +1,1316 @@
+/* ==========================================================================
+   TIDAL main page: the shoreline.
+
+   The page is the shore: warm sand, paper, charcoal ink and TIDAL blue,
+   all the way down. The ocean only appears in the intro, where the tide
+   goes out to uncover the page.
+
+   One typeface throughout (Google Sans). Few words: sections are introduced
+   by their name alone.
+
+   Everything is scoped under `.tidal` (and `body.tidal-page`) so these
+   deliberately generic class names cannot leak into other routes.
+   ========================================================================== */
+
+.tidal {
+    /* surface */
+    --sand: #f1eee8;
+    --sand-shade: #e4dfd5;
+    --paper: #fbf9f5;
+    --ink: #0b0e13;
+    --ink-2: #2a2f39;
+    --muted: #5d6470;
+    --blue: #00569e;
+    --blue-press: #004680;
+    --line: rgba(11, 14, 19, 0.12);
+    --line-2: rgba(11, 14, 19, 0.22);
+
+    /* the water (intro, unannounced hackathon panel) */
+    --deep: #0f3355;
+    --accent: #4da3e8;
+
+    --sans: "Google Sans", "Space Grotesk", ui-sans-serif, system-ui, -apple-system,
+        "Segoe UI", sans-serif;
+    --nav-h: 64px;
+    --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+    /* the hero logo and the intro's wet logo share this, so they line up exactly */
+    --logo-w: min(600px, 64vw);
+
+    overflow-x: clip;
+}
+
+html:has(body.tidal-page) {
+    scroll-padding-top: calc(64px + 8px);
+}
+@media (prefers-reduced-motion: no-preference) {
+    html:has(body.tidal-page) {
+        scroll-behavior: smooth;
+    }
+}
+
+body.tidal-page {
+    background: #f1eee8;
+    color: #0b0e13;
+    font-family: "Google Sans", "Space Grotesk", ui-sans-serif, system-ui, -apple-system,
+        "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+}
+
+/* fine sand grain over the whole page: ink-coloured speckles whose alpha is
+   the noise itself, so strength scales directly with opacity */
+body.tidal-page::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 400;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27220%27%20height%3D%27220%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.8%27%20numOctaves%3D%273%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20values%3D%270%200%200%200%200.04%200%200%200%200%200.05%200%200%200%200%200.07%203%200%200%200%20-1.2%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url(%23n)%27%2F%3E%3C%2Fsvg%3E");
+    background-size: 220px 220px;
+}
+
+.tidal *,
+.tidal *::before,
+.tidal *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.tidal img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.tidal a {
+    color: inherit;
+    text-decoration: none;
+}
+.tidal ul,
+.tidal ol {
+    list-style: none;
+}
+.tidal button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+.tidal ::selection {
+    background: rgba(0, 86, 158, 0.2);
+}
+.tidal :focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+.tidal .wrap {
+    width: min(1240px, 100% - 2 * clamp(16px, 4vw, 48px));
+    margin-inline: auto;
+}
+.tidal h1,
+.tidal h2,
+.tidal h3 {
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.04;
+    text-wrap: balance;
+}
+.tidal .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+.tidal .skip {
+    position: fixed;
+    left: 16px;
+    top: 12px;
+    z-index: 200;
+    padding: 10px 14px;
+    border-radius: 6px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 14px;
+    transform: translateY(-160%);
+    transition: transform 0.2s;
+}
+.tidal .skip:focus {
+    transform: none;
+}
+
+/* ============ INTRO: THE TIDE WASH ============ */
+/* Transparent: above the waterline you see the page itself, hero logo included */
+.tidal .intro {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    overflow: hidden;
+}
+/* the waterline is a clip-path on this element, so nothing translates and the
+   white logo stays pixel-locked to the hero logo underneath */
+.tidal .intro-water {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    will-change: clip-path;
+    /* lighter at the surface, darker with depth */
+    background: linear-gradient(180deg, #00569e 0%, #0b4278 36%, #0f3355 68%, #0b1420 100%);
+}
+.tidal .intro-texture {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+/* caustics: faint diagonal light shafts plus a sheen off the surface */
+.tidal .intro-water::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+            104deg,
+            rgba(255, 255, 255, 0.06) 0 2px,
+            rgba(255, 255, 255, 0) 2px 34px
+        ),
+        repeating-linear-gradient(
+            76deg,
+            rgba(255, 255, 255, 0.035) 0 1px,
+            rgba(255, 255, 255, 0) 1px 21px
+        ),
+        radial-gradient(130% 62% at 22% 0%, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 62%);
+}
+.tidal .intro-logo {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: var(--logo-w);
+    height: auto;
+    color: #fff;
+    --mark-wave: #fff;
+}
+.tidal .intro-crest {
+    position: fixed;
+    inset: 0;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* ============ TIDALBYTE NOTICE ============ */
+.tidal .tidalbyte-notice {
+    position: fixed;
+    right: 20px;
+    bottom: max(20px, env(safe-area-inset-bottom));
+    z-index: 130;
+    width: min(410px, calc(100vw - 40px));
+    overflow: hidden;
+    border: 1px solid var(--line-2);
+    border-radius: 18px;
+    background: var(--paper);
+    box-shadow: 0 16px 44px rgba(15, 51, 85, 0.2);
+    animation: tidalbyte-notice-arrive 650ms cubic-bezier(0.2, 0.8, 0.2, 1) 1.5s both;
+}
+@keyframes tidalbyte-notice-arrive {
+    0% { opacity: 0; visibility: hidden; transform: translateX(48px) scale(0.94); }
+    65% { opacity: 1; transform: translateX(-5px) scale(1.01); }
+    100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+.tidal .tidalbyte-notice__link {
+    display: grid;
+    gap: 9px;
+    padding: 22px 58px 22px 24px;
+}
+.tidal .tidalbyte-notice__eyebrow {
+    color: var(--blue);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.tidal .tidalbyte-notice strong {
+    font-size: 20px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+}
+.tidal .tidalbyte-notice__action {
+    color: var(--blue);
+    font-size: 15px;
+    font-weight: 700;
+}
+.tidal .tidalbyte-notice__link:hover .tidalbyte-notice__action {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.tidal .tidalbyte-notice__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 6px;
+    color: var(--muted);
+    font-size: 25px;
+    line-height: 1;
+}
+.tidal .tidalbyte-notice__close:hover {
+    background: var(--sand-shade);
+    color: var(--ink);
+}
+@media (max-width: 600px) {
+    .tidal .tidalbyte-notice {
+        right: 16px;
+        bottom: max(16px, env(safe-area-inset-bottom));
+        width: min(360px, calc(100vw - 32px));
+    }
+    .tidal .tidalbyte-notice__link {
+        padding: 19px 54px 19px 20px;
+    }
+    .tidal .tidalbyte-notice strong {
+        font-size: 18px;
+    }
+    .tidal .tidalbyte-notice__action {
+        font-size: 14px;
+    }
+}
+
+/* ============ NAV ============ */
+.tidal .nav {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 120;
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 0 clamp(16px, 4vw, 40px);
+    color: var(--ink);
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    opacity: 0;
+    transition: background-color 0.35s, border-color 0.35s, color 0.35s, opacity 0.6s;
+}
+.tidal .nav.is-solid {
+    background: rgba(241, 238, 232, 0.92);
+    border-bottom-color: var(--line);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+.tidal .nav.is-open {
+    background: var(--paper);
+    border-bottom-color: var(--line);
+}
+.tidal .brand {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    transition: opacity 0.35s;
+}
+/* the hero is the logo, so the nav doesn't repeat it until you scroll */
+.tidal .nav:not(.is-solid):not(.is-open) .brand:not(:focus-visible) {
+    opacity: 0;
+}
+.tidal .brand-mark {
+    display: block;
+    height: 22px;
+    width: auto;
+    --mark-wave: var(--blue);
+}
+.tidal .navlinks {
+    display: flex;
+    align-items: center;
+    gap: clamp(18px, 2vw, 28px);
+}
+.tidal .navlinks a {
+    position: relative;
+    padding: 6px 0;
+    font-size: 14.5px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--muted);
+    transition: color 0.2s;
+}
+.tidal .navlinks a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1.5px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s var(--ease);
+}
+.tidal .navlinks a:hover,
+.tidal .navlinks a.is-current {
+    color: var(--ink);
+}
+.tidal .navlinks a.is-current::after {
+    transform: scaleX(1);
+}
+.tidal .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.tidal .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 38px;
+    padding: 0 14px;
+    border-radius: 8px;
+    background: var(--blue);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background-color 0.2s, color 0.2s;
+}
+.tidal .nav-cta svg {
+    width: 16px;
+    height: 16px;
+}
+.tidal .nav-cta:hover {
+    background: var(--blue-press);
+}
+.tidal .nav-cta:active,
+.tidal .btn:active {
+    transform: translateY(1px);
+}
+.tidal .nav-toggle {
+    display: none;
+    position: relative;
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--line-2);
+    border-radius: 8px;
+    transition: border-color 0.35s;
+}
+.tidal .nav-toggle-bars,
+.tidal .nav-toggle-bars::before,
+.tidal .nav-toggle-bars::after {
+    position: absolute;
+    left: 50%;
+    width: 16px;
+    height: 1.5px;
+    margin-left: -8px;
+    background: currentColor;
+    transition: transform 0.25s var(--ease), opacity 0.2s;
+}
+.tidal .nav-toggle-bars {
+    top: 50%;
+    margin-top: -0.75px;
+}
+.tidal .nav-toggle-bars::before,
+.tidal .nav-toggle-bars::after {
+    content: "";
+    left: 0;
+    margin-left: 0;
+}
+.tidal .nav-toggle-bars::before {
+    transform: translateY(-5px);
+}
+.tidal .nav-toggle-bars::after {
+    transform: translateY(5px);
+}
+.tidal .nav.is-open .nav-toggle-bars {
+    background: transparent;
+}
+.tidal .nav.is-open .nav-toggle-bars::before {
+    transform: rotate(45deg);
+    background: currentColor;
+}
+.tidal .nav.is-open .nav-toggle-bars::after {
+    transform: rotate(-45deg);
+    background: currentColor;
+}
+.tidal .nav-sheet {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: grid;
+    padding: 4px clamp(16px, 4vw, 40px) 20px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+}
+.tidal .nav-sheet[hidden] {
+    display: none;
+}
+.tidal .nav-sheet a {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+@media (max-width: 959px) {
+    .tidal .navlinks {
+        display: none;
+    }
+    .tidal .nav-toggle {
+        display: inline-block;
+    }
+}
+@media (max-width: 400px) {
+    .tidal .brand-mark {
+        height: 19px;
+    }
+    .tidal .nav-cta {
+        padding: 0 12px;
+    }
+}
+
+/* ============ PHASE 1: THE SURFACE ============ */
+.tidal .surface {
+    position: relative;
+    isolation: isolate;
+}
+
+/* --- the hero: the logo, pressed into the sand --- */
+/* exactly one viewport tall, like the intro's water, so the logos line up */
+.tidal .stage {
+    position: relative;
+    isolation: isolate;
+    height: 100vh;
+    height: 100svh;
+}
+.tidal .hero {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+}
+.tidal .hero-mark {
+    line-height: 0;
+}
+.tidal .hero-logo {
+    display: block;
+    width: var(--logo-w);
+    height: auto;
+    color: var(--ink);
+    --mark-wave: var(--blue);
+}
+/* hangs below the logo without nudging it off centre (logo height is 0.159 of its width) */
+.tidal .hero-tag {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(50% + var(--logo-w) * 0.0795 + clamp(18px, 2.4vw, 30px));
+    text-align: center;
+    font-size: clamp(15px, 1.4vw, 19px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--muted);
+}
+
+/* --- shoreline line-art --- */
+.tidal .shore {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+/* anchored to the bottom so the dry sand, bench and footprints sit at the foot
+   of the first screen; the tide keeps running past the edges on wide screens */
+.tidal .shore svg {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: clamp(1180px, 100%, 1600px);
+    height: auto;
+    aspect-ratio: 1600 / 1000;
+    transform: translateX(-50%);
+    overflow: visible;
+}
+/* narrower screens show the right-hand side, where the bench and umbrella are */
+@media (max-width: 999px) {
+    .tidal .shore svg {
+        left: auto;
+        right: -60px;
+        transform: none;
+    }
+}
+.tidal .shore path,
+.tidal .shore rect {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+}
+.tidal .shore .horizon {
+    stroke-opacity: 0.16;
+}
+.tidal .shore .sun {
+    stroke: var(--blue);
+    stroke-opacity: 0.5;
+    stroke-width: 1.3;
+}
+.tidal .shore .glint {
+    stroke: var(--blue);
+    stroke-opacity: 0.3;
+}
+.tidal .shore .island path {
+    stroke-opacity: 0.18;
+}
+.tidal .shore .waterline {
+    stroke: var(--blue);
+    stroke-opacity: 0.42;
+    stroke-width: 1.4;
+}
+.tidal .shore .foam {
+    stroke-opacity: 0.16;
+    stroke-dasharray: 2 8;
+}
+.tidal .shore .grain {
+    fill: var(--ink);
+    fill-opacity: 0.14;
+}
+.tidal .shore .shell path {
+    stroke-opacity: 0.3;
+}
+.tidal .shore .shell path:first-child {
+    fill: var(--sand);
+}
+.tidal .shore .bench path,
+.tidal .shore .bench rect,
+.tidal .shore .umbrella path {
+    stroke-opacity: 0.44;
+}
+.tidal .shore .bench .far {
+    stroke-opacity: 0.22;
+}
+/* filled with the ground colour so the tide lines behind a shape are hidden */
+.tidal .shore .solid {
+    fill: var(--sand);
+}
+/* a step darker than the sand, for canopy panels turned away from the sun */
+.tidal .shore .shade {
+    fill: var(--sand-shade);
+}
+.tidal .shore .cast {
+    fill: var(--ink);
+    fill-opacity: 0.05;
+}
+/* Pebble's prints are pressed into the sand: filled impressions, not outlines */
+.tidal .shore .print-web {
+    fill: var(--ink);
+    fill-opacity: 0.12;
+    stroke: none;
+}
+.tidal .shore .print-heel,
+.tidal .shore .print-toe {
+    fill: var(--ink);
+    fill-opacity: 0.24;
+    stroke: none;
+}
+.tidal .shore .print-claw {
+    stroke-opacity: 0.3;
+    stroke-width: 1.2;
+    vector-effect: none;
+}
+
+/* --- about --- */
+.tidal .about {
+    position: relative;
+    z-index: 1;
+    padding: clamp(88px, 12vw, 168px) 0 clamp(56px, 7vw, 88px);
+}
+.tidal .statement {
+    max-width: 21ch;
+    font-size: clamp(2.2rem, 5.4vw, 4.4rem);
+    line-height: 1.04;
+}
+.tidal .statement .w {
+    color: rgba(11, 14, 19, 0.18);
+}
+.tidal .about-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 28px;
+    margin-top: clamp(32px, 4vw, 48px);
+}
+.tidal .meet {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink-2);
+}
+.tidal .award {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    color: var(--muted);
+    --mark-wave: var(--blue);
+}
+.tidal .award svg {
+    flex: none;
+    width: 28px;
+    height: auto;
+}
+@media (min-width: 1000px) {
+    .tidal .award {
+        margin-left: auto;
+    }
+}
+
+/* --- buttons: grounded, they press in rather than float --- */
+.tidal .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 48px;
+    padding: 0 18px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.tidal .btn-ink {
+    background: var(--ink);
+    color: var(--paper);
+}
+.tidal .btn-ink:hover {
+    background: var(--blue);
+}
+.tidal .btn-glyph {
+    width: 18px;
+    height: 18px;
+}
+.tidal .btn-count {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    margin-left: 2px;
+    padding-left: 12px;
+    border-left: 1px solid rgba(255, 255, 255, 0.22);
+    color: rgba(251, 249, 245, 0.72);
+}
+.tidal .btn-line {
+    border: 1px solid var(--line-2);
+    color: var(--ink);
+}
+.tidal .btn-line:hover {
+    border-color: var(--ink);
+    background: rgba(11, 14, 19, 0.04);
+}
+
+/* --- metrics: a ruled strip on the sand --- */
+.tidal .metrics {
+    position: relative;
+    z-index: 1;
+    padding-bottom: clamp(88px, 10vw, 136px);
+}
+.tidal .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--line-2);
+    border-block: 1px solid var(--line-2);
+}
+.tidal .metric {
+    display: flex;
+    flex-direction: column;
+    padding: 24px clamp(14px, 2vw, 28px) 24px;
+    background: var(--sand);
+}
+.tidal .metric:nth-child(odd) {
+    padding-left: 0;
+}
+@media (min-width: 1000px) {
+    .tidal .metrics-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .tidal .metric:nth-child(odd) {
+        padding-left: clamp(14px, 2vw, 28px);
+    }
+    .tidal .metric:first-child {
+        padding-left: 0;
+    }
+}
+.tidal .metric-value {
+    order: -1;
+    font-size: clamp(2rem, 4.4vw, 3.4rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+}
+.tidal .metric-label {
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--muted);
+}
+
+/* ============ SECTION NAMES ============ */
+.tidal .sh {
+    margin-bottom: clamp(32px, 4vw, 56px);
+    font-size: clamp(2.6rem, 7vw, 5.5rem);
+    line-height: 0.95;
+}
+
+/* ============ HACKATHONS ============ */
+.tidal .tides {
+    position: relative;
+    z-index: 1;
+}
+.tidal .tl-nodes {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(16px, 2vw, 24px);
+}
+@media (min-width: 620px) {
+    .tidal .tl-nodes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (min-width: 1080px) {
+    .tidal .tl-nodes {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+.tidal .tl-node {
+    display: flex;
+}
+.tidal .tl-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    background: var(--paper);
+    border: 1px solid var(--line-2);
+    border-radius: 4px;
+    transition: border-color 0.25s;
+}
+/* a rule draws across the top of the card on hover: feedback without lift */
+.tidal .tl-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    height: 2px;
+    background: var(--blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s var(--ease);
+}
+.tidal .tl-node:hover .tl-card,
+.tidal .tl-node:focus-within .tl-card {
+    border-color: var(--blue);
+}
+.tidal .tl-node:hover .tl-card::before,
+.tidal .tl-node:focus-within .tl-card::before {
+    transform: scaleX(1);
+}
+.tidal .tl-node.is-next .tl-card {
+    border-style: dashed;
+}
+.tidal .tl-cover {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--deep);
+    border-bottom: 1px solid var(--line);
+}
+.tidal .tl-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.tidal .tl-cover-next {
+    display: grid;
+    place-items: center;
+}
+.tidal .tl-next-q {
+    font-size: clamp(2.6rem, 4vw, 3.4rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    color: var(--accent);
+}
+.tidal .tl-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 16px 16px 14px;
+}
+.tidal .tl-body h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+.tidal .tl-flag {
+    padding: 2px 9px;
+    border: 1px solid currentColor;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0;
+    color: var(--blue);
+}
+.tidal .tl-theme {
+    margin-top: 2px;
+    font-size: 14px;
+    color: var(--muted);
+}
+.tidal .tl-meta {
+    display: grid;
+    gap: 3px;
+    margin: 12px 0 14px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+    font-size: 13.5px;
+    line-height: 1.4;
+    color: var(--ink-2);
+}
+/* links sit on the same baseline across the row, whatever the card's content */
+.tidal .tl-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    margin-top: auto;
+}
+.tidal .tl-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border-bottom: 1px solid transparent;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--blue);
+    transition: border-color 0.2s;
+}
+.tidal .tl-links a:hover {
+    border-bottom-color: currentColor;
+}
+.tidal .tl-links svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* ============ SECTIONS ON THE SAND ============ */
+.tidal .section {
+    position: relative;
+    z-index: 1;
+    padding-top: clamp(88px, 11vw, 152px);
+}
+
+/* --- community: one full-width mood board --- */
+.tidal .board-wrap {
+    padding: 8px clamp(16px, 4vw, 72px) 0;
+}
+/* The canvas. Its height comes from the generated layout (--h, in % of its
+   width), and everything on it is placed in the same units, so it scales as
+   one piece. */
+.tidal .board {
+    position: relative;
+    max-width: 1440px;
+    margin-inline: auto;
+    aspect-ratio: 100 / var(--h);
+    container-type: inline-size;
+}
+.tidal .cluster-tag,
+.tidal .snap {
+    position: absolute;
+    left: calc(var(--x) * 1%);
+    top: calc(var(--y) * 1cqw);
+}
+.tidal .cluster-tag {
+    z-index: 30;
+    padding: 7px 14px;
+    background: var(--paper);
+    border: 1px solid var(--line-2);
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(11, 14, 19, 0.08);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    transform: rotate(-2deg);
+}
+.tidal .cluster + .cluster .cluster-tag {
+    transform: rotate(1.5deg);
+}
+/* a print pinned to the board: white border, a shadow that stays close to the surface */
+.tidal .snap {
+    z-index: var(--z, 1);
+    width: calc(var(--w) * 1%);
+    padding: clamp(4px, 0.55cqw, 8px);
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(11, 14, 19, 0.1), 0 8px 18px -10px rgba(11, 14, 19, 0.35);
+    transform: rotate(var(--r));
+    transition: transform 0.35s var(--ease);
+}
+.tidal .snap img {
+    width: 100%;
+    aspect-ratio: var(--ar, 4 / 3);
+    object-fit: cover;
+}
+/* hovering a print straightens it and brings it to the front */
+.tidal .snap:hover {
+    z-index: 20;
+    transform: rotate(0deg) scale(1.03);
+}
+.tidal .snap::before,
+.tidal .cluster-tag::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    border-radius: 50%;
+    box-shadow: inset -2px -2px 0 rgba(0, 0, 0, 0.22), 0 2px 3px rgba(11, 14, 19, 0.35);
+}
+.tidal .snap::before {
+    top: -6px;
+    left: var(--pin-x);
+    width: 12px;
+    height: 12px;
+    margin-left: -6px;
+    background: var(--pin);
+}
+.tidal .cluster-tag::before {
+    top: -5px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    margin-left: -5px;
+    background: var(--blue);
+}
+/* too narrow for the L: each group becomes a tight, staggered two-up collage */
+@media (max-width: 759px) {
+    .tidal .board {
+        display: grid;
+        gap: 36px;
+        aspect-ratio: auto;
+    }
+    .tidal .cluster {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+        gap: 0 8px;
+    }
+    .tidal .cluster-tag,
+    .tidal .snap {
+        position: relative;
+        left: auto;
+        top: auto;
+    }
+    .tidal .cluster-tag {
+        grid-column: 1 / -1;
+        justify-self: start;
+        margin: 0 0 4px 6px;
+    }
+    /* sizes from the layout, staggered and overlapping the row above, so it
+       stays a pile of prints rather than a grid */
+    .tidal .snap {
+        width: calc(84% + var(--w) * 0.9%);
+        margin-bottom: -14px;
+        padding: 5px;
+    }
+    .tidal .snap:nth-of-type(even) {
+        justify-self: end;
+        margin-top: 28px;
+    }
+    .tidal .snap:nth-of-type(3n) {
+        margin-left: 12px;
+    }
+}
+
+/* --- team --- */
+.tidal .mast-exec {
+    display: grid;
+    gap: 20px;
+    padding: 0 0 32px;
+    border-bottom: 1px solid var(--line-2);
+}
+@media (min-width: 720px) {
+    .tidal .mast-exec {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+.tidal .mast-depts {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: clamp(24px, 4vw, 56px);
+}
+@media (min-width: 640px) {
+    .tidal .mast-depts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (min-width: 1000px) {
+    .tidal .mast-depts {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+.tidal .mast-row {
+    padding: 24px 0 28px;
+    border-bottom: 1px solid var(--line);
+}
+.tidal .mast-name {
+    margin-bottom: 16px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--blue);
+}
+.tidal .mast-people {
+    display: grid;
+    gap: 14px;
+}
+.tidal .officer {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.tidal .avatar {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--sand-shade);
+    border: 1px solid var(--line-2);
+}
+.tidal .avatar-initials {
+    display: grid;
+    place-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+}
+.tidal .mast-exec .avatar {
+    width: 64px;
+    height: 64px;
+}
+.tidal .mast-exec .avatar-initials {
+    font-size: 17px;
+}
+.tidal .officer-text {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+}
+.tidal .officer-name {
+    font-size: 15.5px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+}
+.tidal .mast-exec .officer-name {
+    font-size: 18px;
+}
+.tidal .officer-role {
+    font-size: 13.5px;
+    color: var(--muted);
+}
+.tidal .officer.is-lead .officer-role {
+    color: var(--blue);
+}
+
+/* --- sponsors --- */
+.tidal .sponsors {
+    padding-bottom: clamp(72px, 9vw, 120px);
+}
+.tidal .rail {
+    overflow: hidden;
+    border-block: 1px solid var(--line);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.tidal .rail-track {
+    display: flex;
+    width: max-content;
+    animation: tidal-rail 64s linear infinite;
+}
+/* keeps moving under the mouse; only holds still while a logo has keyboard focus */
+.tidal .rail:focus-within .rail-track {
+    animation-play-state: paused;
+}
+@keyframes tidal-rail {
+    to {
+        transform: translateX(-50%);
+    }
+}
+.tidal .rail-item a {
+    display: grid;
+    place-items: center;
+    width: clamp(150px, 16vw, 210px);
+    height: clamp(92px, 9vw, 116px);
+    border-right: 1px solid var(--line);
+}
+/* every logo is a dark single-colour silhouette, which sits right on the sand */
+.tidal .rail-item img {
+    width: auto;
+    height: auto;
+    max-width: 64%;
+    max-height: 40%;
+    object-fit: contain;
+    opacity: 0.5;
+    transition: opacity 0.25s;
+}
+.tidal .rail-item a:hover img,
+.tidal .rail-item a:focus-visible img {
+    opacity: 1;
+}
+.tidal .partner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px 32px;
+    margin-top: clamp(48px, 6vw, 72px);
+    padding: clamp(22px, 3vw, 32px);
+    background: var(--paper);
+    border: 1px solid var(--line-2);
+    border-radius: 4px;
+}
+.tidal .partner h3 {
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+}
+.tidal .partner-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* ============ FOOTER ============ */
+.tidal .site-footer {
+    position: relative;
+    z-index: 1;
+    padding: clamp(40px, 5vw, 64px) 0 28px;
+    border-top: 1px solid var(--line);
+}
+.tidal .foot-main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+.tidal .foot-mark {
+    display: block;
+    width: auto;
+    height: 30px;
+    --mark-wave: var(--blue);
+}
+.tidal .foot-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.tidal .foot-social a {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--line-2);
+    border-radius: 8px;
+    color: var(--muted);
+    transition: color 0.2s, border-color 0.2s;
+}
+.tidal .foot-social a:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+}
+.tidal .foot-social svg {
+    width: 17px;
+    height: 17px;
+}
+.tidal .foot-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px 24px;
+    margin-top: clamp(32px, 4vw, 48px);
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--muted);
+}
+.tidal .foot-up {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+}
+.tidal .foot-up:hover {
+    color: var(--ink);
+}
+.tidal .foot-up svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* ============ REVEAL + REDUCED MOTION ============ */
+.tidal .rv {
+    opacity: 0;
+    transform: translateY(16px);
+}
+@media (prefers-reduced-motion: reduce) {
+    .tidal *,
+    .tidal *::before,
+    .tidal *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+    .tidal .rv {
+        opacity: 1;
+        transform: none;
+    }
+    .tidal .nav {
+        opacity: 1;
+    }
+    .tidal .statement .w {
+        color: var(--ink);
+    }
+    /* the rail stops and simply lays out every partner once, as a ruled grid */
+    .tidal .rail {
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+    .tidal .rail-track {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        width: auto;
+    }
+    /* each cell draws its own right and bottom rule, so a short last row just ends */
+    .tidal .rail-item {
+        box-shadow: 1px 0 0 var(--line), 0 1px 0 var(--line);
+    }
+    .tidal .rail-item a {
+        width: auto;
+        border-right: 0;
+    }
+    .tidal .rail-item[aria-hidden="true"] {
+        display: none;
+    }
+}

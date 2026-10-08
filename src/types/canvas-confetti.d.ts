@@ -4,7 +4,7 @@ declare module 'canvas-confetti' {
         spread?: number;
         origin?: { x?: number; y?: number };
         colors?: string[];
-        [key: string]: any;
+        [key: string]: unknown;
     }
 
     function confetti(options?: ConfettiOptions): Promise<void>;
