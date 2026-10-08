@@ -1,4 +1,4 @@
-import { DISCORD_URL, Hackathon, hackathons } from "../../data/tidal";
+import { Hackathon, hackathons } from "../../data/tidal";
 import { ArrowUpRight } from "./Icons";
 import SectionHead from "./SectionHead";
 
@@ -43,6 +43,7 @@ export default function TideTimeline() {
                                     <h3 id={`tl-${h.id}`}>
                                         {h.title}
                                         {h.upcoming && <span className="tl-flag">Next</span>}
+                                        {h.currently && <span className="tl-flag">Now</span>}
                                     </h3>
                                     {h.theme && <p className="tl-theme">{h.theme}</p>}
                                     <ul className="tl-meta">
@@ -61,9 +62,9 @@ export default function TideTimeline() {
                                                 Devpost <ArrowUpRight />
                                             </a>
                                         )}
-                                        {h.upcoming && (
-                                            <a href={DISCORD_URL} {...ext}>
-                                                Discord <ArrowUpRight />
+                                        {h.register && (
+                                            <a href={h.register} {...ext}>
+                                                Register <ArrowUpRight />
                                             </a>
                                         )}
                                     </p>

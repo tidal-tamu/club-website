@@ -62,10 +62,12 @@ export type Hackathon = {
     prizes?: string;
     /** live event site */
     site?: string;
+    register?: string;
     devpost?: string;
     /** 16:10 cover art; editions without one get a question-mark panel */
     cover?: string;
     upcoming?: boolean;
+    currently?: boolean;
 };
 
 /** Left to right, oldest to newest. Dates and venues match each Devpost listing. */
@@ -105,10 +107,14 @@ export const hackathons: Hackathon[] = [
     },
     {
         id: "f26",
-        title: "tidalBYTE",
-        theme: "Fall 2026",
-        dates: "Coming soon",
-        upcoming: true,
+        title: "tidalBYTE 26",
+        theme: "",
+        dates: "Nov 21, 2026",
+        venue: "MSC 2304",
+        site: "https://f26.tidaltamu.com",
+        register: "https://portal.tidaltamu.com",
+        cover: "/log/f26.png",
+        currently: true,
     },
 ];
 

@@ -14,6 +14,7 @@ import SiteFooter from "../site/SiteFooter";
 import { useSiteMotion } from "../site/useSiteMotion";
 
 const INTRO_KEY = "tidal:intro-seen";
+const NOTICE_KEY = "tidal:tidalbyte-notice-dismissed";
 
 /**
  * The tide wash plays once per browser session, and never under reduced
@@ -34,6 +35,22 @@ export default function Home() {
     const [playIntro] = useState(shouldPlayIntro);
     const [revealed, setRevealed] = useState(!playIntro);
     const [introDone, setIntroDone] = useState(!playIntro);
+    const [showNotice, setShowNotice] = useState(() => {
+        try {
+            return sessionStorage.getItem(NOTICE_KEY) !== "1";
+        } catch {
+            return true;
+        }
+    });
+
+    const dismissNotice = () => {
+        setShowNotice(false);
+        try {
+            sessionStorage.setItem(NOTICE_KEY, "1");
+        } catch {
+            /* storage unavailable: the notice stays dismissed until this page reloads */
+        }
+    };
 
     // page-level styling lives on <body> so the fixed grain can cover the
     // viewport; scoped to this route by a class rather than a global rule
@@ -81,6 +98,18 @@ export default function Home() {
             <a className="skip" href="#main">
                 Skip to content
             </a>
+            {introDone && showNotice && (
+                <aside className="tidalbyte-notice" aria-label="tidalBYTE registration announcement">
+                    <a className="tidalbyte-notice__link" href="https://f26.tidaltamu.com">
+                        <span className="tidalbyte-notice__eyebrow">tidalBYTE '26</span>
+                        <strong>Registrations are now open for tidalBYTE 26!</strong>
+                        <span className="tidalbyte-notice__action">Explore the event <span aria-hidden="true">↗</span></span>
+                    </a>
+                    <button className="tidalbyte-notice__close" type="button" aria-label="Dismiss tidalBYTE announcement" onClick={dismissNotice}>
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </aside>
+            )}
             <SiteNav />
 
             <main id="main">
