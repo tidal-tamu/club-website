@@ -271,4 +271,5 @@ export const sponsors: Sponsor[] = [
     { name: "Pariveda", logo: LOGO + "pariveda.webp", url: "https://www.parivedasolutions.com/", w: 426, h: 62 },
     { name: "Wolfram", logo: LOGO + "wolfram.webp", url: "https://www.wolfram.com/", w: 274, h: 180 },
     { name: "Celsius", logo: LOGO + "celsius.webp", url: "https://www.celsius.com", w: 526, h: 180 },
+    { name: "STATA", logo: LOGO + "stata-logo-blue.png", url: "https://www.stata.com/", w: 735, h: 271 },
 ];

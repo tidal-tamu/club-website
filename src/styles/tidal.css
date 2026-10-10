@@ -1179,6 +1179,10 @@ body.tidal-page::after {
 .tidal .rail-item a:focus-visible img {
     opacity: 1;
 }
+.tidal .rail-item img[src$="/stata-logo-blue.png"] {
+    filter: grayscale(1);
+    mix-blend-mode: multiply;
+}
 .tidal .partner {
     display: flex;
     flex-wrap: wrap;
