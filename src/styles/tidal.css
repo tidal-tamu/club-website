@@ -507,16 +507,24 @@ body.tidal-page::after {
     --mark-wave: var(--blue);
 }
 /* hangs below the logo without nudging it off centre (logo height is 0.159 of its width) */
-.tidal .hero-tag {
+.tidal .hero-sub {
     position: absolute;
     left: 0;
     right: 0;
     top: calc(50% + var(--logo-w) * 0.0795 + clamp(18px, 2.4vw, 30px));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(16px, 2vw, 24px);
+    padding: 0 clamp(16px, 4vw, 40px);
+}
+.tidal .hero-tag {
     text-align: center;
     font-size: clamp(15px, 1.4vw, 19px);
     font-weight: 500;
     letter-spacing: -0.01em;
     color: var(--muted);
+    max-width: 44ch;
 }
 
 /* --- shoreline line-art --- */
@@ -775,6 +783,56 @@ body.tidal-page::after {
 .tidal .tides {
     position: relative;
     z-index: 1;
+    padding: clamp(88px, 11vw, 152px) 0 clamp(72px, 9vw, 120px);
+}
+
+/* timeline bar: only shown at the 4-col layout */
+.tidal .tl-timeline {
+    display: none;
+}
+@media (min-width: 1080px) {
+    .tidal .tl-timeline {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-bottom: 20px;
+    }
+    .tidal .tl-timeline::before {
+        content: "";
+        position: absolute;
+        top: 7px;
+        left: calc(100% / 8);
+        right: calc(100% / 8);
+        height: 1px;
+        background: var(--line-2);
+    }
+}
+.tidal .tl-tick {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+}
+.tidal .tl-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--sand);
+    border: 1.5px solid var(--line-2);
+    position: relative;
+    z-index: 1;
+    transition: background-color 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.tidal .tl-tick.is-now .tl-dot {
+    background: var(--blue);
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(0, 86, 158, 0.18);
+}
+.tidal .tl-year {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.02em;
 }
 .tidal .tl-nodes {
     display: grid;
@@ -1161,23 +1219,50 @@ body.tidal-page::after {
 .tidal .rail-item a {
     display: grid;
     place-items: center;
+    position: relative;
     width: clamp(150px, 16vw, 210px);
     height: clamp(92px, 9vw, 116px);
     border-right: 1px solid var(--line);
 }
-/* every logo is a dark single-colour silhouette, which sits right on the sand */
 .tidal .rail-item img {
     width: auto;
     height: auto;
     max-width: 64%;
     max-height: 40%;
     object-fit: contain;
-    opacity: 0.5;
     transition: opacity 0.25s;
 }
-.tidal .rail-item a:hover img,
-.tidal .rail-item a:focus-visible img {
+.tidal .rail-item .logo-dark {
+    opacity: 0.5;
+}
+.tidal .rail-item .logo-color {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+/* items without a color logo: brighten the dark silhouette on hover */
+.tidal .rail-item a:hover .logo-dark,
+.tidal .rail-item a:focus-visible .logo-dark {
     opacity: 1;
+}
+/* items with a color logo: swap to the branded version on hover */
+.tidal .rail-item.has-color a:hover .logo-dark,
+.tidal .rail-item.has-color a:focus-visible .logo-dark {
+    opacity: 0;
+}
+.tidal .rail-item.has-color a:hover .logo-color,
+.tidal .rail-item.has-color a:focus-visible .logo-color {
+    opacity: 1;
+}
+/* Chevron: the image frame has extra whitespace at the bottom — nudge both
+   versions up so the mark sits visually centred in the rail slot */
+.tidal .rail-item[data-sponsor="chevron"] .logo-dark {
+    transform: translateY(-10px);
+}
+.tidal .rail-item[data-sponsor="chevron"] .logo-color {
+    top: calc(50% - 10px);
 }
 .tidal .partner {
     display: flex;
@@ -1255,6 +1340,22 @@ body.tidal-page::after {
     font-size: 13.5px;
     line-height: 1.5;
     color: var(--muted);
+}
+.tidal .foot-made {
+    transition: color 0.25s;
+    cursor: default;
+    user-select: none;
+}
+.tidal .foot-made:hover {
+    color: var(--blue);
+}
+.tidal .foot-heart {
+    display: inline-block;
+    transition: color 0.25s, transform 0.35s var(--ease);
+}
+.tidal .foot-made:hover .foot-heart {
+    color: #e05050;
+    transform: scale(1.25);
 }
 .tidal .foot-up {
     display: inline-flex;

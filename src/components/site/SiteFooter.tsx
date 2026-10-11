@@ -27,9 +27,9 @@ export default function SiteFooter() {
                 </div>
 
                 <div className="foot-bar">
-                    <p>
-                        © {new Date().getFullYear()} TIDAL. A registered student organization at
-                        Texas A&amp;M University; views are our own.
+                    <p className="foot-made">
+                        Made with <span className="foot-heart" aria-hidden="true">♥</span>
+                        <span className="sr-only">love</span> by tidal
                     </p>
                     <a href="#top" className="foot-up">
                         Back to top <ArrowUp />

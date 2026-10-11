@@ -1,13 +1,8 @@
-import { tagline } from "../../data/tidal";
+import { DISCORD_URL, tagline } from "../../data/tidal";
 import ShoreArt from "./ShoreArt";
 import TidalMark from "./TidalMark";
+import { SocialGlyph } from "./Icons";
 
-/**
- * The hero is the logo, pressed into the sand. It is sized and centred exactly
- * like the white logo inside the intro's water (both use --logo-w in a
- * viewport-tall box), so as the tide goes out it uncovers this one: there is
- * no hand-off, the wet logo simply dries.
- */
 export default function Hero() {
     return (
         <section className="stage" aria-labelledby="hero-title">
@@ -16,7 +11,18 @@ export default function Hero() {
                 <h1 id="hero-title" className="hero-mark">
                     <TidalMark className="hero-logo" />
                 </h1>
-                <p className="hero-tag rv">{tagline}</p>
+                <div className="hero-sub rv">
+                    <p className="hero-tag">{tagline}</p>
+                    <a
+                        className="btn btn-ink hero-discord"
+                        href={DISCORD_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <SocialGlyph icon="discord" className="btn-glyph" />
+                        Join Discord
+                    </a>
+                </div>
             </div>
         </section>
     );

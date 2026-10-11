@@ -32,13 +32,13 @@ export const navLinks = [
 
 /* ------------------------------------------------------------- hero + about */
 
-export const tagline = "AI/ML at Texas A&M";
+export const tagline = "Empowering Aggies with AI/ML";
 
 /** Lit up word by word as it scrolls past. */
 export const statement =
     "We learn AI by building it. Weekly workshops, real compute, and TIDALHACK.";
 
-export const meeting = ["Thursdays 7 PM", "MSC 2406A", "All majors"];
+export const meeting = ["Thursdays 7 PM", "All majors"];
 
 export const award = "Adair Student Organization of the Year 2025";
 
@@ -202,8 +202,8 @@ export const departments: Department[] = [
         name: "Activities",
         people: [
             { name: "Isaac Chacko", role: "Lead", photo: DIR + "isaac-chacko.webp" },
-            { name: "Jamie Moe", role: "Officer", photo: DIR + "jamie-moe.webp" },
             { name: "Tanvee Borikar", role: "Officer", photo: DIR + "tanvee-borikar.webp" },
+            { name: "Jamie Moe", role: "Officer", photo: DIR + "jamie-moe.webp" },
         ],
     },
     {
@@ -238,8 +238,8 @@ export const departments: Department[] = [
     {
         name: "Development",
         people: [
-            { name: "Balaram Palivela", role: "Officer", photo: DIR + "balaram-palivela.webp" },
             { name: "Yash Kulkarni", role: "Officer", photo: DIR + "yash-kulkarni.webp" },
+            { name: "Balaram Palivela", role: "Officer", photo: DIR + "balaram-palivela.webp" },
         ],
     },
 ];
@@ -248,8 +248,8 @@ export const departments: Department[] = [
 
 export type Sponsor = {
     name: string;
-    /** single-colour silhouette, recoloured in CSS */
     logo: string;
+    colorLogo?: string;
     url: string;
     /** intrinsic size, so the rail reserves space before the image loads */
     w: number;
@@ -257,13 +257,14 @@ export type Sponsor = {
 };
 
 const LOGO = "/underwriters/";
+const COLOR = "/icons/logos/companies/";
 
 export const sponsors: Sponsor[] = [
-    { name: "AWS", logo: LOGO + "aws.webp", url: "https://aws.amazon.com/", w: 301, h: 180 },
+    { name: "AWS", logo: LOGO + "aws.webp", colorLogo: COLOR + "aws-light-logo.png", url: "https://aws.amazon.com/", w: 301, h: 180 },
     { name: "NVIDIA", logo: LOGO + "nvidia.webp", url: "https://www.nvidia.com/", w: 560, h: 107 },
-    { name: "Google", logo: LOGO + "google.webp", url: "https://about.google/", w: 547, h: 180 },
-    { name: "Jane Street", logo: LOGO + "jane-street.webp", url: "https://www.janestreet.com/", w: 400, h: 156 },
-    { name: "Blue Origin", logo: LOGO + "blue-origin.webp", url: "https://www.blueorigin.com/", w: 273, h: 180 },
+    { name: "Google", logo: LOGO + "google.webp", colorLogo: COLOR + "google-color.png", url: "https://about.google/", w: 547, h: 180 },
+    { name: "Jane Street", logo: LOGO + "jane-street.webp", colorLogo: COLOR + "jane-street-blue.png", url: "https://www.janestreet.com/", w: 400, h: 156 },
+    { name: "Blue Origin", logo: LOGO + "blue-origin.webp", colorLogo: COLOR + "bo-logo.png", url: "https://www.blueorigin.com/", w: 273, h: 180 },
     { name: "Chevron", logo: LOGO + "chevron.webp", url: "https://www.chevron.com/", w: 161, h: 180 },
     { name: "PNNL", logo: LOGO + "pnnl.webp", url: "https://www.pnnl.gov/", w: 432, h: 180 },
     { name: "ElevenLabs", logo: LOGO + "elevenlabs.webp", url: "https://elevenlabs.io", w: 560, h: 73 },

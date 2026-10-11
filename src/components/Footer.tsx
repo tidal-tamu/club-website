@@ -23,8 +23,7 @@ export default function Footer() {
                             />
                         </div>
                         <p className="text-gray-400 text-xs md:text-sm lg:text-base leading-relaxed">
-                            Empowering Aggies with AI/ML skills through hands-on
-                            learning and community engagement.
+                            Empowering Aggies with AI/ML
                         </p>
                     </div>
 
