@@ -1260,14 +1260,6 @@ body.tidal-page::after {
 .tidal .rail-item.has-color a:focus-visible .logo-color {
     opacity: 1;
 }
-/* Chevron: the image frame has extra whitespace at the bottom — nudge both
-   versions up so the mark sits visually centred in the rail slot */
-.tidal .rail-item[data-sponsor="chevron"] .logo-dark {
-    transform: translateY(-10px);
-}
-.tidal .rail-item[data-sponsor="chevron"] .logo-color {
-    top: calc(50% - 10px);
-}
 /* STATA: only a blue PNG exists — desaturate it to match the dark silhouettes */
 .tidal .rail-item[data-sponsor="stata"] .logo-dark {
     filter: grayscale(1);

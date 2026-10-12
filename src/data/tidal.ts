@@ -265,7 +265,6 @@ export const sponsors: Sponsor[] = [
     { name: "Google", logo: LOGO + "google.webp", colorLogo: COLOR + "google-color.png", url: "https://about.google/", w: 547, h: 180 },
     { name: "Jane Street", logo: LOGO + "jane-street.webp", colorLogo: COLOR + "jane-street-blue.png", url: "https://www.janestreet.com/", w: 400, h: 156 },
     { name: "Blue Origin", logo: LOGO + "blue-origin.webp", colorLogo: COLOR + "bo-logo.png", url: "https://www.blueorigin.com/", w: 273, h: 180 },
-    { name: "Chevron", logo: LOGO + "chevron.webp", url: "https://www.chevron.com/", w: 161, h: 180 },
     { name: "PNNL", logo: LOGO + "pnnl.webp", url: "https://www.pnnl.gov/", w: 432, h: 180 },
     { name: "ElevenLabs", logo: LOGO + "elevenlabs.webp", url: "https://elevenlabs.io", w: 560, h: 73 },
     { name: "Slalom", logo: LOGO + "slalom.webp", url: "https://www.slalom.com/", w: 347, h: 89 },
