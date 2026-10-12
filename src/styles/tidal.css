@@ -1264,6 +1264,11 @@ body.tidal-page::after {
 .tidal .rail-item[data-sponsor="chevron"] .logo-color {
     top: calc(50% - 10px);
 }
+/* STATA: only a blue PNG exists — desaturate it to match the dark silhouettes */
+.tidal .rail-item[data-sponsor="stata"] .logo-dark {
+    filter: grayscale(1);
+    mix-blend-mode: multiply;
+}
 .tidal .partner {
     display: flex;
     flex-wrap: wrap;
