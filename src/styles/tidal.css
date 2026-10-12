@@ -35,6 +35,8 @@
     --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
     /* the hero logo and the intro's wet logo share this, so they line up exactly */
     --logo-w: min(600px, 64vw);
+    /* how far above dead-centre both logos sit */
+    --logo-lift: clamp(24px, 5vh, 56px);
 
     overflow-x: clip;
 }
@@ -195,6 +197,7 @@ body.tidal-page::after {
     display: block;
     width: var(--logo-w);
     height: auto;
+    transform: translateY(calc(var(--logo-lift) * -1));
     color: #fff;
     --mark-wave: #fff;
 }
@@ -503,6 +506,7 @@ body.tidal-page::after {
     display: block;
     width: var(--logo-w);
     height: auto;
+    transform: translateY(calc(var(--logo-lift) * -1));
     color: var(--ink);
     --mark-wave: var(--blue);
 }
@@ -511,7 +515,7 @@ body.tidal-page::after {
     position: absolute;
     left: 0;
     right: 0;
-    top: calc(50% + var(--logo-w) * 0.0795 + clamp(18px, 2.4vw, 30px));
+    top: calc(50% - var(--logo-lift) + var(--logo-w) * 0.0795 + clamp(18px, 2.4vw, 30px));
     display: flex;
     flex-direction: column;
     align-items: center;

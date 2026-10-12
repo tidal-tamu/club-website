@@ -32,11 +32,11 @@ export const navLinks = [
 
 /* ------------------------------------------------------------- hero + about */
 
-export const tagline = "Empowering Aggies with AI/ML";
+export const tagline = "Empowering Aggies with AI and ML";
 
 /** Lit up word by word as it scrolls past. */
 export const statement =
-    "We learn AI by building it. Weekly workshops, real compute, and TIDALHACK.";
+    "We learn AI by building it. Weekly workshops, free resources, and TIDALHACK.";
 
 export const meeting = ["Thursdays 7 PM", "All majors"];
 
