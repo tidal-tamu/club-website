@@ -118,10 +118,10 @@ export default function Home() {
                     <Hero />
                     <About />
                     <MetricsBar />
+                    <TideTimeline />
                     <CommunityBoard />
                     <Team />
                     <Sponsors />
-                    <TideTimeline />
                 </div>
             </main>
 
