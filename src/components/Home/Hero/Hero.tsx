@@ -138,7 +138,7 @@ export default function Hero() {
 
                         <div className="mb-8">
                             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-                                Empowering Aggies with AI/ML skills through hands-on learning and community.
+                                Empowering Aggies with AI/ML
                             </p>
                         </div>
 

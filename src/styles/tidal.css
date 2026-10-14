@@ -35,6 +35,8 @@
     --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
     /* the hero logo and the intro's wet logo share this, so they line up exactly */
     --logo-w: min(600px, 64vw);
+    /* how far above dead-centre both logos sit */
+    --logo-lift: clamp(24px, 5vh, 56px);
 
     overflow-x: clip;
 }
@@ -195,6 +197,7 @@ body.tidal-page::after {
     display: block;
     width: var(--logo-w);
     height: auto;
+    transform: translateY(calc(var(--logo-lift) * -1));
     color: #fff;
     --mark-wave: #fff;
 }
@@ -503,20 +506,29 @@ body.tidal-page::after {
     display: block;
     width: var(--logo-w);
     height: auto;
+    transform: translateY(calc(var(--logo-lift) * -1));
     color: var(--ink);
     --mark-wave: var(--blue);
 }
 /* hangs below the logo without nudging it off centre (logo height is 0.159 of its width) */
-.tidal .hero-tag {
+.tidal .hero-sub {
     position: absolute;
     left: 0;
     right: 0;
-    top: calc(50% + var(--logo-w) * 0.0795 + clamp(18px, 2.4vw, 30px));
+    top: calc(50% - var(--logo-lift) + var(--logo-w) * 0.0795 + clamp(18px, 2.4vw, 30px));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(16px, 2vw, 24px);
+    padding: 0 clamp(16px, 4vw, 40px);
+}
+.tidal .hero-tag {
     text-align: center;
     font-size: clamp(15px, 1.4vw, 19px);
     font-weight: 500;
     letter-spacing: -0.01em;
     color: var(--muted);
+    max-width: 44ch;
 }
 
 /* --- shoreline line-art --- */
@@ -775,6 +787,56 @@ body.tidal-page::after {
 .tidal .tides {
     position: relative;
     z-index: 1;
+    padding: clamp(88px, 11vw, 152px) 0 clamp(72px, 9vw, 120px);
+}
+
+/* timeline bar: only shown at the 4-col layout */
+.tidal .tl-timeline {
+    display: none;
+}
+@media (min-width: 1080px) {
+    .tidal .tl-timeline {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-bottom: 20px;
+    }
+    .tidal .tl-timeline::before {
+        content: "";
+        position: absolute;
+        top: 7px;
+        left: calc(100% / 8);
+        right: calc(100% / 8);
+        height: 1px;
+        background: var(--line-2);
+    }
+}
+.tidal .tl-tick {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+}
+.tidal .tl-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--sand);
+    border: 1.5px solid var(--line-2);
+    position: relative;
+    z-index: 1;
+    transition: background-color 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.tidal .tl-tick.is-now .tl-dot {
+    background: var(--blue);
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(0, 86, 158, 0.18);
+}
+.tidal .tl-year {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.02em;
 }
 .tidal .tl-nodes {
     display: grid;
@@ -1161,26 +1223,28 @@ body.tidal-page::after {
 .tidal .rail-item a {
     display: grid;
     place-items: center;
+    position: relative;
     width: clamp(150px, 16vw, 210px);
     height: clamp(92px, 9vw, 116px);
     border-right: 1px solid var(--line);
 }
-/* every logo is a dark single-colour silhouette, which sits right on the sand */
 .tidal .rail-item img {
     width: auto;
     height: auto;
     max-width: 64%;
     max-height: 40%;
     object-fit: contain;
+    filter: brightness(0);
     opacity: 0.5;
-    transition: opacity 0.25s;
+    transition: filter 0.25s, opacity 0.25s;
 }
+/* Reveal the colors of the same image so its shape never changes. */
 .tidal .rail-item a:hover img,
 .tidal .rail-item a:focus-visible img {
+    filter: none;
     opacity: 1;
 }
-.tidal .rail-item img[src$="/stata-logo-blue.png"] {
-    filter: grayscale(1);
+.tidal .rail-item[data-sponsor="stata"] img {
     mix-blend-mode: multiply;
 }
 .tidal .partner {
@@ -1259,6 +1323,22 @@ body.tidal-page::after {
     font-size: 13.5px;
     line-height: 1.5;
     color: var(--muted);
+}
+.tidal .foot-made {
+    transition: color 0.25s;
+    cursor: default;
+    user-select: none;
+}
+.tidal .foot-made:hover {
+    color: var(--blue);
+}
+.tidal .foot-heart {
+    display: inline-block;
+    transition: color 0.25s, transform 0.35s var(--ease);
+}
+.tidal .foot-made:hover .foot-heart {
+    color: #e05050;
+    transform: scale(1.25);
 }
 .tidal .foot-up {
     display: inline-flex;

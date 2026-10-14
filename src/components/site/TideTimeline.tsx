@@ -19,7 +19,6 @@ function Cover({ h }: { h: Hackathon }) {
             </div>
         );
     }
-    // no art yet
     return (
         <div className="tl-cover tl-cover-next" aria-hidden="true">
             <span className="tl-next-q">???</span>
@@ -27,12 +26,20 @@ function Cover({ h }: { h: Hackathon }) {
     );
 }
 
-/** Every TIDALHACK edition, oldest to newest, as a plain row of cards. */
 export default function TideTimeline() {
     return (
         <section className="tides" id="hackathons" aria-labelledby="hackathons-title">
             <div className="wrap">
                 <SectionHead title="Hackathons" id="hackathons-title" />
+
+                <div className="tl-timeline rv" aria-hidden="true">
+                    {hackathons.map((h) => (
+                        <div key={h.id} className={`tl-tick${h.currently ? " is-now" : ""}`}>
+                            <div className="tl-dot" />
+                            <span className="tl-year">{h.dates.match(/\d{4}/)?.[0]}</span>
+                        </div>
+                    ))}
+                </div>
 
                 <ol className="tl-nodes">
                     {hackathons.map((h) => (

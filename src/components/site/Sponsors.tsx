@@ -4,7 +4,11 @@ import SectionHead from "./SectionHead";
 
 function Logo({ s, hidden }: { s: Sponsor; hidden?: boolean }) {
     return (
-        <li className="rail-item" aria-hidden={hidden || undefined}>
+        <li
+            className="rail-item"
+            aria-hidden={hidden || undefined}
+            data-sponsor={s.name.toLowerCase().replace(/\s+/g, "-")}
+        >
             <a
                 href={s.url}
                 target="_blank"
@@ -12,7 +16,7 @@ function Logo({ s, hidden }: { s: Sponsor; hidden?: boolean }) {
                 tabIndex={hidden ? -1 : undefined}
                 title={s.name}
             >
-                <img src={s.logo} alt={hidden ? "" : s.name} width={s.w} height={s.h} loading="lazy" decoding="async" />
+                <img src={s.colorLogo ?? s.logo} alt={hidden ? "" : s.name} width={s.w} height={s.h} loading="lazy" decoding="async" />
             </a>
         </li>
     );
