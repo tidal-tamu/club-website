@@ -1234,35 +1234,17 @@ body.tidal-page::after {
     max-width: 64%;
     max-height: 40%;
     object-fit: contain;
-    transition: opacity 0.25s;
-}
-.tidal .rail-item .logo-dark {
+    filter: brightness(0);
     opacity: 0.5;
+    transition: filter 0.25s, opacity 0.25s;
 }
-.tidal .rail-item .logo-color {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-}
-/* items without a color logo: brighten the dark silhouette on hover */
-.tidal .rail-item a:hover .logo-dark,
-.tidal .rail-item a:focus-visible .logo-dark {
+/* Reveal the colors of the same image so its shape never changes. */
+.tidal .rail-item a:hover img,
+.tidal .rail-item a:focus-visible img {
+    filter: none;
     opacity: 1;
 }
-/* items with a color logo: swap to the branded version on hover */
-.tidal .rail-item.has-color a:hover .logo-dark,
-.tidal .rail-item.has-color a:focus-visible .logo-dark {
-    opacity: 0;
-}
-.tidal .rail-item.has-color a:hover .logo-color,
-.tidal .rail-item.has-color a:focus-visible .logo-color {
-    opacity: 1;
-}
-/* STATA: only a blue PNG exists — desaturate it to match the dark silhouettes */
-.tidal .rail-item[data-sponsor="stata"] .logo-dark {
-    filter: grayscale(1);
+.tidal .rail-item[data-sponsor="stata"] img {
     mix-blend-mode: multiply;
 }
 .tidal .partner {

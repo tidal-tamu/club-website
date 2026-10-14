@@ -261,15 +261,15 @@ const COLOR = "/icons/logos/companies/";
 
 export const sponsors: Sponsor[] = [
     { name: "AWS", logo: LOGO + "aws.webp", colorLogo: COLOR + "aws-light-logo.png", url: "https://aws.amazon.com/", w: 301, h: 180 },
-    { name: "NVIDIA", logo: LOGO + "nvidia.webp", url: "https://www.nvidia.com/", w: 560, h: 107 },
+    { name: "NVIDIA", logo: LOGO + "nvidia.webp", colorLogo: LOGO + "nvidia-color.svg", url: "https://www.nvidia.com/", w: 560, h: 107 },
     { name: "Google", logo: LOGO + "google.webp", colorLogo: COLOR + "google-color.png", url: "https://about.google/", w: 547, h: 180 },
     { name: "Jane Street", logo: LOGO + "jane-street.webp", colorLogo: COLOR + "jane-street-blue.png", url: "https://www.janestreet.com/", w: 400, h: 156 },
     { name: "Blue Origin", logo: LOGO + "blue-origin.webp", colorLogo: COLOR + "bo-logo.png", url: "https://www.blueorigin.com/", w: 273, h: 180 },
-    { name: "PNNL", logo: LOGO + "pnnl.webp", url: "https://www.pnnl.gov/", w: 432, h: 180 },
+    { name: "PNNL", logo: LOGO + "pnnl.webp", colorLogo: COLOR + "pnnl.png", url: "https://www.pnnl.gov/", w: 432, h: 180 },
     { name: "ElevenLabs", logo: LOGO + "elevenlabs.webp", url: "https://elevenlabs.io", w: 560, h: 73 },
-    { name: "Slalom", logo: LOGO + "slalom.webp", url: "https://www.slalom.com/", w: 347, h: 89 },
-    { name: "Pariveda", logo: LOGO + "pariveda.webp", url: "https://www.parivedasolutions.com/", w: 426, h: 62 },
-    { name: "Wolfram", logo: LOGO + "wolfram.webp", url: "https://www.wolfram.com/", w: 274, h: 180 },
-    { name: "Celsius", logo: LOGO + "celsius.webp", url: "https://www.celsius.com", w: 526, h: 180 },
+    { name: "Slalom", logo: LOGO + "slalom.webp", colorLogo: COLOR + "slalom-logo.png", url: "https://www.slalom.com/", w: 347, h: 89 },
+    { name: "Pariveda", logo: LOGO + "pariveda.webp", colorLogo: COLOR + "pariveda-logo.png", url: "https://www.parivedasolutions.com/", w: 426, h: 62 },
+    { name: "Wolfram", logo: LOGO + "wolfram.webp", colorLogo: LOGO + "wolfram-color.svg", url: "https://www.wolfram.com/", w: 274, h: 180 },
+    { name: "Celsius", logo: LOGO + "celsius.webp", colorLogo: LOGO + "celsius-color.svg", url: "https://www.celsius.com", w: 526, h: 180 },
     { name: "STATA", logo: LOGO + "stata-logo-blue.png", url: "https://www.stata.com/", w: 735, h: 271 },
 ];

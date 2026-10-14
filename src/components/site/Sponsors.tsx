@@ -5,7 +5,7 @@ import SectionHead from "./SectionHead";
 function Logo({ s, hidden }: { s: Sponsor; hidden?: boolean }) {
     return (
         <li
-            className={`rail-item${s.colorLogo ? " has-color" : ""}`}
+            className="rail-item"
             aria-hidden={hidden || undefined}
             data-sponsor={s.name.toLowerCase().replace(/\s+/g, "-")}
         >
@@ -16,10 +16,7 @@ function Logo({ s, hidden }: { s: Sponsor; hidden?: boolean }) {
                 tabIndex={hidden ? -1 : undefined}
                 title={s.name}
             >
-                <img src={s.logo} alt={hidden ? "" : s.name} width={s.w} height={s.h} loading="lazy" decoding="async" className="logo-dark" />
-                {s.colorLogo && (
-                    <img src={s.colorLogo} alt="" aria-hidden="true" loading="lazy" decoding="async" className="logo-color" width={s.w} height={s.h} style={{ aspectRatio: `${s.w} / ${s.h}` }} />
-                )}
+                <img src={s.colorLogo ?? s.logo} alt={hidden ? "" : s.name} width={s.w} height={s.h} loading="lazy" decoding="async" />
             </a>
         </li>
     );
