@@ -110,7 +110,7 @@ export const hackathons: Hackathon[] = [
         title: "tidalBYTE 26",
         theme: "",
         dates: "Nov 21, 2026",
-        venue: "MSC 2300 D&E",
+        venue: "MSC 2300",
         site: "https://f26.tidaltamu.com",
         register: "https://portal.tidaltamu.com",
         cover: "/log/f26.png",
